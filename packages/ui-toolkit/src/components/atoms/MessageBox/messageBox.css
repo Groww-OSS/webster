@@ -1,32 +1,54 @@
-.infbd45ParentDiv {
-  flex: 1 0 0;
+.mint-msgBox-container {
   border-radius: 8px;
-  padding: 12px 16px;
-  width: fit-content;
-  gap: 8px;
 }
 
-.mb76CompactBox {
-  padding: 0 16px !important;
-  border-radius: 0;
+.mint-msgBox-icon {
+  margin-right: 8px;
 }
 
-.mb45XSmall {
+.mint-msgBox-block {
+  flex-grow: 1;
+}
+
+.mint-msgBox-block-content {
+  min-width: 0;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.mint-msgBox-block-cta {
+  flex: 0 0 auto;
+  margin-left: 8px;
+}
+
+/* -- Size Classes -- */
+
+.mint-msgBox-XSmall {
   padding: 12px 8px;
 }
 
-.mb45Small {
- padding: 12px;
+.mint-msgBox-Small {
+  padding: 12px;
 }
 
-.mb45Base {
- padding: 12px 16px;
+.mint-msgBox-Base {
+  padding: 12px 16px;
 }
 
-.mb45Large {
- padding: 12px 20px;
+.mint-msgBox-Large {
+  padding: 12px 20px;
 }
 
-.mb45XLarge {
- padding: 12px 24px;
+.mint-msgBox-XLarge {
+  padding: 12px 24px;
+}
+
+/* -- Compact Classes -- */
+
+.mint-msgBox-compact {
+  padding: 0 16px !important;
+  border-radius: 0;
 }

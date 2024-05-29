@@ -3,6 +3,8 @@ import cn from 'classnames';
 
 import { Info } from '@groww-tech/icon-store/mi';
 
+import { Button } from '../Button';
+
 import { BACKGROUNDS } from './messageBox.constants';
 import { SIZES } from '../../../utils/constants';
 
@@ -16,55 +18,70 @@ const MessageBox = (props: Props) => {
     background,
     content,
     dataTestId,
-    isCompact
+    isCompact,
+    onContainerClick,
+    actionCTA
   } = props;
 
-  const baseClasses = cn(`mb45${size} valign-wrapper infbd45ParentDiv`, {
+
+  const isClickPresentOnContainer = onContainerClick && typeof onContainerClick === 'function';
+
+  const rootClasses = cn(`valign-wrapper vspace-betweeen width100 mint-msgBox-container mint-msgBox-${size}`, {
     backgroundTertiary: background === BACKGROUNDS.NEUTRAL,
     backgroundWarningSubtle: background === BACKGROUNDS.WARNING,
     backgroundNegativeSubtle: background === BACKGROUNDS.ERROR,
     backgroundPositiveSubtle: background === BACKGROUNDS.POSITIVE,
-    mb76CompactBox: isCompact
+    'mint-msgBox-compact': isCompact,
+    'cur-po': isClickPresentOnContainer
   });
 
-  const labelClasses = cn('contentPrimary', {
+  const contentClasses = cn('mint-msgBox-block-content contentPrimary', {
     bodySmall: size === SIZES.SMALL || size === SIZES.XSMALL,
     bodyBase: size === SIZES.BASE,
     bodyLarge: size === SIZES.LARGE,
     bodyXLarge: size === SIZES.XLARGE
   });
 
+  const defaultLeadingIcon = <Info
+    size={20}
+    color='contentPrimary'
+  />;
+
   return (
     <div
-      className={baseClasses}
+      className={rootClasses}
       data-test-id={dataTestId.length ? dataTestId : null}
+      {...(isClickPresentOnContainer && { onClick: onContainerClick })}
     >
-      <div className='valign-wrapper'>
-        {
-          isIconPresent &&
-        <Info
-          size={20}
-          color='contentPrimary'
-        />
-        }
+      {/* Leading Icon */}
+      {
+        isIconPresent && (<div className='valign-wrapper mint-msgBox-icon'>
+          {defaultLeadingIcon}
+        </div>)
+      }
+      <div className='valign-wrapper mint-msgBox-block'>
+        <div className={cn(contentClasses)}>{content}</div>
+        {/* Optional CTA */}
+        {actionCTA && (<div className='valign-wrapper mint-msgBox-block-cta'>{actionCTA}</div>)}
       </div>
-      <span className={labelClasses}>{content}</span>
     </div>
   );
 };
 
 
 type RequiredProps = {
-  content: React.ReactNode;
+  content: string;
 };
 
 
 type DefaultProps = {
-  isIconPresent: boolean;
+  isIconPresent?: boolean;
   dataTestId: string;
   size: ValueOf<typeof SIZES>;
   background: ValueOf<typeof BACKGROUNDS>;
   isCompact: boolean;
+  onContainerClick?: (e: React.MouseEvent) => void | null;
+  actionCTA?: React.FC<typeof Button> | JSX.Element;
 };
 
 
