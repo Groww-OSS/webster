@@ -4,8 +4,8 @@ import { ChevronRight } from '@groww-tech/icon-store/mi';
 import { action } from '@storybook/addon-actions';
 import { Story } from '@storybook/react';
 
-import { ButtonV1 } from '../src/components/atoms/Button_V1';
-import { Props as ButtonProps } from '../src/components/atoms/Button_V1/ButtonV1';
+import { ButtonV1 } from '../src/components/atoms/Button';
+import { Props as ButtonProps } from '../src/components/atoms/Button/Button';
 
 export default {
   title: 'ButtonV1',

@@ -1,82 +1,97 @@
-.btn96DefaultClass {
+.mint-btn-default {
   border-radius: 8px;
   flex-shrink: 0;
+  border: 0;
+  outline: none;
+  min-width: 72px;
 }
 
+.mint-btn-default:hover {
+  opacity: 0.96;
+}
 
-.btn96DefaultClass:hover {
-  opacity: 0.9;
+.mint-btn-default:focus-visible {
+  outline-offset: 2px;
+  outline: 2px solid -webkit-focus-ring-color; 
+  /* // default color */
+}
+
+.mint-btn-default:active {
+  opacity: 0.96;
+}
+
+.mint-btn-cursor-default {
+  cursor: default;
+}
+
+.mint-btn-border-no-accent{
+  border: 1px solid var(--gray150) !important;
 }
 
 /* -- Size Classes -- */
 
-
-.btn96SmallButton {
+.mint-btn-small {
   padding: 12px;
   height: 32px;
   gap: 6px;
   width: fit-content;
 }
 
-.btn96MediumButton {
+.mint-btn-medium {
   padding: 12px 16px;
   height: 40px;
   width: fit-content;
   gap: 6px;
 }
 
-.btn96LargeButton {
+.mint-btn-large {
   padding: 16px 24px;
   width: fit-content;
   height: 48px;
   gap: 8px;
 }
 
-.btn96XLargeButton {
- width: fit-content;
- height: fit-content;
- padding: 16px 24px;
- height: 56px;
- gap: 8px;
-}
-
-.btn86FullWidth{
+.mint-btn-full-width{
   width: 100%;
 }
 
-.btnIconLeading {
-  width: 100%;
-  height: 100%;
+/* -- Disabled Button -- */
+
+.mint-btn-disabled{
+  cursor: default;
+  pointer-events: none;
+  background-color: var(--gray150);
 }
 
-.btn96Disabled {
- background-color: var(--gray150);
+.mint-btn-disabled.mint-btn-tertiary-disabled{
+  background-color: transparent;
 }
-
 /* -- Seconday Button -- */
-.btn96SecondaryButtonWithoutAccent:hover {
+
+.mint-btn-secondary-no-accent:hover {
   background-color: var(--gray50);
 }
 
-
 /* -- Tertairy Button -- */
 
-.btn96TertiaryButtonWithAccent:hover {
+/* when isAccent = true */
+.mint-btn-tertiary-accent:hover{
   background-color: var(--green100);
 }
 
-.btn96TertiaryButtonBorder {
+/* when isAccent = false */
+.mint-btn-tertiary-no-accent:hover{
+  background-color: var(--gray50);
+}
+
+.mint-btn-tertiary-border {
   border-style: dashed !important;
   border-width: 0 0 1px 0 !important;
 }
 
-.btn96TertiaryButtonWithoutAccent:hover {
-  background-color: var(--gray50);
-}
-
 /* -- Compact classes -- */
 
-.btn96CompactButton {
+.mint-btn-compact {
   width: fit-content;
   min-width: fit-content;
   height: fit-content;
@@ -85,61 +100,45 @@
 }
 
 
+/*  -- Loader Button --  */
 
-
-/* Loader Classes */
-
-.btn96LoadingButton {
+.mint-btn-loader {
   color: transparent !important;
 }
 
-.btn96LoadingButton .btn96ParentDimension {
-  border-bottom: none;
-}
-
-.btn96LoaderContainer {
+.mint-btn-loader-container {
   position: absolute;
+  margin-top: 4px;
 }
 
-.btn96ButtonDisable {
-  background-color: var(--gray150);
-}
-
-.btn96PrimaryButtonLoader {
+.mint-btn-loader-primary {
   border: 2px solid var(--white); /* the loader color will always be white in dark as well as in light theme */
   border-top-color: transparent;
 }
 
-.btn96LoaderWithoutAccent { /*used because the token doesn't override the existing color of loader*/
+.mint-btn-loader-no-accent { /*used because the token doesn't override the existing color of loader*/
   border: 2px solid var(--gray900);
   border-right-color: transparent;
 }
 
-.btn96LoaderMargin {
-  margin-top: 4px;
-}
-
-.btn96MediumButton .btn96LoaderSize {
-  width: 20px; 
-  height: 20px;
-}
-
-.btn96LargeButton .btn96LoaderSize {
-  width: 24px;
-  height: 24px;
-}
-
-.btn96XLargeButton .btn96LoaderSize {
-  width: 24px;
-  height: 24px;
-}
-
-.btn96SmallButton .btn96LoaderSize {
+.mint-btn-small .mint-btn-loader-item {
   width: 16px;
   height: 16px;
 }
 
-.btn96BottomFixed {
+.mint-btn-medium .mint-btn-loader-item {
+  width: 20px; 
+  height: 20px;
+}
+
+.mint-btn-large .mint-btn-loader-item {
+  width: 24px;
+  height: 24px;
+}
+
+/*  -- Fixed Bottom -- */
+
+.mint-btn-fixed-bottom {
   position: fixed;
   left: 0;
   border-width: 1px 0 0 0 !important;
@@ -147,8 +146,4 @@
   width: 100%;
   z-index: 1000;
   bottom: 0;
-}
-
-.btn96LoaderCursor {
-  cursor: default;
 }
