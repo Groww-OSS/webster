@@ -31,6 +31,7 @@ const Button = (props: Props) => {
     {
       contentOnColour: !isLoading && !isDisabled,
       backgroundAccent: !isDisabled || (isLoading && isDisabled),
+      // Not in use
       btn96ButtonHover: !isDisabled,
       btn96ButtonDisable: isDisabled && !isLoading
     });
@@ -44,6 +45,7 @@ const Button = (props: Props) => {
   });
 
   const tertiaryButtonClasses = cn({
+    // Not in use
     btn96TertiaryButtonDisabled: isDisabled && !isLoading,
     btn96TertiaryButtonWithAccent: isAccent && !isDisabled && !isLoading,
     btn96TertiaryButtonWithoutAccent: !isAccent && !isDisabled
@@ -52,6 +54,7 @@ const Button = (props: Props) => {
   const postiveButtonClasses = cn({
     backgroundPositive: !isDisabled || (isLoading && isDisabled),
     contentOnColour: !isLoading && !isDisabled,
+    // Not in use
     btn96ButtonHover: !isDisabled,
     btn96ButtonDisable: isDisabled && !isLoading
   });
@@ -59,6 +62,7 @@ const Button = (props: Props) => {
   const negativeButtonClasses = cn({
     backgroundNegative: !isDisabled || (isLoading && isDisabled),
     contentOnColour: !isLoading && !isDisabled,
+    // Not in use
     btn96ButtonHover: !isDisabled,
     btn96ButtonDisable: isDisabled && !isLoading,
   });
@@ -86,10 +90,11 @@ const Button = (props: Props) => {
       btn86FullWidth: isFullWidth,
       btn96LoadingButton: isLoading,
       btn96CompactButton: variant === VARIANTS.TERTIARY && isCompact,
+      // Not in use
       btn96ButtonLabel: variant !== VARIANTS.TERTIARY && !isDisabled
     });
 
-
+// .btn96ParentDimension not in use.
   const getButtonClasses = (variant: string) => {
     switch (variant) {
       case VARIANTS.PRIMARY:
