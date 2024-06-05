@@ -20,7 +20,7 @@ export default {
     size: {
       control: {
         type: 'select',
-        options: [ 'Small', 'Base', 'Large', 'XLarge' ]
+        options: [ 'Small', 'Base', 'Large' ]
       }
     }
   }
@@ -71,7 +71,7 @@ Disabled.args = {
 export const Loading = Template.bind({});
 Loading.args = {
   ...Primary.args,
-  isLoading: false
+  isLoading: true
 };
 
 export const FullWidth = Template.bind({});
@@ -90,4 +90,43 @@ export const WithTrailingIcon = Template.bind({});
 WithTrailingIcon.args = {
   ...Primary.args,
   trailingIcon: (iconProps: any) => <ChevronRight {...iconProps} />
+};
+
+export const LinkButtonPrimary = Template.bind({});
+LinkButtonPrimary.args = {
+  ...Primary.args,
+  role: 'link',
+  href: "https://groww.in",
+  target: "_blank",
+  onClick: action("Anchor type button clicked")
+};
+
+export const LinkButtonSecondary = Template.bind({});
+LinkButtonSecondary.args = {
+  ...Primary.args,
+  variant: 'Secondary',
+  role: 'link',
+  href: "https://groww.in",
+  target: "_blank",
+  onClick: action("Anchor type button clicked")
+};
+
+export const LinkButtonTertiary = Template.bind({});
+LinkButtonTertiary.args = {
+  ...Primary.args,
+  variant: 'Tertiary',
+  role: 'link',
+  href: "https://groww.in",
+  target: "_blank",
+  onClick: action("Anchor type button clicked")
+};
+
+export const LinkButtonLoading = Template.bind({});
+LinkButtonLoading.args = {
+  ...Primary.args,
+  isLoading: true,
+  role: 'link',
+  href: "https://groww.in",
+  target: "_blank",
+  onClick: action("Anchor type button clicked")
 };

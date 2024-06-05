@@ -10,6 +10,10 @@ export const VARIANTS = {
 export const BUTTON_SIZES = {
   SMALL: 'Small',
   BASE: 'Base',
-  LARGE: 'Large',
-  XLARGE: 'XLarge'
+  LARGE: 'Large'
+};
+
+export const ROLE = {
+  BUTTON: 'button',
+  LINK: 'link'
 };
