@@ -61,15 +61,15 @@ jobs:
       - if: steps.cpv.outputs.is-new-version == 'true'
         name: Deploy the documents on github pages
         run: |
-          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          git remote set-url origin https://git:${GIT_TOKEN_WEB_OSS}@github.com/${GITHUB_REPOSITORY}.git
           npm run push-doc -- -u "github-actions-bot <support+actions@github.com>"
         working-directory: './${{env.package_dir}}/${{env.package_name}}'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN_WEB_OSS }}
 
       - if: steps.cpv.outputs.is-new-version == 'true'
         uses: ./.github/workflows/actions/pnpm_publish
         with:
-          github_token: ${{secrets.GITHUB_TOKEN}} 
-          npm_token: ${{secrets.NPM_TOKEN}}
+          github_token: ${{secrets.GIT_TOKEN_WEB_OSS}} 
+          npm_token: ${{secrets.NPM_TOKEN_WEB_OSS}}
           path: './${{env.package_dir}}/${{env.package_name}}'

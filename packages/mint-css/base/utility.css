@@ -64,6 +64,14 @@
 }
 
 .web-align {
+  max-width: 1280px;
+  padding-inline: 32px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Since GrowwCred uses "web-align" class with max-width: 1110px  */
+.web-align-w-1110 {
   max-width: 1110px;
   width: 100%;
   margin: 0 auto;
