@@ -11,7 +11,7 @@
   "sideEffects": false,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Groww/webster"
+    "url": "https://github.com/Groww-OSS/webster.git"
   },
   "scripts": {
     "build": "tsup --env.NODE_ENV production",
@@ -40,9 +40,9 @@
     "access": "public"
   },
   "bugs": {
-    "url": "https://github.com/Groww/webster/issues"
+    "url": "https://github.com/Groww-OSS/webster/issues"
   },
-  "homepage": "https://github.com/Groww/webster/tree/develop/packages/encryption#readme",
+  "homepage": "https://github.com/Groww-OSS/webster/tree/develop/packages/encryption#readme",
   "devDependencies": {
     "@types/crypto-js": "4.1.1",
     "esbuild-plugin-glob": "1.0.5",

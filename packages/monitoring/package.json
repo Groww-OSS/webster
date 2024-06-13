@@ -9,7 +9,7 @@
   "sideEffects": false,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Groww/webster"
+    "url": "https://github.com/Groww-OSS/webster.git"
   },
   "scripts": {
     "build": "tsup --env.NODE_ENV production",
@@ -36,9 +36,9 @@
     "access": "public"
   },
   "bugs": {
-    "url": "https://github.com/Groww/webster/issues"
+    "url": "https://github.com/Groww-OSS/webster/issues"
   },
-  "homepage": "https://github.com/Groww/webster/tree/develop/packages/monitoring#readme",
+  "homepage": "https://github.com/Groww-OSS/webster/tree/develop/packages/monitoring#readme",
   "devDependencies": {
     "@groww-tech/eslint-config": "workspace:*",
     "@groww-tech/tsconfig": "workspace:*",

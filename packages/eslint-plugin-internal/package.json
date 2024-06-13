@@ -16,7 +16,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Groww/webster"
+    "url": "https://github.com/Groww-OSS/webster.git"
   },
   "author": "Vikas Singh <vikas.singh707@gmail.com> (https://twitter.com/VikasSi25579022)",
   "contributors": [
@@ -49,7 +49,7 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Groww/webster/issues"
+    "url": "https://github.com/Groww-OSS/webster/issues"
   },
-  "homepage": "https://github.com/Groww/webster/tree/develop/packages/eslint-plugin-internal#readme"
+  "homepage": "https://github.com/Groww-OSS/webster/tree/develop/packages/eslint-plugin-internal#readme"
 }
