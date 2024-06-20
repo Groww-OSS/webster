@@ -6,13 +6,13 @@
 
 <p align="center">
   <a href="https://tech.groww.in"><img alt="tech.groww.in" src="https://img.shields.io/badge/tech.groww.in-333?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAA0lBMVEUAAAANzKFkd/dodvRbb/1eb/5dcfoHzJ9abv0Dy50Dypxcb/0GyZ1fc/pcb/oZ3sJhdvcPyJ4Xz6YYx6ED26kCypxJh/EG67UDyZwE4q4D2KdecP4G67YEzqBAn+lecP0Eyp0EypwO88MK9b8GyZ0J361fdPddb/9Xav9cbf8F+L8D7LVabf9Za/8C4KwB16YBzZ4B1KNFj/AN8soE8bkB3KlUefpHivJBl+0wtuIa3tMT588E9LsD57IBypwW4c8S6s0K98cH/MQD6bMD57EC4q7rGKjVAAAAJ3RSTlMAIBkL29V9VvDW0bxzW1koJhYNCO7u3Nzb2djTwMC+urW1gYF/WSYSVnH0AAAAtUlEQVQY00XM1xaCMBBF0Qkg9t57N5goRUAFAfv//5IDUTlP2XdlDYhkSZIhraZOh5miuvm5rFC63e72SuXrHBWDlkuWmkKx2JrWqeKg0v9wui7xfjH+n/hwYaMGSBm6O5yPwrxPcDh69t33Tucb4/qAgDzxH8wJmG2jjXEDYMEcHnLuBGhzBQDVbqi7+vv1RPcIYOuWYVmG6xpmOwtJ2XwUmZZl5tEiUpoXCrMSgbRmvd4Urw9Asxn2jhARUgAAAABJRU5ErkJggg==" /></a>
-  <a href="https://github.com/Groww"><img alt="github" src="https://img.shields.io/badge/Groww-333?logo=github" /></a>
+  <a href="https://github.com/Groww-OSS"><img alt="github" src="https://img.shields.io/badge/Groww-333?logo=github" /></a>
   <a href="https://twitter.com/GrowwEngg"><img alt="twitter" src="https://img.shields.io/twitter/follow/GrowwEngg?label=%40GrowwEngg&style=flat&logo=twitter" /></a>
 </p>
 
 <p align="center">
-  <a href="https://github.com/Groww/webster/blob/main/LICENSE"><img alt="Github License" src="https://img.shields.io/github/license/Groww/webster?color=51C838"/> </a>
-  <a href="https://github.com/Groww/webster/issues"><img alt="Issues" src="https://img.shields.io/github/issues/Groww/webster?color=51C838"/> </a>
+  <a href="https://github.com/Groww-OSS/webster/blob/main/LICENSE"><img alt="Github License" src="https://img.shields.io/github/license/Groww/webster?color=51C838"/> </a>
+  <a href="https://github.com/Groww-OSS/webster/issues"><img alt="Issues" src="https://img.shields.io/github/issues/Groww/webster?color=51C838"/> </a>
 </p>
 
 ## What's inside?
