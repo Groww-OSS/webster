@@ -51,8 +51,8 @@ jobs:
 
 
       - run: |
-          git config --global user.email "release-bot@groww.in"
-          git config --global user.name "github-bot"
+          git config --global user.email "web-core@groww.in"
+          git config --global user.name "baabu-ji"
         
 
       - run: |
