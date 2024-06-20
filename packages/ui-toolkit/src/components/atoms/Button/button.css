@@ -1,9 +1,12 @@
 .mint-btn-default {
-  border-radius: 8px;
-  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 72px;
   border: 0;
   outline: none;
-  min-width: 72px;
+  border-radius: 8px;
+  flex-shrink: 0;
 }
 
 .mint-btn-default:hover {

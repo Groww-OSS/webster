@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import cn from 'classnames';
 
 import { ReactIconProps } from '@groww-tech/icon-store';
 
-import { VARIANTS, BUTTON_SIZES, ROLE } from './Button.constants';
+import {
+  VARIANTS,
+  BUTTON_SIZES,
+  ROLE,
+  DEFAULT_TABINDEX,
+  KEYBOARD_EVENTS
+} from './Button.constants';
 import { Loader, LOADER_TYPE } from '../Loader';
 import { ICON_POSITION } from '../../../utils/constants';
 
@@ -15,7 +21,6 @@ const Button = (props: Props) => {
     size,
     buttonText,
     variant,
-    onClick,
     isAccent,
     isCompact,
     isDisabled,
@@ -29,7 +34,9 @@ const Button = (props: Props) => {
     href,
     type,
     rel,
-    target
+    target,
+    onClick,
+    onKeyDown
   } = props;
 
   const primaryButtonClasses = cn(
@@ -100,7 +107,7 @@ const Button = (props: Props) => {
     borderNeutral: variant === VARIANTS.TERTIARY && !isDisabled && !isLoading && !isAccent,
     borderDisabled: variant === VARIANTS.TERTIARY && isDisabled && !isLoading && !isAccent
   });
- 
+
 
   const getButtonClassesBasedOnVariant = () => {
     switch (variant) {
@@ -119,7 +126,7 @@ const Button = (props: Props) => {
       case VARIANTS.NEGATIVE:
         return cn(baseClasses, negativeButtonClasses);
 
-      default :
+      default:
         return cn(baseClasses, primaryButtonClasses);
     }
   };
@@ -145,12 +152,33 @@ const Button = (props: Props) => {
 
   const onButtonClick = (e: React.MouseEvent) => {
     if (isDisabled || isLoading) {
-      e?.stopPropagation();
+      e.stopPropagation();
       return;
     }
 
     onClick?.(e);
   };
+
+
+  const onKeyDownHandler = useCallback((e: React.KeyboardEvent) => {
+    // Prevent the default behavior of the key event.
+    e.preventDefault();
+
+    // Stop the event from propagating to parent elements. Since, onKeyDown event is propogated to parent elements.
+    // Ref: https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event
+    e.stopPropagation();
+
+    // Ignore the key event if the key is being held down and automatically repeating, or if the button is currently loading.
+    if (e.repeat || isLoading) {
+      return;
+    }
+
+    const wasAnyKeyPressed = Object.values(KEYBOARD_EVENTS).some(event =>
+      (event === e.key.toLowerCase())
+    );
+
+    if (wasAnyKeyPressed) { onKeyDown?.(e); }
+  }, [isLoading]);
 
 
   const getButtonElement = (Component: React.ElementType<ButtonProps | AnchorButtonProps>, props: any) => {
@@ -159,6 +187,8 @@ const Button = (props: Props) => {
         className={getButtonClassesBasedOnVariant()}
         data-test-id={dataTestId.length ? dataTestId : null}
         onClick={onButtonClick}
+        tabIndex={DEFAULT_TABINDEX}
+        onKeyDown={onKeyDownHandler}
         {...props}
       >
         {renderButtonContent()}
@@ -232,6 +262,7 @@ type RequiredProps = {
 
 type OptionalProps = {
   onClick?: (e: React.MouseEvent) => void;
+  onKeyDown?: (e: React.KeyboardEvent) => void;
 }
 
 

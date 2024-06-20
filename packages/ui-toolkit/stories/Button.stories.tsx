@@ -47,7 +47,8 @@ Primary.args = {
   isDisabled: false,
   leadingIcon: null,
   trailingIcon: null,
-  dataTestId: ''
+  dataTestId: '',
+  onKeyDown: action('Keydown Event')
 };
 
 export const Secondary = Template.bind({});
@@ -83,7 +84,7 @@ FullWidth.args = {
 export const WithLeadingIcon = Template.bind({});
 WithLeadingIcon.args = {
   ...Primary.args,
-  leadingIcon: (iconProps: any) => <ChevronRight {...iconProps} />,
+  leadingIcon: (iconProps: any) => <ChevronRight {...iconProps} />
 };
 
 export const WithTrailingIcon = Template.bind({});
@@ -96,9 +97,10 @@ export const LinkButtonPrimary = Template.bind({});
 LinkButtonPrimary.args = {
   ...Primary.args,
   role: 'link',
-  href: "https://groww.in",
-  target: "_blank",
-  onClick: action("Anchor type button clicked")
+  href: 'https://groww.in',
+  target: '_blank',
+  rel: 'nofollow noopener noreferrer',
+  onClick: action('Anchor type button clicked')
 };
 
 export const LinkButtonSecondary = Template.bind({});
@@ -106,9 +108,9 @@ LinkButtonSecondary.args = {
   ...Primary.args,
   variant: 'Secondary',
   role: 'link',
-  href: "https://groww.in",
-  target: "_blank",
-  onClick: action("Anchor type button clicked")
+  href: 'https://groww.in',
+  target: '_blank',
+  onClick: action('Anchor type button clicked')
 };
 
 export const LinkButtonTertiary = Template.bind({});
@@ -116,9 +118,8 @@ LinkButtonTertiary.args = {
   ...Primary.args,
   variant: 'Tertiary',
   role: 'link',
-  href: "https://groww.in",
-  target: "_blank",
-  onClick: action("Anchor type button clicked")
+  href: 'https://groww.in',
+  target: '_blank'
 };
 
 export const LinkButtonLoading = Template.bind({});
@@ -126,7 +127,8 @@ LinkButtonLoading.args = {
   ...Primary.args,
   isLoading: true,
   role: 'link',
-  href: "https://groww.in",
-  target: "_blank",
-  onClick: action("Anchor type button clicked")
+  href: 'https://groww.in',
+  target: '_blank',
+  onClick: action('Anchor type button clicked'),
+  onKeyDown: action('Anchor type button keydown Event')
 };
