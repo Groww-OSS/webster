@@ -26,7 +26,7 @@
   cursor: default;
 }
 
-.mint-btn-default.mint-btn-border-no-accent{
+.mint-btn-default.mint-btn-secondary-no-accent-border{
   border: 1px solid var(--gray150);
 }
 
@@ -82,10 +82,9 @@
 .mint-btn-tertiary-no-accent:hover{
   background-color: var(--gray50);
 }
-
-.mint-btn-default .mint-btn-tertiary-border {
-  border-style: dashed;
-  border-width: 0 0 1px 0;
+.mint-btn-tertiary-label-border {
+  border-style: dashed !important;
+  border-width: 0 0 1px 0 !important;
 }
 
 /* -- Compact classes -- */
@@ -136,7 +135,7 @@
 
 /*  -- Fixed Bottom -- */
 
-.mint-btn-default.mint-btn-fixed-bottom {
+.mint-btn-fixed-bottom {
   position: fixed;
   left: 0;
   bottom: 0;

@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import cn from 'classnames';
 
 import { ReactIconProps } from '@groww-tech/icon-store';
@@ -48,7 +48,7 @@ const Button = (props: Props) => {
   const secondaryButtonClasses = cn({
     'mint-btn-secondary-no-accent': !isAccent,
     backgroundAccentSubtle: (isAccent && !isDisabled) || (isAccent && isDisabled && isLoading),
-    'mint-btn-border-no-accent': !isAccent
+    'mint-btn-secondary-no-accent-border': !isAccent
   });
 
   const tertiaryButtonClasses = cn({
@@ -98,12 +98,12 @@ const Button = (props: Props) => {
 
   const fixedToBottomClass = cn({
     'mint-btn-fixed-bottom': isFixToBottom,
-    'mint-btn-border-no-accent': isFixToBottom,
+    borderPrimary: isFixToBottom,
     backgroundPrimary: isFixToBottom
   });
 
   const borderBottomClasses = cn({
-    'mint-btn-tertiary-border': variant === VARIANTS.TERTIARY && !isAccent,
+    'mint-btn-tertiary-label-border': variant === VARIANTS.TERTIARY && !isAccent,
     borderNeutral: variant === VARIANTS.TERTIARY && !isDisabled && !isLoading && !isAccent,
     borderDisabled: variant === VARIANTS.TERTIARY && isDisabled && !isLoading && !isAccent
   });
@@ -160,7 +160,7 @@ const Button = (props: Props) => {
   };
 
 
-  const onKeyDownHandler = useCallback((e: React.KeyboardEvent) => {
+  const onKeyDownHandler = (e: React.KeyboardEvent) => {
     // Prevent the default behavior of the key event.
     e.preventDefault();
 
@@ -178,7 +178,7 @@ const Button = (props: Props) => {
     );
 
     if (wasAnyKeyPressed) { onKeyDown?.(e); }
-  }, [isLoading]);
+  };
 
 
   const getButtonElement = (Component: React.ElementType<ButtonProps | AnchorButtonProps>, props: any) => {
