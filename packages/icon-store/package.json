@@ -1,6 +1,6 @@
 {
   "name": "@groww-tech/icon-store",
-  "version": "1.4.4",
+  "version": "1.4.5",
   "description": "Icon Library customized for use in Groww",
   "files": [
     "mi",
@@ -11,7 +11,7 @@
   "sideEffects": false,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Groww/webster"
+    "url": "https://github.com/Groww-OSS/webster.git"
   },
   "scripts": {
     "generate": "run-p generate:*",
@@ -49,9 +49,9 @@
     "access": "public"
   },
   "bugs": {
-    "url": "https://github.com/Groww/webster/issues"
+    "url": "https://github.com/Groww-OSS/webster/issues"
   },
-  "homepage": "https://github.com/Groww/webster/tree/develop/packages/icon-store#readme",
+  "homepage": "https://github.com/Groww-OSS/webster/tree/develop/packages/icon-store#readme",
   "devDependencies": {
     "@svgr/cli": "8.1.0",
     "chalk": "^4.1.2",

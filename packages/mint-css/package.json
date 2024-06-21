@@ -1,6 +1,6 @@
 {
   "name": "@groww-tech/mint-css",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A CSS library that provides classes, tokens, variables, fonts and other essential stylings governed under MINT design system, used by Groww",
   "main": "./dist/bundle.css",
   "files": [
@@ -8,7 +8,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Groww/webster"
+    "url": "https://github.com/Groww-OSS/webster.git"
   },
   "scripts": {
     "build": "rm -rf dist && pnpm rollup -c",

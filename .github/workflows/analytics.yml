@@ -63,6 +63,6 @@ jobs:
       - if: steps.cpv.outputs.is-new-version == 'true'
         uses: ./.github/workflows/actions/pnpm_publish
         with:
-          github_token: ${{secrets.GITHUB_TOKEN}}
-          npm_token: ${{secrets.NPM_TOKEN}}
+          github_token: ${{secrets.GIT_TOKEN_WEB_OSS}}
+          npm_token: ${{secrets.NPM_TOKEN_WEB_OSS}}
           path: "./${{env.package_dir}}/${{env.package_name}}"

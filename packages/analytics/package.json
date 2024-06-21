@@ -11,7 +11,7 @@
   "sideEffects": false,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Groww/webster"
+    "url": "https://github.com/Groww-OSS/webster.git"
   },
   "scripts": {
     "build": "tsup --env.NODE_ENV production",
@@ -38,9 +38,9 @@
     "access": "public"
   },
   "bugs": {
-    "url": "https://github.com/Groww/webster/issues"
+    "url": "https://github.com/Groww-OSS/webster/issues"
   },
-  "homepage": "https://github.com/Groww/webster/tree/develop/packages/analytics#readme",
+  "homepage": "https://github.com/Groww-OSS/webster/tree/develop/packages/analytics#readme",
   "devDependencies": {
     "typescript": "4.4.4",
     "tsup": "5.11.11",

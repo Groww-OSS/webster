@@ -11,7 +11,7 @@
   "sideEffects": false,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Groww/webster"
+    "url": "https://github.com/Groww-OSS/webster.git"
   },
   "scripts": {
     "clean": "rimraf dist && rimraf docs",
@@ -43,9 +43,9 @@
     "access": "public"
   },
   "bugs": {
-    "url": "https://github.com/Groww/webster/issues"
+    "url": "https://github.com/Groww-OSS/webster/issues"
   },
-  "homepage": "https://github.com/Groww/webster/tree/develop/packages/ella#readme",
+  "homepage": "https://github.com/Groww-OSS/webster/tree/develop/packages/ella#readme",
   "devDependencies": {
     "@groww-tech/tsconfig": "^1.0.0",
     "@types/lodash.clonedeep": "^4.5.6",
