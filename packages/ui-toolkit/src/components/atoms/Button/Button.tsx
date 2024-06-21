@@ -229,7 +229,7 @@ const Button = (props: Props) => {
       <>
         {leadingIcon && getIconUI(ICON_POSITION.LEADING)}
 
-        <span className={borderBottomClasses}>
+        <span className={cn('truncate', borderBottomClasses)}>
           {buttonText}
         </span>
 
