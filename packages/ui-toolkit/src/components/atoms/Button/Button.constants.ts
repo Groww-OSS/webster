@@ -10,6 +10,16 @@ export const VARIANTS = {
 export const BUTTON_SIZES = {
   SMALL: 'Small',
   BASE: 'Base',
-  LARGE: 'Large',
-  XLARGE: 'XLarge'
+  LARGE: 'Large'
+};
+
+export const ROLE = {
+  BUTTON: 'button',
+  LINK: 'link'
+};
+
+export const DEFAULT_TABINDEX = 0;
+
+export const KEYBOARD_EVENTS = {
+  ENTER: 'enter'
 };

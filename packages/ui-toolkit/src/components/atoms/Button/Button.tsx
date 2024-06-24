@@ -3,7 +3,13 @@ import cn from 'classnames';
 
 import { ReactIconProps } from '@groww-tech/icon-store';
 
-import { VARIANTS, BUTTON_SIZES } from './Button.constants';
+import {
+  VARIANTS,
+  BUTTON_SIZES,
+  ROLE,
+  DEFAULT_TABINDEX,
+  KEYBOARD_EVENTS
+} from './Button.constants';
 import { Loader, LOADER_TYPE } from '../Loader';
 import { ICON_POSITION } from '../../../utils/constants';
 
@@ -15,7 +21,6 @@ const Button = (props: Props) => {
     size,
     buttonText,
     variant,
-    onClick,
     isAccent,
     isCompact,
     isDisabled,
@@ -24,73 +29,87 @@ const Button = (props: Props) => {
     isLoading,
     isFullWidth,
     dataTestId,
-    isFixToBottom
+    isFixToBottom,
+    role,
+    href,
+    type,
+    rel,
+    target,
+    onClick,
+    onKeyDown
   } = props;
 
   const primaryButtonClasses = cn(
     {
       contentOnColour: !isLoading && !isDisabled,
-      backgroundAccent: !isDisabled || (isLoading && isDisabled),
-      btn96ButtonHover: !isDisabled,
-      btn96ButtonDisable: isDisabled && !isLoading
+      backgroundAccent: !isDisabled || (isLoading && isDisabled)
     });
 
   const secondaryButtonClasses = cn({
-    btn96SecondaryButtonWithoutAccent: !isAccent,
+    'mint-btn-secondary-no-accent': !isAccent,
     backgroundAccentSubtle: (isAccent && !isDisabled) || (isAccent && isDisabled && isLoading),
-    contentDisabled: isDisabled,
-    borderPrimary: !isAccent,
-    btn96ButtonDisable: isDisabled && !isLoading
+    'mint-btn-secondary-no-accent-border': !isAccent
   });
 
   const tertiaryButtonClasses = cn({
-    btn96TertiaryButtonDisabled: isDisabled && !isLoading,
-    btn96TertiaryButtonWithAccent: isAccent && !isDisabled && !isLoading,
-    btn96TertiaryButtonWithoutAccent: !isAccent && !isDisabled
+    'mint-btn-tertiary-accent': isAccent && !isDisabled && !isLoading,
+    'mint-btn-tertiary-no-accent': !isAccent && !isDisabled,
+    'mint-btn-tertiary-disabled': isDisabled && !isLoading
   });
 
   const postiveButtonClasses = cn({
     backgroundPositive: !isDisabled || (isLoading && isDisabled),
-    contentOnColour: !isLoading && !isDisabled,
-    btn96ButtonHover: !isDisabled,
-    btn96ButtonDisable: isDisabled && !isLoading
+    contentOnColour: !isLoading && !isDisabled
   });
 
   const negativeButtonClasses = cn({
     backgroundNegative: !isDisabled || (isLoading && isDisabled),
-    contentOnColour: !isLoading && !isDisabled,
-    btn96ButtonHover: !isDisabled,
-    btn96ButtonDisable: isDisabled && !isLoading,
+    contentOnColour: !isLoading && !isDisabled
   });
 
   const fontClasses = cn({
-    'cur-po': !isLoading && !isDisabled,
-    btn96LoaderCursor: isLoading || isDisabled,
     bodySmallHeavy: size === BUTTON_SIZES.SMALL,
     bodyBaseHeavy: size === BUTTON_SIZES.BASE,
     bodyLargeHeavy: size === BUTTON_SIZES.LARGE,
-    bodyXLargeHeavy: size === BUTTON_SIZES.XLARGE,
     contentDisabled: isDisabled,
     contentPrimary: !isAccent && !isDisabled,
     contentAccent: isAccent && !isDisabled
   });
 
 
-  const baseClasses = cn('btn96DefaultClass absolute-center', fontClasses,
+  const baseClasses = cn('mint-btn-default absolute-center backgroundTransparent', fontClasses,
     {
       'cur-po': !isLoading && !isDisabled,
-      btn96SmallButton: size === BUTTON_SIZES.SMALL,
-      btn96MediumButton: size === BUTTON_SIZES.BASE,
-      btn96LargeButton: size === BUTTON_SIZES.LARGE,
-      btn96XLargeButton: size === BUTTON_SIZES.XLARGE,
-      btn86FullWidth: isFullWidth,
-      btn96LoadingButton: isLoading,
-      btn96CompactButton: variant === VARIANTS.TERTIARY && isCompact,
-      btn96ButtonLabel: variant !== VARIANTS.TERTIARY && !isDisabled
+      'mint-btn-cursor-default': isLoading,
+      'mint-btn-small': size === BUTTON_SIZES.SMALL,
+      'mint-btn-medium': size === BUTTON_SIZES.BASE,
+      'mint-btn-large': size === BUTTON_SIZES.LARGE,
+      'mint-btn-full-width': isFullWidth,
+      'mint-btn-loader': isLoading,
+      'mint-btn-compact': variant === VARIANTS.TERTIARY && isCompact,
+      'mint-btn-disabled': isDisabled && !isLoading
     });
 
 
-  const getButtonClasses = (variant: string) => {
+  const loaderClasses = cn('mint-btn-loader-item', {
+    'mint-btn-loader-primary': variant === VARIANTS.PRIMARY || variant === VARIANTS.POSITIVE || variant === VARIANTS.NEGATIVE,
+    'mint-btn-loader-no-accent': (variant === VARIANTS.SECONDARY || variant === VARIANTS.TERTIARY) && !isAccent
+  });
+
+  const fixedToBottomClass = cn({
+    'mint-btn-fixed-bottom': isFixToBottom,
+    borderPrimary: isFixToBottom,
+    backgroundPrimary: isFixToBottom
+  });
+
+  const borderBottomClasses = cn({
+    'mint-btn-tertiary-label-border': variant === VARIANTS.TERTIARY && !isAccent,
+    borderNeutral: variant === VARIANTS.TERTIARY && !isDisabled && !isLoading && !isAccent,
+    borderDisabled: variant === VARIANTS.TERTIARY && isDisabled && !isLoading && !isAccent
+  });
+
+
+  const getButtonClassesBasedOnVariant = () => {
     switch (variant) {
       case VARIANTS.PRIMARY:
         return cn(baseClasses, primaryButtonClasses);
@@ -107,35 +126,16 @@ const Button = (props: Props) => {
       case VARIANTS.NEGATIVE:
         return cn(baseClasses, negativeButtonClasses);
 
-      default :
+      default:
         return cn(baseClasses, primaryButtonClasses);
     }
   };
 
 
-  const loaderClasses = cn('btn96LoaderSize btn96LoaderMargin', {
-    btn96PrimaryButtonLoader: variant === VARIANTS.PRIMARY || variant === VARIANTS.POSITIVE || variant === VARIANTS.NEGATIVE,
-    btn96LoaderWithAccent: (variant === VARIANTS.SECONDARY || variant === VARIANTS.TERTIARY) && isAccent,
-    btn96LoaderWithoutAccent: (variant === VARIANTS.SECONDARY || variant === VARIANTS.TERTIARY) && !isAccent
-  });
-
-  const fixedToBottomClass = cn({
-    btn96BottomFixed: isFixToBottom,
-    borderPrimary: isFixToBottom,
-    backgroundPrimary: isFixToBottom
-  });
-
-  const borderBottomClasses = cn({
-    btn96TertiaryButtonBorder: variant === VARIANTS.TERTIARY && !isAccent,
-    borderNeutral: variant === VARIANTS.TERTIARY && !isDisabled && !isLoading && !isAccent,
-    borderDisabled: variant === VARIANTS.TERTIARY && isDisabled && !isLoading && !isAccent
-  });
-
-
   const getIconSize = () => {
     if (size === BUTTON_SIZES.SMALL) return 16;
     if (size === BUTTON_SIZES.BASE) return 20;
-    if (size === BUTTON_SIZES.LARGE || size === BUTTON_SIZES.XLARGE) return 24;
+    if (size === BUTTON_SIZES.LARGE) return 24;
   };
 
 
@@ -151,56 +151,125 @@ const Button = (props: Props) => {
 
 
   const onButtonClick = (e: React.MouseEvent) => {
-    if (!isDisabled && !isLoading) {
-      onClick(e);
-
-    } else {
+    if (isDisabled || isLoading) {
       e.stopPropagation();
+      return;
     }
+
+    onClick?.(e);
   };
 
 
-  return (
-    <div className={fixedToBottomClass}>
-      <div
-        className={getButtonClasses(variant)}
+  const onKeyDownHandler = (e: React.KeyboardEvent<HTMLElement>) => {
+    // Prevent the default behavior of the key event.
+    e.preventDefault();
+
+    // Stop the event from propagating to parent elements. Since, onKeyDown event is propogated to parent elements.
+    // Ref: https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event
+    e.stopPropagation();
+
+    // Ignore the key event if the key is being held down and automatically repeating, or if the button is currently loading.
+    if (e.repeat || isLoading) {
+      return;
+    }
+
+    const wasAnyKeyPressed = Object.values(KEYBOARD_EVENTS).some(event =>
+      (event === e.key.toLowerCase())
+    );
+
+    if (wasAnyKeyPressed) { onKeyDown?.(e); }
+  };
+
+
+  const getButtonElement = (Component: React.ElementType<ButtonProps | AnchorButtonProps>, props: any) => {
+    return (
+      <Component
+        className={getButtonClassesBasedOnVariant()}
         data-test-id={dataTestId.length ? dataTestId : null}
         onClick={onButtonClick}
+        tabIndex={DEFAULT_TABINDEX}
+        onKeyDown={onKeyDownHandler}
+        {...props}
       >
-        {
-          isLoading &&
-            <div className="absolute-center btn96LoaderContainer">
-              <Loader
-                loaderType={LOADER_TYPE.CIRCULAR}
-                loaderClassName={loaderClasses}
-              />
-            </div>
-        }
-        <>
-          {leadingIcon && getIconUI(ICON_POSITION.LEADING)}
+        {renderButtonContent()}
+      </Component>
+    );
+  };
 
-          <span className={borderBottomClasses}>
-            {buttonText}
-          </span>
 
-          {trailingIcon && getIconUI(ICON_POSITION.TRAILING)}
-        </>
+  const LinkButtonRender = () => {
+    const linkProps = {
+      href: isDisabled || isLoading ? undefined : href,
+      role: ROLE.BUTTON,  // We are adding the role of "button" to the <a> element since we are using it as a button. Additionally, the <button> element does not need a role attribute, as the semantic tag is sufficient.
+      ...(rel && { rel }),
+      ...(target && { target })
+    };
 
-      </div>
-    </div>
+    return getButtonElement('a', linkProps);
+  };
+
+
+  const DefaultButtonRender = () => {
+    const buttonProps = { type: type ?? ROLE.BUTTON, disabled: isDisabled };
+
+    return getButtonElement('button', buttonProps);
+  };
+
+
+  const renderButtonContent = () => (
+    <>
+      {
+        isLoading && <div className="absolute-center mint-btn-loader-container">
+          <Loader
+            loaderType={LOADER_TYPE.CIRCULAR}
+            loaderClassName={loaderClasses}
+          />
+        </div>
+      }
+      <>
+        {leadingIcon && getIconUI(ICON_POSITION.LEADING)}
+
+        <span className={cn('truncate', borderBottomClasses)}>
+          {buttonText}
+        </span>
+
+        {trailingIcon && getIconUI(ICON_POSITION.TRAILING)}
+      </>
+    </>
+  );
+
+
+  const renderButton = () => {
+    switch (role) {
+      case ROLE.LINK:
+        return LinkButtonRender();
+
+      default:
+        return DefaultButtonRender();
+    }
+  };
+
+  return (
+    isFixToBottom ? <div className={fixedToBottomClass}>{renderButton()}</div> : renderButton()
   );
 };
 
 
 type RequiredProps = {
   buttonText: string;
-  onClick: (e: React.MouseEvent) => void;
 };
+
+
+type OptionalProps = {
+  onClick?: (e: React.MouseEvent) => void;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLElement>) => void;
+}
 
 
 type DefaultProps = {
   size: ValueOf<typeof BUTTON_SIZES>;
   variant: ValueOf<typeof VARIANTS>;
+  role: ValueOf<typeof ROLE>;
   isLoading: boolean;
   isAccent: boolean;
   isCompact: boolean;
@@ -212,9 +281,16 @@ type DefaultProps = {
   dataTestId: string;
 };
 
+
+type AnchorButtonProps = React.AnchorHTMLAttributes<HTMLAnchorElement>;
+
+
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
+
 Button.defaultProps = {
   size: BUTTON_SIZES.BASE,
   variant: VARIANTS.PRIMARY,
+  role: ROLE.BUTTON,
   isLoading: false,
   isAccent: false,
   isCompact: false,
@@ -226,6 +302,6 @@ Button.defaultProps = {
   dataTestId: ''
 } as DefaultProps;
 
-export type Props = RequiredProps & DefaultProps;
+export type Props = DefaultProps & RequiredProps & OptionalProps & ButtonProps & AnchorButtonProps;
 
 export default Button;

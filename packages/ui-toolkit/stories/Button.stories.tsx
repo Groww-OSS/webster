@@ -20,7 +20,7 @@ export default {
     size: {
       control: {
         type: 'select',
-        options: [ 'Small', 'Base', 'Large', 'XLarge' ]
+        options: [ 'Small', 'Base', 'Large' ]
       }
     }
   }
@@ -47,7 +47,8 @@ Primary.args = {
   isDisabled: false,
   leadingIcon: null,
   trailingIcon: null,
-  dataTestId: ''
+  dataTestId: '',
+  onKeyDown: action('Keydown Event')
 };
 
 export const Secondary = Template.bind({});
@@ -71,7 +72,7 @@ Disabled.args = {
 export const Loading = Template.bind({});
 Loading.args = {
   ...Primary.args,
-  isLoading: false
+  isLoading: true
 };
 
 export const FullWidth = Template.bind({});
@@ -83,11 +84,51 @@ FullWidth.args = {
 export const WithLeadingIcon = Template.bind({});
 WithLeadingIcon.args = {
   ...Primary.args,
-  leadingIcon: (iconProps: any) => <ChevronRight {...iconProps} />,
+  leadingIcon: (iconProps: any) => <ChevronRight {...iconProps} />
 };
 
 export const WithTrailingIcon = Template.bind({});
 WithTrailingIcon.args = {
   ...Primary.args,
   trailingIcon: (iconProps: any) => <ChevronRight {...iconProps} />
+};
+
+export const LinkButtonPrimary = Template.bind({});
+LinkButtonPrimary.args = {
+  ...Primary.args,
+  role: 'link',
+  href: 'https://groww.in',
+  target: '_blank',
+  rel: 'nofollow noopener noreferrer',
+  onClick: action('Anchor type button clicked')
+};
+
+export const LinkButtonSecondary = Template.bind({});
+LinkButtonSecondary.args = {
+  ...Primary.args,
+  variant: 'Secondary',
+  role: 'link',
+  href: 'https://groww.in',
+  target: '_blank',
+  onClick: action('Anchor type button clicked')
+};
+
+export const LinkButtonTertiary = Template.bind({});
+LinkButtonTertiary.args = {
+  ...Primary.args,
+  variant: 'Tertiary',
+  role: 'link',
+  href: 'https://groww.in',
+  target: '_blank'
+};
+
+export const LinkButtonLoading = Template.bind({});
+LinkButtonLoading.args = {
+  ...Primary.args,
+  isLoading: true,
+  role: 'link',
+  href: 'https://groww.in',
+  target: '_blank',
+  onClick: action('Anchor type button clicked'),
+  onKeyDown: action('Anchor type button keydown Event')
 };
