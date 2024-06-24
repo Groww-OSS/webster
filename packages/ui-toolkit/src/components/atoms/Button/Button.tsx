@@ -200,7 +200,7 @@ const Button = (props: Props) => {
   const LinkButtonRender = () => {
     const linkProps = {
       href: isDisabled || isLoading ? undefined : href,
-      role: ROLE.BUTTON,  // We are adding role as "button" since we are using <a/> as a button
+      role: ROLE.BUTTON,  // We are adding the role of "button" to the <a> element since we are using it as a button. Additionally, the <button> element does not need a role attribute, as the semantic tag is sufficient.
       ...(rel && { rel }),
       ...(target && { target })
     };
