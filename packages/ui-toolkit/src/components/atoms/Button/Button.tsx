@@ -160,7 +160,7 @@ const Button = (props: Props) => {
   };
 
 
-  const onKeyDownHandler = (e: React.KeyboardEvent) => {
+  const onKeyDownHandler = (e: React.KeyboardEvent<HTMLElement>) => {
     // Prevent the default behavior of the key event.
     e.preventDefault();
 
@@ -262,7 +262,7 @@ type RequiredProps = {
 
 type OptionalProps = {
   onClick?: (e: React.MouseEvent) => void;
-  onKeyDown?: (e: React.KeyboardEvent) => void;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLElement>) => void;
 }
 
 
