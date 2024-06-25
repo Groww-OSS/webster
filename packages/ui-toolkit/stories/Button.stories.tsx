@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Add, ChevronRight } from '@groww-tech/icon-store/mi';
+import { ChevronRight } from '@groww-tech/icon-store/mi';
 import { action } from '@storybook/addon-actions';
 import { Story } from '@storybook/react';
 
@@ -47,8 +47,7 @@ Primary.args = {
   isDisabled: false,
   leadingIcon: null,
   trailingIcon: null,
-  dataTestId: '',
-  onKeyDown: action('Keydown Event')
+  dataTestId: ''
 };
 
 export const Secondary = Template.bind({});
@@ -113,13 +112,24 @@ LinkButtonSecondary.args = {
   onClick: action('Anchor type button clicked')
 };
 
-export const LinkButtonTertiary = Template.bind({});
-LinkButtonTertiary.args = {
+export const LinkButtonTertiaryWithoutHref = Template.bind({});
+LinkButtonTertiaryWithoutHref.args = {
   ...Primary.args,
   variant: 'Tertiary',
   role: 'link',
+  target: '_blank',
+  onClick: action('Anchor type button clicked')
+};
+
+export const LinkButtonDisabled = Template.bind({});
+LinkButtonDisabled.args = {
+  ...Primary.args,
+  role: 'link',
   href: 'https://groww.in',
-  target: '_blank'
+  target: '_blank',
+  rel: 'nofollow noopener noreferrer',
+  isDisabled: true,
+  onClick: action('Anchor type button clicked')
 };
 
 export const LinkButtonLoading = Template.bind({});
@@ -129,6 +139,33 @@ LinkButtonLoading.args = {
   role: 'link',
   href: 'https://groww.in',
   target: '_blank',
+  onClick: action('Anchor type button clicked')
+};
+
+
+export const LinkButtonFullWidth = Template.bind({});
+LinkButtonFullWidth.args = {
+  ...Primary.args,
+  role: 'link',
+  href: 'https://groww.in',
+  isFullWidth: true,
+  onClick: action('Anchor type button clicked')
+};
+
+export const LinkButtonWithLeadingIconAndInvalidHref = Template.bind({});
+LinkButtonWithLeadingIconAndInvalidHref.args = {
+  ...Primary.args,
+  role: 'link',
+  href: 'javascript:void(0)',
   onClick: action('Anchor type button clicked'),
-  onKeyDown: action('Anchor type button keydown Event')
+  leadingIcon: (iconProps: any) => <ChevronRight {...iconProps} />
+};
+
+export const LinkButtonWithTrailingIconAndInvalidHref = Template.bind({});
+LinkButtonWithTrailingIconAndInvalidHref.args = {
+  ...Primary.args,
+  href: '#',
+  role: 'link',
+  onClick: action('Anchor type button clicked'),
+  trailingIcon: (iconProps: any) => <ChevronRight {...iconProps} />
 };
