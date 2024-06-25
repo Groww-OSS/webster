@@ -13,7 +13,15 @@ import {
 import { Loader, LOADER_TYPE } from '../Loader';
 import { ICON_POSITION } from '../../../utils/constants';
 
+import { isEmpty } from '../../../utils/helper';
 import './button.css';
+
+
+const isValidHyperLink = (href: string | undefined) : boolean => {
+  return (
+    !isEmpty(href) && (!(href === '#' || href === 'javascript:void(0)'))
+  );
+};
 
 
 const Button = (props: Props) => {
@@ -35,8 +43,7 @@ const Button = (props: Props) => {
     type,
     rel,
     target,
-    onClick,
-    onKeyDown
+    onClick
   } = props;
 
   const primaryButtonClasses = cn(
@@ -160,27 +167,6 @@ const Button = (props: Props) => {
   };
 
 
-  const onKeyDownHandler = (e: React.KeyboardEvent<HTMLElement>) => {
-    // Prevent the default behavior of the key event.
-    e.preventDefault();
-
-    // Stop the event from propagating to parent elements. Since, onKeyDown event is propogated to parent elements.
-    // Ref: https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event
-    e.stopPropagation();
-
-    // Ignore the key event if the key is being held down and automatically repeating, or if the button is currently loading.
-    if (e.repeat || isLoading) {
-      return;
-    }
-
-    const wasAnyKeyPressed = Object.values(KEYBOARD_EVENTS).some(event =>
-      (event === e.key.toLowerCase())
-    );
-
-    if (wasAnyKeyPressed) { onKeyDown?.(e); }
-  };
-
-
   const getButtonElement = (Component: React.ElementType<ButtonProps | AnchorButtonProps>, props: any) => {
     return (
       <Component
@@ -188,7 +174,6 @@ const Button = (props: Props) => {
         data-test-id={dataTestId.length ? dataTestId : null}
         onClick={onButtonClick}
         tabIndex={DEFAULT_TABINDEX}
-        onKeyDown={onKeyDownHandler}
         {...props}
       >
         {renderButtonContent()}
@@ -199,8 +184,8 @@ const Button = (props: Props) => {
 
   const LinkButtonRender = () => {
     const linkProps = {
-      href: isDisabled || isLoading ? undefined : href,
       role: ROLE.BUTTON,  // We are adding the role of "button" to the <a> element since we are using it as a button. Additionally, the <button> element does not need a role attribute, as the semantic tag is sufficient.
+      ...((!isDisabled && !isLoading) && { href }),
       ...(rel && { rel }),
       ...(target && { target })
     };
@@ -240,13 +225,14 @@ const Button = (props: Props) => {
 
 
   const renderButton = () => {
-    switch (role) {
-      case ROLE.LINK:
-        return LinkButtonRender();
+    /* If a link doesn't have a meaningful href, it should be rendered using a <button> element.
+      Ref : https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-valid.md#fail */
 
-      default:
-        return DefaultButtonRender();
+    if (role === ROLE.LINK && isValidHyperLink(href)) {
+      return LinkButtonRender();
     }
+
+    return DefaultButtonRender();
   };
 
   return (
@@ -262,7 +248,6 @@ type RequiredProps = {
 
 type OptionalProps = {
   onClick?: (e: React.MouseEvent) => void;
-  onKeyDown?: (e: React.KeyboardEvent<HTMLElement>) => void;
 }
 
 
