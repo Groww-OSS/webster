@@ -1,6 +1,6 @@
 {
   "name": "@groww-tech/web-storage",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Web Storage is a service used that exposes methods to get full control over storage mechanisms available via bucketing.",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
@@ -15,6 +15,7 @@
   },
   "scripts": {
     "build": "tsup --env.NODE_ENV production",
+    "watch": "tsup --watch --env.NODE_ENV production",
     "test" : "vitest run",
     "pushTags": "PACKAGE_VERSION=$(cat package.json | grep \\\"version\\\" | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && git tag -a web-storage-v$PACKAGE_VERSION -m \"@groww-tech/web-storage-v$PACKAGE_VERSION\" && git push --tags"
   },
