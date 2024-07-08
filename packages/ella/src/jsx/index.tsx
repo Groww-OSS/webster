@@ -44,15 +44,14 @@ export function getOrganizationSchema() {
       'streetAddress': 'No.11, 2nd floor, 80 FT Road, 4th Block, S.T Bed, Koramangala',
       'addressLocality': 'Bengaluru',
       'addressRegion': 'Karnataka',
+      'addressCountry': 'IN',
       'postalCode': '560034'
     },
-    contactPoint: [
-      {
-        '@type': 'ContactPoint',
-        telephone: '+91 91 0880 0604',
-        contactType: 'customer service'
-      }
-    ],
+    'contactPoint': {
+      '@type': 'ContactPoint',
+      'telephone': '+91 9108800000',
+      'email': 'support@groww.in'
+    },
     sameAs: [
       COMMON_URLS.FACEBOOK_PAGE,
       COMMON_URLS.TWITTER_PAGE,
