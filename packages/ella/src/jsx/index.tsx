@@ -44,6 +44,7 @@ export function getOrganizationSchema() {
       'streetAddress': 'No.11, 2nd floor, 80 FT Road, 4th Block, S.T Bed, Koramangala',
       'addressLocality': 'Bengaluru',
       'addressRegion': 'Karnataka',
+      'addressCountry': 'IN',
       'postalCode': '560034'
     },
     'contactPoint': {
