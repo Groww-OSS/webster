@@ -51,8 +51,8 @@ jobs:
           echo "Is new version: ${{ steps.cpv.outputs.is-new-version }}"
 
       - run: |
-          git config --global user.email "release-bot@groww.in"
-          git config --global user.name "github-bot"
+          git config --global user.email "web-core@groww.in"
+          git config --global user.name "baabu-ji"
           
       - run: |
           pnpm install
@@ -62,7 +62,7 @@ jobs:
         name: Deploy the documents on github pages
         run: |
           git remote set-url origin https://git:${GIT_TOKEN_WEB_OSS}@github.com/${GITHUB_REPOSITORY}.git
-          npm run push-doc -- -u "github-actions-bot <support+actions@github.com>"
+          npm run push-doc -- -u "baabu-ji <web-core@groww.in>"
         working-directory: './${{env.package_dir}}/${{env.package_name}}'
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN_WEB_OSS }}
