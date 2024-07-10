@@ -8,6 +8,7 @@ on:
 env:
   package_dir: 'packages'
   package_name: 'ella'
+  GITHUB_TOKEN: ${{ secrets.GIT_TOKEN_WEB_OSS }}
 
 jobs:
   publish:
@@ -51,8 +52,8 @@ jobs:
           echo "Is new version: ${{ steps.cpv.outputs.is-new-version }}"
 
       - run: |
-          git config --global user.email "web-core@groww.in"
-          git config --global user.name "baabu-ji"
+          git config --global user.email "release-bot@groww.in"
+          git config --global user.name "github-bot"
           
       - run: |
           pnpm install
@@ -61,11 +62,9 @@ jobs:
       - if: steps.cpv.outputs.is-new-version == 'true'
         name: Deploy the documents on github pages
         run: |
-          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          git remote set-url origin https://git:${env.GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
           npm run push-doc -- -u "github-bot <release-bot@groww.in>"
         working-directory: './${{env.package_dir}}/${{env.package_name}}'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN_WEB_OSS }}
 
       - if: steps.cpv.outputs.is-new-version == 'true'
         uses: ./.github/workflows/actions/pnpm_publish
