@@ -60,7 +60,7 @@ jobs:
       
       - name: Deploy the documents on github pages
         run: |
-          git remote set-url origin https://git:${GIT_TOKEN_WEB_OSS}@github.com/${GITHUB_REPOSITORY}.git
+          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
         working-directory: './${{env.package_dir}}/${{env.package_name}}'
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN_WEB_OSS }}
