@@ -8,7 +8,7 @@ import { dispatchCustomEvent } from '../dom';
 import { isEmpty } from '../general';
 import { CUSTOM_EVENTS } from '../utils/constants';
 
-console.log("Testing changes")
+console.log("Testing changes testing")
 /**
  * This method can be used to get month name abbreviation from month number.
  *
