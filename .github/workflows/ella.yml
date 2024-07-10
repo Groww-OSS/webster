@@ -61,7 +61,7 @@ jobs:
       - if: steps.cpv.outputs.is-new-version == 'true'
         name: Deploy the documents on github pages
         run: |
-          git remote set-url origin https://git:${GIT_TOKEN_WEB_OSS}@github.com/${GITHUB_REPOSITORY}.git
+          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
           npm run push-doc -- -u "github-bot <release-bot@groww.in>"
         working-directory: './${{env.package_dir}}/${{env.package_name}}'
         env:
