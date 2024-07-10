@@ -2,7 +2,7 @@ name: Ella_Test_Build
 
 on:
   push:
-    branches: [ fix/wf-release-bot-credential ]
+    branches: [ fix/wf-release-bot-credentials ]
     paths:
       - 'packages/ella/**'
 env:
@@ -59,7 +59,7 @@ jobs:
           pnpm run build --filter="@groww-tech/${{env.package_name}}"
 
       # - if: steps.cpv.outputs.is-new-version == 'true'
-        name: Deploy the documents on github pages
+      - name: Deploy the documents on github pages
         run: |
           git remote set-url origin https://git:${GIT_TOKEN_WEB_OSS}@github.com/${GITHUB_REPOSITORY}.git
         working-directory: './${{env.package_dir}}/${{env.package_name}}'
