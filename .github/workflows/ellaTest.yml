@@ -1,4 +1,4 @@
-name: Ella_Build
+name: Ella_Test_Build
 
 on:
   push:
@@ -61,5 +61,5 @@ jobs:
 
       - name: Deploy the documents on github pages
         run: |
-          git remote set-url origin https://git:${env.GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
         working-directory: './${{env.package_dir}}/${{env.package_name}}'
