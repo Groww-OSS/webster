@@ -1,4 +1,4 @@
-name: Ella_Build
+name: Ella_Test_Build
 
 on:
   push:
