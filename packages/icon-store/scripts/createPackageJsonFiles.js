@@ -1,5 +1,5 @@
 /**
- * This function generate package.json files for both mi and custom icons
+ * This function generate package.json files for mi, custom, mint icons
  * package.json helps builders/bundlers to refer the correct file when building apps
  */
 
@@ -26,3 +26,4 @@ function createPackageJson(iconType = "mi") {
 
 createPackageJson("mi");
 createPackageJson("custom");
+createPackageJson("mint-icons");
