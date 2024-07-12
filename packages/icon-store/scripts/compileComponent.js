@@ -1,5 +1,5 @@
 /**
- * This function will transform the component files of mi and custom icons
+ * This function will transform the component files of mi, custom, mint icons
  * using babel transfromSync and minify the result using terser's api.
  */
 
@@ -15,8 +15,9 @@ const timeoutId = setTimeout(() => {
 function compileReactComponentsUsingBabel() {
   const miComponentPath = path.join(__dirname, "../mi");
   const customComponentPath = path.join(__dirname, "../custom");
+  const mintIconsComponentPath = path.join(__dirname, "../mint-icons");
 
-  [miComponentPath, customComponentPath].forEach(function (componentPath) {
+  [miComponentPath, customComponentPath, mintIconsComponentPath].forEach(function (componentPath) {
     console.log(
       chalk.green("Compiling resources from: ") + chalk.yellow(componentPath)
     );
