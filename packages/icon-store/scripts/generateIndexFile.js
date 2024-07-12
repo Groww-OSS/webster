@@ -1,5 +1,5 @@
 /**
- * This function generate index files for both mi and custom icons
+ * This function generate index files for mi, custom, mint icons
  * both esm and cjs format (reexports)
  * Providing an index file helps with developer ease of use and less number of imports overall
  */
@@ -88,3 +88,5 @@ createIndexFile("mi", "cjs");
 createIndexFile("mi", "esm");
 createIndexFile("custom", "cjs");
 createIndexFile("custom", "esm");
+createIndexFile("mint-icons", "cjs");
+createIndexFile("mint-icons", "esm");

@@ -5,6 +5,7 @@
   "files": [
     "mi",
     "custom",
+    "mint-icons",
     "types.d.ts"
   ],
   "types": "types.d.ts",
@@ -17,9 +18,11 @@
     "generate": "run-p generate:*",
     "generate:mi": "rm -rf mi && mkdir mi && svgr ./svgs/mi/ --out-dir ./mi/",
     "generate:custom": "rm -rf custom && mkdir custom && svgr ./svgs/custom/ --out-dir ./custom/",
+    "generate:mint-icons": "rm -rf mint-icons && mkdir mint-icons && svgr ./svgs/mint-icons/ --out-dir ./mint-icons/",
     "transform": "node scripts/compileComponent.js && node scripts/generateIndexFile.js && node scripts/generateTypes.js && node scripts/createPackageJsonFiles.js",
     "clean-mi-icons": "rm -rf svgs/mi && mkdir svgs/mi",
     "clean-custom-icons": "rm -rf svgs/custom && mkdir svgs/custom",
+    "clean-mint-icons": "rm -rf svgs/mint-icons && mkdir svgs/mint-icons",
     "build": "npm run generate && npm run transform",
     "pushTags": "PACKAGE_VERSION=$(cat package.json | grep \\\"version\\\" | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && git tag -a icon-store-v$PACKAGE_VERSION -m \"@groww-tech/icon-store-v$PACKAGE_VERSION\" && git push --tags"
   },
@@ -27,7 +30,8 @@
     "icon-store",
     "groww",
     "icons",
-    "material-icons"
+    "material-icons",
+    "mint-icons"
   ],
   "author": "Vikas Singh <vikas.singh707@gmail.com> (https://twitter.com/VikasSi25579022)",
   "contributors": [
