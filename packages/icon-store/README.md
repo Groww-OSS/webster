@@ -30,11 +30,13 @@ node scripts/generateMaterialIcons.js
 .
 ├── mi                       // minified material svg's react components
 ├── custom                   // minified custom svg's react components
+├── mint-icons               // minified mint-icons svg's react components
 └── types.d.ts               // exports react component type  
 │ 
 ├── svgs
 │   ├── mi
-│   └── custom
+│   ├── custom
+│   └── mint-icons
 │ 
 ├── scripts
 │   ├── generateMaterialIcons.js  // Script to copy and filter material icons from google's github repo
