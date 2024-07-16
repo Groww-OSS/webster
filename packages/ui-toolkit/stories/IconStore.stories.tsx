@@ -76,7 +76,7 @@ export const AllMintIcons = () => {
       {
         Object.keys(mintIcons).map(icon => {
           const IconComponent = mintIcons[icon];
-          const importCode = `import { ${icon} } from '@groww-tech/icon-store/mi';`;
+          const importCode = `import { ${icon} } from '@groww-tech/icon-store/mint-icons';`;
 
           return (
             (<div
