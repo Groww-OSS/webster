@@ -395,11 +395,11 @@ importers:
   packages/ui-toolkit:
     dependencies:
       '@groww-tech/icon-store':
-        specifier: 1.4.1
-        version: 1.4.1(react-dom@16.12.0)(react@16.12.0)
+        specifier: 1.4.6
+        version: link:../icon-store
       '@groww-tech/mint-css':
         specifier: 0.1.2
-        version: link:../mint-css
+        version: 0.1.2
       flat-carousel:
         specifier: 0.0.1
         version: 0.0.1
@@ -2916,18 +2916,12 @@ packages:
       react-helmet: 6.1.0(react@16.12.0)
     dev: false
 
-  /@groww-tech/icon-store@1.4.1(react-dom@16.12.0)(react@16.12.0):
-    resolution: {integrity: sha512-woALP51PnK8emtJBNk1kkEF5YC8P3CHsU0oeayWSU7fkgcQc7Qh/8CH2+ufKRgf+cNA/tgpCBWacuRUg/8R6Bg==}
-    peerDependencies:
-      react: ^16.12.0 || ^17.0.0
-      react-dom: ^16.12.0 || ^17.0.0
-    dependencies:
-      react: 16.12.0
-      react-dom: 16.12.0(react@16.12.0)
-    dev: false
-
   /@groww-tech/mint-css@0.0.6:
     resolution: {integrity: sha512-ZIWslLwF9vJw4K1bfJh08Hu9hzKexhEYHnydPr7oVZ/H98bIQqLwVz6zG9YZ3CNKWHPBX9/uuWWS/4KNul5xWw==}
+    dev: false
+
+  /@groww-tech/mint-css@0.1.2:
+    resolution: {integrity: sha512-UHshQtH/KJSl67nFGo8xLatK60TVILhXf7IjFuSpyjUSKJBF09ZF7OKVKBxjNelGOAdRcQinqUM0JDzfbtF6SA==}
     dev: false
 
   /@istanbuljs/load-nyc-config@1.1.0:
