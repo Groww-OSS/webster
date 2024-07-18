@@ -10,7 +10,7 @@
   font-family: 'NotoSans';
   font-style: normal;
   font-weight: 500;
-  src: url(./NotoSans-Medium.woff2) format("woff2");
+  src: url(./NotoSans-Regular.woff2) format("woff2");
   unicode-range: U+0900-097F; /* Unicode range for Devanagari script (Hindi) */
   font-display: swap;
 }
@@ -19,7 +19,7 @@
   font-family: 'NotoSans';
   font-style: normal;
   font-weight: 600;
-  src: url(./NotoSans-SemiBold.woff2) format("woff2");
+  src: url(./NotoSans-Medium.woff2) format("woff2");
   unicode-range: U+0900-097F; /* Unicode range for Devanagari script (Hindi) */
   font-display: swap;
 }
@@ -28,7 +28,7 @@
   font-family: 'NotoSans';
   font-style: normal;
   font-weight: 700;
-  src: url(./NotoSans-Bold.woff2) format("woff2");
+  src: url(./NotoSans-SemiBold.woff2) format("woff2");
   unicode-range: U+0900-097F; /* Unicode range for Devanagari script (Hindi) */
   font-display: swap;
 }
