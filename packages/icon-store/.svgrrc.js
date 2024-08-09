@@ -1,8 +1,3 @@
-const hash = require('string-hash');
-
-
-let context = __dirname;
-
 module.exports = {
   template: require("./scripts/helpers/template"),
   dimensions: false,
