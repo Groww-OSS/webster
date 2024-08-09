@@ -7,7 +7,7 @@
 
 ### Publish
 
-For publishing new version, merge new svgs to main branch and increase the version.<br>
+For publishing a new version, merge new svgs to main branch and increase the version.<br>
 We already have prepublishOnly command setup to pack the package for you. <br>
 
 ### MI Icons
@@ -65,3 +65,4 @@ MIT
 <br/>
 
 ---
+
