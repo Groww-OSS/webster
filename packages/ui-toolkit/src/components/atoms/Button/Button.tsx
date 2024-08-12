@@ -84,7 +84,7 @@ const Button = (props: Props) => {
   });
 
 
-  const baseClasses = cn('mint-btn-default absolute-center backgroundTransparent', fontClasses,
+  const baseClasses = cn('mint-btn-default absolute-center backgroundTransparent pos-rel', fontClasses,
     {
       'cur-po': !isLoading && !isDisabled,
       'mint-btn-cursor-default': isLoading,
