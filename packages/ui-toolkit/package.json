@@ -117,7 +117,6 @@
     "@groww-tech/mint-css": "0.1.2",
     "flat-carousel": "0.0.1",
     "lodash.debounce": "^4.0.8",
-    "min-indent": "^1.0.1",
     "object-assign": "4.1.1",
     "react-waypoint": "^10.1.0"
   }
