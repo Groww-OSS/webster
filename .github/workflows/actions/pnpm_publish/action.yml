@@ -13,7 +13,7 @@ inputs:
 runs:
   using: "composite"
   steps: 
-  - run: pnpm publish --access public --ignore-scripts
+  - run: pnpm publish --access public --ignore-scripts --no-git-checks
     working-directory: ${{ inputs.path }}
     shell: bash
     env:
