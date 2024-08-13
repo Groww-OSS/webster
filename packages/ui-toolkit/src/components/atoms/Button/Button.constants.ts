@@ -19,7 +19,3 @@ export const ROLE = {
 };
 
 export const DEFAULT_TABINDEX = 0;
-
-export const KEYBOARD_EVENTS = {
-  ENTER: 'enter'
-};
