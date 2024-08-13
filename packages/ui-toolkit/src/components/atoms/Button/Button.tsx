@@ -7,8 +7,7 @@ import {
   VARIANTS,
   BUTTON_SIZES,
   ROLE,
-  DEFAULT_TABINDEX,
-  KEYBOARD_EVENTS
+  DEFAULT_TABINDEX
 } from './Button.constants';
 import { Loader, LOADER_TYPE } from '../Loader';
 import { ICON_POSITION } from '../../../utils/constants';
@@ -84,7 +83,7 @@ const Button = (props: Props) => {
   });
 
 
-  const baseClasses = cn('mint-btn-default absolute-center backgroundTransparent', fontClasses,
+  const baseClasses = cn('mint-btn-default absolute-center backgroundTransparent pos-rel', fontClasses,
     {
       'cur-po': !isLoading && !isDisabled,
       'mint-btn-cursor-default': isLoading,
