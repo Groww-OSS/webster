@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 
 import { min, max, bisector } from 'd3-array';
-
 import { localPoint } from '@visx/event';
 import { area } from '@visx/shape';
 
-import type { EventType } from '../utils/commonTypes';
+import { EventType } from '../utils/commonTypes';
 import { isEmpty } from '../utils/helpers';
 
-import type {
+import {
   Point,
   LinePathData,
   LineGraphProps,
@@ -16,7 +15,6 @@ import type {
   ToolTipSeriesData,
   DragData
 } from './lineGraphTypes';
-
 
 import './lineGraph.css';
 
@@ -486,6 +484,18 @@ const LineGraph = (props: LineGraphProps) => {
               const dragLineColor = getDragColor(lp);
               const dragPath = area({});
 
+              const {
+                showLabel,
+                labelText,
+                labelRefs,
+                rectSvgProps,
+                textSvgProps,
+                labelPosition
+              } = lp?.labelData ?? { };
+
+              const { underlyinglabelTextRef, underlyinglabelRectRef } = labelRefs ?? {};
+
+
               if (lp?.draggableConfig?.toY) {
                 dragPath.y(x as any);
                 dragPath.x0(width);
@@ -521,6 +531,23 @@ const LineGraph = (props: LineGraphProps) => {
                     shapeRendering="geometricPrecision"
                     strokeWidth={lp.strokeWidth}
                   />
+                  {
+                    showLabel &&
+                    <g>
+                      <rect
+                        ref={underlyinglabelRectRef}
+                        {...rectSvgProps}
+                      />
+                      <text
+                        x={getXScaleValue(labelPosition?.x ?? 0)}
+                        y={getYScaleValue(labelPosition?.y ?? 0)}
+                        ref={underlyinglabelTextRef}
+                        {...textSvgProps}
+                      >
+                        {labelText}
+                      </text>
+                    </g>
+                  }
                   {
                     toShowDrag && <>
                       <path
