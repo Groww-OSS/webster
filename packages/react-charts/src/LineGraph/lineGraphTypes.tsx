@@ -1,3 +1,5 @@
+import { MutableRefObject } from 'react';
+
 export type Point = [number, number, any, OptionsType?];
 
 export type OptionsType = {
@@ -21,10 +23,21 @@ export type LinePathData= {
   highlightPointStrokeMultiplier?: number;
   isDraggable?: boolean;
   draggableConfig?: {
-    fill?: string,
-    lineColor?: string,
-    negativeLineColor?: string,
+    fill?: string;
+    lineColor?: string;
+    negativeLineColor?: string;
     toY?: boolean;
+  };
+  labelData?: {
+    showLabel: boolean;
+    labelText: string;
+    textSvgProps: React.SVGProps<SVGTextElement>;
+    rectSvgProps: React.SVGProps<SVGRectElement>;
+    labelRefs:{
+      underlyinglabelTextRef: MutableRefObject<SVGTextElement | null>;
+      underlyinglabelRectRef : MutableRefObject<SVGRectElement | null>;
+    };
+    labelPosition: {x: number; y: number};
   };
 }
 
