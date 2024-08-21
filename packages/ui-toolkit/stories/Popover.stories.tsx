@@ -1,36 +1,40 @@
 import React from 'react';
-import { Story } from "@storybook/react";
+import { StoryFn } from '@storybook/react';
 
 import { Popover, POPOVER_POSITIONS } from '../src/components/atoms';
 import { Props as PopoverProps } from '../src/components/atoms/Popover/Popover';
 
 export default {
   title: 'Popover',
-  component: Popover
+  component: Popover,
+  tags: [ 'autodocs' ]
 };
 
 
-const Template: Story<PopoverProps> = ({ content, direction, ...args }) => {
+const Template: StoryFn<PopoverProps> = ({ content, direction, ...args }) => {
   return (
-    <Popover
-      content={content}
+    <Popover content={content}
       direction={direction}
     >
-      <div className="absolute-center">
-        Hover Me
-      </div>
+      <div className="absolute-center">Hover Me</div>
     </Popover>
-  )
-}
+  );
+};
 
-export const Right = Template.bind({});
-Right.args = {
-  content: POPOVER_POSITIONS.RIGHT,
-  direction: POPOVER_POSITIONS.RIGHT,
-}
+export const Right = {
+  render: Template,
 
-export const Bottom = Template.bind({});
-Bottom.args = {
-  content: POPOVER_POSITIONS.BOTTOM,
-  direction: POPOVER_POSITIONS.BOTTOM,
-}
+  args: {
+    content: POPOVER_POSITIONS.RIGHT,
+    direction: POPOVER_POSITIONS.RIGHT
+  }
+};
+
+export const Bottom = {
+  render: Template,
+
+  args: {
+    content: POPOVER_POSITIONS.BOTTOM,
+    direction: POPOVER_POSITIONS.BOTTOM
+  }
+};

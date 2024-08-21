@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Story } from '@storybook/react';
+import { StoryFn } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import { Props as RadioButtonGroupProps } from '../src/components/molecules/RadioButtonGroup/RadioButtonGroup';
@@ -7,11 +7,12 @@ import { RadioButtonGroup } from '../src/components/molecules';
 
 export default {
   title: 'RadioButtonGroup',
-  component: RadioButtonGroup
+  component: RadioButtonGroup,
+  tags: [ 'autodocs' ]
 };
 
 
-const Template: Story<RadioButtonGroupProps> = (args) => {
+const Template: StoryFn<RadioButtonGroupProps> = (args) => {
   const [ value, setValue ] = useState('');
 
 
@@ -21,14 +22,12 @@ const Template: Story<RadioButtonGroupProps> = (args) => {
 
     } else {
       setValue(newValue);
-
     }
   };
 
   return (
     <div className="valign-wrapper">
-      <RadioButtonGroup
-        {...args}
+      <RadioButtonGroup {...args}
         selected={value}
         onSelect={onSelect}
       />
@@ -36,7 +35,14 @@ const Template: Story<RadioButtonGroupProps> = (args) => {
   );
 };
 
-export const Default = Template.bind({});
+export const Default = {
+  render: Template,
+
+  args: {
+    containerClassName: '',
+    radioButtons: genderArray
+  }
+};
 
 const genderArray = [
   { label: 'Male', value: 'MALE', size: 'Base', radioDirection: 'Left' },
@@ -44,18 +50,15 @@ const genderArray = [
   { label: 'Other', value: 'NA' }
 ];
 
-Default.args = {
-  containerClassName: '',
-  radioButtons: genderArray
-};
+export const Custom = {
+  render: Template,
 
-export const Custom = Template.bind({});
+  args: {
+    radioButtons: switchArray
+  }
+};
 
 const switchArray = [
   { label: 'On', value: 'ON', radioDirection: 'Right' },
   { label: 'Off', value: 'OFF' }
 ];
-
-Custom.args = {
-  radioButtons: switchArray
-};

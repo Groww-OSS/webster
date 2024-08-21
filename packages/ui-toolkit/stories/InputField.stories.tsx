@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 
-import { Story } from '@storybook/react';
+import { StoryFn } from '@storybook/react';
 
 import { InputField } from '../src/components/atoms';
 import { Props as InputFieldProps } from '../src/components/atoms/InputField/InputField';
 
-
 export default {
   title: 'InputField',
-  component: InputField
+  component: InputField,
+  tags: [ 'autodocs' ]
 };
 
 
-const Template: Story<InputFieldProps> = (args) => {
+const Template: StoryFn<InputFieldProps> = (args) => {
   const [ value, setValue ] = useState('');
 
 
@@ -20,30 +20,36 @@ const Template: Story<InputFieldProps> = (args) => {
     setValue(e.target.value);
   };
 
-  return (
-    <InputField
-      {...args}
-      value={value}
-      onInput={onChange}
-    />
-  );
+  return <InputField {...args}
+    value={value}
+    onInput={onChange}
+  />;
 };
 
-export const Primary = Template.bind({});
-Primary.args = {
-  label: 'Email'
+export const Primary = {
+  render: Template,
+
+  args: {
+    label: 'Email'
+  }
 };
 
-export const Disabled = Template.bind({});
-Disabled.args = {
-  label: 'Email',
-  disabled: true
+export const Disabled = {
+  render: Template,
+
+  args: {
+    label: 'Email',
+    disabled: true
+  }
 };
 
-export const Error = Template.bind({});
-Error.args = {
-  label: 'Email',
-  showError: true,
-  errorText: 'There\'s an error',
-  value: 'type something'
+export const Error = {
+  render: Template,
+
+  args: {
+    label: 'Email',
+    showError: true,
+    errorText: 'There\'s an error',
+    value: 'type something'
+  }
 };
