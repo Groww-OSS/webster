@@ -11,6 +11,17 @@ export default {
   tags: [ 'autodocs' ]
 };
 
+const genderArray = [
+  { label: 'Male', value: 'MALE', size: 'Base', radioDirection: 'Left' },
+  { label: 'Female', value: 'FEMALE' },
+  { label: 'Other', value: 'NA' }
+];
+
+const switchArray = [
+  { label: 'On', value: 'ON', radioDirection: 'Right' },
+  { label: 'Off', value: 'OFF' }
+];
+
 
 const Template: StoryFn<RadioButtonGroupProps> = (args) => {
   const [ value, setValue ] = useState('');
@@ -44,12 +55,6 @@ export const Default = {
   }
 };
 
-const genderArray = [
-  { label: 'Male', value: 'MALE', size: 'Base', radioDirection: 'Left' },
-  { label: 'Female', value: 'FEMALE' },
-  { label: 'Other', value: 'NA' }
-];
-
 export const Custom = {
   render: Template,
 
@@ -57,8 +62,3 @@ export const Custom = {
     radioButtons: switchArray
   }
 };
-
-const switchArray = [
-  { label: 'On', value: 'ON', radioDirection: 'Right' },
-  { label: 'Off', value: 'OFF' }
-];
