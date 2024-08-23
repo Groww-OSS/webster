@@ -1,20 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import { Story } from '@storybook/react';
+import { StoryFn } from "@storybook/react";
 
-import { NumberPicker } from '../src/components/atoms';
-import { Props as NumberPickerProps } from '../src/components/atoms/NumberPicker/NumberPicker';
-
+import { NumberPicker } from "../src/components/atoms";
+import { Props as NumberPickerProps } from "../src/components/atoms/NumberPicker/NumberPicker";
 
 export default {
-  title: 'NumberPicker',
-  component: NumberPicker
+  title: "NumberPicker",
+  component: NumberPicker,
+  tags: [ 'autodocs' ]
 };
 
-
-const Template: Story<NumberPickerProps> = (args) => {
-
-  const [ value, setValue ] = useState(1);
+const Template: StoryFn<NumberPickerProps> = (args) => {
+  const [value, setValue] = useState(1);
 
   return (
     <NumberPicker
@@ -27,44 +25,62 @@ const Template: Story<NumberPickerProps> = (args) => {
   );
 };
 
-export const Primary = Template.bind({});
-Primary.args = {
-  minValue: 1,
-  stepValue: 1,
-  variant: 'default'
+export const Primary = {
+  render: Template,
+
+  args: {
+    minValue: 1,
+    stepValue: 1,
+    variant: "default",
+  },
 };
 
-export const Warning = Template.bind({});
-Warning.args = {
-  minValue: 1,
-  stepValue: 1,
-  variant: 'warning'
+export const Warning = {
+  render: Template,
+
+  args: {
+    minValue: 1,
+    stepValue: 1,
+    variant: "warning",
+  },
 };
 
-export const Error = Template.bind({});
-Error.args = {
-  minValue: 1,
-  stepValue: 1,
-  variant: 'error'
+export const Error = {
+  render: Template,
+
+  args: {
+    minValue: 1,
+    stepValue: 1,
+    variant: "error",
+  },
 };
 
-export const Default = Template.bind({});
-Default.args = {
-  minValue: 1,
-  stepValue: 1,
-  variant: 'default'
+export const Default = {
+  render: Template,
+
+  args: {
+    minValue: 1,
+    stepValue: 1,
+    variant: "default",
+  },
 };
 
-export const Disabled = Template.bind({});
-Disabled.args = {
-  minValue: 1,
-  stepValue: 1,
-  variant: 'disabled'
+export const Disabled = {
+  render: Template,
+
+  args: {
+    minValue: 1,
+    stepValue: 1,
+    variant: "disabled",
+  },
 };
 
-export const Unstyled = Template.bind({});
-Unstyled.args = {
-  minValue: 1,
-  stepValue: 1,
-  variant: 'unstyled'
+export const Unstyled = {
+  render: Template,
+
+  args: {
+    minValue: 1,
+    stepValue: 1,
+    variant: "unstyled",
+  },
 };

@@ -1,36 +1,40 @@
-import React from 'react';
+import React from "react";
 
-import { Story } from '@storybook/react';
+import { StoryFn } from "@storybook/react";
 
-import { Loader } from '../src/components/atoms';
-import { DefaultProps as LoaderProps, LOADER_TYPE } from '../src/components/atoms/Loader/Loader';
+import { Loader } from "../src/components/atoms";
+import {
+  DefaultProps as LoaderProps,
+  LOADER_TYPE,
+} from "../src/components/atoms/Loader/Loader";
 
 export default {
-  title: 'Loader',
-  component: Loader
+  title: "Loader",
+  component: Loader,
+  tags: [ 'autodocs' ]
 };
 
-
-const Template: Story<LoaderProps> = (args) => <Loader {...args} />;
-
-
-export const Circular = Template.bind({});
-Circular.args = {
-  loaderType: LOADER_TYPE.CIRCULAR,
-  dimension: 'SMALL'
+export const Circular = {
+  args: {
+    loaderType: LOADER_TYPE.CIRCULAR,
+    dimension: "SMALL",
+  },
 };
 
-export const CircularBolt = Template.bind({});
-CircularBolt.args = {
-  loaderType: LOADER_TYPE.CIRCULAR_BOLT
+export const CircularBolt = {
+  args: {
+    loaderType: LOADER_TYPE.CIRCULAR_BOLT,
+  },
 };
 
-export const CandleStick = Template.bind({});
-CandleStick.args = {
-  loaderType: LOADER_TYPE.CANDLE_STICK
+export const CandleStick = {
+  args: {
+    loaderType: LOADER_TYPE.CANDLE_STICK,
+  },
 };
 
-export const Linear = Template.bind({});
-Linear.args = {
-  loaderType: LOADER_TYPE.LINEAR
+export const Linear = {
+  args: {
+    loaderType: LOADER_TYPE.LINEAR,
+  },
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Story } from "@storybook/react";
+import { StoryFn } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import { DateSelector } from '../src/components/atoms';
@@ -8,29 +8,38 @@ import { Props as DateSelectorProps } from '../src/components/atoms/DateSelector
 export default {
   title: 'DateSelector',
   component: DateSelector,
+  tags: [ 'autodocs' ],
   argTypes: {
     defaultDate: {
       control: {
         type: 'select',
-        options: [...Array(30).keys()].map(item => item + 1)
+        options: [ ...Array(30).keys() ].map((item) => item + 1)
       }
-    },
+    }
   }
 };
 
 
-const Template: Story<DateSelectorProps> = (args) => <DateSelector {...args} />;
+const Template: StoryFn<DateSelectorProps> = (args) => (
+  <DateSelector
+    {...args}
+  />
+);
 
-export const TOOLTIP = Template.bind({});
-TOOLTIP.args = {
-  invokeMode: "POPUP",
-  defaultDate: 5,
-  onDateChange: action('onDateChange'),
-  visible: true,
+export const TOOLTIP = {
+  render: Template,
+  args: {
+    invokeMode: 'POPUP',
+    defaultDate: 5,
+    onDateChange: action('onDateChange'),
+    visible: true
+  }
 };
 
-export const POPUP = Template.bind({});
-POPUP.args = {
-  ...TOOLTIP.args,
-  invokeMode: "TOOLTIP",
+export const POPUP = {
+  render: Template,
+  args: {
+    ...TOOLTIP.args,
+    invokeMode: 'TOOLTIP'
+  }
 };

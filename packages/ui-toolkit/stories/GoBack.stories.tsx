@@ -1,30 +1,34 @@
 import React from 'react';
 
-import { Story } from '@storybook/react';
+import { StoryFn } from '@storybook/react';
 
 import { GoBack } from '../src/components/atoms';
 import { Props as GoBackProps } from '../src/components/atoms/GoBack/GoBack';
 
 export default {
   title: 'Go Back',
-  component: GoBack
+  component: GoBack,
+  tags: [ 'autodocs' ]
 };
 
-const CustomGoBack = (
-  <div className='bodyBase'>
-    Back
-  </div>
+const CustomGoBack = <div className="bodyBase">Back</div>;
+
+
+const Template: StoryFn<GoBackProps> = (args) => (
+  <GoBack
+    {...args}
+  />
 );
 
+export const Default = {
+  render: Template
+};
 
-const Template: Story<GoBackProps> = (args) => <GoBack {...args} />;
-
-
-export const Default = Template.bind({});
-
-export const Custom = Template.bind({});
-Custom.args = {
-  text: CustomGoBack,
-  iconWidth: 20,
-  iconHeight: 20
+export const Custom = {
+  render: Template,
+  args: {
+    text: CustomGoBack,
+    iconWidth: 20,
+    iconHeight: 20
+  }
 };

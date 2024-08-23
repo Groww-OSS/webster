@@ -1,5 +1,5 @@
 import React from 'react';
-import { Story } from '@storybook/react';
+import { StoryFn } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import { Accordion } from '../src/components/atoms';
@@ -9,27 +9,28 @@ import './style.css';
 
 export default {
   title: 'Accordion',
-  component: Accordion
+  component: Accordion,
+  tags: [ 'autodocs' ]
 };
 
 
-const Template: Story<AccordionProps> = (args) => {
+const Template: StoryFn<AccordionProps> = (args) => {
   return (
     <Accordion {...args}>
-      <div className="accordion_content_class">
-        Accordion Content
-      </div>
+      <div className="accordion_content_class">Accordion Content</div>
     </Accordion>
   );
 };
 
-export const AccordionArgs = Template.bind({});
-AccordionArgs.args = {
-  title: 'Click To Expand',
-  titleClass: 'contentPrimary bodyLargeHeavy',
-  iconClass: '',
-  parentClass: 'accordion_parent_class',
-  onMountOpen: false,
-  showRightIcon: true,
-  onToggleCallback: action('toogleCalled')
+export const AccordionArgs = {
+  render: Template,
+  args: {
+    title: 'Click To  Expand',
+    titleClass: 'contentPrimary bodyLargeHeavy',
+    iconClass: '',
+    parentClass: 'accordion_parent_class',
+    onMountOpen: false,
+    showRightIcon: true,
+    onToggleCallback: action('toogleCalled')
+  }
 };

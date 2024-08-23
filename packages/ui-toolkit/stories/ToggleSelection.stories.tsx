@@ -1,17 +1,19 @@
 import React from 'react';
 
-import { Story } from '@storybook/react';
+
+import { StoryFn } from '@storybook/react';
 
 import { ToggleSelection } from '../src/components/atoms';
 import { Props as ToggleSelectionProps } from '../src/components/atoms/ToggleSelection/ToggleSelection';
 
 export default {
   title: 'ToggleSelection',
-  component: ToggleSelection
+  component: ToggleSelection,
+  tags: [ 'autodocs' ]
 };
 
 
-const Template: Story<ToggleSelectionProps> = (args) => {
+const Template: StoryFn<ToggleSelectionProps> = (args) => {
   const [ isActive, setIsActive ] = React.useState(true);
 
 
@@ -19,23 +21,30 @@ const Template: Story<ToggleSelectionProps> = (args) => {
     setIsActive(!isActive);
   };
 
-  return <ToggleSelection
-    {...args}
-    isActive={isActive}
-    onChange={alterActive}
-  />;
+  return (
+    <ToggleSelection {...args}
+      isActive={isActive}
+      onChange={alterActive}
+    />
+  );
 };
 
-export const Default = Template.bind({});
-Default.args = {
-  parentClass: 'cur-po'
+export const Default = {
+  render: Template,
+
+  args: {
+    parentClass: 'cur-po'
+  }
 };
 
-export const Custom = Template.bind({});
-Custom.args = {
-  parentClass: 'cur-po',
-  leftText: 'English',
-  rightText: 'हिन्दी',
-  activeBackgroundColor: 'var(--red500)',
-  inactiveBackgroundColor: 'var(--yellow500)'
+export const Custom = {
+  render: Template,
+
+  args: {
+    parentClass: 'cur-po',
+    leftText: 'English',
+    rightText: 'हिन्दी',
+    activeBackgroundColor: 'var(--red500)',
+    inactiveBackgroundColor: 'var(--yellow500)'
+  }
 };

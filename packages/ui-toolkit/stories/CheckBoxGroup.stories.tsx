@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
-import { Story } from '@storybook/react';
+import { StoryFn } from '@storybook/react';
 
 import { Props as CheckBoxGroupProps } from '../src/components/molecules/CheckBoxGroup/CheckBoxGroup';
 import { CheckBoxGroup } from '../src/components/molecules';
 
 export default {
   title: 'CheckBoxGroup',
-  component: CheckBoxGroup
+  component: CheckBoxGroup,
+  tags: [ 'autodocs' ]
 };
 
 
-const Template: Story<CheckBoxGroupProps> = (args) => {
+const Template: StoryFn<CheckBoxGroupProps> = (args) => {
   const [ checkedList, setCheckedList ] = useState<string[]>([]);
 
 
@@ -21,11 +22,11 @@ const Template: Story<CheckBoxGroupProps> = (args) => {
       const valueIndex = checkedList.indexOf(value);
 
       if (valueIndex === -1) {
-      //checkbox wasn't checked
+        //checkbox wasn't checked
         newCheckList.push(value);
 
       } else {
-      //checkbox was checked
+        //checkbox was checked
         newCheckList.splice(valueIndex, 1);
       }
 
@@ -48,10 +49,13 @@ const hobbiesArray = [
   { label: 'Gaming', value: 'GAMING' }
 ];
 
-export const Default = Template.bind({});
-Default.args = {
-  containerClassName: '',
-  checkBoxes: hobbiesArray
+export const Default = {
+  render: Template,
+
+  args: {
+    containerClassName: '',
+    checkBoxes: hobbiesArray
+  }
 };
 
 const skillsArray = [
@@ -83,8 +87,11 @@ const skillsArray = [
   }
 ];
 
-export const Custom = Template.bind({});
-Custom.args = {
-  containerClassName: '',
-  checkBoxes: skillsArray
+export const Custom = {
+  render: Template,
+
+  args: {
+    containerClassName: '',
+    checkBoxes: skillsArray
+  }
 };
