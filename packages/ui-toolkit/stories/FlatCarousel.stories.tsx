@@ -1,15 +1,15 @@
 import React from 'react';
 
-import { Story } from '@storybook/react';
+import { StoryFn } from '@storybook/react';
 
 import { FlatCarousel } from '../src/components/molecules';
 import { Props as FlatCarouselProps } from '../src/components/molecules/FlatCarousel/FlatCarousel';
 
 export default {
   title: 'FlatCarousel',
-  component: FlatCarousel
+  component: FlatCarousel,
+  tags: [ 'autodocs' ]
 };
-
 
 const carouselImages = [
   {
@@ -46,41 +46,46 @@ const carouselImages = [
   }
 ];
 
-const slides: string[] = [
-  'React',
-  'Hello Slide 2',
-  'Hello Silde 3'
-];
+const slides: string[] = [ 'React', 'Hello Slide 2', 'Hello Silde 3' ];
 
 
-const Template: Story<FlatCarouselProps> = (args) => <FlatCarousel {...args}>
-  {
-    slides.map((val, index) => {
-      return (
-        <span key={index}
-          style={{ marginRight: '87px' }}
-        >{val}</span>
-      );
-    })
+const Template: StoryFn<FlatCarouselProps> = (args) => (
+  <FlatCarousel {...args}>
+    {
+      slides.map((val, index) => {
+        return (
+          <span key={index}
+            style={{ marginRight: '87px' }}
+          >
+            {val}
+          </span>
+        );
+      })
+    }
+  </FlatCarousel>
+);
+
+export const Default = {
+  render: Template,
+
+  decorators: [
+    (Story) => (
+      <div style={{ marginTop: '350px' }}>
+        <Story />
+      </div>
+    )
+  ],
+
+  args: {
+    images: carouselImages
   }
-</FlatCarousel>;
-
-
-export const Default = Template.bind({});
-Default.decorators = [
-  (Story) => (
-    <div style={{ marginTop: '350px' }}>
-      <Story />
-    </div>
-  )
-];
-
-Default.args = {
-  images: carouselImages
 };
 
-export const Custom = Template.bind({});
-Custom.args = {
-  custom: true,
-  images: carouselImages
+export const Custom = {
+  render: Template,
+
+  args: {
+    custom: true,
+    images: carouselImages
+  }
 };

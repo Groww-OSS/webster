@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { KeyboardArrowDown } from '@groww-tech/icon-store/mi';
 
 import { action } from '@storybook/addon-actions';
-import { Story } from '@storybook/react';
+import { StoryFn } from '@storybook/react';
 
 import { Dropdown, DropdownContent, DropdownTrigger } from '../src/components/atoms';
 import { Props as DropdownProps } from '../src/components/atoms/Dropdown/Dropdown';
@@ -11,90 +11,110 @@ import { Props as DropdownProps } from '../src/components/atoms/Dropdown/Dropdow
 export default {
   title: 'Dropdown',
   component: Dropdown,
-  argTypes: {
-  }
+  tags: [ 'autodocs' ]
 };
 
 
-const Template: Story<DropdownProps> = (args) => {
+const Template: StoryFn<DropdownProps> = (args) => {
   return (
-    <Dropdown
-      {...args}
-    >
+    <Dropdown {...args}>
       <DropdownTrigger>
-        <span className='story_dropdown_trigger headingLarge'>Domains
+        <span className="story_dropdown_trigger headingLarge">
+          Domains
           <KeyboardArrowDown />
         </span>
       </DropdownTrigger>
       <DropdownContent>
-        <div className='borderPrimary backgroundSurfacePrimary bodyBase'>
-          <div className='story_dropdown_item backgroundPrimary'>Finance</div>
-          <div className='story_dropdown_item backgroundPrimary'>Marketing</div>
-          <div className='story_dropdown_item backgroundPrimary'>Engineering</div>
+        <div className="borderPrimary backgroundSurfacePrimary bodyBase">
+          <div className="story_dropdown_item backgroundPrimary">Finance</div>
+          <div className="story_dropdown_item backgroundPrimary">Marketing</div>
+          <div className="story_dropdown_item backgroundPrimary">
+            Engineering
+          </div>
         </div>
       </DropdownContent>
     </Dropdown>
   );
 };
 
-export const Default = Template.bind({});
-Default.args = {
-  onHide: action('onHide'),
-  onShow: action('onShow')
+export const Default = {
+  render: Template,
+
+  args: {
+    onHide: action('onHide'),
+    onShow: action('onShow')
+  }
 };
 
-export const DropdownIconAnimation = (args) => {
-  const [ iconOrientation, setIconOrientation ] = useState('up');
+export const DropdownIconAnimation = {
+  render: (args) => {
+    const [ iconOrientation, setIconOrientation ] = useState('up');
 
-  return (
-    (<Dropdown
-      {...args}
-      onShow={() => { setIconOrientation('down'); }}
-      onHide={() => { setIconOrientation('up'); }}
-    >
-      <DropdownTrigger>
-        <span className='story_dropdown_trigger bodyXLarge'>Domains
-          <KeyboardArrowDown className={`story_dropdown_icon story_dropdown_icon_${iconOrientation}`} />
-        </span>
-      </DropdownTrigger>
-      <DropdownContent>
-        <div className='borderPrimary backgroundSurfacePrimary bodyBase'>
-          <div className='story_dropdown_item backgroundPrimary'>Finance</div>
-          <div className='story_dropdown_item backgroundPrimary'>Marketing</div>
-          <div className='story_dropdown_item backgroundPrimary'>Engineering</div>
-        </div>
-      </DropdownContent>
-    </Dropdown>)
-  );
-};
+    return (
+      <Dropdown
+        {...args}
+        onShow={
+          () => {
+            setIconOrientation('down');
+          }
+        }
+        onHide={
+          () => {
+            setIconOrientation('up');
+          }
+        }
+      >
+        <DropdownTrigger>
+          <span className="story_dropdown_trigger bodyXLarge">
+            Domains
+            <KeyboardArrowDown
+              className={`story_dropdown_icon story_dropdown_icon_${iconOrientation}`}
+            />
+          </span>
+        </DropdownTrigger>
+        <DropdownContent>
+          <div className="borderPrimary backgroundSurfacePrimary bodyBase">
+            <div className="story_dropdown_item backgroundPrimary">Finance</div>
+            <div className="story_dropdown_item backgroundPrimary">
+              Marketing
+            </div>
+            <div className="story_dropdown_item backgroundPrimary">
+              Engineering
+            </div>
+          </div>
+        </DropdownContent>
+      </Dropdown>
+    );
+  },
 
-DropdownIconAnimation.parameters = {
-  docs: {
-    source: {
-      code: `
-      const [iconOrientation, setIconOrientation] = useState('up')
+  parameters: {
+    docs: {
+      source: {
+        code: `
+        const [iconOrientation, setIconOrientation] = useState('up')
 
-  return (
-    <Dropdown
-      {...args}
-      onShow={() => { setIconOrientation('down') }}
-      onHide={() => { setIconOrientation('up') }}
-    >
-      <DropdownTrigger>
-        <span className="headingLarge story_dropdown_trigger">Domains
-          <KeyboardArrowDown className={"story_dropdown_icon story_dropdown_icon_{iconOrientation}"} />
-        </span>
-      </DropdownTrigger>
-      <DropdownContent>
-        <div className="borderPrimary backgroundSurfacePrimary">
-          <div>Finance</div>
-          <div>Marketing</div>
-          <div>Engineering</div>
-        </div>
-      </DropdownContent>
-    </Dropdown>
-  );
-      `
+    return (
+      <Dropdown
+        {...args}
+        onShow={() => { setIconOrientation('down') }}
+        onHide={() => { setIconOrientation('up') }}
+      >
+        <DropdownTrigger>
+          <span className="headingLarge story_dropdown_trigger">Domains
+            <KeyboardArrowDown className={"story_dropdown_icon story_dropdown_icon_{iconOrientation}"} />
+          </span>
+        </DropdownTrigger>
+        <DropdownContent>
+          <div className="borderPrimary backgroundSurfacePrimary">
+            <div>Finance</div>
+            <div>Marketing</div>
+            <div>Engineering</div>
+          </div>
+        </DropdownContent>
+      </Dropdown>
+    );
+        `
+      }
     }
   }
 };

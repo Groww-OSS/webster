@@ -1,37 +1,45 @@
 import React from 'react';
 
-import { Story } from '@storybook/react';
+import { StoryFn } from '@storybook/react';
 
 import { Tag } from '../src/components/atoms';
 import { Props as TagProps } from '../src/components/atoms/Tag/Tag';
 
 export default {
   title: 'Tag',
-  component: Tag
+  component: Tag,
+  tags: [ 'autodocs' ]
 };
 
 const tagText = '0 shares are available to sell';
 
 
-const Template: Story<TagProps> = (args) => <Tag {...args}>
-  <div className="absolute-center">
-    {tagText}
-  </div>
-</Tag>;
+const Template: StoryFn<TagProps> = (args) => (
+  <Tag {...args}>
+    <div className="absolute-center">{tagText}</div>
+  </Tag>
+);
 
-
-export const Warning = Template.bind({});
-
-export const Error = Template.bind({});
-Error.args = {
-  isWarning: false,
-  isError: true,
-  isInfo: false
+export const Warning = {
+  render: Template
 };
 
-export const Info = Template.bind({});
-Info.args = {
-  isWarning: false,
-  isError: false,
-  isInfo: true
+export const Error = {
+  render: Template,
+
+  args: {
+    isWarning: false,
+    isError: true,
+    isInfo: false
+  }
+};
+
+export const Info = {
+  render: Template,
+
+  args: {
+    isWarning: false,
+    isError: false,
+    isInfo: true
+  }
 };

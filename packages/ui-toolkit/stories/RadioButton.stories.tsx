@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Story } from '@storybook/react';
+import { StoryFn } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import { Props as RadioButtonProps } from '../src/components/atoms/RadioButton/RadioButton';
@@ -7,11 +7,12 @@ import { RadioButton } from '../src/components/atoms';
 
 export default {
   title: 'RadioButton',
-  component: RadioButton
+  component: RadioButton,
+  tags: [ 'autodocs' ]
 };
 
 
-const Template: Story<RadioButtonProps> = (args) => {
+const Template: StoryFn<RadioButtonProps> = (args) => {
   const [ selected, setSelected ] = useState(false);
 
 
@@ -26,22 +27,25 @@ const Template: Story<RadioButtonProps> = (args) => {
   />;
 };
 
-export const Default = Template.bind({});
-Default.args = {
-  label: 'Radio Button Label'
+export const Default = {
+  render: Template,
+
+  args: {
+    label: 'Radio Button Label',
+    isSelected: true
+  }
 };
 
-
-export const unSelected = Template.bind({});
-Default.args = {
-  label: 'Radio Button Label',
-  isSelected: true
+export const unSelected = {
+  render: Template
 };
 
+export const OnRight = {
+  render: Template,
 
-export const OnRight = Template.bind({});
-OnRight.args = {
-  ...Default.args,
-  label: <span>Radio Button</span>,
-  radioDirection: 'Right'
+  args: {
+    ...Default.args,
+    label: <span>Radio Button</span>,
+    radioDirection: 'Right'
+  }
 };
