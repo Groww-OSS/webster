@@ -1,61 +1,71 @@
-import React from "react";
+import React from 'react';
+import { StoryFn } from '@storybook/react';
 
-import { StoryFn } from "@storybook/react";
-
-import { MessageBox } from "../src/components/atoms/MessageBox";
-import { Props as MessageBoxProps } from "../src/components/atoms/MessageBox/MessageBox";
+import { MessageBox } from '../src/components/atoms/MessageBox';
+import { Props as MessageBoxProps } from '../src/components/atoms/MessageBox/MessageBox';
 
 export default {
-  title: "MessageBox",
+  title: 'MessageBox',
   component: MessageBox,
   tags: [ 'autodocs' ],
   argTypes: {
     background: {
       control: {
-        type: "select",
-        options: ["Neutral", "Warning", "Error", "Positive"],
+        type: 'select'
       },
-    },
-  },
+      options: [ 'Neutral', 'Warning', 'Error', 'Positive' ]
+    }
+  }
 };
+
+
+const Template: StoryFn<MessageBoxProps> = (args) => (
+  <MessageBox
+    {...args}
+  />
+);
 
 export const Neutral = {
   args: {
-    background: "Neutral",
+    background: 'Neutral',
     isCompact: false,
     content: `This is a informaton box. This can be used for anything,
      from a notice box to a notification box to anything you need it to be!!.
-    Just kidding it\'s just a template text to fill up space. :P`,
-  },
+    Just kidding it\'s just a template text to fill up space. :P`
+  }
 };
 
 export const Warning = {
+  renderer: Template,
   args: {
     ...Neutral.args,
-    background: "Warning",
-  },
+    background: 'Warning'
+  }
 };
 
 export const Error = {
+  renderer: Template,
   args: {
     ...Neutral.args,
-    background: "Error",
-  },
+    background: 'Error'
+  }
 };
 
 export const Positive = {
+  renderer: Template,
   args: {
     ...Neutral.args,
-    background: "Positive",
+    background: 'Positive',
     content:
-      "This is the body that can span upto three lines. It can contain CTAs in the form of inline links",
-  },
+      'This is the body that can span upto three lines. It can contain CTAs in the form of inline links'
+  }
 };
 
 export const WithoutIcon = {
+  renderer: Template,
   args: {
     ...Neutral.args,
-    background: "Neutral",
-    isIconPresent: false,
-  },
+    background: 'Neutral',
+    isIconPresent: false
+  }
 };

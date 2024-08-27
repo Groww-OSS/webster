@@ -13,15 +13,15 @@ export default {
   argTypes: {
     variant: {
       control: {
-        type: 'select',
-        options: [ 'Primary', 'Secondary', 'Tertiary', 'Positive', 'Negative' ]
-      }
+        type: 'select'
+      },
+      options: [ 'Primary', 'Secondary', 'Tertiary', 'Positive', 'Negative' ]
     },
     size: {
       control: {
-        type: 'select',
-        options: [ 'Small', 'Base', 'Large' ]
-      }
+        type: 'select'
+      },
+      options: [ 'Small', 'Base', 'Large' ]
     }
   },
   tags: [ 'autodocs' ]
