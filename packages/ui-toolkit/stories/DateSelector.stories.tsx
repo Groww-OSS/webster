@@ -12,9 +12,9 @@ export default {
   argTypes: {
     defaultDate: {
       control: {
-        type: 'select',
-        options: [ ...Array(30).keys() ].map((item) => item + 1)
-      }
+        type: 'select'
+      },
+      options: [ ...Array(30).keys() ].map((item) => item + 1)
     }
   }
 };

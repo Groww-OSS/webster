@@ -8,15 +8,14 @@ import { TextArea } from '../src/components/atoms';
 export default {
   title: 'TextArea',
   component: TextArea,
-
+  tags: [ 'autodocs' ],
   argTypes: {
     disabled: {
       default: false,
       control: {
-        type: 'select',
-        options: [ true, false ]
+        type: 'select'
       },
-      tags: [ 'autodocs' ]
+      options: [ true, false ]
     },
     label: {
       control: 'text'
