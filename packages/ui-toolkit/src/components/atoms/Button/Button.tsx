@@ -78,8 +78,8 @@ const Button = (props: Props) => {
     bodyBaseHeavy: size === BUTTON_SIZES.BASE,
     bodyLargeHeavy: size === BUTTON_SIZES.LARGE,
     contentDisabled: isDisabled,
-    contentPrimary: !isAccent && !isDisabled,
-    contentAccent: isAccent && !isDisabled
+    contentPrimary: !isAccent && !isDisabled && !isLoading,
+    contentAccent: isAccent && !isDisabled && !isLoading
   });
 
 
