@@ -13,7 +13,7 @@ module.exports = {
     "keyframes-name-pattern": null,
     "color-hex-case": ["upper", { "severity": "warning" }],
     "scale-unlimited/declaration-strict-value": [
-      ["/color$/", "z-index", "background", "border"], { "severity": "warning" }
+      ["/color$/", "z-index", "background"], { "severity": "warning" }
     ],
     "plugin/no-unsupported-browser-features": [true, {
       "browsers": ["> 2%"],
