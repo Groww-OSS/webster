@@ -52,6 +52,43 @@ html {
   --tempNbtBlue: #d6eeff;
   --tempNbtGray: #f0f0f2;
   --tempNbtRed: #ffc7bb;
+
+  /*
+  * These set of interaction  variable's name will be updated after new spectrum changes
+  * To be used by components for their interaction states
+  */
+
+  /* Hover */
+  --bg-transparent-hover: #44475b0f;
+
+  --bg-accent-hover: #04AD83;
+  --bg-accent-subtle-hover: #DDF5EE;
+  --bg-transparent-accent-hover: #00B3860F;
+
+  --bg-positive-hover: #04AD83;
+  --bg-positive-subtle-hover: #DDF5EE;
+  --bg-transparent-positive-hover: #00B3860F;
+
+  --bg-negative-hover: #E15A3E;
+  --bg-negative-subtle-hover: #F9E0DB;
+  --bg-transparent-negative-hover: #EB5B3C0F;
+
+
+  /* Selected */
+  --bg-transparent-selected: #44475B0F;
+
+  --bg-accent-selected: #04AD83;
+  --bg-accent-subtle-selected: #DDF5EE;
+  --bg-transparent-accent-selected: #00B3860F;
+
+  --bg-positive-selected: #04AD83;
+  --bg-positive-subtle-selected: #DDF5EE;
+  --bg-transparent-positive-selected: #00B3860F;
+
+  --bg-negative-selected: #E15A3E;
+  --bg-negative-subtle-selected: #F9E0DB;
+  --bg-transparent-negative-selected: #EB5B3C0F;
+
 }
 
 html[data-theme="dark"] {
@@ -100,4 +137,40 @@ html[data-theme="dark"] {
   --tempNbtBlue: #3e79a4;
   --tempNbtGray: #5c5c6f;
   --tempNbtRed: #c85d0f;
+
+  /*
+  * These set of interaction variable's name will be updated after new spectrum changes
+  * To be used by components for their interaction states
+  */
+
+  /* ----- Hover State -----  */
+  --bg-transparent-hover: #FFFFFF0F;
+
+  --bg-accent-hover: #0AB18A;
+  --bg-accent-subtle-hover: #103E33;
+  --bg-transparent-accent-hover: #0ABB920F;
+
+  --bg-positive-hover: #0AB18A;
+  --bg-positive-subtle-hover: #103E33;
+  --bg-transparent-positive-hover: #0ABB920F;
+  
+  --bg-negative-hover: #C95036;
+  --bg-negative-subtle-hover: #4A2018;
+  --bg-transparent-negative-hover: #D554380F;
+
+  /* ----- Selected State ----- */
+  --bg-transparent-selected: #44475b0f;
+
+  --bg-accent-selected: #04AD83;
+  --bg-accent-subtle-selected: #DDF5EE;
+  --bg-transparent-accent-selected: #00B3860F;
+
+  --bg-positive-selected: #04AD83;
+  --bg-positive-subtle-selected: #DDF5EE;
+  --bg-transparent-positive-selected: #00B3860F;
+
+  --bg-negative-selected: #E15A3E;
+  --bg-negative-subtle-selected: #F9E0DB;
+  --bg-transparent-negative-selected: #EB5B3C0F;
+  
 }
