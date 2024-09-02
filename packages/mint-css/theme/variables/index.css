@@ -54,7 +54,7 @@ html {
   --tempNbtRed: #ffc7bb;
 
 
-  /* ---------------- Interaction Layer/States ---------------------- */
+  /* ---------------- Interaction Layer/State ---------------------- */
 
   /*
   * These set of interaction  variable's name will be updated after new spectrum changes
@@ -141,7 +141,7 @@ html[data-theme="dark"] {
   --tempNbtGray: #5c5c6f;
   --tempNbtRed: #c85d0f;
 
-  /* ---------------- Interaction Layer/States ---------------------- */
+  /* ---------------- Interaction Layer/State ---------------------- */
 
   /*
   * These set of interaction variable's name will be updated after new spectrum changes
