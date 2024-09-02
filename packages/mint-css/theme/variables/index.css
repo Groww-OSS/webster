@@ -61,7 +61,7 @@ html {
   * To be used by components for their interaction states
   */
 
-  /* Hover State */
+  /* ----- Hover State -----  */
   --bg-transparent-hover: #44475b0f;
 
   --bg-accent-hover: #04AD83;
@@ -77,7 +77,7 @@ html {
   --bg-transparent-negative-hover: #EB5B3C0F;
 
 
-  /* Selected State */
+  /* ----- Selected State ----- */
   --bg-transparent-selected: #44475B0F;
 
   --bg-accent-selected: #04AD83;
