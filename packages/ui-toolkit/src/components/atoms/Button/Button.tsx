@@ -15,7 +15,6 @@ import { ICON_POSITION } from '../../../utils/constants';
 import { isEmpty } from '../../../utils/helper';
 import './button.css';
 import './button-tokens.css';
-import '../../../../../mint-css/dist/index.css';
 
 
 const isValidHyperLink = (href: string | undefined) : boolean => {
