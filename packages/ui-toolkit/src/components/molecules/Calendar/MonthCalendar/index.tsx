@@ -155,11 +155,11 @@ class MonthCalendar extends React.PureComponent<Props, State> {
     const { minMonth, maxMonth } = this.props;
     const currentDate = new Date(dateToShow.getFullYear(), monthIndex, 1);
 
-    if (minMonth && this.compareMonth(minMonth, currentDate) > 0) {
+    if (minMonth && this.compareMonth(minMonth, currentDate)) {
       return true;
     }
 
-    if (maxMonth && this.compareMonth(currentDate, maxMonth) > 0) {
+    if (maxMonth && this.compareMonth(currentDate, maxMonth)) {
       return true;
     }
 
@@ -191,11 +191,11 @@ class MonthCalendar extends React.PureComponent<Props, State> {
   }
 
   // Compare two dates by year and month
-  compareMonth = (dateOne: Date, dateTwo: Date): number => {
+  compareMonth = (dateOne: Date, dateTwo: Date): boolean => {
     const yearDiff = dateOne.getFullYear() - dateTwo.getFullYear();
 
-    if (yearDiff !== 0) return yearDiff;
-    return dateOne.getMonth() - dateTwo.getMonth();
+    if (yearDiff !== 0) return yearDiff > 0;
+    return dateOne.getMonth() > dateTwo.getMonth();
   }
 }
 
