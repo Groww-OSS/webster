@@ -62,7 +62,7 @@ html {
   */
 
   /* ----- Hover State -----  */
-  --bg-transparent-hover: #44475b0f;
+  --bg-transparent-hover: #44475B0F;
 
   --bg-accent-hover: #04AD83;
   --bg-accent-subtle-hover: #DDF5EE;
@@ -164,18 +164,18 @@ html[data-theme="dark"] {
   --bg-transparent-negative-hover: #D554380F;
 
   /* ----- Selected State ----- */
-  --bg-transparent-selected: #44475b0f;
+  --bg-transparent-selected: #FFFFFF0F;
 
-  --bg-accent-selected: #04AD83;
-  --bg-accent-subtle-selected: #DDF5EE;
-  --bg-transparent-accent-selected: #00B3860F;
+  --bg-accent-selected: #0AB18A;
+  --bg-accent-subtle-selected: #103E33;
+  --bg-transparent-accent-selected: #0ABB920F;
 
-  --bg-positive-selected: #04AD83;
-  --bg-positive-subtle-selected: #DDF5EE;
-  --bg-transparent-positive-selected: #00B3860F;
+  --bg-positive-selected: #0AB18A;
+  --bg-positive-subtle-selected: #103E33;
+  --bg-transparent-positive-selected: #0ABB920F;
 
-  --bg-negative-selected: #E15A3E;
-  --bg-negative-subtle-selected: #F9E0DB;
-  --bg-transparent-negative-selected: #EB5B3C0F;
+  --bg-negative-selected: #C95036;
+  --bg-negative-subtle-selected: #4A2018;
+  --bg-transparent-negative-selected: #D554380F;
 
 }
