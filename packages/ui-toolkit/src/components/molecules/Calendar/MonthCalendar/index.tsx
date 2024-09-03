@@ -191,11 +191,11 @@ class MonthCalendar extends React.PureComponent<Props, State> {
   }
 
   // Compare two dates by year and month
-  compareMonth = (date1: Date, date2: Date): number => {
-    const yearDiff = date1.getFullYear() - date2.getFullYear();
+  compareMonth = (dateOne: Date, dateTwo: Date): number => {
+    const yearDiff = dateOne.getFullYear() - dateTwo.getFullYear();
 
     if (yearDiff !== 0) return yearDiff;
-    return date1.getMonth() - date2.getMonth();
+    return dateOne.getMonth() - dateTwo.getMonth();
   }
 }
 
