@@ -24,7 +24,7 @@
     background-color: var(--bg-positive-subtle-hover);
   }
 
-  .backgrounTransparentPositiveHover:hover {
+  .backgroundTransparentPositiveHover:hover {
     background-color: var(--bg-transparent-positive-hover);
   }
 
@@ -67,7 +67,7 @@
     background-color: var(--bg-positive-subtle-selected);
   }
 
-  .backgrounTransparentPositiveSelected:active {
+  .backgroundTransparentPositiveSelected:active {
     background-color: var(--bg-transparent-positive-selected);
   }
 
