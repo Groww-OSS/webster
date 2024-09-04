@@ -398,8 +398,8 @@ importers:
         specifier: 1.4.6
         version: 1.4.6(react-dom@18.0.0(react@18.0.0))(react@18.0.0)
       '@groww-tech/mint-css':
-        specifier: 0.1.2
-        version: 0.1.2
+        specifier: 0.1.5
+        version: 0.1.5
       flat-carousel:
         specifier: 0.0.1
         version: 0.0.1
@@ -1557,8 +1557,8 @@ packages:
   '@groww-tech/mint-css@0.0.6':
     resolution: {integrity: sha512-ZIWslLwF9vJw4K1bfJh08Hu9hzKexhEYHnydPr7oVZ/H98bIQqLwVz6zG9YZ3CNKWHPBX9/uuWWS/4KNul5xWw==}
 
-  '@groww-tech/mint-css@0.1.2':
-    resolution: {integrity: sha512-UHshQtH/KJSl67nFGo8xLatK60TVILhXf7IjFuSpyjUSKJBF09ZF7OKVKBxjNelGOAdRcQinqUM0JDzfbtF6SA==}
+  '@groww-tech/mint-css@0.1.5':
+    resolution: {integrity: sha512-Se1dBrdIpoPjo/5c1vVmuikZY6/oPGCNu/s8vuQ8/JC3l3Xv2PKuN7qcO7pzZUnKkRi5M4Zbt2uMynfAW/FxNw==}
 
   '@groww-tech/tsconfig@1.0.2':
     resolution: {integrity: sha512-UkF7nUcPWof2HKiIpBAJ/r4CRUIZ9eadrQfFzEj+c9k/ex7GIPFJn5eHaLiQuEPUi9ZJ30Vih4Y2SOPlV11dww==}
@@ -8435,7 +8435,7 @@ snapshots:
 
   '@groww-tech/mint-css@0.0.6': {}
 
-  '@groww-tech/mint-css@0.1.2': {}
+  '@groww-tech/mint-css@0.1.5': {}
 
   '@groww-tech/tsconfig@1.0.2': {}
 
