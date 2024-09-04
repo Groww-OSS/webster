@@ -13,8 +13,7 @@ import { Loader, LOADER_TYPE } from '../Loader';
 import { ICON_POSITION } from '../../../utils/constants';
 
 import { isEmpty } from '../../../utils/helper';
-import './button.css';
-import './button-tokens.css';
+import './styles/index.css';
 
 
 const isValidHyperLink = (href: string | undefined) : boolean => {
