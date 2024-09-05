@@ -13,7 +13,7 @@ import { Loader, LOADER_TYPE } from '../Loader';
 import { ICON_POSITION } from '../../../utils/constants';
 
 import { isEmpty } from '../../../utils/helper';
-import './button.css';
+import './styles/index.css';
 
 
 const isValidHyperLink = (href: string | undefined) : boolean => {
@@ -45,30 +45,30 @@ const Button = (props: Props) => {
     onClick
   } = props;
 
-  const primaryButtonClasses = cn(
+  const primaryButtonClasses = cn('mint-btn-primary',
     {
       contentOnColour: !isLoading && !isDisabled,
       backgroundAccent: !isDisabled || (isLoading && isDisabled)
     });
 
-  const secondaryButtonClasses = cn({
-    'mint-btn-secondary-no-accent': !isAccent,
-    backgroundAccentSubtle: (isAccent && !isDisabled) || (isAccent && isDisabled && isLoading),
-    'mint-btn-secondary-no-accent-border': !isAccent
+  const secondaryButtonClasses = cn('mint-btn-secondary', {
+    'mint-btn-secondary-default': !isAccent,
+    'mint-btn-secondary-accent backgroundAccentSubtle': (isAccent && !isDisabled) || (isAccent && isDisabled && isLoading),
+    'mint-btn-secondary-default-border': !isAccent
   });
 
-  const tertiaryButtonClasses = cn({
+  const tertiaryButtonClasses = cn('mint-btn-tertiary', {
     'mint-btn-tertiary-accent': isAccent && !isDisabled && !isLoading,
-    'mint-btn-tertiary-no-accent': !isAccent && !isDisabled,
+    'mint-btn-tertiary-default': !isAccent && !isDisabled,
     'mint-btn-tertiary-disabled': isDisabled && !isLoading
   });
 
-  const postiveButtonClasses = cn({
+  const postiveButtonClasses = cn('mint-btn-primary', {
     backgroundPositive: !isDisabled || (isLoading && isDisabled),
     contentOnColour: !isLoading && !isDisabled
   });
 
-  const negativeButtonClasses = cn({
+  const negativeButtonClasses = cn('mint-btn-negative', {
     backgroundNegative: !isDisabled || (isLoading && isDisabled),
     contentOnColour: !isLoading && !isDisabled
   });
@@ -98,8 +98,8 @@ const Button = (props: Props) => {
 
 
   const loaderClasses = cn('mint-btn-loader-item', {
-    'mint-btn-loader-primary': variant === VARIANTS.PRIMARY || variant === VARIANTS.POSITIVE || variant === VARIANTS.NEGATIVE,
-    'mint-btn-loader-no-accent': (variant === VARIANTS.SECONDARY || variant === VARIANTS.TERTIARY) && !isAccent
+    'mint-btn-loader-item-border-white': variant === VARIANTS.PRIMARY || variant === VARIANTS.POSITIVE || variant === VARIANTS.NEGATIVE,
+    'mint-btn-loader-item-border-gray': (variant === VARIANTS.SECONDARY || variant === VARIANTS.TERTIARY) && !isAccent
   });
 
   const fixedToBottomClass = cn({
@@ -203,7 +203,7 @@ const Button = (props: Props) => {
   const renderButtonContent = () => (
     <>
       {
-        isLoading && <div className="absolute-center mint-btn-loader-container">
+        isLoading && <div className="absolute-center mint-btn-loader-wrapper">
           <Loader
             loaderType={LOADER_TYPE.CIRCULAR}
             loaderClassName={loaderClasses}

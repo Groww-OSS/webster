@@ -1,0 +1,26 @@
+.mint-btn-default {
+    /* ---------- Hover State ---------- */
+
+    /* ----- Primary Button ----- */
+    
+    /* Accent */
+    --color-bg-button-primary-accent-hover: var(--bg-accent-hover);
+
+    /* ------ Secondary Button ----- */
+
+    /* Default or No Accent */
+    --color-bg-button-secondary-default-hover: var(--bg-transparent-hover);
+    /* Accent */
+    --color-bg-button-secondary-accent-hover: var(--bg-accent-subtle-hover);
+
+    /* ----- Tertiary Button ----- */
+
+    /* Default or No Accent */
+    --color-bg-button-tertiary-default-hover: var(--bg-transparent-hover);
+    /* Accent */
+    --color-bg-button-tertiary-accent-hover: var(--bg-transparent-accent-hover);
+
+    /* ----- Negative Button ----- */
+
+    --color-bg-button-primary-negative-hover: var(--bg-negative-hover);
+}

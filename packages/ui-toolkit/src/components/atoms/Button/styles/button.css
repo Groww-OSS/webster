@@ -9,27 +9,23 @@
   outline: none;
 }
 
-.mint-btn-default:hover {
-  opacity: 0.9;
-}
 
 .mint-btn-default:focus-visible {
   outline: 2px solid var(--purple500);
   outline-offset: 2px;
 }
-
-.mint-btn-default:active {
-  opacity: 0.9;
-}
-
 .mint-btn-cursor-default {
   cursor: default;
 }
 
-.mint-btn-default.mint-btn-secondary-no-accent-border{
+.mint-btn-default.mint-btn-secondary-default-border{
   border: 1px solid var(--gray150);
 }
 
+.mint-btn-tertiary-label-border {
+  border-style: dashed !important;
+  border-width: 0 0 1px 0 !important;
+}
 /* -- Size Classes -- */
 
 .mint-btn-small {
@@ -65,27 +61,6 @@
 .mint-btn-disabled.mint-btn-tertiary-disabled{
   background-color: transparent;
 }
-/* -- Seconday Button -- */
-
-.mint-btn-secondary-no-accent:hover {
-  background-color: var(--gray50);
-}
-
-/* -- Tertairy Button -- */
-
-/* when isAccent = true */
-.mint-btn-tertiary-accent:hover{
-  background-color: var(--green100);
-}
-
-/* when isAccent = false */
-.mint-btn-tertiary-no-accent:hover{
-  background-color: var(--gray50);
-}
-.mint-btn-tertiary-label-border {
-  border-style: dashed !important;
-  border-width: 0 0 1px 0 !important;
-}
 
 /* -- Compact classes -- */
 
@@ -99,23 +74,24 @@
 
 /*  -- Loader Button --  */
 
-.mint-btn-default.mint-btn-loader {
-  color: transparent;
-}
-
-.mint-btn-loader-container {
+.mint-btn-loader-wrapper {
   position: absolute;
   margin-top: 4px;
 }
 
-.mint-btn-loader-primary {
+.mint-btn-default.mint-btn-loader {
+  color: transparent;
+  pointer-events: none;
+}
+
+.mint-btn-loader-item-border-white {
   border: 2px solid var(--white); /* the loader color will always be white in dark as well as in light theme */
   border-top-color: transparent;
 }
 
-.mint-btn-loader-no-accent { /*used because the token doesn't override the existing color of loader*/
+.mint-btn-loader-item-border-gray { /*used because the token doesn't override the existing color of loader*/
   border: 2px solid var(--gray900);
-  border-right-color: transparent;
+  border-top-color: transparent;
 }
 
 .mint-btn-small .mint-btn-loader-item {
@@ -143,4 +119,42 @@
   width: 100%;
   z-index: var(--zindex300);
   border-width: 1px 0 0 0;
+}
+
+/* --- Hover State --- */
+
+/* --- Primary --- --- */
+
+.mint-btn-primary:hover{
+  background-color: var(--color-bg-button-primary-accent-hover);
+}
+
+/* --- Secondary --- */
+
+/* Default : when isAccent = false*/
+.mint-btn-secondary.mint-btn-secondary-default:hover {
+  background-color: var(--color-bg-button-secondary-default-hover);
+}
+
+/* when isAccent = true */
+.mint-btn-secondary.mint-btn-secondary-accent:hover{
+  background-color: var( --color-bg-button-secondary-accent-hover);
+}
+
+/* --- Tertiary --- */
+
+/* Default : when isAccent = false */
+.mint-btn-tertiary.mint-btn-tertiary-default:hover{
+  background-color: var( --color-bg-button-tertiary-default-hover);
+}
+
+/* when isAccent = true */
+.mint-btn-tertiary.mint-btn-tertiary-accent:hover{
+  background-color: var( --color-bg-button-tertiary-accent-hover);
+}
+
+/* --- Negative --- */
+
+.mint-btn-default.mint-btn-negative:hover{
+  background-color: var(--color-bg-button-primary-negative-hover);
 }
