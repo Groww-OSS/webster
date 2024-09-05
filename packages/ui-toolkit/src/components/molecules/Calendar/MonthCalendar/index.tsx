@@ -61,7 +61,7 @@ class MonthCalendar extends React.PureComponent<Props, State> {
           <div className="valign-wrapper mn12YearRow">
             <div
               className={
-                cn({ 'valign-wrapper cur-po': !isPreviousYearDisabled }, {
+                cn('valign-wrapper', { ' cur-po': !isPreviousYearDisabled }, {
                   'contentSecondary cur-no': isPreviousYearDisabled
                 })
               }
@@ -72,7 +72,7 @@ class MonthCalendar extends React.PureComponent<Props, State> {
             <div>{dateToShow.getFullYear()}</div>
             <div
               className={
-                cn({ 'valign-wrapper cur-po': !isNextYearDisabled }, {
+                cn('valign-wrapper', { 'cur-po': !isNextYearDisabled }, {
                   'contentSecondary cur-no': isNextYearDisabled
                 })
               }
