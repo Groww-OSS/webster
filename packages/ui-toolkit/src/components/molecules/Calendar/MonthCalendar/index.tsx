@@ -53,7 +53,7 @@ class MonthCalendar extends React.PureComponent<Props, State> {
     const isNextYearDisabled = this.isNextYearDisabled();
 
     // Get the index of the current month
-    // git 
+    // git testing
     const currentMonthIndex = currentDate.getMonth();
 
     return (
