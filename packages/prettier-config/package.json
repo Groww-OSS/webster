@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Standard prettier config adopted in Groww. Customized as per requirement and preferences of devs in Groww.",
   "main": "index.js",
-  "prettier": "@company/prettier-config",
   "repository": {
     "type": "git",
     "url": "https://github.com/Groww-OSS/webster.git"
