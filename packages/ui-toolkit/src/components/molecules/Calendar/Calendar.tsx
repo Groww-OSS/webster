@@ -14,6 +14,8 @@ const Calendar = (props:Props) => {
     type,
     currentDate,
     onDateChange,
+    minMonth,
+    maxMonth,
     minDate,
     maxDate,
     highlightCurrentDate
@@ -27,6 +29,8 @@ const Calendar = (props:Props) => {
     return (
       <MonthCalendar currentDate={currentDate || new Date()}
         onDateChange={onDateChange || emptyFunction}
+        minMonth={minMonth}
+        maxMonth={maxMonth}
       />
     );
 
