@@ -3,6 +3,7 @@
 @import './tokens/border-tokens.css';
 @import './tokens/content-tokens.css';
 @import './tokens/temp-background-tokens.css';
+@import './tokens/interaction-state-tokens.css';
 
 /* Variables */
 @import './variables/';
