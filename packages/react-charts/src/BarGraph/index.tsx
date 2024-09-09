@@ -208,9 +208,9 @@ type DefaultProps = {
   bottomMargin: number;
   maxBarWidth: number;
   getBarTopTextUI: (textX : number, textY: number, barData: BarData) => SVGElement | null;
-  getTooltipUI: (index: number, x: number, y: number, barHeight: number) => ReactNode;
+  getTooltipUI?: (index: number, x: number, y: number, barHeight: number) => ReactNode;
   showAxis: boolean;
-  showTooltip: boolean;
+  showTooltip?: boolean;
   axisLabelFontSize?: number;
   axisLabelColor?: string;
   bottomAxisHeight: number;
