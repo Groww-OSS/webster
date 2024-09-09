@@ -13,6 +13,8 @@ export default {
   tags: [ 'autodocs' ]
 };
 
+console.log('Testing changes');
+
 
 const Template: StoryFn<AccordionProps> = (args) => {
   return (
@@ -34,5 +36,3 @@ export const AccordionArgs = {
     onToggleCallback: action('toogleCalled')
   }
 };
-
-
