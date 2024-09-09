@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode, useState } from 'react';
 import { scaleBand } from '@visx/scale';
 import { AxisBottom } from '@visx/axis';
 import { isEmpty } from '../utils/helpers';
@@ -18,9 +18,19 @@ const BarGraph = (props: BarGraphProps) => {
     axisLabelFontSize,
     axisLabelColor,
     getBarTopTextUI,
+    getTooltipUI,
     showAxis,
+    showTooltip,
     bottomAxisHeight
   } = props;
+
+  const [ tooltip, setTooltip ] = useState<TooltipType>({
+    show: false,
+    x: 0,
+    y: 0,
+    barHeight: 0,
+    selectedIndex: 0
+  });
 
 
   const getXValue = (d: BarData) => d[0];
@@ -93,75 +103,104 @@ const BarGraph = (props: BarGraphProps) => {
   };
 
 
+  const handleMouseEnter = (textX: number, textY: number, barHeight: number, index: number) => {
+
+    setTooltip({
+      show: true,
+      x: textX,
+      y: textY,
+      barHeight,
+      selectedIndex: index
+    });
+  };
+
+
+  const handleMouseOut = () => {
+    setTooltip({
+      ...tooltip,
+      show: false
+    });
+  };
+
   return (
-    <svg width={width}
-      height={height}
-    >
-      <rect width={width}
+    <div className='pos-rel'>
+      <svg width={width}
         height={height}
-        fill="rgba(0, 0, 0, 0)"
-        style={{ overflow: 'visible' }}
-      />
-      <g>
-        {
-          data.map(d => {
-            const y = getYValue(d);
-            const yScaleY = yScale(y);
-            const isNegative = y < 0;
-            const xval = getXValue(d);
-
-            let barBandwidth = xScale.bandwidth();
-
-            let barX = xScale(xval) ?? 0;
-
-            if (maxBarWidth && barBandwidth > maxBarWidth) {
-              barX = barX + (barBandwidth - maxBarWidth) / 2;
-              barBandwidth = maxBarWidth;
-            }
-
-            const barY = yScaleY;
-            const barHeight = isNegative ? Math.abs(yScaleY - yScale0) : yScale0 - barY;
-            const textX = barX + barBandwidth / 2;
-            const textY = isNegative ? barY + 12 : barY - 5;
-
-
-            return (
-              <React.Fragment key={getXValue(d) + getYValue(d)}>
-                {getBarTopTextUI(textX, textY, d)}
-                <line
-                  className='bar21animation'
-                  x1={textX}
-                  x2={textX}
-                  y1={yScale0}
-                  y2={barY}
-                  stroke-width={barBandwidth}
-                  height={barHeight}
-                  stroke={getBarColor(d)}
-                >
-                </line>
-              </React.Fragment>
-            );
-          })
-        }
-        <line
-          x1={0}
-          y1={yScale0 }
-          x2= {xMax}
-          y2= {yScale0 }
-          stroke={axisColor}
-          strokeWidth={1}
+      >
+        <rect width={width}
+          height={height}
+          fill="rgba(0, 0, 0, 0)"
+          style={{ overflow: 'visible' }}
         />
+        <g>
+          {
+            data.map((d, i) => {
+              const y = getYValue(d);
+              const yScaleY = yScale(y);
+              const isNegative = y < 0;
+              const xval = getXValue(d);
 
-      </g>
+              let barBandwidth = xScale.bandwidth();
 
-      {showAxis && getBottomAxisUI()}
-    </svg>
+              let barX = xScale(xval) ?? 0;
+
+              if (maxBarWidth && barBandwidth > maxBarWidth) {
+                barX = barX + (barBandwidth - maxBarWidth) / 2;
+                barBandwidth = maxBarWidth;
+              }
+
+              const barY = yScaleY;
+              const barHeight = isNegative ? Math.abs(yScaleY - yScale0) : yScale0 - barY;
+              const textX = barX + barBandwidth / 2;
+              const textY = isNegative ? barY + 12 : barY - 5;
+
+              return (
+                <React.Fragment key={getXValue(d) + getYValue(d)}>
+                  {getBarTopTextUI(textX, textY, d)}
+                  <line
+                    className='bar21animation'
+                    x1={textX}
+                    x2={textX}
+                    y1={yScale0}
+                    y2={barY}
+                    strokeWidth={barBandwidth}
+                    height={barHeight}
+                    stroke={getBarColor(d)}
+                    onMouseEnter={() => handleMouseEnter(textX, textY, barHeight, i)}
+                    onMouseOut={handleMouseOut}
+                  />
+                </React.Fragment>
+              );
+            })
+          }
+          <line
+            x1={0}
+            y1={yScale0}
+            x2={xMax}
+            y2={yScale0}
+            stroke={axisColor}
+            strokeWidth={1}
+          />
+        </g>
+
+        {showAxis && getBottomAxisUI()}
+      </svg>
+      {showTooltip && tooltip.show && getTooltipUI(tooltip.selectedIndex, tooltip.x, tooltip.y, tooltip.barHeight)}
+    </div>
   );
 };
 
-
 export type BarData = [string, number, string]
- // xasis value, yaxis value, bar color
+ // xaxis value, yaxis value, bar color
+
+type TooltipType = {
+  show: boolean;
+  x: number;
+  y: number;
+  barHeight:number;
+  selectedIndex: number;
+}
+
 
 type DefaultProps = {
   axisColor: string;
@@ -169,7 +208,9 @@ type DefaultProps = {
   bottomMargin: number;
   maxBarWidth: number;
   getBarTopTextUI: (textX : number, textY: number, barData: BarData) => SVGElement | null;
+  getTooltipUI: (index: number, x: number, y: number, barHeight: number) => ReactNode;
   showAxis: boolean;
+  showTooltip: boolean;
   axisLabelFontSize?: number;
   axisLabelColor?: string;
   bottomAxisHeight: number;
@@ -188,7 +229,9 @@ BarGraph.defaultProps = {
   bottomMargin: 0,
   maxBarWidth: 20,
   getBarTopTextUI: () => null,
+  getTooltipUI: () => null,
   showAxis: false,
+  showTooltip: false,
   axisLabelFontSize: 11,
   axisLabelColor: 'var(--gray900)',
   bottomAxisHeight: 22
