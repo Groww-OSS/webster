@@ -24,7 +24,7 @@ const BarGraph = (props: BarGraphProps) => {
     bottomAxisHeight
   } = props;
 
-  const [ tooltip, setTooltip ] = useState<TooltipType>({
+  const [ tooltipData, setTooltipData ] = useState<TooltipType>({
     show: false,
     x: 0,
     y: 0,
@@ -105,7 +105,7 @@ const BarGraph = (props: BarGraphProps) => {
 
   const handleMouseEnter = (textX: number, textY: number, barHeight: number, index: number) => {
 
-    setTooltip({
+    setTooltipData({
       show: true,
       x: textX,
       y: textY,
@@ -116,8 +116,8 @@ const BarGraph = (props: BarGraphProps) => {
 
 
   const handleMouseOut = () => {
-    setTooltip({
-      ...tooltip,
+    setTooltipData({
+      ...tooltipData,
       show: false
     });
   };
@@ -185,7 +185,7 @@ const BarGraph = (props: BarGraphProps) => {
 
         {showAxis && getBottomAxisUI()}
       </svg>
-      {showTooltip && tooltip.show && getTooltipUI(tooltip.selectedIndex, tooltip.x, tooltip.y, tooltip.barHeight)}
+      {showTooltip && tooltipData.show && getTooltipUI(tooltipData.selectedIndex, tooltipData.x, tooltipData.y, tooltipData.barHeight)}
     </div>
   );
 };
@@ -208,7 +208,7 @@ type DefaultProps = {
   bottomMargin: number;
   maxBarWidth: number;
   getBarTopTextUI: (textX : number, textY: number, barData: BarData) => SVGElement | null;
-  getTooltipUI?: (index: number, x: number, y: number, barHeight: number) => ReactNode;
+  getTooltipUI: (index: number, x: number, y: number, barHeight: number) => ReactNode;
   showAxis: boolean;
   showTooltip?: boolean;
   axisLabelFontSize?: number;
