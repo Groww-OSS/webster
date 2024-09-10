@@ -18,12 +18,12 @@ export const CalendarStory = {
 
     // Adjust props based on the selected type (MONTH or DATE)
     if (args.type === CALENDAR_TYPE.MONTH) {
-      updatedArgs.minMonth = new Date(args.minMonth);
-      updatedArgs.maxMonth = new Date(args.maxMonth);
+      updatedArgs.minMonth = new Date(args.minMonth ?? new Date());
+      updatedArgs.maxMonth = new Date(args.maxMonth ?? new Date());
 
     } else if (args.type === CALENDAR_TYPE.DATE) {
-      updatedArgs.minDate = new Date(args.minDate);
-      updatedArgs.maxDate = new Date(args.maxDate);
+      updatedArgs.minDate = new Date(args.minDate ?? new Date());
+      updatedArgs.maxDate = new Date(args.maxDate ?? new Date());
     }
 
     return <Template {...updatedArgs} />;
