@@ -11,6 +11,7 @@
   },
   "devDependencies": {
     "@groww-tech/eslint-config": "workspace:*",
+    "@groww-tech/mint-css": "0.1.5",
     "@groww-tech/tsconfig": "workspace:*",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
