@@ -62,7 +62,7 @@
     "lint:src": "eslint src",
     "lint:types": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "ls && cd .. && ls",
+    "build-storybook": "cd node_modules/@groww-tech/mint-css/dist && cat index.css",
     "pushTags": "PACKAGE_VERSION=$(cat package.json | grep \\\"version\\\" | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && git tag -a v$PACKAGE_VERSION -m \"@groww-tech/ui-toolkit-v$PACKAGE_VERSION\" && git push --tags"
   },
   "peerDependencies": {
