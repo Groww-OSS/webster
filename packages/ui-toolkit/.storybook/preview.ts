@@ -1,5 +1,5 @@
 import type { Preview } from "@storybook/react";
-import "@groww-tech/mint-css/dist/index.css";
+import "../stories/style.css";
 
 const preview: Preview = {
   parameters: {
