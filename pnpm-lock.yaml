@@ -14,6 +14,9 @@ importers:
       '@groww-tech/eslint-plugin-internal':
         specifier: workspace:*
         version: link:packages/eslint-plugin-internal
+      '@groww-tech/mint-css':
+        specifier: 0.1.5
+        version: 0.1.5
       '@groww-tech/tsconfig':
         specifier: workspace:*
         version: link:packages/tsconfig
