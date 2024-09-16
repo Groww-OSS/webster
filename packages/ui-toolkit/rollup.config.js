@@ -9,8 +9,7 @@ import { terser } from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript';
 
 import commonjs from '@rollup/plugin-commonjs';
-import resolve, {nodeResolve} from '@rollup/plugin-node-resolve';
-
+import resolve from '@rollup/plugin-node-resolve';
 
 import { getInputFiles } from './rollup.input';
 
@@ -25,12 +24,9 @@ const commonConfig = {
       extract: 'index.css',
       extensions: [ '.css' ]
     }),
-    nodeResolve({
-      extensions: [ '.css' ]
-    }),
     typescript(),
     babel({
-      // exclude: 'node_modules/**',
+      exclude: 'node_modules/**',
       presets: [ '@babel/preset-typescript', '@babel/preset-react' ],
       plugins: [
         '@babel/plugin-proposal-class-properties',
