@@ -26,7 +26,7 @@ const commonConfig = {
       extensions: [ '.css' ]
     }),
     nodeResolve({
-      extensions: ['.css']
+      extensions: [ '.css' ]
     }),
     typescript(),
     babel({
