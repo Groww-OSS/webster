@@ -22,6 +22,7 @@ const config: StorybookConfig = {
     getAbsolutePath("@storybook/addon-webpack5-compiler-swc"),
     getAbsolutePath("@storybook/addon-links"),
     getAbsolutePath("@storybook/addon-essentials"),
+    getAbsolutePath("@storybook/addon-styling-webpack")
   ],
 
   framework: {
