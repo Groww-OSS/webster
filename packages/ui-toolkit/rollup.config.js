@@ -26,7 +26,7 @@ const commonConfig = {
     }),
     typescript(),
     babel({
-      exclude: 'node_modules/**',
+      // exclude: 'node_modules/**',
       presets: [ '@babel/preset-typescript', '@babel/preset-react' ],
       plugins: [
         '@babel/plugin-proposal-class-properties',
