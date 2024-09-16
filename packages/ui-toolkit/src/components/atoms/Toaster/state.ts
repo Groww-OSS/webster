@@ -69,7 +69,12 @@ class Observer {
       });
 
     } else {
-      this.addToast({ ...data, dismissible, id: id || '' });
+      this.addToast({
+        ...data,
+        dismissible,
+        id: id || '',
+        position: data.position || 'top-right'
+      });
     }
 
     return id;

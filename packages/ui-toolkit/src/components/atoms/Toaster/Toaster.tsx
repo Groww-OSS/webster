@@ -49,7 +49,7 @@ const Toaster = (props: ToasterProps) => {
   const possiblePositions: Position[] = useMemo(() => {
     const allToastPositions = toasts.filter(toast => toast.position !== undefined).map(toast => toast.position as Position);
 
-    return Array.from(new Set([ position, ...allToastPositions ]));
+    return Array.from(new Set([ ...allToastPositions ]));
   }, [ toasts, position ]);
 
   const [ heights, setHeights ] = useState<HeightT[]>([]);
