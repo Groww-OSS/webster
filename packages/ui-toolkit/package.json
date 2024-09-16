@@ -8,7 +8,7 @@
   "files": [
     "/dist"
   ],
-  "sideEffects": true,
+  "sideEffects": false,
   "repository": {
     "type": "git",
     "url": "https://github.com/Groww-OSS/webster.git"
@@ -62,7 +62,7 @@
     "lint:src": "eslint src",
     "lint:types": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "cd node_modules/@groww-tech/mint-css/ && ls -lR",
+    "build-storybook": "storybook build",
     "pushTags": "PACKAGE_VERSION=$(cat package.json | grep \\\"version\\\" | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && git tag -a v$PACKAGE_VERSION -m \"@groww-tech/ui-toolkit-v$PACKAGE_VERSION\" && git push --tags"
   },
   "peerDependencies": {
@@ -86,7 +86,6 @@
     "@storybook/addon-actions": "8.2.7",
     "@storybook/addon-essentials": "8.2.7",
     "@storybook/addon-links": "8.2.7",
-    "@storybook/addon-styling-webpack": "^1.0.0",
     "@storybook/addon-webpack5-compiler-swc": "1.0.5",
     "@storybook/react": "8.2.7",
     "@storybook/react-webpack5": "8.2.7",
