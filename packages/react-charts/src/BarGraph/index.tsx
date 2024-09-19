@@ -20,6 +20,7 @@ const BarGraph = (props: BarGraphProps) => {
     getBarTopTextUI,
     getTooltipUI,
     showAxis,
+    hideAxisBottomLine,
     showTooltip,
     bottomAxisHeight
   } = props;
@@ -91,6 +92,7 @@ const BarGraph = (props: BarGraphProps) => {
         stroke={axisColor}
         orientation='bottom'
         hideTicks
+        hideAxisLine={hideAxisBottomLine}
         tickLabelProps={
           () => ({
             fill: axisLabelColor,
@@ -210,6 +212,7 @@ type DefaultProps = {
   getBarTopTextUI: (textX : number, textY: number, barData: BarData) => SVGElement | null;
   getTooltipUI: (index: number, x: number, y: number, barHeight: number) => ReactNode;
   showAxis: boolean;
+  hideAxisBottomLine?: boolean;
   showTooltip?: boolean;
   axisLabelFontSize?: number;
   axisLabelColor?: string;
@@ -231,6 +234,7 @@ BarGraph.defaultProps = {
   getBarTopTextUI: () => null,
   getTooltipUI: () => null,
   showAxis: false,
+  hideAxisBottomLine: false,
   showTooltip: false,
   axisLabelFontSize: 11,
   axisLabelColor: 'var(--gray900)',
