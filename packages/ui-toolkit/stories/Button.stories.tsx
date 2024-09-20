@@ -34,6 +34,7 @@ const Template: StoryFn<ButtonProps> = (args) => (
   />
 );
 
+console.log('Testing changes');
 export const Primary = {
   render: Template,
   args: {
