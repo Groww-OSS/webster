@@ -9,7 +9,7 @@ import {
 
 import { getDatesArray, getMonthAbbrByIndex } from './dateCalendarUtils';
 
-import './dateCalendar.css';
+import './styles/index.css';
 
 const WEEK_DAYS = [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ];
 
@@ -142,7 +142,7 @@ class DateCalendar extends React.PureComponent<Props, State> {
                             <div
                               className={
                                 cn('cc12Date valign-wrapper cur-po circle bodyBase', {
-                                  'cc12DateNotSelected': !dateSelected,
+                                  'cc12DateNotSelected cc12DateNotSelectedHover': !dateSelected,
                                   'cc12DateSelected contentInversePrimary': dateSelected,
                                   'cc12DisableDate': (minDate && this.compareDate(minDate, newDate)) || (maxDate && this.compareDate(newDate, maxDate))
                                 })
