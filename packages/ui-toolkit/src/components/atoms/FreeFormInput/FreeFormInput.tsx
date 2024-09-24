@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import cn from 'classnames';
 import { ChevronRight } from '@groww-tech/icon-store/mi';
 
@@ -11,8 +11,8 @@ export interface FreeFormInputProps {
   dataTestId?: string;
   width?: string;
   maxLength?: number;
-  prefixIcon?: ((props: any) => JSX.Element) | null;
-  suffixIcon?: ((props: any) => JSX.Element) | null;
+  prefixIcon?: ReactNode;
+  suffixIcon?: ReactNode;
   prefixLabel?: string;
   suffixLabel?: string;
   error:{hasError : boolean; message: string};
@@ -67,7 +67,7 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
     <div className={inputWrapperClasses}
       style={{ width }}
     >
-      {prefixIcon && <div className='inputPrefixIcon'>{prefixIcon({})}</div>}
+      {prefixIcon && <div className='inputPrefixIcon'>{prefixIcon}</div>}
       {prefixLabel && <div className='inputPrefixLabel'>{prefixLabel}</div>}
       <input
         className={inputClasses}

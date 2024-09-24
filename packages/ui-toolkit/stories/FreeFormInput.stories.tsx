@@ -25,7 +25,12 @@ const Template: StoryFn<FreeFormInputProps> = (args) => {
       value={value}
       onChange={(e) => setValue(e.target.value)}
       ref={inputRef}
-      // prefixIcon={(iconProps: any) => <ChevronRight {...iconProps} />}
+      prefixIcon={
+        <ChevronRight
+          size={48}
+          className='contentAccent'
+        />
+      }
 
     />
   );
