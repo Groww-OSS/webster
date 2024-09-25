@@ -1,7 +1,7 @@
 import React, { ReactNode, useState, useEffect } from 'react';
 import cn from 'classnames';
 import './styles/index.css';
-import { MdsIcCancelCircle } from '@groww-tech/icon-store/mint-icons';
+import { MdsIcCancelCircle, MdsIcError } from '@groww-tech/icon-store/mint-icons';
 
 export type FreeFormInputProps = {
   placeholder: string;
@@ -108,7 +108,7 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
         </div>
       </div>
       {helperText && <div className='inputHelperText contentSecondary bodySmall'>{helperText}</div>}
-      {error.hasError && <div className='contentNegative'>{error.message}</div>}
+      {error.hasError && <div className='contentNegative inputErrorText'><MdsIcError/>{error.message}</div>}
     </div>
   );
 };
