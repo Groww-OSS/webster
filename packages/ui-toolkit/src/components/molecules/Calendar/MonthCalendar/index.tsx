@@ -2,7 +2,7 @@ import React from 'react';
 import cn from 'classnames';
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@groww-tech/icon-store/mi';
 
-import './monthCalendar.css';
+import './styles/index.css';
 
 const MONTHS = [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ];
 
@@ -94,7 +94,7 @@ class MonthCalendar extends React.PureComponent<Props, State> {
                         'mn12MonthTextSelected contentInversePrimary':
                         index === currentMonthIndex &&
                         currentDate.getFullYear() === dateToShow.getFullYear(),
-                        'mn12MonthBack':
+                        'mn12MonthBackHover':
                         !(
                           index === currentMonthIndex &&
                           currentDate.getFullYear() === dateToShow.getFullYear()
