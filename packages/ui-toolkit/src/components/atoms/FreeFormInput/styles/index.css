@@ -1,21 +1,22 @@
 .inputWrapper {
-  position: relative;
+  /* position: relative; */
   display: flex;
   width: 100%;
   border: none;
   flex-direction: column;
   gap: 8px;
+  padding: 1px;
 }
 
-.inputLabel {
-  font-size: 14px;
-  margin-bottom: 4px;
-}
+
 
 .inputContent {
     position: relative;
     display: flex;
     height: 48px;
+    border-radius: 4px;
+    padding: 12px;
+    gap: 12px;
 }
   
 
@@ -32,39 +33,34 @@ border-radius: 4px;
   caret-color: var(--green500);
   outline: none; /* Remove focus outline */
   box-shadow: none; /* Remove any focus box-shadow */
+  border: none
   
 }
 
-
+/* 
 
 .inputClearable {
   padding-right: 30px;
 }
 
 .inputPrefix {
-  padding-left: 36px;
+  padding-left: 24px;
 }
 
 .inputSuffix {
   padding-right: 36px;
-}
+} */
 
 .prefixContainer,
 .suffixContainer {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+
   display: flex;
   align-items: center;
+  padding: 0;
+  margin: 0;
 }
 
-.prefixContainer {
-  left: 8px;
-}
 
-.suffixContainer {
-  right: 8px;
-}
 
 .inputPrefixIcon,
 .inputSuffixIcon,
@@ -76,20 +72,8 @@ border-radius: 4px;
   justify-content: center;
 }
 
-.inputPrefixLabel {
-  font-size: 14px;
-  color: #6c757d;
-}
-
 .inputClearIcon {
   cursor: pointer;
-}
-
-
-.inputHelperText {
-  color: #6c757d;
-  font-size: 12px;
-  margin-top: 4px;
 }
 
 
