@@ -1,11 +1,12 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useState, useEffect } from 'react';
 import cn from 'classnames';
-import { ChevronRight } from '@groww-tech/icon-store/mi';
+import './styles/index.css';
+import { MdsIcCancelCircle } from '@groww-tech/icon-store/mint-icons';
 
-
-export interface FreeFormInputProps {
+export type FreeFormInputProps = {
   placeholder: string;
   value: string;
+  label: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   disabled?: boolean;
   dataTestId?: string;
@@ -14,11 +15,9 @@ export interface FreeFormInputProps {
   prefixIcon?: ReactNode;
   suffixIcon?: ReactNode;
   prefixLabel?: string;
-  suffixLabel?: string;
-  error:{hasError : boolean; message: string};
-  warning:{hasWarning : boolean; message: string};
+  error?: { hasError: boolean; message: string };
   clearable?: boolean;
-  ref : React.RefObject<HTMLInputElement>;
+  ref?: React.RefObject<HTMLInputElement>;
   helperText?: string;
 }
 
@@ -26,6 +25,7 @@ export interface FreeFormInputProps {
 const FreeFormInput: React.FC<FreeFormInputProps> = ({
   placeholder,
   value,
+  label,
   onChange,
   disabled,
   dataTestId,
@@ -34,62 +34,83 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
   prefixIcon,
   suffixIcon,
   prefixLabel,
-  suffixLabel,
-  error,
-  warning,
-  clearable,
+  error = { hasError: false, message: '' },
+  clearable = false,
   ref,
   helperText
 }) => {
+  const [ showClearIcon, setShowClearIcon ] = useState(false);
+  const [ isFocused, setIsFocused ] = useState(false);
+
+  useEffect(() => {
+    setShowClearIcon(!!clearable && value.length > 0);
+  }, [ clearable, value ]);
+
   const inputClasses = cn(
     'input',
     {
-      'inputError': error.hasError,
-      'inputWarning': warning.hasWarning,
-      'inputDisabled': disabled,
+      'inputBorderNegative': error.hasError,
       'inputClearable': clearable,
       'inputPrefix': prefixIcon || prefixLabel,
-      'inputSuffix': suffixIcon || suffixLabel
+      'inputSuffix': suffixIcon || (clearable && showClearIcon),
+      'inputFocused': isFocused && !disabled && !error.hasError,
+      'backgroundSecondary borderPrimary contentSecondary': disabled
     }
   );
 
-  const inputWrapperClasses = cn(
-    'inputWrapper',
-    {
-      'inputWrapperError': error.hasError,
-      'inputWrapperWarning': warning.hasWarning
-    }
-  );
+  const inputWrapperClasses = cn('inputWrapper');
 
-  console.log('prefixIcon', prefixIcon);
+
+  const handleClear = () => {
+    if (onChange) {
+      const event = {
+        target: { value: '' }
+      } as React.ChangeEvent<HTMLInputElement>;
+
+      onChange(event);
+    }
+  };
 
   return (
     <div className={inputWrapperClasses}
-      style={{ width }}
+      style={{ width: width }}
     >
-      {prefixIcon && <div className='inputPrefixIcon'>{prefixIcon}</div>}
-      {prefixLabel && <div className='inputPrefixLabel'>{prefixLabel}</div>}
-      <input
-        className={inputClasses}
-        type='text'
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-        disabled={disabled}
-        data-testid={dataTestId}
-        maxLength={maxLength}
-        ref={ref}
-      />
-      {suffixIcon && <div className='inputSuffixIcon'>{suffixIcon}</div>}
-      {suffixLabel && <div className='inputSuffixLabel'>{suffixLabel}</div>}
-      {clearable && <div className='inputClearIcon' />}
-      {error.hasError && <div className='inputErrorText'>{error.message}</div>}
-      {warning.hasWarning && <div className='inputWarningText'>{warning.message}</div>}
-      {helperText && <div className='inputHelperText'>{helperText}</div>}
+      {label && <div className='inputLabel  bodySmallHeavy'>{label}</div>}
+      <div className='inputContent backgroundPrimary contentPrimary'>
+        <div className='prefixContainer'>
+          {prefixIcon && <div className='inputPrefixIcon'>{prefixIcon}</div>}
+          {prefixLabel && <div className='inputPrefixLabel'>{prefixLabel}</div>}
+        </div>
+        <input
+          className={`${inputClasses} bodyBase contentPrimary`}
+          type='text'
+          placeholder={placeholder}
+          value={value}
+          onChange={onChange}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
+          disabled={disabled}
+          data-testid={dataTestId}
+          maxLength={maxLength}
+          ref={ref}
+        />
+        <div className='suffixContainer'>
+          {
+            clearable && showClearIcon && (
+              <div className='inputClearIcon'
+                onClick={handleClear}
+              >
+                <MdsIcCancelCircle />
+              </div>
+            )
+          }
+          {suffixIcon && <div className='inputSuffixIcon'>{suffixIcon}</div>}
+        </div>
+      </div>
+      {helperText && <div className='inputHelperText contentSecondary bodySmall'>{helperText}</div>}
+      {error.hasError && <div className='contentNegative'>{error.message}</div>}
     </div>
   );
-
-
 };
 
 export default FreeFormInput;

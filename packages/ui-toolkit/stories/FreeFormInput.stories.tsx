@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { StoryFn } from '@storybook/react';
 import FreeFormInput, { FreeFormInputProps } from '../src/components/atoms/FreeFormInput/FreeFormInput';
-import { ChevronRight } from '@groww-tech/icon-store/mi';
+import { MdsIcChevronRight } from '@groww-tech/icon-store/mint-icons';
 
 export default {
   title: 'FreeFormInput',
@@ -25,13 +25,6 @@ const Template: StoryFn<FreeFormInputProps> = (args) => {
       value={value}
       onChange={(e) => setValue(e.target.value)}
       ref={inputRef}
-      prefixIcon={
-        <ChevronRight
-          size={48}
-          className='contentAccent'
-        />
-      }
-
     />
   );
 };
@@ -41,12 +34,10 @@ Default.args = {
   placeholder: 'Enter text...',
   value: '',
   error: { hasError: false, message: '' },
-  warning: { hasWarning: false, message: '' },
   disabled: false,
   clearable: false,
   width: '300px',
-  helperText: 'Helper text here',
-  prefixIcon: (iconProps: any) => <ChevronRight {...iconProps} />
+  helperText: 'Helper text here'
 };
 
 export const WithError = Template.bind({});
@@ -54,26 +45,58 @@ WithError.args = {
   placeholder: 'Enter text...',
   value: '',
   error: { hasError: true, message: 'This field is required' },
-  warning: { hasWarning: false, message: '' },
   width: '300px'
 };
-
-export const WithWarning = Template.bind({});
-WithWarning.args = {
+export const WithClearable = Template.bind({});
+WithClearable.args = {
   placeholder: 'Enter text...',
   value: '',
   error: { hasError: false, message: '' },
-  warning: { hasWarning: true, message: 'This might be a warning' },
+  clearable: true,
   width: '300px'
 };
 
-export const WithPrefixAndSuffixLabels = Template.bind({});
-WithPrefixAndSuffixLabels.args = {
+export const WithLabel = Template.bind({});
+WithLabel.args = {
+  placeholder: 'Enter text...',
+  value: '',
+  label: 'Text',
+  error: { hasError: false, message: '' },
+  width: '300px'
+};
+
+export const WithPrefixLabels = Template.bind({});
+WithPrefixLabels.args = {
   placeholder: 'Enter amount...',
   value: '',
   prefixLabel: '$',
-  suffixLabel: '.00',
   error: { hasError: false, message: '' },
-  warning: { hasWarning: false, message: '' },
+  width: '300px'
+};
+
+export const WithPrefixIcons = Template.bind({});
+WithPrefixIcons.args = {
+  placeholder: 'Enter text...',
+  value: '',
+  prefixIcon: <MdsIcChevronRight />,
+  error: { hasError: false, message: '' },
+  width: '300px'
+};
+
+export const WithSuffixIcons = Template.bind({});
+WithSuffixIcons.args = {
+  placeholder: 'Enter text...',
+  value: '',
+  suffixIcon: <MdsIcChevronRight />,
+  error: { hasError: false, message: '' },
+  width: '300px'
+};
+
+export const WithDisabled = Template.bind({});
+WithDisabled.args = {
+  placeholder: 'Enter text...',
+  value: '',
+  error: { hasError: false, message: '' },
+  disabled: true,
   width: '300px'
 };
