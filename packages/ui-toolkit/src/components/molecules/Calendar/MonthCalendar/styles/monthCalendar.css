@@ -20,8 +20,8 @@
   margin: 3px auto;
 }
 
-.mn12MonthBack:hover {
-  background-color: var(--overlay30);
+.mn12MonthBackHover:hover{
+  background-color: var(--color-bg-calendar-hover);
 }
 
 .mn12MonthTextSelected {

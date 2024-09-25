@@ -36,8 +36,8 @@
   background: var(--green500);
 }
 
-.cc12DateNotSelected:hover {
-  background: var(--overlay30);
+.cc12DateNotSelectedHover:hover{
+  background-color: var(--color-bg-calendar-hover);
 }
 
 .cc12DateRow {
