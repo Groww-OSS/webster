@@ -1,8 +1,10 @@
 .inputWrapper {
   position: relative;
-  display: inline-block;
+  display: flex;
   width: 100%;
   border: none;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .inputLabel {
@@ -26,17 +28,14 @@ border-radius: 4px;
 
 .input {
   width: 100%;
-  padding: 8px 12px;
   font-size: 16px;
   caret-color: var(--green500);
   outline: none; /* Remove focus outline */
-    box-shadow: none; /* Remove any focus box-shadow */
+  box-shadow: none; /* Remove any focus box-shadow */
+  
 }
 
-.inputDisabled {
-  background-color: #e9ecef;
-  cursor: not-allowed;
-}
+
 
 .inputClearable {
   padding-right: 30px;
@@ -108,3 +107,7 @@ input::placeholder {
   border-radius: 4px;
 } 
 
+.inputErrorText{
+  display: flex;
+  gap: 4px;
+}
