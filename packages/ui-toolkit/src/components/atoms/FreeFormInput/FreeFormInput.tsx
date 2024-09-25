@@ -47,7 +47,12 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
   }, [ clearable, value ]);
 
   const inputClasses = cn(
-    'input',
+    'input'
+  );
+
+  const inputWrapperClasses = cn('inputWrapper');
+
+  const inputContentClasses = cn('inputContent backgroundPrimary contentPrimary borderPrimary',
     {
       'inputBorderNegative': error.hasError,
       'inputClearable': clearable,
@@ -55,10 +60,8 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
       'inputSuffix': suffixIcon || (clearable && showClearIcon),
       'inputFocused': isFocused && !disabled && !error.hasError,
       'backgroundSecondary borderPrimary contentSecondary': disabled
-    }
-  );
 
-  const inputWrapperClasses = cn('inputWrapper');
+    });
 
 
   const handleClear = () => {
@@ -75,12 +78,14 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
     <div className={inputWrapperClasses}
       style={{ width: width }}
     >
-      {label && <div className='inputLabel  bodySmallHeavy'>{label}</div>}
-      <div className='inputContent backgroundPrimary contentPrimary'>
-        <div className='prefixContainer'>
-          {prefixIcon && <div className='inputPrefixIcon'>{prefixIcon}</div>}
-          {prefixLabel && <div className='inputPrefixLabel'>{prefixLabel}</div>}
-        </div>
+      {label && <div className='bodySmallHeavy contentSecondary'>{label}</div>}
+      <div className={`${inputContentClasses}`}>
+        {
+          (prefixIcon || prefixLabel) && <div className='prefixContainer'>
+            {prefixIcon && <div className='inputPrefixIcon'>{prefixIcon}</div>}
+            {prefixLabel && <div className='inputPrefixLabel'>{prefixLabel}</div>}
+          </div>
+        }
         <input
           className={`${inputClasses} bodyBase contentPrimary`}
           type='text'
@@ -94,20 +99,22 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
           maxLength={maxLength}
           ref={ref}
         />
-        <div className='suffixContainer'>
-          {
-            clearable && showClearIcon && (
-              <div className='inputClearIcon'
-                onClick={handleClear}
-              >
-                <MdsIcCancelCircle />
-              </div>
-            )
-          }
-          {suffixIcon && <div className='inputSuffixIcon'>{suffixIcon}</div>}
-        </div>
+        {
+          (clearable || suffixIcon) && <div className='suffixContainer'>
+            {
+              clearable && showClearIcon && (
+                <div className='inputClearIcon'
+                  onClick={handleClear}
+                >
+                  <MdsIcCancelCircle />
+                </div>
+              )
+            }
+            {suffixIcon && <div className='inputSuffixIcon'>{suffixIcon}</div>}
+          </div>
+        }
       </div>
-      {helperText && <div className='inputHelperText contentSecondary bodySmall'>{helperText}</div>}
+      {helperText && <div className='contentSecondary bodySmall'>{helperText}</div>}
       {error.hasError && <div className='contentNegative inputErrorText'><MdsIcError/>{error.message}</div>}
     </div>
   );
