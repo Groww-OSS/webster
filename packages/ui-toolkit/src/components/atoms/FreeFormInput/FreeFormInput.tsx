@@ -25,7 +25,8 @@ export type FreeFormInputProps = {
   clearable?: boolean;
   ref?: React.RefObject<HTMLInputElement>;
   helperText?: string;
-  variant?: 'text' | 'password';
+  variant?: 'text' | 'password' | 'number';
+  pattern?: string;
 }
 
 
@@ -46,6 +47,7 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
   ref,
   helperText,
   variant = 'text'
+
 }) => {
   const [ showClearIcon, setShowClearIcon ] = useState(false);
   const [ isFocused, setIsFocused ] = useState(false);
@@ -58,6 +60,13 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
   const inputClasses = cn('input');
 
   const inputWrapperClasses = cn('inputWrapper');
+
+
+  const handleWheel = (e: React.WheelEvent<HTMLInputElement>) => {
+    if (variant === 'number') {
+      e.currentTarget.blur();
+    }
+  };
 
   const inputContentClasses = cn('inputContent backgroundPrimary contentPrimary borderPrimary',
     {
@@ -85,6 +94,7 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
     setShowPassword(!showPassword);
   };
 
+
   return (
     <div className={inputWrapperClasses}
       style={{ width: width }}
@@ -99,7 +109,10 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
         }
         <input
           className={`${inputClasses} bodyBase contentPrimary`}
-          type={variant === 'password' ? (showPassword ? 'text' : 'password') : 'text'}
+          type={
+            variant === 'password' ? (showPassword ? 'text' : 'password')
+            : variant === 'number' ? 'number' : 'text'
+          }
           placeholder={placeholder}
           value={value}
           onChange={onChange}
@@ -109,6 +122,8 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
           data-testid={dataTestId}
           maxLength={maxLength}
           ref={ref}
+          pattern='^\d+$'
+          onWheel={handleWheel}
         />
         <div className='suffixContainer'>
           {
