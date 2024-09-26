@@ -26,7 +26,6 @@ export type FreeFormInputProps = {
   ref?: React.RefObject<HTMLInputElement>;
   helperText?: string;
   variant?: 'text' | 'password' | 'number';
-  pattern?: string;
 }
 
 
@@ -122,7 +121,6 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
           data-testid={dataTestId}
           maxLength={maxLength}
           ref={ref}
-          pattern='^\d+$'
           onWheel={handleWheel}
         />
         <div className='suffixContainer'>
