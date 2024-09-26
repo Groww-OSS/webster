@@ -16,10 +16,10 @@ import { HeightT, ToastProps } from './types';
 import './styles.css';
 
 // Default lifetime of a toasts (in ms)
-const TOAST_LIFETIME = 6000;
+const TOAST_LIFETIME = 5000;
 
 // Equal to exit animation duration
-const TIME_BEFORE_UNMOUNT = 200;
+const TIME_BEFORE_UNMOUNT = 50;
 
 // Default gap between toasts
 const GAP = 14;

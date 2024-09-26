@@ -35,7 +35,7 @@
 
   /* https://stackoverflow.com/questions/48124372/pointermove-event-not-working-with-touch-why-not */
   touch-action: none;
-  transition: transform 400ms, opacity 400ms, height 400ms, box-shadow 200ms;
+  transition: all 0.5s ease-in-out;
   box-sizing: border-box;
   outline: none;
   overflow-wrap: anywhere;
@@ -131,7 +131,6 @@
   border-radius: 50%;
   cursor: pointer;
   z-index: 1;
-  transition: opacity 100ms, background 200ms, border-color 200ms;
 }
 
 :where([data-sonner-toast][data-expanded="false"][data-front="false"]) {
@@ -162,6 +161,7 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
+  margin-right: 12px;
 }
 
 :where([data-sonner-toast]) :where([data-icon]) > * {

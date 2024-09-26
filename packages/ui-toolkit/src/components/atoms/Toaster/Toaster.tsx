@@ -81,7 +81,6 @@ const Toaster = (props: ToasterProps) => {
       // Prevent batching, temp solution.
       setTimeout(() => {
         ReactDOM.flushSync(() => {
-          // console.log('toasts', toasts);
           setToasts((toasts: any[]) => {
             const indexOfExistingToast = toasts.findIndex((t) => t.id === toast.id);
 
@@ -133,8 +132,15 @@ const Toaster = (props: ToasterProps) => {
 
   if (!toasts.length) return null;
 
+  const topRightToastsHeightArray = Array.isArray(heights) ? heights.filter(toast => toast.position === 'top-right') : [];
 
-  const expandedViewStyle: CSSProperties = expanded ? { height: '95vh', overflow: 'scroll' } : {};
+  //sum of all toast height with position top right + gap
+  let sumOfTopRightToastsHeight = topRightToastsHeightArray.reduce((a, b) => { return a + b.height; }, 0);
+
+  sumOfTopRightToastsHeight = sumOfTopRightToastsHeight + (topRightToastsHeightArray.length) * gap;
+  sumOfTopRightToastsHeight = typeof sumOfTopRightToastsHeight === 'number' ? Math.ceil(sumOfTopRightToastsHeight) : sumOfTopRightToastsHeight;
+
+  const expandedViewStyle: CSSProperties = expanded ? { height: `${sumOfTopRightToastsHeight}px`, overflow: 'scroll', backdropFilter: 'blur(4px)' } : {};
 
 
   const removeAllToasts = () => {
@@ -144,7 +150,9 @@ const Toaster = (props: ToasterProps) => {
 
   const clearAllButtonUI = (yPosition: string, xPosition: string) => {
     //close button handle only for top-right position
-    if (expanded || yPosition !== 'top' || xPosition !== 'right') return null;
+    const topRightToastsArray = toasts.filter(toast => toast.position === 'top-right');
+
+    if (yPosition !== 'top' || xPosition !== 'right' || topRightToastsArray.length <= 1) return null;
 
     return (
       <div
@@ -192,6 +200,7 @@ const Toaster = (props: ToasterProps) => {
                     '--offset': typeof offset === 'number' ? `${offset}px` : offset || VIEWPORT_OFFSET,
                     '--width': `${TOAST_WIDTH}px`,
                     '--gap': `${gap}px`,
+                    maxHeight: '95vh',
                     ...expandedViewStyle
                   } as CSSProperties
                 }

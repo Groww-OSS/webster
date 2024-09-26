@@ -52,7 +52,6 @@ const Template: StoryFn = (_args) => {
     <div className="valign-wrapper width100"
       style={{ columnGap: '20px' }}
     >
-      {/* <Toaster /> */}
       <Button
         buttonText="Toast Sucess"
         onClick={() => activateToast('sucess')}
