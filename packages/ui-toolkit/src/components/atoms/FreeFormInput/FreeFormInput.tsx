@@ -122,7 +122,7 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
           }
           {
             variant === 'password' && (
-              <div className='inputPasswordToggle'
+              <div className='inputSuffixIcon'
                 onClick={togglePasswordVisibility}
               >
                 {showPassword ? <MdsIcHideEye /> : <MdsIcShowEye />}
