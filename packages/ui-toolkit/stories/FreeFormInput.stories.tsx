@@ -108,3 +108,14 @@ WithPasswordVariant.args = {
   error: { hasError: false, message: '' },
   width: '300px'
 };
+
+
+export const WithNumberVariant = Template.bind({});
+WithNumberVariant.args = {
+  placeholder: 'Enter number...',
+  value: '',
+  variant: 'number',
+  error: { hasError: false, message: '' },
+  width: '300px'
+};
+
