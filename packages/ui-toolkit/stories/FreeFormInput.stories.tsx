@@ -99,3 +99,12 @@ WithDisabled.args = {
   disabled: true,
   width: '300px'
 };
+
+export const WithPasswordVariant = Template.bind({});
+WithPasswordVariant.args = {
+  placeholder: 'Enter password...',
+  value: '',
+  variant: 'password',
+  error: { hasError: false, message: '' },
+  width: '300px'
+};
