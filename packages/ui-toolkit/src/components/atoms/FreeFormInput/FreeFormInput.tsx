@@ -29,7 +29,7 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
   onChange,
   disabled,
   dataTestId,
-  width,
+  width = '128px',
   maxLength,
   prefixIcon,
   suffixIcon,

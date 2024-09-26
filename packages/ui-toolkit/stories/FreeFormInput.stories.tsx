@@ -36,7 +36,6 @@ Default.args = {
   error: { hasError: false, message: '' },
   disabled: false,
   clearable: false,
-  width: '300px',
   helperText: 'Helper text here'
 };
 
