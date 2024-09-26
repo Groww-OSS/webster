@@ -2,18 +2,19 @@ import React, { ReactNode, useState, useEffect } from 'react';
 import cn from 'classnames';
 import './styles/index.css';
 import { MdsIcCancelCircle, MdsIcError } from '@groww-tech/icon-store/mint-icons';
+import { ReactIconComponentType } from '@groww-tech/icon-store/types.d';
 
 export type FreeFormInputProps = {
-  placeholder: string;
+  placeholder?: string;
   value: string;
-  label: string;
+  label?: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   disabled?: boolean;
   dataTestId?: string;
   width?: string;
   maxLength?: number;
-  prefixIcon?: ReactNode;
-  suffixIcon?: ReactNode;
+  prefixIcon?: ReactIconComponentType;
+  suffixIcon?: ReactIconComponentType;
   prefixLabel?: string;
   error?: { hasError: boolean; message: string };
   clearable?: boolean;
@@ -115,7 +116,7 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
         }
       </div>
       {helperText && <div className='contentSecondary bodySmall'>{helperText}</div>}
-      {error.hasError && <div className='contentNegative inputErrorText'><MdsIcError/>{error.message}</div>}
+      {error.hasError && <div className='contentNegative inputErrorText bodySmall'><MdsIcError/>{error.message}</div>}
     </div>
   );
 };
