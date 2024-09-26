@@ -1,7 +1,12 @@
 import React, { ReactNode, useState, useEffect } from 'react';
 import cn from 'classnames';
 import './styles/index.css';
-import { MdsIcCancelCircle, MdsIcError } from '@groww-tech/icon-store/mint-icons';
+import {
+  MdsIcCancelCircle,
+  MdsIcError,
+  MdsIcShowEye,
+  MdsIcHideEye
+} from '@groww-tech/icon-store/mint-icons';
 import { ReactIconComponentType } from '@groww-tech/icon-store/types.d';
 
 export type FreeFormInputProps = {
@@ -20,6 +25,7 @@ export type FreeFormInputProps = {
   clearable?: boolean;
   ref?: React.RefObject<HTMLInputElement>;
   helperText?: string;
+  variant?: 'text' | 'password';
 }
 
 
@@ -38,18 +44,18 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
   error = { hasError: false, message: '' },
   clearable = false,
   ref,
-  helperText
+  helperText,
+  variant = 'text'
 }) => {
   const [ showClearIcon, setShowClearIcon ] = useState(false);
   const [ isFocused, setIsFocused ] = useState(false);
+  const [ showPassword, setShowPassword ] = useState(false);
 
   useEffect(() => {
     setShowClearIcon(!!clearable && value.length > 0);
   }, [ clearable, value ]);
 
-  const inputClasses = cn(
-    'input'
-  );
+  const inputClasses = cn('input');
 
   const inputWrapperClasses = cn('inputWrapper');
 
@@ -58,10 +64,9 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
       'inputBorderNegative': error.hasError,
       'inputClearable': clearable,
       'inputPrefix': prefixIcon || prefixLabel,
-      'inputSuffix': suffixIcon || (clearable && showClearIcon),
+      'inputSuffix': suffixIcon || (clearable && showClearIcon) || variant === 'password',
       'inputFocused': isFocused && !disabled && !error.hasError,
       'backgroundSecondary borderPrimary contentSecondary': disabled
-
     });
 
 
@@ -73,6 +78,11 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
 
       onChange(event);
     }
+  };
+
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -89,7 +99,7 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
         }
         <input
           className={`${inputClasses} bodyBase contentPrimary`}
-          type='text'
+          type={variant === 'password' ? (showPassword ? 'text' : 'password') : 'text'}
           placeholder={placeholder}
           value={value}
           onChange={onChange}
@@ -100,20 +110,27 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
           maxLength={maxLength}
           ref={ref}
         />
-        {
-          (clearable || suffixIcon) && <div className='suffixContainer'>
-            {
-              clearable && showClearIcon && (
-                <div className='inputClearIcon'
-                  onClick={handleClear}
-                >
-                  <MdsIcCancelCircle />
-                </div>
-              )
-            }
-            {suffixIcon && <div className='inputSuffixIcon'>{suffixIcon}</div>}
-          </div>
-        }
+        <div className='suffixContainer'>
+          {
+            clearable && showClearIcon && (
+              <div className='inputClearIcon'
+                onClick={handleClear}
+              >
+                <MdsIcCancelCircle />
+              </div>
+            )
+          }
+          {
+            variant === 'password' && (
+              <div className='inputPasswordToggle'
+                onClick={togglePasswordVisibility}
+              >
+                {showPassword ? <MdsIcHideEye /> : <MdsIcShowEye />}
+              </div>
+            )
+          }
+          {suffixIcon && <div className='inputSuffixIcon'>{suffixIcon}</div>}
+        </div>
       </div>
       {helperText && <div className='contentSecondary bodySmall'>{helperText}</div>}
       {error.hasError && <div className='contentNegative inputErrorText bodySmall'><MdsIcError/>{error.message}</div>}
