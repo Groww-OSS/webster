@@ -123,27 +123,31 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
           ref={ref}
           onWheel={handleWheel}
         />
-        <div className='suffixContainer'>
-          {
-            clearable && showClearIcon && (
-              <div className='inputClearIcon'
-                onClick={handleClear}
-              >
-                <MdsIcCancelCircle />
-              </div>
-            )
-          }
-          {
-            variant === 'password' && (
-              <div className='inputSuffixIcon'
-                onClick={togglePasswordVisibility}
-              >
-                {showPassword ? <MdsIcHideEye /> : <MdsIcShowEye />}
-              </div>
-            )
-          }
-          {suffixIcon && <div className='inputSuffixIcon'>{suffixIcon}</div>}
-        </div>
+        {
+          (clearable && showClearIcon) || variant === 'password' || suffixIcon ? (
+            <div className='suffixContainer'>
+              {
+                clearable && showClearIcon && (
+                  <div className='inputClearIcon'
+                    onClick={handleClear}
+                  >
+                    <MdsIcCancelCircle />
+                  </div>
+                )
+              }
+              {
+                variant === 'password' && (
+                  <div className='inputSuffixIcon'
+                    onClick={togglePasswordVisibility}
+                  >
+                    {showPassword ? <MdsIcHideEye /> : <MdsIcShowEye />}
+                  </div>
+                )
+              }
+              {suffixIcon && <div className='inputSuffixIcon'>{suffixIcon}</div>}
+            </div>
+          ) : null
+        }
       </div>
       {helperText && <div className='contentSecondary bodySmall'>{helperText}</div>}
       {error.hasError && error.message && <div className='contentNegative inputErrorText bodySmall'><MdsIcError/>{error.message}</div>}
