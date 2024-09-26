@@ -60,7 +60,7 @@ WithLabel.args = {
   placeholder: 'Enter text...',
   value: '',
   label: 'Text',
-  error: { hasError: false, message: '' },
+  // error: { hasError: false, message: '' },
   width: '300px'
 };
 
