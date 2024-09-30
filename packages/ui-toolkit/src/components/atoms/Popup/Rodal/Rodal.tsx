@@ -1,7 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
 
-import { MdsIcCloseCross } from '@groww-tech/icon-store/mint-icons/';
+import { MdsIcCloseCross } from '@groww-tech/icon-store/mint-icons';
 
 import Dialog from './Dialog';
 
