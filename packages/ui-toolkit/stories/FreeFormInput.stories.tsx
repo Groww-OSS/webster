@@ -86,7 +86,7 @@ export const WithSuffixIcons = Template.bind({});
 WithSuffixIcons.args = {
   placeholder: 'Enter text...',
   value: '',
-  suffixIcon: <MdsIcChevronRight />,
+  suffixIcon: <MdsIcChevronRight onClick={() => console.log('Suffix clicked')}/>,
   error: { hasError: false, message: '' },
   width: '300px'
 };
@@ -118,4 +118,3 @@ WithNumberVariant.args = {
   error: { hasError: false, message: '' },
   width: '300px'
 };
-
