@@ -34,7 +34,8 @@ border-radius: 4px;
   outline: none; /* Remove focus outline */
   box-shadow: none; /* Remove any focus box-shadow */
   border: none;
-
+  text-overflow: ellipsis;
+  text-align: center;
 }
 
 /* 

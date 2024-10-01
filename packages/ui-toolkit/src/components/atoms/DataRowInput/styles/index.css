@@ -1,0 +1,99 @@
+.inputWrapper {
+    /* position: relative; */
+    display: flex;
+    width: 100%;
+    border: none;
+    flex-direction: column;
+    gap: 8px;
+    padding: 1px;
+  }
+  
+  
+  
+  .inputContent {
+      position: relative;
+      display: flex;
+      height: 48px;
+      border-radius: 4px;
+      padding: 12px;
+      gap: 12px;
+  }
+    
+  
+  .inputFocused {
+    border: 2px solid var(--gray900);      /* ----- borderNeutral ----- */
+  
+  border-radius: 4px;
+  }
+  
+  
+  .input {
+    width: 100%;
+    font-size: 16px;
+    caret-color: var(--green500);
+    outline: none; /* Remove focus outline */
+    box-shadow: none; /* Remove any focus box-shadow */
+    border: none;
+    text-align: right;
+    text-overflow: ellipsis;
+    
+  }
+  
+  /* 
+  
+  .inputClearable {
+    padding-right: 30px;
+  }
+  
+  .inputPrefix {
+    padding-left: 24px;
+  }
+  
+  .inputSuffix {
+    padding-right: 36px;
+  } */
+  
+  .prefixContainer,
+  .suffixContainer {
+  
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+  }
+  
+  
+  
+  .inputPrefixIcon,
+  .inputSuffixIcon,
+  .inputClearIcon {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .inputClearIcon {
+    cursor: pointer;
+  }
+  
+  
+  input::placeholder {
+    color: var(--gray500);
+  
+  }
+  
+  .inputBorderNeutral{
+    border: 2px solid var(--gray900);
+  }
+  
+  .inputBorderNegative{
+    border: 2px solid var(--red500);
+    border-radius: 4px;
+  } 
+  
+  .inputBorderWarning{
+    border: 2px solid var(--yellow500);
+    border-radius: 4px;
+  } 
