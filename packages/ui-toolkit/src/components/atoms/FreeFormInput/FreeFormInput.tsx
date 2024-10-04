@@ -26,6 +26,10 @@ export type FreeFormInputProps = {
   ref?: React.RefObject<HTMLInputElement>;
   helperText?: string;
   variant?: 'text' | 'password' | 'number';
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  autoComplete?: string;
+  onEnterPress?: () => void;
+  onKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
 
@@ -45,7 +49,10 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
   clearable = false,
   ref,
   helperText,
-  variant = 'text'
+  variant = 'text',
+  onKeyDown,
+  autoComplete,
+  onKeyUp
 
 }) => {
   const [ showClearIcon, setShowClearIcon ] = useState(false);
@@ -122,6 +129,9 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
           maxLength={maxLength}
           ref={ref}
           onWheel={handleWheel}
+          onKeyDown={onKeyDown}
+          autoComplete={autoComplete}
+          onKeyUp={onKeyUp}
         />
         {
           (clearable && showClearIcon) || variant === 'password' || suffixIcon ? (

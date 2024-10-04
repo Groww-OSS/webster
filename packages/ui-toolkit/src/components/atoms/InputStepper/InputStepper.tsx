@@ -13,11 +13,15 @@ export type InputStepperProps = {
   prefixIcon?: ReactIconComponentType;
   prefixLabel?: string;
   ref?: React.RefObject<HTMLInputElement>;
-  variant?: 'default' | 'error' | 'warning' | 'disabled';
+  error?: boolean;
+  warning?: boolean;
+  disabled?: boolean;
   min?: number;
   max?: number;
   step?: number;
   typable?: boolean;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  onKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
 
@@ -30,11 +34,14 @@ const InputStepper: React.FC<InputStepperProps> = ({
   prefixIcon,
   prefixLabel,
   ref,
-  variant = 'default',
+  error = false,
+  warning = false,
+  disabled = false,
   min = 0,
   max = 100,
   step = 1,
-  typable = true
+  typable = true,
+  onKeyDown
 }) => {
   const [ isFocused, setIsFocused ] = useState(false);
 
@@ -49,24 +56,24 @@ const InputStepper: React.FC<InputStepperProps> = ({
   const inputContentClasses = cn(
     'inputContent backgroundPrimary contentPrimary borderPrimary',
     {
-      'inputBorderNegative': variant === 'error',
-      'inputBorderWarning': variant === 'warning',
+      'inputBorderNegative': error,
+      'inputBorderWarning': warning,
       'inputPrefix': prefixIcon || prefixLabel,
-      'inputFocused': isFocused && variant !== 'disabled' && variant !== 'error',
-      'backgroundSecondary borderPrimary contentSecondary': variant === 'disabled'
+      'inputFocused': isFocused && !disabled && !error,
+      'backgroundSecondary borderPrimary contentSecondary': disabled
     }
   );
 
 
   const handleMinus = () => {
-    if (value > min!) {
+    if (value > min && !disabled) {
       onChange(value - step);
     }
   };
 
 
   const handlePlus = () => {
-    if (value < max!) {
+    if (value < max && !disabled) {
       onChange(value + step);
     }
   };
@@ -75,7 +82,7 @@ const InputStepper: React.FC<InputStepperProps> = ({
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = Number(e.target.value);
 
-    if (newValue >= min! && newValue <= max!) {
+    if (newValue >= min && newValue <= max && !disabled) {
       onChange(newValue);
     }
   };
@@ -86,12 +93,6 @@ const InputStepper: React.FC<InputStepperProps> = ({
     >
       <div className={`${inputContentClasses}`}>
         <div className="prefixContainer">
-          {/* <button className="prefixIcon"
-            onClick={handleMinus}
-            disabled={value <= min}
-          >
-            <MdsIcRemoveMinus />
-          </button> */}
           <MdsIcRemoveMinus onClick={handleMinus}/>
         </div>
 
@@ -103,7 +104,7 @@ const InputStepper: React.FC<InputStepperProps> = ({
           onChange={handleChange}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
-          disabled={variant === 'disabled'}
+          disabled={disabled}
           data-testid={dataTestId}
           ref={ref}
           onWheel={handleWheel}
@@ -111,16 +112,10 @@ const InputStepper: React.FC<InputStepperProps> = ({
           max={max}
           step={step}
           readOnly={!typable}
+          onKeyDown={onKeyDown}
         />
 
         <div className="suffixContainer">
-          {/* <button className="inputSuffixIcon"
-            onClick={handlePlus}
-            disabled={value >= max}
-            tabIndex={0}
-          >
-            <MdsIcAddPlus />
-          </button> */}
           <MdsIcAddPlus onClick={handlePlus}/>
         </div>
       </div>
