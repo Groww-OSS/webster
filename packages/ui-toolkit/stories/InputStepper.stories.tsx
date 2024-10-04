@@ -7,10 +7,9 @@ export default {
   component: InputStepper,
   argTypes: {
     prefixIcon: { control: 'text' },
-    variant: {
-      control: 'select',
-      options: [ 'default', 'error', 'warning', 'disabled' ]
-    },
+    error: { control: 'boolean' },
+    warning: { control: 'boolean' },
+    disabled: { control: 'boolean' },
     typable: { control: 'boolean' }
   },
   tags: [ 'autodocs' ]
@@ -42,7 +41,7 @@ export const WithError = Template.bind({});
 WithError.args = {
   placeholder: 'Enter number...',
   value: 0,
-  variant: 'error',
+  error: true,
   width: '300px'
 };
 
@@ -50,7 +49,7 @@ export const WithWarning = Template.bind({});
 WithWarning.args = {
   placeholder: 'Enter number...',
   value: 0,
-  variant: 'warning',
+  warning: true,
   width: '300px'
 };
 
@@ -58,7 +57,7 @@ export const Disabled = Template.bind({});
 Disabled.args = {
   placeholder: 'Enter number...',
   value: 0,
-  variant: 'disabled',
+  disabled: true,
   width: '300px'
 };
 
