@@ -8,10 +8,9 @@ export default {
   component: DataRowInput,
   argTypes: {
     prefixIcon: { control: 'text' },
-    variant: {
-      control: 'select',
-      options: [ 'default', 'error', 'warning', 'disabled' ]
-    }
+    disabled: { control: 'boolean' },
+    error: { control: 'boolean' },
+    warning: { control: 'boolean' }
   },
   tags: [ 'autodocs' ]
 };
@@ -42,7 +41,7 @@ export const WithError = Template.bind({});
 WithError.args = {
   placeholder: 'Enter number...',
   value: '',
-  variant: 'error',
+  error: true,
   width: '300px'
 };
 
@@ -50,7 +49,7 @@ export const WithWarning = Template.bind({});
 WithWarning.args = {
   placeholder: 'Enter number...',
   value: '',
-  variant: 'warning',
+  warning: true,
   width: '300px'
 };
 
@@ -74,7 +73,7 @@ export const Disabled = Template.bind({});
 Disabled.args = {
   placeholder: 'Enter number...',
   value: '',
-  variant: 'disabled',
+  disabled: true,
   width: '300px'
 };
 
