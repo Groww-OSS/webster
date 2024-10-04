@@ -12,9 +12,14 @@ export type DataRowInputProps = {
   prefixIcon?: ReactIconComponentType;
   prefixLabel?: string;
   ref?: React.RefObject<HTMLInputElement>;
-  variant?: 'default' | 'error' | 'warning' | 'disabled';
+  disabled?: boolean;
+  error?: boolean;
+  warning?: boolean;
   min?: number;
   max?: number;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  disableDecimal?: boolean;
+  onKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
 
@@ -27,9 +32,14 @@ const DataRowInput: React.FC<DataRowInputProps> = ({
   prefixIcon,
   prefixLabel,
   ref,
-  variant = 'default',
+  disabled = false,
+  error = false,
+  warning = false,
   min,
-  max
+  max,
+  onKeyDown,
+  disableDecimal = false,
+  onKeyUp
 }) => {
   const [ isFocused, setIsFocused ] = useState(false);
 
@@ -41,13 +51,22 @@ const DataRowInput: React.FC<DataRowInputProps> = ({
     e.currentTarget.blur();
   };
 
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (disableDecimal && e.key === '.') {
+      e.preventDefault();
+    }
+
+    onKeyDown && onKeyDown(e);
+  };
+
   const inputContentClasses = cn('inputContent backgroundPrimary contentPrimary borderPrimary',
     {
-      'inputBorderNegative': variant === 'error',
-      'inputBorderWarning': variant === 'warning',
+      'inputBorderNegative': error,
+      'inputBorderWarning': warning,
       'inputPrefix': prefixIcon || prefixLabel,
-      'inputFocused': isFocused && variant !== 'disabled' && variant !== 'error',
-      'backgroundSecondary borderPrimary contentSecondary': variant === 'disabled'
+      'inputFocused': isFocused && !disabled && !error,
+      'backgroundSecondary borderPrimary contentSecondary': disabled
     });
 
   return (
@@ -71,12 +90,15 @@ const DataRowInput: React.FC<DataRowInputProps> = ({
           onChange={onChange}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
-          disabled={variant === 'disabled'}
+          disabled={disabled}
           data-testid={dataTestId}
           ref={ref}
           onWheel={handleWheel}
           min={min}
           max={max}
+          onKeyDown={handleKeyDown}
+          step={1}
+          onKeyUp={onKeyUp}
         />
       </div>
     </div>
