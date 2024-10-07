@@ -1,6 +1,8 @@
 import React from 'react';
 import cn from 'classnames';
 
+import { MdsIcCloseCross } from '@groww-tech/icon-store/mint-icons';
+
 import Dialog from './Dialog';
 
 import './rodal.css';
@@ -103,8 +105,9 @@ class Rodal extends React.Component<Props, State> {
       popupClass
     } = this.props;
 
-    const CloseButton = showCloseButton ? <span className="rodal-close"
-      data-test-id='rodal-close-icon'
+    const CloseButton = showCloseButton ? <MdsIcCloseCross data-test-id='rodal-close-icon'
+      className='rodal-close'
+      size={16}
       onClick={onClose}
     /> : null;
 
