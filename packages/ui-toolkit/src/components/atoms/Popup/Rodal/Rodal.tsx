@@ -1,7 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
 
-import { MdsIcCloseCross } from '@groww-tech/icon-store/mint-icons/index';
+import { MdsIcCloseCross } from '@groww-tech/icon-store/mint-icons';
 
 import Dialog from './Dialog';
 
@@ -144,7 +144,7 @@ class Rodal extends React.Component<Props, State> {
         <Dialog {...this.props}
           animationType={animationType}
         >
-          <div className={`child-wrapper backgroundSurfacePrimary ${popupClass}`}>
+          <div className={`child-wrapper backgroundPrimary ${popupClass}`}>
             {children}
             {CloseButton}
           </div>
