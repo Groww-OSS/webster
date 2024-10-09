@@ -1,0 +1,20 @@
+.iconButton {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    border-radius: 99px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-shrink: 0;
+    height: 24px;
+    width: 24px;
+  }
+  
+  .iconButton:hover {
+    background-color: var(--bg-transparent-hover);;
+  }
+  
+  
+ 
