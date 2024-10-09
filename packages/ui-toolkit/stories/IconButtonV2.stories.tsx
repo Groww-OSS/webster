@@ -20,30 +20,12 @@ const Template: StoryFn<IconButtonProps> = (args) => (
 
 export const Default = Template.bind({});
 Default.args = {
-  icon: <MdsIcAddPlus />,
+  Icon: MdsIcAddPlus,
   disabled: false
 };
 
 export const Disabled = Template.bind({});
 Disabled.args = {
-  icon: <MdsIcAddPlus />,
+  Icon: MdsIcAddPlus,
   disabled: true
-};
-
-export const WithHeartIcon = Template.bind({});
-WithHeartIcon.args = {
-  icon: <MdsIcAddPlus color="red" />,
-  disabled: false
-};
-
-export const WithSearchIcon = Template.bind({});
-WithSearchIcon.args = {
-  icon: <MdsIcAddPlus />,
-  disabled: false
-};
-
-export const WithTrashIcon = Template.bind({});
-WithTrashIcon.args = {
-  icon: <MdsIcAddPlus color="red" />,
-  disabled: false
 };
