@@ -30,7 +30,7 @@ const IconButtonV2: React.FC<IconButtonProps> = ({ onClick, Icon, disabled = fal
       className={`iconButton ${disabled ? 'contentDisable' : contentColor}`}
       disabled={disabled}
     >
-      <Icon />
+      <Icon size={24} />
     </button>
 
   );
