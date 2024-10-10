@@ -32,14 +32,14 @@ const Template: StoryFn<InputStepperProps> = (args) => {
 
 export const Default = Template.bind({});
 Default.args = {
-  placeholder: 'Enter number...',
+  placeholder: '0',
   value: 0,
   width: '128px'
 };
 
 export const WithError = Template.bind({});
 WithError.args = {
-  placeholder: 'Enter number...',
+  placeholder: '0',
   value: 0,
   error: true,
   width: '300px'
@@ -47,7 +47,7 @@ WithError.args = {
 
 export const WithWarning = Template.bind({});
 WithWarning.args = {
-  placeholder: 'Enter number...',
+  placeholder: '0',
   value: 0,
   warning: true,
   width: '300px'
@@ -63,14 +63,14 @@ Disabled.args = {
 
 export const CustomWidth = Template.bind({});
 CustomWidth.args = {
-  placeholder: 'Enter number...',
+  placeholder: '0',
   value: 0,
   width: '200px'
 };
 
 export const WithMinMax = Template.bind({});
 WithMinMax.args = {
-  placeholder: 'Enter number...',
+  placeholder: '0',
   value: 100,
   min: 100,
   max: 2000
@@ -78,14 +78,14 @@ WithMinMax.args = {
 
 export const CustomStep = Template.bind({});
 CustomStep.args = {
-  placeholder: 'Enter number...',
+  placeholder: '0',
   value: 0,
   step: 10
 };
 
 export const NonTypable = Template.bind({});
 NonTypable.args = {
-  placeholder: 'Enter number...',
+  placeholder: '0',
   value: 0,
   typable: false
 };
