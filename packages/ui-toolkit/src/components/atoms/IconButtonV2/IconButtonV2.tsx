@@ -6,7 +6,7 @@ export type IconButtonProps = {
   onClick: () => void;
   Icon: ReactIconComponentType;
   disabled?: boolean;
-  contentColor: 'contentPrimary'
+  contentColor?: 'contentPrimary'
   | 'contentSecondary'
   | 'contentTertiary'
   | 'contentInversePrimary'
