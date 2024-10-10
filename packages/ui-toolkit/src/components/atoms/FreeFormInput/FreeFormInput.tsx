@@ -7,8 +7,14 @@ import {
   MdsIcShowEye,
   MdsIcHideEye
 } from '@groww-tech/icon-store/mint-icons';
+import IconButtonV2 from '../IconButtonV2/IconButtonV2';
 import { ReactIconComponentType } from '@groww-tech/icon-store/types.d';
 
+
+type SuffixIconButtonProps = {
+  icon: ReactIconComponentType;
+  onClick: () => void;
+};
 export type FreeFormInputProps = {
   placeholder?: string;
   value: string;
@@ -20,6 +26,7 @@ export type FreeFormInputProps = {
   maxLength?: number;
   prefixIcon?: ReactIconComponentType;
   suffixIcon?: ReactIconComponentType;
+  suffixIconButton?: SuffixIconButtonProps;
   prefixLabel?: string;
   error?: { hasError: boolean; message: string };
   clearable?: boolean;
@@ -43,6 +50,7 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
   width = '128px',
   maxLength,
   prefixIcon,
+  suffixIconButton,
   suffixIcon,
   prefixLabel,
   error = { hasError: false, message: '' },
@@ -134,8 +142,9 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
           onKeyUp={onKeyUp}
         />
         {
-          (clearable && showClearIcon) || variant === 'password' || suffixIcon ? (
+          (clearable && showClearIcon) || variant === 'password' || suffixIcon || suffixIconButton ? (
             <div className='suffixContainer'>
+
               {
                 clearable && showClearIcon && (
                   <div className='inputClearIcon'
@@ -155,6 +164,13 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
                 )
               }
               {suffixIcon && <div className='inputSuffixIcon'>{suffixIcon}</div>}
+              {
+                suffixIconButton && <div className='inputSuffixIcon'> <IconButtonV2
+                  onClick={suffixIconButton.onClick}
+                  Icon={suffixIconButton.icon}
+                />
+                </div>
+              }
             </div>
           ) : null
         }
