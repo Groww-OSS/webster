@@ -9,6 +9,8 @@ import {
 } from '@groww-tech/icon-store/mint-icons';
 import IconButtonV2 from '../IconButtonV2/IconButtonV2';
 import { ReactIconComponentType } from '@groww-tech/icon-store/types.d';
+import { ContentMintTokens } from '../../../types/mint-token-types/content-mint-tokens';
+
 
 
 type SuffixIconButtonProps = {
@@ -35,8 +37,9 @@ export type FreeFormInputProps = {
   variant?: 'text' | 'password' | 'number';
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   autoComplete?: string;
-  onEnterPress?: () => void;
   onKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  perfixTextColor?: ContentMintTokens;
+  prefixTextStyle?: 'bodyBase' | 'bodyBaseHeavy';
 }
 
 
@@ -60,7 +63,10 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
   variant = 'text',
   onKeyDown,
   autoComplete,
-  onKeyUp
+  onKeyUp,
+  perfixTextColor = 'contentSecondary',
+  prefixTextStyle = 'bodyBase'
+
 
 }) => {
   const [ showClearIcon, setShowClearIcon ] = useState(false);
@@ -118,7 +124,7 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
         {
           (prefixIcon || prefixLabel) && <div className='prefixContainer'>
             {prefixIcon && <div className='inputPrefixIcon'>{prefixIcon}</div>}
-            {prefixLabel && <div className='inputPrefixLabel'>{prefixLabel}</div>}
+            {prefixLabel && <div className={`inputPrefixLabel ${perfixTextColor} ${prefixTextStyle}`}>{prefixLabel}</div>}
           </div>
         }
         <input
