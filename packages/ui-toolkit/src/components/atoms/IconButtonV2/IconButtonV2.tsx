@@ -27,10 +27,13 @@ const IconButtonV2: React.FC<IconButtonProps> = ({ onClick, Icon, disabled = fal
   return (
     <button
       onClick={onClick}
-      className={`iconButton ${disabled ? 'contentDisable' : contentColor}`}
+      className={`iconButton iconBtnMedium ${disabled ? 'contentDisable' : `${contentColor} backgroundTransparentHover`}`}
       disabled={disabled}
     >
-      <Icon size={24} />
+      <div className='iconBtnMedium'>
+        <Icon/>
+
+      </div>
     </button>
 
   );

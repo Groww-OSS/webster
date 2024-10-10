@@ -8,13 +8,10 @@
     justify-content: center;
     gap: 8px;
     flex-shrink: 0;
+  }
+
+  .iconBtnMedium {
     height: 24px;
     width: 24px;
   }
-  
-  .iconButton:hover {
-    background-color: var(--bg-transparent-hover);;
-  }
-  
-  
  
