@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import cn from 'classnames';
 import './styles/index.css';
 import { ReactIconComponentType } from '@groww-tech/icon-store/types.d';
 import { MdsIcRemoveMinus, MdsIcAddPlus } from '@groww-tech/icon-store/mint-icons';
+import IconButtonV2 from '../IconButtonV2/IconButtonV2';
 
 export type InputStepperProps = {
   placeholder?: string;
@@ -38,12 +39,17 @@ const InputStepper: React.FC<InputStepperProps> = ({
   warning = false,
   disabled = false,
   min = 0,
-  max = 100,
+  max = Number.MAX_SAFE_INTEGER,
   step = 1,
   typable = true,
   onKeyDown
 }) => {
   const [ isFocused, setIsFocused ] = useState(false);
+  const [ inputValue, setInputValue ] = useState(value.toString());
+
+  useEffect(() => {
+    setInputValue(value.toString());
+  }, [ value ]);
 
   const inputClasses = cn('input');
   const inputWrapperClasses = cn('inputWrapper');
@@ -80,10 +86,36 @@ const InputStepper: React.FC<InputStepperProps> = ({
 
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = Number(e.target.value);
+    if (!typable) return;
 
-    if (newValue >= min && newValue <= max && !disabled) {
-      onChange(newValue);
+    const newValue = e.target.value;
+
+    if (newValue === '') {
+      setInputValue('');
+      onChange(min);
+
+    } else {
+      const numValue = Number(newValue);
+
+      if (!isNaN(numValue) && numValue >= min && numValue <= max) {
+        setInputValue(newValue);
+        onChange(numValue);
+      }
+    }
+  };
+
+
+  const handleBlur = () => {
+    setIsFocused(false);
+    if (inputValue === '') {
+      setInputValue('0');
+      onChange(0);
+
+    } else if (inputValue.startsWith('0') && inputValue !== '0') {
+      const numValue = Number(inputValue);
+
+      setInputValue(numValue.toString());
+      onChange(numValue);
     }
   };
 
@@ -93,30 +125,39 @@ const InputStepper: React.FC<InputStepperProps> = ({
     >
       <div className={`${inputContentClasses}`}>
         <div className="prefixContainer">
-          <MdsIcRemoveMinus onClick={handleMinus}/>
+          <IconButtonV2
+            onClick={handleMinus}
+            Icon={MdsIcRemoveMinus}
+            contentColor='contentPrimary'
+            disabled={disabled || value <= min}
+          />
         </div>
 
         <input
           className={`${inputClasses} bodyBase contentPrimary`}
-          type="number"
+          type="text"
+          inputMode="numeric"
+          pattern="[0-9]*"
           placeholder={placeholder}
-          value={value}
+          value={inputValue}
           onChange={handleChange}
           onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
+          onBlur={handleBlur}
           disabled={disabled}
           data-testid={dataTestId}
           ref={ref}
           onWheel={handleWheel}
-          min={min}
-          max={max}
-          step={step}
           readOnly={!typable}
           onKeyDown={onKeyDown}
         />
 
         <div className="suffixContainer">
-          <MdsIcAddPlus onClick={handlePlus}/>
+          <IconButtonV2
+            onClick={handlePlus}
+            Icon={MdsIcAddPlus}
+            contentColor='contentPrimary'
+            disabled={disabled || value >= max}
+          />
         </div>
       </div>
     </div>
