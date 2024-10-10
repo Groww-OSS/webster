@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import cn from 'classnames';
 import './styles/index.css';
 import { ReactIconComponentType } from '@groww-tech/icon-store/types.d';
+import { ContentMintTokens } from '../../../types/mint-token-types/content-mint-tokens';
+import { BackgroundMintTokens } from '../../../types/mint-token-types/background-mint-tokens';
 
 export type DataRowInputProps = {
   placeholder?: string;
@@ -20,6 +22,10 @@ export type DataRowInputProps = {
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   disableDecimal?: boolean;
   onKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  textStyle?: 'bodyLarge' | 'bodyLargeHeavy';
+  textColor?: ContentMintTokens;
+  perfixTextColor?: ContentMintTokens;
+  backgroundColor?: BackgroundMintTokens;
 }
 
 
@@ -39,7 +45,11 @@ const DataRowInput: React.FC<DataRowInputProps> = ({
   max,
   onKeyDown,
   disableDecimal = false,
-  onKeyUp
+  onKeyUp,
+  textStyle = 'bodyLarge',
+  textColor = 'contentPrimary',
+  perfixTextColor = 'contentSecondary',
+  backgroundColor = 'backgroundTransparent'
 }) => {
   const [ isFocused, setIsFocused ] = useState(false);
 
@@ -60,14 +70,13 @@ const DataRowInput: React.FC<DataRowInputProps> = ({
     onKeyDown && onKeyDown(e);
   };
 
-  const inputContentClasses = cn('inputContent backgroundPrimary contentPrimary borderPrimary',
-    {
-      'inputBorderNegative': error,
-      'inputBorderWarning': warning,
-      'inputPrefix': prefixIcon || prefixLabel,
-      'inputFocused': isFocused && !disabled && !error,
-      'backgroundSecondary borderPrimary contentSecondary': disabled
-    });
+  const inputContentClasses = cn(`inputContent borderPrimary ${backgroundColor} ${textStyle} ${textColor}`, {
+    'inputBorderNegative': error,
+    'inputBorderWarning': warning,
+    'inputPrefix': prefixIcon || prefixLabel,
+    'inputFocused': isFocused && !disabled && !error,
+    'backgroundSecondary borderPrimary contentSecondary': disabled
+  });
 
   return (
     <div className={inputWrapperClasses}
@@ -78,12 +87,12 @@ const DataRowInput: React.FC<DataRowInputProps> = ({
           (prefixIcon || prefixLabel) && (
             <div className='prefixContainer'>
               {prefixIcon && <div className='inputPrefixIcon'>{prefixIcon}</div>}
-              {prefixLabel && <div className='inputPrefixLabel'>{prefixLabel}</div>}
+              {prefixLabel && <div className={`inputPrefixLabel ${perfixTextColor}`}>{prefixLabel}</div>}
             </div>
           )
         }
         <input
-          className={`${inputClasses} bodyBase contentPrimary`}
+          className={`${inputClasses} ${textColor} contentPrimary`}
           type="number"
           placeholder={placeholder}
           value={value}

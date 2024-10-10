@@ -4,6 +4,8 @@ import './styles/index.css';
 import { ReactIconComponentType } from '@groww-tech/icon-store/types.d';
 import { MdsIcRemoveMinus, MdsIcAddPlus } from '@groww-tech/icon-store/mint-icons';
 import IconButtonV2 from '../IconButtonV2/IconButtonV2';
+import { ContentMintTokens } from '../../../types/mint-token-types/content-mint-tokens';
+import { BackgroundMintTokens } from '../../../types/mint-token-types/background-mint-tokens';
 
 export type InputStepperProps = {
   placeholder?: string;
@@ -23,6 +25,10 @@ export type InputStepperProps = {
   typable?: boolean;
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   onKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  textStyle?: 'bodyLarge' | 'bodyLargeHeavy';
+  backgroundColor?: BackgroundMintTokens;
+  textColor?: ContentMintTokens;
+
 }
 
 
@@ -42,7 +48,10 @@ const InputStepper: React.FC<InputStepperProps> = ({
   max = Number.MAX_SAFE_INTEGER,
   step = 1,
   typable = true,
-  onKeyDown
+  onKeyDown,
+  textStyle = 'bodyLarge',
+  backgroundColor = 'backgroundTransparent',
+  textColor = 'contentPrimary'
 }) => {
   const [ isFocused, setIsFocused ] = useState(false);
   const [ inputValue, setInputValue ] = useState(value.toString());
@@ -60,7 +69,7 @@ const InputStepper: React.FC<InputStepperProps> = ({
   };
 
   const inputContentClasses = cn(
-    'inputContent backgroundPrimary contentPrimary borderPrimary',
+    `inputContent borderPrimary ${backgroundColor} ${textStyle} ${textColor}`,
     {
       'inputBorderNegative': error,
       'inputBorderWarning': warning,
@@ -134,7 +143,7 @@ const InputStepper: React.FC<InputStepperProps> = ({
         </div>
 
         <input
-          className={`${inputClasses} bodyBase contentPrimary`}
+          className={`${inputClasses} ${backgroundColor} ${textStyle} ${textColor}`}
           type="text"
           inputMode="numeric"
           pattern="[0-9]*"
