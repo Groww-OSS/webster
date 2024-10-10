@@ -1,0 +1,15 @@
+export type ContentMintTokens =
+  | 'contentPrimary'
+  | 'contentSecondary'
+  | 'contentTertiary'
+  | 'contentInversePrimary'
+  | 'contentInverseSecondary'
+  | 'contentAccent'
+  | 'contentNegative'
+  | 'contentWarning'
+  | 'contentPositive'
+  | 'contentDisabled'
+  | 'contentOnColour'
+  | 'contentOnColourInverse'
+  | 'contentAccentSecondary'
+  | 'contentAccentSecondarySubtle';
