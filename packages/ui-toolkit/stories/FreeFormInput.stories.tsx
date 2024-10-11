@@ -128,3 +128,14 @@ WithSuffixIconButton.args = {
   error: { hasError: false, message: '' },
   width: '300px'
 };
+
+
+export const WithOnEnterPress = Template.bind({});
+
+WithOnEnterPress.args = {
+  placeholder: 'Enter text...',
+  value: '',
+  error: { hasError: false, message: '' },
+  onEnterPress: (e) => console.log('Enter pressed'),
+  width: '300px'
+};
