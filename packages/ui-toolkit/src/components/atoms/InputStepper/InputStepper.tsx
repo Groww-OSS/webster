@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import cn from 'classnames';
 import './styles/index.css';
 import { ReactIconComponentType } from '@groww-tech/icon-store/types.d';
@@ -28,7 +28,7 @@ export type InputStepperProps = {
   textStyle?: 'bodyLarge' | 'bodyLargeHeavy';
   backgroundColor?: BackgroundMintTokens;
   textColor?: ContentMintTokens;
-
+  shouldFocusOnMount?: boolean;
 }
 
 
@@ -51,14 +51,24 @@ const InputStepper: React.FC<InputStepperProps> = ({
   onKeyDown,
   textStyle = 'bodyLarge',
   backgroundColor = 'backgroundTransparent',
-  textColor = 'contentPrimary'
+  textColor = 'contentPrimary',
+  shouldFocusOnMount = false
 }) => {
   const [ isFocused, setIsFocused ] = useState(false);
   const [ inputValue, setInputValue ] = useState(value.toString());
 
+  const internalRef = useRef<HTMLInputElement>(null);
+  const inputRef = ref || internalRef;
+
   useEffect(() => {
     setInputValue(value.toString());
   }, [ value ]);
+
+  useEffect(() => {
+    if (shouldFocusOnMount && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [ inputRef, shouldFocusOnMount ]);
 
   const inputClasses = cn('input');
   const inputWrapperClasses = cn('inputWrapper');
@@ -154,7 +164,7 @@ const InputStepper: React.FC<InputStepperProps> = ({
           onBlur={handleBlur}
           disabled={disabled}
           data-testid={dataTestId}
-          ref={ref}
+          ref={inputRef}
           onWheel={handleWheel}
           readOnly={!typable}
           onKeyDown={onKeyDown}
