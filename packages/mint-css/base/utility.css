@@ -131,8 +131,12 @@
   width: 100%;
 }
 
+.height100{
+  height: 100%;
+}
+
 .card {
-  border-radius: 5px;
+  border-radius: 8px;
 }
 
 .clickable-text {
