@@ -1,4 +1,4 @@
-import React, { ReactNode, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import cn from 'classnames';
 import './styles/index.css';
 import {
@@ -12,11 +12,11 @@ import { ReactIconComponentType } from '@groww-tech/icon-store/types.d';
 import { ContentMintTokens } from '../../../types/mint-token-types/content-mint-tokens';
 
 
-
 type SuffixIconButtonProps = {
   icon: ReactIconComponentType;
   onClick: () => void;
 };
+
 export type FreeFormInputProps = {
   placeholder?: string;
   value: string;
@@ -40,7 +40,8 @@ export type FreeFormInputProps = {
   onKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   perfixTextColor?: ContentMintTokens;
   prefixTextStyle?: 'bodyBase' | 'bodyBaseHeavy';
-}
+  onEnterPress?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+};
 
 
 const FreeFormInput: React.FC<FreeFormInputProps> = ({
@@ -65,9 +66,8 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
   autoComplete,
   onKeyUp,
   perfixTextColor = 'contentSecondary',
-  prefixTextStyle = 'bodyBase'
-
-
+  prefixTextStyle = 'bodyBase',
+  onEnterPress
 }) => {
   const [ showClearIcon, setShowClearIcon ] = useState(false);
   const [ isFocused, setIsFocused ] = useState(false);
@@ -88,15 +88,14 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
     }
   };
 
-  const inputContentClasses = cn('inputContent backgroundPrimary contentPrimary borderPrimary',
-    {
-      'inputBorderNegative': error.hasError,
-      'inputClearable': clearable,
-      'inputPrefix': prefixIcon || prefixLabel,
-      'inputSuffix': suffixIcon || (clearable && showClearIcon) || variant === 'password',
-      'inputFocused': isFocused && !disabled && !error.hasError,
-      'backgroundSecondary borderPrimary contentSecondary': disabled
-    });
+  const inputContentClasses = cn('inputContent backgroundPrimary contentPrimary borderPrimary', {
+    'inputBorderNegative': error.hasError,
+    'inputClearable': clearable,
+    'inputPrefix': prefixIcon || prefixLabel,
+    'inputSuffix': suffixIcon || (clearable && showClearIcon) || variant === 'password',
+    'inputFocused': isFocused && !disabled && !error.hasError,
+    'backgroundSecondary borderPrimary contentSecondary': disabled
+  });
 
 
   const handleClear = () => {
@@ -115,6 +114,13 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
   };
 
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (onKeyDown) onKeyDown(e);
+    if (e.key === 'Enter' && onEnterPress) {
+      onEnterPress(e);
+    }
+  };
+
   return (
     <div className={inputWrapperClasses}
       style={{ width: width }}
@@ -122,16 +128,23 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
       {label && <div className='bodySmallHeavy contentSecondary'>{label}</div>}
       <div className={`${inputContentClasses}`}>
         {
-          (prefixIcon || prefixLabel) && <div className='prefixContainer'>
-            {prefixIcon && <div className='inputPrefixIcon'>{prefixIcon}</div>}
-            {prefixLabel && <div className={`inputPrefixLabel ${perfixTextColor} ${prefixTextStyle}`}>{prefixLabel}</div>}
-          </div>
+          (prefixIcon || prefixLabel) && (
+            <div className='prefixContainer'>
+              {prefixIcon && <div className='inputPrefixIcon'>{prefixIcon}</div>}
+              {prefixLabel && <div className={`inputPrefixLabel ${perfixTextColor} ${prefixTextStyle}`}>{prefixLabel}</div>}
+            </div>
+          )
         }
         <input
           className={`${inputClasses} bodyBase contentPrimary`}
           type={
-            variant === 'password' ? (showPassword ? 'text' : 'password')
-            : variant === 'number' ? 'number' : 'text'
+            variant === 'password'
+              ? showPassword
+                ? 'text'
+                : 'password'
+              : variant === 'number'
+                ? 'number'
+                : 'text'
           }
           placeholder={placeholder}
           value={value}
@@ -143,14 +156,13 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
           maxLength={maxLength}
           ref={ref}
           onWheel={handleWheel}
-          onKeyDown={onKeyDown}
+          onKeyDown={handleKeyDown}
           autoComplete={autoComplete}
           onKeyUp={onKeyUp}
         />
         {
           (clearable && showClearIcon) || variant === 'password' || suffixIcon || suffixIconButton ? (
             <div className='suffixContainer'>
-
               {
                 clearable && showClearIcon && (
                   <div className='inputClearIcon'
@@ -171,18 +183,27 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
               }
               {suffixIcon && <div className='inputSuffixIcon'>{suffixIcon}</div>}
               {
-                suffixIconButton && <div className='inputSuffixIcon'> <IconButtonV2
-                  onClick={suffixIconButton.onClick}
-                  Icon={suffixIconButton.icon}
-                />
-                </div>
+                suffixIconButton && (
+                  <div className='inputSuffixIcon'>
+                    <IconButtonV2 onClick={suffixIconButton.onClick}
+                      Icon={suffixIconButton.icon}
+                    />
+                  </div>
+                )
               }
             </div>
           ) : null
         }
       </div>
       {helperText && <div className='contentSecondary bodySmall'>{helperText}</div>}
-      {error.hasError && error.message && <div className='contentNegative inputErrorText bodySmall'><MdsIcError/>{error.message}</div>}
+      {
+        error.hasError && error.message && (
+          <div className='contentNegative inputErrorText bodySmall'>
+            <MdsIcError />
+            {error.message}
+          </div>
+        )
+      }
     </div>
   );
 };
