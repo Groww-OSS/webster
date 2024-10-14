@@ -39,9 +39,6 @@ html {
 
 html[data-theme="dark"] {
   /* Dark theme mapping */
-  --background-primary: var(--black);
-  --background-primary-dark: var(--white);
-
   --background-secondary: var(--gray50);
   --background-tertiary: var(--gray100);
   --background-transparent: var(--overlay00);
