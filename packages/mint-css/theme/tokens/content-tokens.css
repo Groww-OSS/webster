@@ -1,85 +1,34 @@
-.contentPrimary {
-  color: var(--gray900);
-}
-html[data-theme="dark"] .contentPrimary{
-  color: var(--white)
-}
+html {
+  /* Mapping of global colors to content tokens */
+  --content-primary: var(--gray900);
+  --content-secondary: var(--gray700);
+  --content-tertiary: var(--gray500);
 
+  --content-inverse-primary: var(--white);
+  --content-inverse-secondary: var(--gray300);
 
-.contentSecondary {
-  color: var(--gray700);
-}
+  --content-accent: var(--green500);
+  --content-negative: var(--red500);
+  --content-warning: var(--yellow500);
+  --content-positive: var(--green500);
 
+  --content-disabled: var(--gray400);
+  --content-on-colour: var(--white);
+  --content-on-colour-inverse: var(--gray900);
 
-.contentTertiary {
-  color: var(--gray500);
-}
-
-
-.contentInversePrimary {
-  color: var(--white);
-}
-html[data-theme="dark"] .contentInversePrimary{
-  color: var(--black)
+  --content-accent-secondary: var(--purple500);
+  --content-accent-secondary-subtle: var(--purple300);
 }
 
-.contentInverseSecondary {
-  color: var(--gray300);
-}
-html[data-theme="dark"] .contentInverseSecondary{
-  color: var(--gray400)
-}
+html[data-theme="dark"] {
+  /* Dark theme mapping */
+  --content-primary: var(--white);
+  --content-secondary: var(--gray700);
+  --content-tertiary: var(--gray500);
 
+  --content-inverse-primary: var(--black);
+  --content-inverse-secondary: var(--gray400);
 
-/*-------------------------------------------*/
-/*--------------Extended Tokens--------------*/
-/*-------------------------------------------*/
-
-.contentAccent {
-  color: var(--green500);
-}
-
-
-.contentNegative {
-  color: var(--red500);
-}
-
-
-.contentWarning {
-  color: var(--yellow500);
-}
-
-
-.contentPositive {
-  color: var(--green500);
-}
-
-
-.contentDisabled {
-  color: var(--gray400);
-}
-html[data-theme="dark"] .contentDisabled{
-  color: var(--gray500)
-}
-
-
-.contentOnColour {
-  color: var(--white);
-}
-
-
-.contentOnColourInverse {
-  color: var(--gray900);
-}
-html[data-theme="dark"] .contentOnColourInverse{
-  color: var(--black)
-}
-
-.contentAccentSecondary {
-  color: var(--purple500);
-}
-
-
-.contentAccentSecondarySubtle {
-  color: var(--purple300);
+  --content-disabled: var(--gray500);
+  --content-on-colour-inverse: var(--black);
 }

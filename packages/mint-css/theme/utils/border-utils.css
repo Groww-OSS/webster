@@ -1,0 +1,26 @@
+.borderPrimary {
+  border: 1px solid var(--border-primary);
+}
+
+.borderDisabled {
+  border: 1px solid var(--border-disabled);
+}
+
+.borderAccent {
+  border: 1px solid var(--border-accent);
+}
+
+.borderPositive {
+  border: 1px solid var(--border-positive);
+}
+
+.borderNegative {
+  border: 1px solid var(--border-negative);
+}
+
+.borderNeutral {
+  border: 1px solid var(--border-neutral);
+}
+html[data-theme="dark"] .borderNeutral {
+  border: 1px solid var(--border-neutral);
+}

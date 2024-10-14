@@ -1,34 +1,16 @@
-.borderPrimary {
-  border: 1px solid var(--gray150)
+html {
+  /* Mapping of global colors to border tokens */
+  --border-primary: var(--gray150);
+  --border-disabled: var(--gray100);
+  
+  --border-accent: var(--green500);
+  --border-positive: var(--green500);
+  --border-negative: var(--red500);
+  --border-neutral: var(--gray900);
+
+  /* Dark Theme Mapping */
 }
 
-/*-------------------------------------------*/
-/*--------------Extended Tokens--------------*/
-/*-------------------------------------------*/
-
-.borderDisabled {
-  border: 1px solid var(--gray100)
-}
-
-
-.borderAccent {
-  border: 1px solid var(--green500)
-}
-
-
-.borderPositive {
-  border: 1px solid var(--green500)
-}
-
-
-.borderNegative {
-  border: 1px solid var(--red500)
-}
-
-
-.borderNeutral {
-  border: 1px solid var(--gray900)
-}
-html[data-theme="dark"] .borderNeutral {
-  border: 1px solid var(--white);
+html[data-theme="dark"] {
+  --border-neutral: var(--white); /* Dark mode neutral color */
 }
