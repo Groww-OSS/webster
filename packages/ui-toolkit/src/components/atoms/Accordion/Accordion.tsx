@@ -12,8 +12,6 @@ import AnimateHeight from './AnimateHeight';
 
 import './accordion.css';
 import '../../../../node_modules/@groww-tech/mint-css/dist/index.css';
-import './theme.css';
-
 
 
 const Accordion = (props:Props) => {
