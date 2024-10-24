@@ -77,9 +77,9 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
     setShowClearIcon(!!clearable && value.length > 0);
   }, [ clearable, value ]);
 
-  const inputClasses = cn('input');
+  const inputClasses = cn('freeform-input');
 
-  const inputWrapperClasses = cn('inputWrapper');
+  const inputWrapperClasses = cn('freeform-inputWrapper');
 
 
   const handleWheel = (e: React.WheelEvent<HTMLInputElement>) => {
@@ -88,12 +88,12 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
     }
   };
 
-  const inputContentClasses = cn('inputContent backgroundPrimary contentPrimary borderPrimary', {
-    'inputBorderNegative': error.hasError,
-    'inputClearable': clearable,
-    'inputPrefix': prefixIcon || prefixLabel,
-    'inputSuffix': suffixIcon || (clearable && showClearIcon) || variant === 'password',
-    'inputFocused': isFocused && !disabled && !error.hasError,
+  const inputContentClasses = cn('freeform-inputContent backgroundPrimary contentPrimary borderPrimary', {
+    'freeform-inputBorderNegative': error.hasError,
+    'freeform-inputClearable': clearable,
+    'freeform-inputPrefix': prefixIcon || prefixLabel,
+    'freeform-inputSuffix': suffixIcon || (clearable && showClearIcon) || variant === 'password',
+    'freeform-inputFocused': isFocused && !disabled && !error.hasError,
     'backgroundSecondary borderPrimary contentSecondary': disabled
   });
 
@@ -129,9 +129,9 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
       <div className={`${inputContentClasses}`}>
         {
           (prefixIcon || prefixLabel) && (
-            <div className='prefixContainer'>
-              {prefixIcon && <div className='inputPrefixIcon'>{prefixIcon}</div>}
-              {prefixLabel && <div className={`inputPrefixLabel ${perfixTextColor} ${prefixTextStyle}`}>{prefixLabel}</div>}
+            <div className='freeform-prefixContainer'>
+              {prefixIcon && <div className='freeform-inputPrefixIcon'>{prefixIcon}</div>}
+              {prefixLabel && <div className={`freeform-inputPrefixLabel ${perfixTextColor} ${prefixTextStyle}`}>{prefixLabel}</div>}
             </div>
           )
         }
@@ -162,10 +162,10 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
         />
         {
           (clearable && showClearIcon) || variant === 'password' || suffixIcon || suffixIconButton ? (
-            <div className='suffixContainer'>
+            <div className='freeform-suffixContainer'>
               {
                 clearable && showClearIcon && (
-                  <div className='inputClearIcon'
+                  <div className='freeform-inputClearIcon'
                     onClick={handleClear}
                   >
                     <MdsIcCancelCircle />
@@ -174,17 +174,17 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
               }
               {
                 variant === 'password' && (
-                  <div className='inputSuffixIcon'
+                  <div className='freeform-inputSuffixIcon'
                     onClick={togglePasswordVisibility}
                   >
                     {showPassword ? <MdsIcHideEye /> : <MdsIcShowEye />}
                   </div>
                 )
               }
-              {suffixIcon && <div className='inputSuffixIcon'>{suffixIcon}</div>}
+              {suffixIcon && <div className='freeform-inputSuffixIcon'>{suffixIcon}</div>}
               {
                 suffixIconButton && (
-                  <div className='inputSuffixIcon'>
+                  <div className='freeform-inputSuffixIcon'>
                     <IconButtonV2 onClick={suffixIconButton.onClick}
                       Icon={suffixIconButton.icon}
                     />
@@ -198,7 +198,7 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
       {helperText && <div className='contentSecondary bodySmall'>{helperText}</div>}
       {
         error.hasError && error.message && (
-          <div className='contentNegative inputErrorText bodySmall'>
+          <div className='contentNegative freeform-inputErrorText bodyLarge'>
             <MdsIcError />
             {error.message}
           </div>

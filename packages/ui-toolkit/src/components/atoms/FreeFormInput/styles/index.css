@@ -1,4 +1,4 @@
-.inputWrapper {
+.freeform-inputWrapper {
   /* position: relative; */
   display: flex;
   width: 100%;
@@ -8,90 +8,88 @@
   padding: 1px;
 }
 
-
-
-.inputContent {
-    position: relative;
-    display: flex;
-    height: 48px;
-    border-radius: 4px;
-    padding: 12px;
-    gap: 12px;
-}
-  
-
-.inputFocused {
-  border: 2px solid var(--gray900);      /* ----- borderNeutral ----- */
-
-border-radius: 4px;
+.freeform-inputContent {
+  position: relative;
+  display: flex;
+  height: 48px;
+  border-radius: 4px;
+  padding: 0px;
+  gap: 0px;
+  align-items:center ;
 }
 
+.freeform-inputFocused {
+  border: 2px solid var(--gray900); /* ----- borderNeutral ----- */
+  border-radius: 4px;
+}
 
-.input {
+.freeform-input {
   width: 100%;
   font-size: 16px;
   caret-color: var(--green500);
   outline: none; /* Remove focus outline */
   box-shadow: none; /* Remove any focus box-shadow */
   border: none;
-
+  /* background-color: red; */
+  margin-right:12px ;
+  margin-left: 12px;
 }
 
-/* 
-
-.inputClearable {
+/*
+.freeform-inputClearable {
   padding-right: 30px;
 }
 
-.inputPrefix {
+.freeform-inputPrefix {
   padding-left: 24px;
 }
 
-.inputSuffix {
+.freeform-inputSuffix {
   padding-right: 36px;
 } */
 
-.prefixContainer,
-.suffixContainer {
-
+.freeform-prefixContainer,
+.freeform-suffixContainer {
   display: flex;
   align-items: center;
   padding: 0;
-  margin: 0;
+  margin-right:12px ;
+  margin-left: 12px;
+  /* background-color: blue; */
+  height: 100%;
+  gap:12px;
 }
 
+.freeform-inputPrefixIcon,
+.freeform-inputSuffixIcon,
+.freeform-inputClearIcon {
 
-
-.inputPrefixIcon,
-.inputSuffixIcon,
-.inputClearIcon {
-  width: 20px;
-  height: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  
 }
 
-.inputClearIcon {
+.freeform-inputClearIcon {
   cursor: pointer;
 }
 
-
 input::placeholder {
   color: var(--gray500);
-
 }
 
-.inputBorderNeutral{
+.freeform-inputBorderNeutral {
   border: 2px solid var(--gray900);
 }
 
-.inputBorderNegative{
+.freeform-inputBorderNegative {
   border: 2px solid var(--red500);
   border-radius: 4px;
-} 
+}
 
-.inputErrorText{
+.freeform-inputErrorText {
   display: flex;
   gap: 4px;
+  align-items: center;
 }
