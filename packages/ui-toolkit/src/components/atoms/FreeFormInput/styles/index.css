@@ -30,32 +30,16 @@
   outline: none; /* Remove focus outline */
   box-shadow: none; /* Remove any focus box-shadow */
   border: none;
-  /* background-color: red; */
   margin-right:12px ;
   margin-left: 12px;
 }
 
-/*
-.freeform-inputClearable {
-  padding-right: 30px;
-}
-
-.freeform-inputPrefix {
-  padding-left: 24px;
-}
-
-.freeform-inputSuffix {
-  padding-right: 36px;
-} */
-
-.freeform-prefixContainer,
 .freeform-suffixContainer {
   display: flex;
   align-items: center;
   padding: 0;
-  margin-right:12px ;
-  margin-left: 12px;
-  /* background-color: blue; */
+  margin-right:8px ;
+  margin-left: 8px;
   height: 100%;
   gap:12px;
 }
@@ -63,11 +47,11 @@
 .freeform-inputPrefixIcon,
 .freeform-inputSuffixIcon,
 .freeform-inputClearIcon {
-
+  margin: 0;
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
   
 }
 
@@ -92,4 +76,13 @@ input::placeholder {
   display: flex;
   gap: 4px;
   align-items: center;
+}
+
+.freeform-prefixContainer{
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  margin-left:12px ;
 }
