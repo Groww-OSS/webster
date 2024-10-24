@@ -70,8 +70,8 @@ const InputStepper: React.FC<InputStepperProps> = ({
     }
   }, [ inputRef, shouldFocusOnMount ]);
 
-  const inputClasses = cn('input');
-  const inputWrapperClasses = cn('inputWrapper');
+  const inputClasses = cn('inputStepper-input');
+  const inputWrapperClasses = cn('inputStepper-inputWrapper');
 
 
   const handleWheel = (e: React.WheelEvent<HTMLInputElement>) => {
@@ -79,13 +79,13 @@ const InputStepper: React.FC<InputStepperProps> = ({
   };
 
   const inputContentClasses = cn(
-    `inputContent borderPrimary ${backgroundColor} ${textStyle} ${textColor}`,
+    `inputStepper-inputContent borderPrimary ${backgroundColor} ${textStyle} ${textColor}`,
     {
-      'inputBorderNegative': error,
-      'inputBorderWarning': warning,
-      'inputPrefix': prefixIcon || prefixLabel,
-      'inputFocused': isFocused && !disabled && !error,
-      'backgroundSecondary borderPrimary contentSecondary': disabled
+      'inputStepper-inputBorderNegative': error,
+      'inputStepper-inputBorderWarning': warning,
+      'inputStepper-inputPrefix': prefixIcon || prefixLabel,
+      'inputStepper-inputFocused': isFocused && !disabled && !error,
+      'inputStepper-backgroundSecondary inputStepper-borderPrimary inputStepper-contentSecondary': disabled
     }
   );
 
@@ -143,7 +143,7 @@ const InputStepper: React.FC<InputStepperProps> = ({
       style={{ width: width }}
     >
       <div className={`${inputContentClasses}`}>
-        <div className="prefixContainer">
+        <div className="inputStepper-prefixContainer">
           <IconButtonV2
             onClick={handleMinus}
             Icon={MdsIcRemoveMinus}
@@ -170,7 +170,7 @@ const InputStepper: React.FC<InputStepperProps> = ({
           onKeyDown={onKeyDown}
         />
 
-        <div className="suffixContainer">
+        <div className="inputStepper-suffixContainer">
           <IconButtonV2
             onClick={handlePlus}
             Icon={MdsIcAddPlus}
