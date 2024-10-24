@@ -1,70 +1,60 @@
-  .inputContent {
-      position: relative;
-      display: flex;
-      height: 48px;
-      border-radius: 4px;
-      gap: 4px;
-      padding-top: 12px;
-      padding-bottom: 12px;
-      padding-left: 4px;
-      padding-right: 4px;
-  }
-    
-  
-  .inputFocused {
-    border: 2px solid var(--gray900);      /* ----- borderNeutral ----- */
-    border-radius: 4px;
-  }
-  
-  
-  .input {
-    width: 100%;
-    font-size: 16px;
-    caret-color: var(--green500);
-    outline: none; /* Remove focus outline */
-    box-shadow: none; /* Remove any focus box-shadow */
-    border: none;
-    text-align: right;
-    text-overflow: ellipsis;
-    
-  }
-  
-  .prefixContainer {
-  
-    display: flex;
-    align-items: center;
-    padding: 0;
-    margin: 0;
-  }
-  
-  
-  
-  .inputPrefixIcon {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
+.datarow-inputContent {
+  position: relative;
+  display: flex;
+  height: 48px;
+  border-radius: 4px;
+  gap: 8px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
 
-  
-  
-  input::placeholder {
-    color: var(--gray500);
-  
-  }
-  
-  .inputBorderNeutral{
-    border: 2px solid var(--gray900);
-  }
-  
-  .inputBorderNegative{
-    border: 2px solid var(--red500);
-    border-radius: 4px;
-  } 
-  
-  .inputBorderWarning{
-    border: 2px solid var(--yellow500);
-    border-radius: 4px;
-  } 
+.datarow-inputFocused {
+  border: 2px solid var(--gray900);      /* ----- borderNeutral ----- */
+  border-radius: 4px;
+}
+
+.datarow-input {
+  width: 100%;
+  font-size: 16px;
+  caret-color: var(--green500);
+  outline: none; /* Remove focus outline */
+  box-shadow: none; /* Remove any focus box-shadow */
+  border: none;
+  text-align: right;
+  text-overflow: ellipsis;
+}
+
+.datarow-prefixContainer {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+.datarow-inputPrefixIcon {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+input::placeholder {
+  color: var(--gray500);
+}
+
+.datarow-inputBorderNeutral {
+  border: 2px solid var(--gray900);
+}
+
+.datarow-inputBorderNegative {
+  border: 2px solid var(--red500);
+  border-radius: 4px;
+}
+
+.datarow-inputBorderWarning {
+  border: 2px solid var(--yellow500);
+  border-radius: 4px;
+}

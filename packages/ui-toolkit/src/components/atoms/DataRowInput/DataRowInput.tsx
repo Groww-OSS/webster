@@ -53,8 +53,8 @@ const DataRowInput: React.FC<DataRowInputProps> = ({
 }) => {
   const [ isFocused, setIsFocused ] = useState(false);
 
-  const inputClasses = cn('input');
-  const inputWrapperClasses = cn('inputWrapper');
+  const inputClasses = cn('datarow-input');
+  const inputWrapperClasses = cn('datarow-inputWrapper');
 
 
   const handleWheel = (e: React.WheelEvent<HTMLInputElement>) => {
@@ -70,12 +70,12 @@ const DataRowInput: React.FC<DataRowInputProps> = ({
     onKeyDown && onKeyDown(e);
   };
 
-  const inputContentClasses = cn(`inputContent borderPrimary ${backgroundColor} ${textStyle} ${textColor}`, {
-    'inputBorderNegative': error,
-    'inputBorderWarning': warning,
-    'inputPrefix': prefixIcon || prefixLabel,
-    'inputFocused': isFocused && !disabled && !error,
-    'backgroundSecondary borderPrimary contentSecondary': disabled
+  const inputContentClasses = cn(`datarow-inputContent borderPrimary ${backgroundColor} ${textStyle} ${textColor}`, {
+    'datarow-inputBorderNegative': error,
+    'datarow-inputBorderWarning': warning,
+    'datarow-inputPrefix': prefixIcon || prefixLabel,
+    'datarow-inputFocused': isFocused && !disabled && !error,
+    'datarow-backgroundSecondary datarow-borderPrimary datarow-contentSecondary': disabled
   });
 
   return (
@@ -85,14 +85,14 @@ const DataRowInput: React.FC<DataRowInputProps> = ({
       <div className={`${inputContentClasses}`}>
         {
           (prefixIcon || prefixLabel) && (
-            <div className='prefixContainer'>
-              {prefixIcon && <div className='inputPrefixIcon'>{prefixIcon}</div>}
-              {prefixLabel && <div className={`inputPrefixLabel ${perfixTextColor}`}>{prefixLabel}</div>}
+            <div className='datarow-prefixContainer'>
+              {prefixIcon && <div className='datarow-inputPrefixIcon'>{prefixIcon}</div>}
+              {prefixLabel && <div className={`datarow-inputPrefixLabel ${perfixTextColor}`}>{prefixLabel}</div>}
             </div>
           )
         }
         <input
-          className={`${inputClasses} ${textColor} contentPrimary`}
+          className={`${inputClasses} ${textColor} datarow-contentPrimary`}
           type="number"
           placeholder={placeholder}
           value={value}
