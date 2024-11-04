@@ -137,7 +137,7 @@ const Toaster = (props: ToasterProps) => {
   //sum of all toast height with position top right + gap
   let sumOfTopRightToastsHeight = topRightToastsHeightArray.reduce((a, b) => { return a + b.height; }, 0);
 
-  sumOfTopRightToastsHeight = sumOfTopRightToastsHeight + (topRightToastsHeightArray.length) * gap;
+  sumOfTopRightToastsHeight = sumOfTopRightToastsHeight + (topRightToastsHeightArray.length - 1) * gap;
   sumOfTopRightToastsHeight = typeof sumOfTopRightToastsHeight === 'number' ? Math.ceil(sumOfTopRightToastsHeight) : sumOfTopRightToastsHeight;
 
   const expandedViewStyle: CSSProperties = expanded ? { height: `${sumOfTopRightToastsHeight}px`, overflow: 'scroll', backdropFilter: 'blur(4px)' } : {};
@@ -156,11 +156,14 @@ const Toaster = (props: ToasterProps) => {
 
     return (
       <div
-        className='contentSecondary backgroundSecondary borderPrimary clear-all'
+        className='backgroundSecondary borderPrimary clear-all'
         data-toaster-clear-all
         onClick={removeAllToasts}
         data-y-position={yPosition}
         data-x-position={xPosition}
+        onMouseEnter={() => setExpanded(true)}
+        onMouseMove={() => setExpanded(true)}
+        onMouseLeave={() => setExpanded(false)}
         style={
           {
             '--offset': VIEWPORT_OFFSET,
@@ -201,6 +204,7 @@ const Toaster = (props: ToasterProps) => {
                     '--width': `${TOAST_WIDTH}px`,
                     '--gap': `${gap}px`,
                     maxHeight: '95vh',
+                    borderRadius: 8,
                     ...expandedViewStyle
                   } as CSSProperties
                 }
