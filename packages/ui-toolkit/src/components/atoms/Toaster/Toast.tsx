@@ -9,8 +9,8 @@ import React, {
   CSSProperties
 } from 'react';
 
-import { getAsset, CloseIcon } from './assets';
-import { useIsDocumentHidden } from './hooks';
+import { getAsset, CloseIcon } from './utils/assets';
+import { useIsDocumentHidden } from './utils/hooks';
 import { HeightT, ToastProps } from './types';
 
 import './styles.css';
