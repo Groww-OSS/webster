@@ -7,7 +7,7 @@ const Dialog = (props: Props) => {
       ? props.enterAnimation
       : props.leaveAnimation) || props.animation;
 
-  const className = `rodal-dialog rodal-${animation}-${props.animationType} backgroundSurfacePrimary`;
+  const className = `rodal-dialog rodal-${animation}-${props.animationType}`;
 
   const { width, height, duration, customStyles } = props;
 
