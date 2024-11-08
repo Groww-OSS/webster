@@ -30,6 +30,7 @@
   margin: auto;
   z-index: 10001;
   padding: 0;
+  background: none;
   border-radius: 3px;
   display: flex;
   align-items: center;
