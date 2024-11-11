@@ -70,12 +70,12 @@ const DataRowInput: React.FC<DataRowInputProps> = ({
     onKeyDown && onKeyDown(e);
   };
 
-  const inputContentClasses = cn(`datarow-inputContent borderPrimary ${backgroundColor} ${textStyle} ${textColor}`, {
+  const inputContentClasses = cn(`datarow-inputContent ${backgroundColor} ${textStyle} ${textColor}`, {
     'datarow-inputBorderNegative': error,
     'datarow-inputBorderWarning': warning,
     'datarow-inputPrefix': prefixIcon || prefixLabel,
     'datarow-inputFocused': isFocused && !disabled && !error,
-    'datarow-backgroundSecondary datarow-borderPrimary datarow-contentSecondary': disabled
+    'datarow-backgroundSecondary contentSecondary': disabled
   });
 
   return (

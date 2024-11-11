@@ -88,13 +88,13 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
     }
   };
 
-  const inputContentClasses = cn('freeform-inputContent backgroundPrimary contentPrimary borderPrimary', {
+  const inputContentClasses = cn('freeform-inputContent backgroundPrimary contentPrimary', {
     'freeform-inputBorderNegative': error.hasError,
     'freeform-inputClearable': clearable,
     'freeform-inputPrefix': prefixIcon || prefixLabel,
     'freeform-inputSuffix': suffixIcon || (clearable && showClearIcon) || variant === 'password',
     'freeform-inputFocused': isFocused && !disabled && !error.hasError,
-    'backgroundSecondary borderPrimary contentSecondary': disabled
+    'backgroundSecondary contentSecondary': disabled
   });
 
 

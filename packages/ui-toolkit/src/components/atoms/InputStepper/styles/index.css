@@ -8,6 +8,8 @@
   padding-bottom: 12px;
   padding-left: 4px;
   padding-right: 4px;
+  border: 2px solid var(--gray150);
+
 }
   
 .inputStepper-inputFocused {
