@@ -79,13 +79,13 @@ const InputStepper: React.FC<InputStepperProps> = ({
   };
 
   const inputContentClasses = cn(
-    `inputStepper-inputContent borderPrimary ${backgroundColor} ${textStyle} ${textColor}`,
+    `inputStepper-inputContent ${backgroundColor} ${textStyle} ${textColor}`,
     {
       'inputStepper-inputBorderNegative': error,
       'inputStepper-inputBorderWarning': warning,
       'inputStepper-inputPrefix': prefixIcon || prefixLabel,
       'inputStepper-inputFocused': isFocused && !disabled && !error,
-      'inputStepper-backgroundSecondary inputStepper-borderPrimary inputStepper-contentSecondary': disabled
+      'backgroundSecondary contentSecondary': disabled
     }
   );
 
