@@ -198,8 +198,8 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
       {helperText && <div className='contentSecondary bodySmall'>{helperText}</div>}
       {
         error.hasError && error.message && (
-          <div className='contentNegative freeform-inputErrorText bodyLarge'>
-            <MdsIcError />
+          <div className='contentNegative freeform-inputErrorText bodySmall'>
+            <MdsIcError size={16}/>
             {error.message}
           </div>
         )
