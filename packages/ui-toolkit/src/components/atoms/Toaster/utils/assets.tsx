@@ -1,28 +1,27 @@
 import React from 'react';
 
 import {
-  CheckCircle,
-  Error,
-  Info,
-  Cancel,
-  Close
-} from '@groww-tech/icon-store/mi';
+  MdsIcCheckCircleSelected,
+  MdsIcError,
+  MdsIcInfo,
+  MdsIcCancelCircle
+} from '@groww-tech/icon-store/mint-icons';
 
 import { ToastTypes } from '../types';
 
 export const getAsset = (type: ToastTypes): JSX.Element | null => {
   switch (type) {
     case 'success':
-      return <CheckCircle size={22} />;
+      return <MdsIcCheckCircleSelected size={22} />;
 
     case 'info':
-      return <Info size={22} />;
+      return <MdsIcInfo size={22} />;
 
     case 'warning':
-      return <Error size={22} />;
+      return <MdsIcError size={22} />;
 
     case 'error':
-      return <Cancel size={22} />;
+      return <MdsIcCancelCircle size={22} />;
 
     case 'default':
 
@@ -30,5 +29,3 @@ export const getAsset = (type: ToastTypes): JSX.Element | null => {
       return null;
   }
 };
-
-export const CloseIcon = () => <Close size={12} />;

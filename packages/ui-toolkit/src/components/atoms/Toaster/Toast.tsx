@@ -9,7 +9,9 @@ import React, {
   CSSProperties
 } from 'react';
 
-import { getAsset, CloseIcon } from './utils/assets';
+import { MdsIcCloseCross as CloseIcon } from '@groww-tech/icon-store/mint-icons';
+
+import { getAsset } from './utils/assets';
 import { useIsDocumentHidden } from './utils/hooks';
 import { HeightT, ToastProps } from './types';
 
@@ -242,7 +244,7 @@ const Toast = (props: ToastProps) => {
             }
             className='borderPrimary contentPrimary'
           >
-            <CloseIcon />
+            <CloseIcon size={12} />
           </button>
         ) : null
       }
