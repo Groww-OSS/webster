@@ -49,7 +49,7 @@ const DataRowInput: React.FC<DataRowInputProps> = ({
   textStyle = 'bodyLarge',
   textColor = 'contentPrimary',
   perfixTextColor = 'contentSecondary',
-  backgroundColor = 'backgroundTransparent'
+  backgroundColor = 'backgroundPrimary'
 }) => {
   const [ isFocused, setIsFocused ] = useState(false);
 
@@ -70,13 +70,17 @@ const DataRowInput: React.FC<DataRowInputProps> = ({
     onKeyDown && onKeyDown(e);
   };
 
-  const inputContentClasses = cn(`datarow-inputContent ${backgroundColor} ${textStyle} ${textColor} borderPrimary`, {
-    'datarow-inputBorderNegative': error,
-    'datarow-inputBorderWarning': warning,
-    'datarow-inputPrefix': prefixIcon || prefixLabel,
-    'datarow-inputFocused': isFocused && !disabled && !error,
-    'datarow-backgroundSecondary contentSecondary': disabled
-  });
+  const inputContentClasses = cn(
+    `datarow-inputContent ${textStyle} ${textColor} borderPrimary`,
+    {
+      [backgroundColor]: !disabled,
+      'datarow-inputBorderNegative': error,
+      'datarow-inputBorderWarning': warning,
+      'datarow-inputPrefix': prefixIcon || prefixLabel,
+      'datarow-inputFocused': isFocused && !disabled && !error,
+      'backgroundSecondary contentSecondary': disabled
+    }
+  );
 
   return (
     <div className={inputWrapperClasses}
