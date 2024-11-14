@@ -88,7 +88,8 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
     }
   };
 
-  const inputContentClasses = cn('freeform-inputContent backgroundPrimary contentPrimary borderPrimary', {
+  const inputContentClasses = cn('freeform-inputContent contentPrimary borderPrimary', {
+    'backgroundPrimary': !disabled,
     'freeform-inputBorderNegative': error.hasError,
     'freeform-inputClearable': clearable,
     'freeform-inputPrefix': prefixIcon || prefixLabel,

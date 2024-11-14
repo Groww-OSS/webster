@@ -24,6 +24,7 @@
   border: none;
   text-align: right;
   text-overflow: ellipsis;
+  background: transparent;
 }
 
 .datarow-prefixContainer {

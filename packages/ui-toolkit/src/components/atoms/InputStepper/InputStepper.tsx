@@ -79,8 +79,9 @@ const InputStepper: React.FC<InputStepperProps> = ({
   };
 
   const inputContentClasses = cn(
-    `inputStepper-inputContent ${backgroundColor} ${textStyle} ${textColor} borderPrimary`,
+    `inputStepper-inputContent ${textStyle} ${textColor} borderPrimary`,
     {
+      [backgroundColor]: !disabled,
       'inputStepper-inputBorderNegative': error,
       'inputStepper-inputBorderWarning': warning,
       'inputStepper-inputPrefix': prefixIcon || prefixLabel,
