@@ -1,5 +1,4 @@
 .freeform-inputWrapper {
-  /* position: relative; */
   display: flex;
   width: 100%;
   border: none;
@@ -19,9 +18,11 @@
 }
 
 .freeform-inputFocused {
-  border: 2px solid var(--gray900); /* ----- borderNeutral ----- */
-  border-radius: 4px;
+  outline-offset: -1px;
+  outline: 2px solid var(--gray900);
 }
+
+
 
 .freeform-input {
   width: 100%;
