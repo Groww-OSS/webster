@@ -16,7 +16,6 @@
   padding: 0px;
   gap: 0px;
   align-items:center ;
-  border: 2px solid var(--gray150);
 }
 
 .freeform-inputFocused {

@@ -70,7 +70,7 @@ const DataRowInput: React.FC<DataRowInputProps> = ({
     onKeyDown && onKeyDown(e);
   };
 
-  const inputContentClasses = cn(`datarow-inputContent ${backgroundColor} ${textStyle} ${textColor}`, {
+  const inputContentClasses = cn(`datarow-inputContent ${backgroundColor} ${textStyle} ${textColor} borderPrimary`, {
     'datarow-inputBorderNegative': error,
     'datarow-inputBorderWarning': warning,
     'datarow-inputPrefix': prefixIcon || prefixLabel,
