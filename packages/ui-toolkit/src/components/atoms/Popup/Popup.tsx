@@ -4,12 +4,13 @@ import Rodal from './Rodal/Rodal';
 
 export const RESPONSIVE_POPUP_STYLES = {
   display: 'block',
+  background: 'var(--dangerouslySetPrimaryBg)',
   borderTopLeftRadius: '7px',
   borderTopRightRadius: '7px',
   marginBottom: '0px',
   width: '100%',
   height: 'fit-content',
-  padding: 16
+  padding: 15
 };
 
 class Popup extends React.PureComponent<Props> {
