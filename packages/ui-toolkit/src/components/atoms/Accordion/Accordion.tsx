@@ -11,7 +11,6 @@ import { KeyboardArrowDown } from '@groww-tech/icon-store/mi';
 import AnimateHeight from './AnimateHeight';
 
 import './accordion.css';
-import '../../../../node_modules/@groww-tech/mint-css/dist/index.css';
 
 
 const Accordion = (props:Props) => {
