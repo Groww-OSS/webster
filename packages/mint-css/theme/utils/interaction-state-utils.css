@@ -1,0 +1,81 @@
+.backgroundTransparentHover:hover {
+  background-color: var(--hover-background-transparent);
+}
+
+.backgroundAccentHover:hover {
+  background-color: var(--hover-background-accent);
+}
+
+.backgroundAccentSubtleHover:hover {
+  background-color: var(--hover-background-accent-subtle);
+}
+
+.backgroundTransparentAccentHover:hover {
+  background-color: var(--hover-background-transparent-accent);
+}
+
+.backgroundPositiveHover:hover {
+  background-color: var(--hover-background-positive);
+}
+
+.backgroundPositiveSubtleHover:hover {
+  background-color: var(--hover-background-positive-subtle);
+}
+
+.backgroundTransparentPositiveHover:hover {
+  background-color: var(--hover-background-transparent-positive);
+}
+
+.backgroundNegativeHover:hover {
+  background-color: var(--hover-background-negative);
+}
+
+.backgroundNegativeSubtleHover:hover {
+  background-color: var(--hover-background-negative-subtle);
+}
+
+.backgroundTransparentNegativeHover:hover {
+  background-color: var(--hover-background-transparent-negative);
+}
+
+/* ---------- Selected State ---------- */
+
+.backgroundTransparentSelected:active {
+  background-color: var(--selected-background-transparent);
+}
+
+.backgroundAccentSelected:active {
+  background-color: var(--selected-background-accent);
+}
+
+.backgroundAccentSubtleSelected:active {
+  background-color: var(--selected-background-accent-subtle);
+}
+
+.backgroundTransparentAccentSelected:active {
+  background-color: var(--selected-background-transparent-accent);
+}
+
+.backgroundPositiveSelected:active {
+  background-color: var(--selected-background-positive);
+}
+
+.backgroundPositiveSubtleSelected:active {
+  background-color: var(--selected-background-positive-subtle);
+}
+
+.backgroundTransparentPositiveSelected:active {
+  background-color: var(--selected-background-transparent-positive);
+}
+
+.backgroundNegativeSelected:active {
+  background-color: var(--selected-background-negative);
+}
+
+.backgroundNegativeSubtleSelected:active {
+  background-color: var(--selected-background-negative-subtle);
+}
+
+.backgroundTransparentNegativeSelected:active {
+  background-color: var(--selected-background-transparent-negative);
+}

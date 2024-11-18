@@ -1,117 +1,74 @@
-.backgroundPrimary {
-  background-color: var(--white);
-}
-html[data-theme="dark"] .backgroundPrimary{
-  background-color: var(--black);
-}
+html {
+  /* Mapping of global colors to background tokens */
+  --background-primary: var(--white);
+  --background-primary-dark: var(--black);
 
+  --background-secondary: var(--gray50);
+  --background-tertiary: var(--gray100);
+  --background-transparent: var(--overlay00);
 
-.backgroundSecondary {
-  background-color: var(--gray50);
-}
+  --background-surface-primary: var(--white);
+  --background-surface-primary-dark: var(--gray50);
 
+  --background-surface-secondary: var(--gray50);
+  --background-surface-secondary-dark: var(--gray100);
 
-.backgroundTertiary {
-  background-color: var(--gray100);
-}
+  --background-inverse-primary: var(--gray900);
+  --background-inverse-primary-dark: var(--white);
 
+  --background-overlay-primary: var(--overlay70);
+  --background-overlay-secondary: var(--overlay30);
 
-.backgroundTransparent {
-  background-color: var(--overlay00);
-}
+  --background-always-dark: var(--black);
+  --background-always-light: var(--white);
 
+  /* Extended Tokens Mapping */
+  --background-accent: var(--green500);
+  --background-positive: var(--green500);
+  --background-negative: var(--red500);
+  --background-warning: var(--yellow500);
 
-.backgroundSurfacePrimary {
-  background-color: var(--white);
-}
-html[data-theme="dark"] .backgroundSurfacePrimary {
-  background-color: var(--gray50);
-}
+  --background-accent-subtle: var(--green100);
+  --background-positive-subtle: var(--green100);
+  --background-negative-subtle: var(--red100);
+  --background-warning-subtle: var(--yellow100);
 
-
-.backgroundSurfaceSecondary {
-  background-color: var(--gray50);
-}
-html[data-theme="dark"] .backgroundSurfaceSecondary {
-  background-color: var(--gray100)
-}
-
-
-.backgroundInversePrimary {
-  background-color: var(--gray900);
-}
-html[data-theme="dark"] .backgroundInversePrimary{
-  background-color: var(--white);
+  --background-accent-secondary: var(--purple500);
+  --background-accent-secondary-subtle: var(--purple100);
 }
 
+html[data-theme="dark"] {
+  /* Dark theme mapping */
+  --background-secondary: var(--gray50);
+  --background-tertiary: var(--gray100);
+  --background-transparent: var(--overlay00);
 
-.backgroundOverlayPrimary {
-  background-color: var(--overlay70);
-}
+  --background-surface-primary: var(--gray50);
+  --background-surface-primary-dark: var(--gray100);
 
+  --background-surface-secondary: var(--gray100);
+  --background-surface-secondary-dark: var(--gray200);
 
-.backgroundOverlaySecondary {
-  background-color: var(--overlay30);
-}
+  --background-inverse-primary: var(--white);
+  --background-inverse-primary-dark: var(--gray900);
 
-.backgroundAlwaysDark {
-  background-color: var(--black);
-}
+  --background-overlay-primary: var(--overlay70);
+  --background-overlay-secondary: var(--overlay30);
 
-.backgroundAlwaysLight {
-  background-color: var(--white);
-}
+  --background-always-dark: var(--black);
+  --background-always-light: var(--white);
 
+  /* Extended Tokens Dark Theme */
+  --background-accent: var(--green500);
+  --background-positive: var(--green500);
+  --background-negative: var(--red500);
+  --background-warning: var(--yellow500);
 
-/*-------------------------------------------*/
-/*--------------Extended Tokens--------------*/
-/*-------------------------------------------*/
+  --background-accent-subtle: var(--green100);
+  --background-positive-subtle: var(--green100);
+  --background-negative-subtle: var(--red100);
+  --background-warning-subtle: var(--yellow100);
 
-.backgroundAccent {
-  background-color: var(--green500);
-}
-
-
-.backgroundPositive {
-  background-color: var(--green500);
-}
-
-
-.backgroundNegative {
-  background-color: var(--red500);
-}
-
-
-.backgroundWarning {
-  background-color: var(--yellow500);
-}
-
-
-.backgroundAccentSubtle {
-  background-color: var(--green100);
-}
-
-
-.backgroundPositiveSubtle {
-  background-color: var(--green100);
-}
-
-
-.backgroundNegativeSubtle {
-  background-color: var(--red100);
-}
-
-
-.backgroundWarningSubtle {
-  background-color: var(--yellow100);
-}
-
-
-.backgroundAccentSecondary {
-  background-color: var(--purple500);
-}
-
-
-.backgroundAccentSecondarySubtle {
-  background-color: var(--purple100);
+  --background-accent-secondary: var(--purple500);
+  --background-accent-secondary-subtle: var(--purple100);
 }
