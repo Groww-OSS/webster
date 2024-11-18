@@ -7,23 +7,62 @@ module.exports = function(fileInfo, api) {
 
   // Full map of primitive variables to semantic variables
   const variableMap = {
-    '--white': '--background-always-light',
-    '--black': '--background-always-dark',
+    '--white': '--background-primary',
+    '--black': '--background-primary-dark',
     '--gray50': '--background-secondary',
     '--gray100': '--background-tertiary',
-    '--gray900': '--background-inverse-primary',
-    '--overlay00': '--background-transparent',
+    '--overlay00': ' --background-transparent',
     '--overlay70': '--background-overlay-primary',
     '--overlay30': '--background-overlay-secondary',
-    '--green500': '--background-accent',
+
     '--green100': '--background-accent-subtle',
-    '--red500': '--background-negative',
     '--red100': '--background-negative-subtle',
-    '--yellow500': '--background-warning',
     '--yellow100': '--background-warning-subtle',
-    '--purple500': '--background-accent-secondary',
-    '--purple100': '--background-accent-secondary-subtle'
-    // Add any additional mappings here as needed
+
+    '--purple100': '--background-accent-secondary-subtle',
+
+    '--gray150': '--border-primary',
+    '--gray100': '--border-disabled',
+
+
+    '--gray900': '--content-primary',
+    '--gray700': '--content-secondary',
+    '--gray500': '--content-tertiary',
+
+    '--gray300': '--content-inverse-secondary',
+
+    '--green500': '--content-accent',
+    '--red500': '--content-negative',
+    '--yellow500': '--content-warning',
+
+    '--gray400': '--content-disabled',
+
+    '--purple500': '--content-accent-secondary',
+    '--purple300': '--content-accent-secondary-subtle',
+
+    '--bg-transparent-hover': '--hover-background-transparent',
+    '--bg-accent-hover': '--hover-background-accent',
+    '--bg-accent-subtle-hover': '--hover-background-accent-subtle',
+    '--bg-transparent-accent-hover': '--hover-background-transparent-accent',
+    '--bg-positive-hover': '--hover-background-positive',
+    '--bg-positive-subtle-hover': '--hover-background-positive-subtle',
+    '--bg-transparent-positive-hover': '--hover-background-transparent-positive',
+    '--bg-negative-hover': '--hover-background-negative',
+    '--bg-negative-subtle-hover': '--hover-background-negative-subtle',
+    '--bg-transparent-negative-hover': '--hover-background-transparent-negative',
+
+    '--bg-transparent-selected': '--selected-background-transparent',
+    '--bg-accent-selected': '--selected-background-accent',
+    '--bg-accent-subtle-selected': '--selected-background-accent-subtle',
+    '--bg-transparent-accent-selected': '--selected-background-transparent-accent',
+    '--bg-positive-selected': '--selected-background-positive',
+    '--bg-positive-subtle-selected': '--selected-background-positive-subtle',
+    '--bg-transparent-positive-selected': '--selected-background-transparent-positive',
+    '--bg-negative-selected': '--selected-background-negative',
+    '--bg-negative-subtle-selected': '--selected-background-negative-subtle',
+    '--bg-transparent-negative-selected': '--selected-background-transparent-negative'
+
+
   };
 
   // Replace each occurrence of primitive variables with the semantic variable
