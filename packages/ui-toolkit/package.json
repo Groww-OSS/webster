@@ -63,7 +63,8 @@
     "lint:types": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "pushTags": "PACKAGE_VERSION=$(cat package.json | grep \\\"version\\\" | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && git tag -a v$PACKAGE_VERSION -m \"@groww-tech/ui-toolkit-v$PACKAGE_VERSION\" && git push --tags"
+    "pushTags": "PACKAGE_VERSION=$(cat package.json | grep \\\"version\\\" | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && git tag -a v$PACKAGE_VERSION -m \"@groww-tech/ui-toolkit-v$PACKAGE_VERSION\" && git push --tags",
+    "replace-variables": "find src \\( -name '*.css' -o -name '*.tsx' \\) \\! -path '*/.storybook/*' \\! -path '*/dist/*' \\! -path '*/storybook-static/*' \\! -name 'rollup.config.js' | xargs jscodeshift -t replaceVariables.js"
   },
   "peerDependencies": {
     "classnames": "2.2.6",
