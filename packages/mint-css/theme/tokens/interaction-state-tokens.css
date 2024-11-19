@@ -23,9 +23,3 @@ html {
     --selected-background-negative-subtle: var(--bg-negative-subtle-selected);
     --selected-background-transparent-negative: var(--bg-transparent-negative-selected);
   }
-  
-  html[data-theme="dark"] {
-    /* Dark theme tokens can be overridden if needed */
-    --hover-background-transparent: var(--bg-transparent-hover); 
-  }
-  

@@ -1,9 +1,6 @@
 .contentPrimary {
   color: var(--content-primary);
 }
-html[data-theme="dark"] .contentPrimary {
-  color: var(--content-primary);
-}
 
 .contentSecondary {
   color: var(--content-secondary);
@@ -16,18 +13,11 @@ html[data-theme="dark"] .contentPrimary {
 .contentInversePrimary {
   color: var(--content-inverse-primary);
 }
-html[data-theme="dark"] .contentInversePrimary {
-  color: var(--content-inverse-primary);
-}
 
 .contentInverseSecondary {
   color: var(--content-inverse-secondary);
 }
-html[data-theme="dark"] .contentInverseSecondary {
-  color: var(--content-inverse-secondary);
-}
 
-/* Extended Tokens */
 .contentAccent {
   color: var(--content-accent);
 }
@@ -47,18 +37,12 @@ html[data-theme="dark"] .contentInverseSecondary {
 .contentDisabled {
   color: var(--content-disabled);
 }
-html[data-theme="dark"] .contentDisabled {
-  color: var(--content-disabled);
-}
 
 .contentOnColour {
   color: var(--content-on-colour);
 }
 
 .contentOnColourInverse {
-  color: var(--content-on-colour-inverse);
-}
-html[data-theme="dark"] .contentOnColourInverse {
   color: var(--content-on-colour-inverse);
 }
 
