@@ -21,6 +21,3 @@
 .borderNeutral {
   border: 1px solid var(--border-neutral);
 }
-html[data-theme="dark"] .borderNeutral {
-  border: 1px solid var(--border-neutral);
-}

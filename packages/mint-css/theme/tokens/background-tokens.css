@@ -1,20 +1,14 @@
 html {
-  /* Mapping of global colors to background tokens */
+  /* Base Theme */
   --background-primary: var(--white);
-  --background-primary-dark: var(--black);
-
   --background-secondary: var(--gray50);
   --background-tertiary: var(--gray100);
   --background-transparent: var(--overlay00);
 
   --background-surface-primary: var(--white);
-  --background-surface-primary-dark: var(--gray50);
-
   --background-surface-secondary: var(--gray50);
-  --background-surface-secondary-dark: var(--gray100);
 
   --background-inverse-primary: var(--gray900);
-  --background-inverse-primary-dark: var(--white);
 
   --background-overlay-primary: var(--overlay70);
   --background-overlay-secondary: var(--overlay30);
@@ -22,7 +16,7 @@ html {
   --background-always-dark: var(--black);
   --background-always-light: var(--white);
 
-  /* Extended Tokens Mapping */
+  /* Extended Tokens */
   --background-accent: var(--green500);
   --background-positive: var(--green500);
   --background-negative: var(--red500);
@@ -38,37 +32,8 @@ html {
 }
 
 html[data-theme="dark"] {
-  /* Dark theme mapping */
-  --background-secondary: var(--gray50);
-  --background-tertiary: var(--gray100);
-  --background-transparent: var(--overlay00);
-
+  --background-primary: var(--black);
   --background-surface-primary: var(--gray50);
-  --background-surface-primary-dark: var(--gray100);
-
   --background-surface-secondary: var(--gray100);
-  --background-surface-secondary-dark: var(--gray200);
-
   --background-inverse-primary: var(--white);
-  --background-inverse-primary-dark: var(--gray900);
-
-  --background-overlay-primary: var(--overlay70);
-  --background-overlay-secondary: var(--overlay30);
-
-  --background-always-dark: var(--black);
-  --background-always-light: var(--white);
-
-  /* Extended Tokens Dark Theme */
-  --background-accent: var(--green500);
-  --background-positive: var(--green500);
-  --background-negative: var(--red500);
-  --background-warning: var(--yellow500);
-
-  --background-accent-subtle: var(--green100);
-  --background-positive-subtle: var(--green100);
-  --background-negative-subtle: var(--red100);
-  --background-warning-subtle: var(--yellow100);
-
-  --background-accent-secondary: var(--purple500);
-  --background-accent-secondary-subtle: var(--purple100);
 }

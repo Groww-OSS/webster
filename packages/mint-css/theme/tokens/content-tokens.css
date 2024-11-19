@@ -1,34 +1,27 @@
 html {
-  /* Mapping of global colors to content tokens */
+  /* Base Theme */
   --content-primary: var(--gray900);
   --content-secondary: var(--gray700);
   --content-tertiary: var(--gray500);
-
   --content-inverse-primary: var(--white);
   --content-inverse-secondary: var(--gray300);
-
-  --content-accent: var(--green500);
-  --content-negative: var(--red500);
-  --content-warning: var(--yellow500);
-  --content-positive: var(--green500);
-
   --content-disabled: var(--gray400);
   --content-on-colour: var(--white);
   --content-on-colour-inverse: var(--gray900);
 
+  /* Extended Tokens */
+  --content-accent: var(--green500);
+  --content-negative: var(--red500);
+  --content-warning: var(--yellow500);
+  --content-positive: var(--green500);
   --content-accent-secondary: var(--purple500);
   --content-accent-secondary-subtle: var(--purple300);
 }
 
 html[data-theme="dark"] {
-  /* Dark theme mapping */
   --content-primary: var(--white);
-  --content-secondary: var(--gray700);
-  --content-tertiary: var(--gray500);
-
   --content-inverse-primary: var(--black);
   --content-inverse-secondary: var(--gray400);
-
   --content-disabled: var(--gray500);
   --content-on-colour-inverse: var(--black);
 }
