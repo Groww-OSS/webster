@@ -1,0 +1,81 @@
+/* ----- Hover State ----- */
+.backgroundTransparentHover:hover {
+  background-color: var(--bg-transparent-hover);
+}
+
+.backgroundAccentHover:hover {
+  background-color: var(--bg-accent-hover);
+}
+
+.backgroundAccentSubtleHover:hover {
+  background-color: var(--bg-accent-subtle-hover);
+}
+
+.backgroundTransparentAccentHover:hover {
+  background-color: var(--bg-transparent-accent-hover);
+}
+
+.backgroundPositiveHover:hover {
+  background-color: var(--bg-positive-hover);
+}
+
+.backgroundPositiveSubtleHover:hover {
+  background-color: var(--bg-positive-subtle-hover);
+}
+
+.backgroundTransparentPositiveHover:hover {
+  background-color: var(--bg-transparent-positive-hover);
+}
+
+.backgroundNegativeHover:hover {
+  background-color: var(--bg-negative-hover);
+}
+
+.backgroundNegativeSubtleHover:hover {
+  background-color: var(--bg-negative-subtle-hover);
+}
+
+.backgroundTransparentNegativeHover:hover {
+  background-color: var(--bg-transparent-negative-hover);
+}
+
+/* ----- Selected State ----- */
+.backgroundTransparentSelected:active {
+  background-color: var(--bg-transparent-selected);
+}
+
+.backgroundAccentSelected:active {
+  background-color: var(--bg-accent-selected);
+}
+
+.backgroundAccentSubtleSelected:active {
+  background-color: var(--bg-accent-subtle-selected);
+}
+
+.backgroundTransparentAccentSelected:active {
+  background-color: var(--bg-transparent-accent-selected);
+}
+
+.backgroundPositiveSelected:active {
+  background-color: var(--bg-positive-selected);
+}
+
+.backgroundPositiveSubtleSelected:active {
+  background-color: var(--bg-positive-subtle-selected);
+}
+
+.backgroundTransparentPositiveSelected:active {
+  background-color: var(--bg-transparent-positive-selected);
+}
+
+.backgroundNegativeSelected:active {
+  background-color: var(--bg-negative-selected);
+}
+
+.backgroundNegativeSubtleSelected:active {
+  background-color: var(--bg-negative-subtle-selected);
+}
+
+.backgroundTransparentNegativeSelected:active {
+  background-color: var(--bg-transparent-negative-selected);
+}
