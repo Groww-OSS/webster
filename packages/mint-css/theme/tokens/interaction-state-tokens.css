@@ -1,25 +1,32 @@
 html {
-    /* Hover State Tokens */
-    --hover-background-transparent: var(--bg-transparent-hover);
-    --hover-background-accent: var(--bg-accent-hover);
-    --hover-background-accent-subtle: var(--bg-accent-subtle-hover);
-    --hover-background-transparent-accent: var(--bg-transparent-accent-hover);
-    --hover-background-positive: var(--bg-positive-hover);
-    --hover-background-positive-subtle: var(--bg-positive-subtle-hover);
-    --hover-background-transparent-positive: var(--bg-transparent-positive-hover);
-    --hover-background-negative: var(--bg-negative-hover);
-    --hover-background-negative-subtle: var(--bg-negative-subtle-hover);
-    --hover-background-transparent-negative: var(--bg-transparent-negative-hover);
-  
-    /* Selected State Tokens */
-    --selected-background-transparent: var(--bg-transparent-selected);
-    --selected-background-accent: var(--bg-accent-selected);
-    --selected-background-accent-subtle: var(--bg-accent-subtle-selected);
-    --selected-background-transparent-accent: var(--bg-transparent-accent-selected);
-    --selected-background-positive: var(--bg-positive-selected);
-    --selected-background-positive-subtle: var(--bg-positive-subtle-selected);
-    --selected-background-transparent-positive: var(--bg-transparent-positive-selected);
-    --selected-background-negative: var(--bg-negative-selected);
-    --selected-background-negative-subtle: var(--bg-negative-subtle-selected);
-    --selected-background-transparent-negative: var(--bg-transparent-negative-selected);
+    /* ----- Hover State -----  */
+  --bg-transparent-hover: #44475B0F;
+
+  --bg-accent-hover: #04AD83;
+  --bg-accent-subtle-hover: #DDF5EE;
+  --bg-transparent-accent-hover: #00B3860F;
+
+  --bg-positive-hover: #04AD83;
+  --bg-positive-subtle-hover: #DDF5EE;
+  --bg-transparent-positive-hover: #00B3860F;
+
+  --bg-negative-hover: #E15A3E;
+  --bg-negative-subtle-hover: #F9E0DB;
+  --bg-transparent-negative-hover: #EB5B3C0F;
+
+
+  /* ----- Selected State ----- */
+  --bg-transparent-selected: #44475B0F;
+
+  --bg-accent-selected: #04AD83;
+  --bg-accent-subtle-selected: #DDF5EE;
+  --bg-transparent-accent-selected: #00B3860F;
+
+  --bg-positive-selected: #04AD83;
+  --bg-positive-subtle-selected: #DDF5EE;
+  --bg-transparent-positive-selected: #00B3860F;
+
+  --bg-negative-selected: #E15A3E;
+  --bg-negative-subtle-selected: #F9E0DB;
+  --bg-transparent-negative-selected: #EB5B3C0F;
   }
