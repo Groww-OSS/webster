@@ -27,31 +27,10 @@ const variableMap = {
   '--gray400': '--content-disabled',
   '--purple500': '--content-accent-secondary',
   '--purple300': '--content-accent-secondary-subtle',
-  '--bg-transparent-hover': '--hover-background-transparent',
-  '--bg-accent-hover': '--hover-background-accent',
-  '--bg-accent-subtle-hover': '--hover-background-accent-subtle',
-  '--bg-transparent-accent-hover': '--hover-background-transparent-accent',
-  '--bg-positive-hover': '--hover-background-positive',
-  '--bg-positive-subtle-hover': '--hover-background-positive-subtle',
-  '--bg-transparent-positive-hover': '--hover-background-transparent-positive',
-  '--bg-negative-hover': '--hover-background-negative',
-  '--bg-negative-subtle-hover': '--hover-background-negative-subtle',
-  '--bg-transparent-negative-hover': '--hover-background-transparent-negative',
-  '--bg-transparent-selected': '--selected-background-transparent',
-  '--bg-accent-selected': '--selected-background-accent',
-  '--bg-accent-subtle-selected': '--selected-background-accent-subtle',
-  '--bg-transparent-accent-selected': '--selected-background-transparent-accent',
-  '--bg-positive-selected': '--selected-background-positive',
-  '--bg-positive-subtle-selected': '--selected-background-positive-subtle',
-  '--bg-transparent-positive-selected': '--selected-background-transparent-positive',
-  '--bg-negative-selected': '--selected-background-negative',
-  '--bg-negative-subtle-selected': '--selected-background-negative-subtle',
-  '--bg-transparent-negative-selected': '--selected-background-transparent-negative'
 };
 
 // Paths or patterns to exclude
 const exclusions = [
-  'src/components/atoms', // Exclude "atoms" folder
 ];
 
 // Function to check if a path should be excluded
