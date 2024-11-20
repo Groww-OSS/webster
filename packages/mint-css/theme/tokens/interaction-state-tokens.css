@@ -1,3 +1,11 @@
+/* ---------------- Interaction Layer/State ---------------------- */
+
+  /*
+  * Using direct hex value mapping for now
+  * These set of interaction  variable's name will be updated after new spectrum changes
+  * To be used by components for their interaction states
+*/
+
 html {
     /* ----- Hover State -----  */
   --bg-transparent-hover: #44475B0F;
