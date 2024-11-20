@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 console.log('Replace variables in CSS files');
+
 // Variable map for replacements
 const variableMap = {
   '--white': '--background-primary',
@@ -16,7 +17,6 @@ const variableMap = {
   '--yellow100': '--background-warning-subtle',
   '--purple100': '--background-accent-secondary-subtle',
   '--gray150': '--border-primary',
-  '--gray100': '--border-disabled',
   '--gray900': '--content-primary',
   '--gray700': '--content-secondary',
   '--gray500': '--content-tertiary',
@@ -49,6 +49,18 @@ const variableMap = {
   '--bg-transparent-negative-selected': '--selected-background-transparent-negative'
 };
 
+// Paths or patterns to exclude
+const exclusions = [
+  'src/components/atoms', // Exclude "atoms" folder
+];
+
+// Function to check if a path should be excluded
+function isExcluded(fullPath) {
+  return exclusions.some(exclusion =>
+    fullPath.includes(exclusion)
+  );
+}
+
 // Function to process a single CSS file
 async function processCSSFile(filePath) {
   try {
@@ -56,15 +68,11 @@ async function processCSSFile(filePath) {
     let updatedContent = data;
     let replacements = 0;
 
-    // Log original content for debugging
     console.log(`\nProcessing file: ${filePath}`);
     console.log('Original content sample:', data.slice(0, 200) + '...');
 
     for (const [ oldVar, newVar ] of Object.entries(variableMap)) {
-      // Create a regex that matches the CSS variable in different contexts
-      // This will match the variable when it's used in var(), as a custom property definition, or in calc()
       const regex = new RegExp(`${oldVar}(?=[\\s,;)}])`, 'g');
-
       const matches = updatedContent.match(regex);
 
       if (matches) {
@@ -81,7 +89,6 @@ async function processCSSFile(filePath) {
       console.log(`Made ${replacements} replacements in ${filePath}`);
       console.log('Updated content sample:', updatedContent.slice(0, 200) + '...');
 
-      // Only write the file if changes were made
       await fs.promises.writeFile(filePath, updatedContent, 'utf8');
       console.log(`Successfully updated ${filePath}`);
 
@@ -103,12 +110,19 @@ async function processDirectory(directory) {
     for (const entry of entries) {
       const fullPath = path.join(directory, entry.name);
 
+      if (isExcluded(fullPath)) {
+        console.log(`Skipping excluded path: ${fullPath}`);
+        continue;
+      }
+
       if (entry.isDirectory()) {
-        // Recursively process subdirectories
         await processDirectory(fullPath);
 
-      } else if (entry.isFile() && path.extname(entry.name) === '.css') {
-        // Process CSS files
+      } else if (entry.isFile() && (path.extname(entry.name) === '.css' ||
+       path.extname(entry.name) === '.js' ||
+       path.extname(entry.name) === '.ts' ||
+       path.extname(entry.name) === '.tsx' ||
+       path.extname(entry.name) === '.jsx')) {
         await processCSSFile(fullPath);
       }
     }
@@ -124,7 +138,6 @@ async function replaceVariablesInCSSFiles(startDirectory) {
   console.log(`Starting to replace variables in CSS files in directory: ${startDirectory}`);
 
   try {
-    // Check if directory exists
     const stats = await fs.promises.stat(startDirectory);
 
     if (!stats.isDirectory()) {
