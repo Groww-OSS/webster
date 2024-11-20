@@ -59,6 +59,7 @@ body {
   font-family: GrowwSans,NotoSans, system-ui;
   min-width: 320px;
   -webkit-font-smoothing: antialiased;
+  font-variant-ligatures: none;
 }
 
 a {
