@@ -6,7 +6,6 @@
 
 .pb65CircleMain {
   stroke-linecap: round;
-  stroke: var(--border-primary);
   fill: none;
 }
 
