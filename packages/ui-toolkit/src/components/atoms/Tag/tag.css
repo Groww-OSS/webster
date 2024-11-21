@@ -10,16 +10,16 @@
 }
 
 .tg11Warning {
-  background-color: var(--yellow100);
-  color: var(--gray900);
+  background-color: var(--background-warning-subtle);
+  color: var(--content-primary);
 }
 
 .tg11Error {
-  background-color: var(--red100);
-  color: var(--gray900);
+  background-color: var(--background-negative-subtle);
+  color: var(--content-primary);
 }
 
 .tg11Info {
-  background-color: var(--green100);
-  color: var(--gray900);
+  background-color: var(--background-accent-subtle);
+  color: var(--content-primary);
 }

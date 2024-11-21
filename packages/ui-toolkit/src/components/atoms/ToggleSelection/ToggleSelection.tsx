@@ -49,8 +49,8 @@ const defaultProps: DefaultProps = {
   parentClass: '',
   leftText: 'En',
   rightText: 'हि',
-  activeBackgroundColor: 'var(--green500)',
-  inactiveBackgroundColor: 'var(--gray700)'
+  activeBackgroundColor: 'var(--content-accent)',
+  inactiveBackgroundColor: 'var(--content-secondary)'
 };
 
 
