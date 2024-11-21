@@ -10,7 +10,7 @@
   -webkit-font-smoothing: auto;
   letter-spacing: 0.1px;
   line-height: 17px;
-  color: var(--white);
+  color: var(--background-primary);
   overflow: hidden;
 }
 
@@ -29,15 +29,15 @@
 }
 
 .sb10ToastifySuccess {
-  background-color: var(--green500);
+  background-color: var(--content-accent);
 }
 
 .sb10ToastifyError {
-  background-color: var(--red500);
+  background-color: var(--content-negative);
 }
 
 .sb10ToastifyInfo {
-  background-color: var(--gray900);
+  background-color: var(--content-primary);
 }
 
 .sb10ToastifyPositionTop {

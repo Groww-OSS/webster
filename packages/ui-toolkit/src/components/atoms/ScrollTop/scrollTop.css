@@ -1,6 +1,6 @@
 .scroll11Img {
   transform: rotate(180deg);
-  fill: var(--green500);
+  fill: var(--content-accent);
   cursor: pointer;
 }
 
