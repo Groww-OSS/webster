@@ -25,6 +25,10 @@ html {
   box-sizing: inherit;
 }
 
+*{
+  font-variant-ligatures: none;
+}
+
 div,
 i {
   -webkit-touch-callout: none;
@@ -59,7 +63,6 @@ body {
   font-family: GrowwSans,NotoSans, system-ui;
   min-width: 320px;
   -webkit-font-smoothing: antialiased;
-  font-variant-ligatures: none;
 }
 
 a {
