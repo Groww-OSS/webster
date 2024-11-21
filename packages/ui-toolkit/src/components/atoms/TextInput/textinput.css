@@ -1,16 +1,16 @@
 .txtinput88label {
   font-size: 13px;
   letter-spacing: 0.25px;
-  color: var(--gray700);
+  color: var(--content-secondary);
   text-align: left;
 }
 
 .txtinput88parent {
   display: flex;
-  border-bottom: solid 1px var(--gray150);
+  border-bottom: solid 1px var(--border-primary);
   align-items: center;
   padding: 10px 0 5px 0;
-  caret-color: var(--green500);
+  caret-color: var(--content-accent);
 }
 
 .removeunderline {
@@ -18,7 +18,7 @@
 }
 
 .txtinput88parent:focus-within {
-  border-bottom: 2px solid var(--green500);
+  border-bottom: 2px solid var(--content-accent);
 }
 
 .removeunderline:focus-within {
@@ -31,14 +31,14 @@
   font-size: 16px;
   flex-grow: 1;
   outline: 0;
-  color: var(--gray900);
+  color: var(--content-primary);
   /* -webkit-box-shadow: 0 0 0px 1000px white inset; */
 }
 
 
 .txtinput88input::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: var(--gray700);
+  color: var(--content-secondary);
   opacity: 1;
 
   /* Firefox */
@@ -46,12 +46,12 @@
 
 .txtinput88input:-ms-input-placeholder {
   /* Internet Explorer 10-11 */
-  color: var(--gray700);
+  color: var(--content-secondary);
 }
 
 .txtinput88input::-ms-input-placeholder {
   /* Microsoft Edge */
-  color: var(--gray700);
+  color: var(--content-secondary);
 }
 
 .txtinput88input:-webkit-autofill,
@@ -61,7 +61,7 @@
   /* box-shadow: 0 0 0 30px var(--dangerouslySetPrimaryBg) inset !important; msite change */
   -webkit-box-shadow: 0 0 0 30px var(--dangerouslySetPrimaryBg) inset !important;
   background-color: var(--dangerouslySetPrimaryBg) !important;
-  -webkit-text-fill-color: var(--gray900);
+  -webkit-text-fill-color: var(--content-primary);
 }
 
 
@@ -71,7 +71,7 @@
   outline: 0;
 }
 .errorText {
-  color: var(--red500);
+  color: var(--content-negative);
   font-size: 14px;
   margin-top: 3px;
   text-align: left;
@@ -82,7 +82,7 @@
 }
 
 .infoText {
-  color: var(--yellow500);
+  color: var(--content-warning);
   font-size: 14px;
   margin-top: 3px;
   text-align: left;
@@ -97,11 +97,11 @@
 }
 
 .txt88InputMUI {
-  border-bottom: 1px solid var(--gray700) !important;
+  border-bottom: 1px solid var(--content-secondary) !important;
 }
 
 .txt88MlabelError {
-  color: var(--red500) !important;
+  color: var(--content-negative) !important;
 }
 
 .txt88Bar {
@@ -117,13 +117,13 @@
   width: 0;
   bottom: 0;
   position: absolute;
-  background: var(--green500);
+  background: var(--content-accent);
   transition: 0.2s ease all;
 }
 
 .txt88BarError::before,
 .txt88BarError::after {
-  background: var(--red500);
+  background: var(--content-negative);
 }
 
 .txt88Bar::before {
@@ -139,14 +139,14 @@
 }
 
 .txt88MErrorText {
-  color: var(--red500);
+  color: var(--content-negative);
   font-size: 14px;
   margin-top: 3px;
   text-align: left;
 }
 
 /* .txt88MNoErrorText {
-  color: var(--gray700);
+  color: var(--content-secondary);
   font-size: 14px;
   margin-top: 3px;
 } */
@@ -158,13 +158,13 @@
   }
   .txtinput88input::-ms-input-placeholder {
     /* Microsoft Edge */
-    color: var(--gray700);
+    color: var(--content-secondary);
     opacity: 0.2;
   }
   .txtinput88input::placeholder,
   .txtinput88input::-webkit-input-placeholder {
     opacity: 0.2;
-    color: var(--gray700);
+    color: var(--content-secondary);
   }
 
   .errorText {
@@ -187,10 +187,10 @@
     display: block;
     width: 100%;
     border: none;
-    -webkit-text-fill-color: var(--gray900);
-    border-bottom: 1px solid var(--gray700);
+    -webkit-text-fill-color: var(--content-primary);
+    border-bottom: 1px solid var(--content-secondary);
     background: var(--dangerouslySetPrimaryBg);
-    color: var(--gray900);
+    color: var(--content-primary);
   }
 
   input:focus {
@@ -230,7 +230,7 @@
   input:valid ~ label {
     top: -15px;
     font-size: 14px;
-    color: var(--green500);
+    color: var(--content-accent);
   }
 
   input:focus ~ .txt88Bar::before,
@@ -240,7 +240,7 @@
   input:-webkit-autofill ~ label {
     top: -15px;
     font-size: 14px;
-    color: var(--green500);
+    color: var(--content-accent);
   }
 
   input:focus ~ .highlight {
@@ -249,7 +249,7 @@
 
   @keyframes inputHighlighter {
     from {
-      background: var(--green500);
+      background: var(--content-accent);
     }
 
     to {

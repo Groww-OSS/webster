@@ -11,7 +11,7 @@
 }
 
 .pill12PillHover:hover {
-  background-color: var(--gray50);
+  background-color: var(--background-secondary);
 }
 
 .pill12SizeXSmall {
