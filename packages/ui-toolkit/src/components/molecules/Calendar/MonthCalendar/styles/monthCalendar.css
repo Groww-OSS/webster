@@ -25,7 +25,7 @@
 }
 
 .mn12MonthTextSelected {
-  background-color: var(--green500);
+  background-color: var(--content-accent);
 }
 
 .mn12MonthBox {

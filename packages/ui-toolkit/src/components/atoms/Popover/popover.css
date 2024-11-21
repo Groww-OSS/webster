@@ -7,11 +7,11 @@
   position: absolute;
   border-radius: 4px;
   padding: 6px;
-  color: var(--gray900);
+  color: var(--content-primary);
   font-size: 13px;
   opacity: 1;
   z-index: var(--zindex900);
-  border: 1px solid var(--gray150);
+  border: 1px solid var(--border-primary);
 }
 
 .pop12Popover::before {
