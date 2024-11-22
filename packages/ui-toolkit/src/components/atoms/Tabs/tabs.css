@@ -12,18 +12,18 @@
   padding-right: 45px;
   height: 30px;
   cursor: pointer;
-  color: var(--content-primary);
+  color: var(--gray900);
 }
 
 .tabs8TextActive {
-  color: var(--content-accent);
+  color: var(--green500);
 }
 
 .tabs8Line {
   position: absolute;
   bottom: 0;
   height: 3px;
-  background: var(--content-accent);
+  background: var(--green500);
   will-change: left, width;
   transition: left 0.2s linear, width 0.2s linear;
 }
@@ -61,7 +61,7 @@
   }
 
   .tabs8TextActive {
-    color: var(--content-accent);
+    color: var(--green500);
   }
 
   .tabs8Line {

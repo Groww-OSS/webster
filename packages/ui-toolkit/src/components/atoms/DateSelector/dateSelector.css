@@ -10,14 +10,14 @@
 .date101Label {
   font-size: 16px;
   text-align: center;
-  color: var(--content-secondary);
+  color: var(--gray700);
 }
 
 .date101SelectedLabel {
   margin-top: 25px;
   font-size: 19px;
   text-align: center;
-  color: var(--content-primary);
+  color: var(--gray900);
 }
 
 .date101Grid-container {
@@ -37,21 +37,21 @@
 
 .date101Grid-item.regular {
   pointer-events: auto;
-  color: var(--content-primary);
+  color: var(--gray900);
   cursor: pointer;
   transition: all .1s ease-in-out;
 }
 
 .date101Grid-item.active {
   pointer-events: auto;
-  background-color: var(--content-accent-secondary);
+  background-color: var(--purple500);
   transform: scale(1.2);
   cursor: pointer;
 }
 
 .date101Grid-item.default-active {
   pointer-events: auto;
-  background-color: var(--content-accent);
+  background-color: var(--green500);
   transform: scale(1.2);
   cursor: pointer;
 }
@@ -59,19 +59,19 @@
 .date101Grid-item.disabled {
   pointer-events: none;
   cursor: not-allowed;
-  color: var(--content-tertiary);
+  color: var(--gray500);
 }
 
 .date101Grid-item.previously-active {
   pointer-events: auto;
-  color: var(--content-primary);
+  color: var(--gray900);
   transform: scale(1.2);
   cursor: pointer;
 }
 
 .date101Grid-item.regular:hover {
   transform: scale(1.2);
-  background: var(--background-secondary);
+  background: var(--gray50);
 }
 
 
@@ -92,7 +92,7 @@
   opacity: 0.5;
   top: 10px;
   right: 10px;
-  color: var(--content-primary);
+  color: var(--gray900);
   cursor: pointer;
 }
 

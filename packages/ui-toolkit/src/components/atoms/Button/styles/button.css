@@ -11,7 +11,7 @@
 
 
 .mint-btn-default:focus-visible {
-  outline: 2px solid var(--content-accent-secondary);
+  outline: 2px solid var(--purple500);
   outline-offset: 2px;
 }
 .mint-btn-cursor-default {
@@ -19,7 +19,7 @@
 }
 
 .mint-btn-default.mint-btn-secondary-default-border{
-  border: 1px solid var(--border-primary);
+  border: 1px solid var(--gray150);
 }
 
 .mint-btn-tertiary-label-border {
@@ -55,7 +55,7 @@
 .mint-btn-disabled{
   cursor: default;
   pointer-events: none;
-  background-color: var(--border-primary);
+  background-color: var(--gray150);
 }
 
 .mint-btn-disabled.mint-btn-tertiary-disabled{
@@ -85,12 +85,12 @@
 }
 
 .mint-btn-loader-item-border-white {
-  border: 2px solid var(--background-primary); /* the loader color will always be white in dark as well as in light theme */
+  border: 2px solid var(--white); /* the loader color will always be white in dark as well as in light theme */
   border-top-color: transparent;
 }
 
 .mint-btn-loader-item-border-gray { /*used because the token doesn't override the existing color of loader*/
-  border: 2px solid var(--content-primary);
+  border: 2px solid var(--gray900);
   border-top-color: transparent;
 }
 

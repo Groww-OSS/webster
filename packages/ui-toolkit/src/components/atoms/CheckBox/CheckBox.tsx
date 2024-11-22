@@ -18,8 +18,8 @@ const CheckBox = (props: Props) => {
     dataTestId
   } = props;
 
-  const activeColor = isDisabled ? 'var(--content-disabled)' : 'var(--content-accent)';
-  const inactiveColor = isDisabled ? 'var(--content-disabled)' : 'var(--content-secondary)';
+  const activeColor = isDisabled ? 'var(--gray400)' : 'var(--green500)';
+  const inactiveColor = isDisabled ? 'var(--gray400)' : 'var(--gray700)';
   const activeTextClass = isDisabled ? 'contentDisabled' : 'contentPrimary';
 
 
