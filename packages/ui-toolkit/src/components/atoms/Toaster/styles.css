@@ -112,8 +112,8 @@
 }
 
 :where([data-toaster-clear-all]):hover {
-  color: var(--content-primary);
-  background: var(--background-primary);
+  color: var(--gray900);
+  background: var(--white);
 }
 
 :where([data-sonner-toast]) :where([data-close-button]) {
@@ -169,8 +169,8 @@
 }
 
 :where([data-sonner-toast]):hover :where([data-close-button]):hover {
-  background: var(--background-secondary);
-  border-color: var(--content-tertiary);
+  background: var(--gray50);
+  border-color: var(--gray500);
 }
 
 /* Needed to avoid setting hover to false when inbetween toasts */
@@ -231,33 +231,33 @@
 }
 
 [data-sonner-toast][data-type="success"] {
-  border-left: 3px solid var(--content-accent);
+  border-left: 3px solid var(--green500);
 }
 
 [data-sonner-toast][data-type="error"] {
-  border-left: 3px solid var(--content-negative);
+  border-left: 3px solid var(--red500);
 }
 
 [data-sonner-toast][data-type="warning"] {
-  border-left: 3px solid var(--content-warning);
+  border-left: 3px solid var(--yellow500);
 }
 
 [data-sonner-toast][data-type="info"] {
-  border-left: 3px solid var(--content-accent-secondary);
+  border-left: 3px solid var(--purple500);
 }
 
 .success {
-  color: var(--content-accent);
+  color: var(--green500);
 }
 
 .info {
-  color: var(--content-accent-secondary);
+  color: var(--purple500);
 }
 
 .warning {
-  color: var(--content-warning);
+  color: var(--yellow500);
 }
 
 .error {
-  color: var(--content-negative);
+  color: var(--red500);
 }
