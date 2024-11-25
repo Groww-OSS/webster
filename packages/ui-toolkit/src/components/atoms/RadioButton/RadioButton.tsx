@@ -19,7 +19,7 @@ const RadioButton = (props: Props) => {
     isDisabled
   } = props;
 
-  const iconColor = isDisabled ? 'var(--content-disabled)' : 'var(--content-accent)';
+  const iconColor = isDisabled ? 'var(--gray400)' : 'var(--green500)';
 
   const baseClasses = cn('radioCo11Box valign-wrapper', {
     'radioCo11BoxReverse vspace-between': radioDirection === DIRECTION.RIGHT

@@ -1,6 +1,6 @@
 .pb65LinearMain {
   border-radius: 5;
-  background-color: var(--border-primary);
+  background-color: var(--gray150);
   height: 10px;
 }
 

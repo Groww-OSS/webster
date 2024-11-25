@@ -36,7 +36,7 @@ export default function IconButton(props: Props) {
 
   const iconProps = {
     className: 'absolute-center',
-    color: isDisabled ? 'var(--content-disabled)' : 'var(--content-primary)',
+    color: isDisabled ? 'var(--gray400)' : 'var(--gray900)',
     size: getIconSize()
   };
 
