@@ -1,17 +1,17 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
 
-module.exports = function (fileInfo, api) {
+export default function (fileInfo, api) {
   const j = api.jscodeshift;
   const root = j(fileInfo.source);
 
   // Load and parse the JSON mappings
-  const mappingsPath = path.resolve(__dirname, './mappings.json');
+  const mappingsPath = path.resolve(__dirname, './updatedMappings.json');
   const mappings = JSON.parse(fs.readFileSync(mappingsPath, 'utf-8'));
 
-  // Filter mappings relevant to the current file
+  // Filter mappings relevant to the current file based on `classNameFiles`
   const relevantMappings = mappings.filter(mapping =>
-    fileInfo.path.includes(mapping.parentFolderPath)
+    mapping.classNameFiles.includes(fileInfo.path) && mapping.classNameOccurrences === 1
   );
 
   // If no relevant mappings, return the original source
@@ -45,4 +45,4 @@ module.exports = function (fileInfo, api) {
 
   // Output the transformed source with single quotes for consistency
   return root.toSource();
-};
+}

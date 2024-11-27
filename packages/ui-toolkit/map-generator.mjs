@@ -1,8 +1,7 @@
-const fs = require('fs');
-const postcss = require('postcss');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import postcss from 'postcss';
 
-// Correctly structured propertyVarToUtilityMap
 const propertyVarToUtilityMap = {
   'background-color': {
     'var(--green500)': 'backgroundAccent',
@@ -31,27 +30,40 @@ const propertyVarToUtilityMap = {
     'var(--yellow500)': 'contentWarning',
     'var(--purple500)': 'contentAccentSecondary',
     'var(--purple300)': 'contentAccentSecondarySubtle'
+  },
+  'border': {
+    '1px solid var(--gray150)': 'borderPrimary',
+    '1px solid var(--gray300)': 'borderDisabled',
+    '1px solid var(--red500)': 'borderAccent',
+    '1px solid var(--yellow500)': 'borderNegative',
+    '2px solid var(--purple500)': 'borderNeutral'
   }
 };
 
-
+// Function for extracting CSS mappings
 function extractCssMappings(cssContent, filePath) {
   const mappings = [];
   const root = postcss.parse(cssContent);
   const parentDir = path.dirname(filePath); // Get parent directory path
 
   root.walkRules(rule => {
-    // Skip pseudo-classes and special classes
-    if (rule.selector.includes(':') || rule.selector.includes('~')) return;
+    // Skip pseudo-classes, special classes, concatenated classes, and descendant selectors (spaces or newlines)
+    if (
+      rule.selector.includes(':') ||
+      rule.selector.includes('~') ||
+      /(\.[a-zA-Z0-9_-]+){2,}/.test(rule.selector) || // Matches concatenated classes
+      /[\s]/.test(rule.selector.trim()) // Matches any space, tab, or newline between selectors
+    ) {
+      return;
+    }
 
-    rule.selectors.forEach(selector => { // Handle multiple selectors
+    rule.selectors.forEach(selector => {
       if (!selector.startsWith('.')) return; // Skip non-class selectors
 
       rule.walkDecls(decl => {
         const { prop, value } = decl;
 
         if (propertyVarToUtilityMap[prop] && propertyVarToUtilityMap[prop][value]) {
-          console.log(`Mapping found: ${prop} = ${value} -> ${propertyVarToUtilityMap[prop][value]}`);
           mappings.push({
             cssProperty: prop,
             variable: value,
@@ -60,9 +72,6 @@ function extractCssMappings(cssContent, filePath) {
             filePath, // Include full file path
             parentFolderPath: parentDir // Include the parent folder path
           });
-
-        } else {
-          console.log(`No mapping found for: ${prop} = ${value}`);
         }
       });
     });
@@ -71,7 +80,7 @@ function extractCssMappings(cssContent, filePath) {
   return mappings;
 }
 
-
+// Function for processing CSS files
 function processCssFiles(dir) {
   const mappings = [];
 
@@ -86,7 +95,6 @@ function processCssFiles(dir) {
       const cssContent = fs.readFileSync(fullPath, 'utf8');
       const relativePath = path.relative(process.cwd(), fullPath); // Get relative file path
 
-      console.log(`Processing file: ${relativePath}`);
       mappings.push(...extractCssMappings(cssContent, relativePath));
     }
   });
@@ -95,12 +103,14 @@ function processCssFiles(dir) {
 }
 
 // Entry point
-try {
-  const cssMappings = processCssFiles('./src'); // Adjust root directory as needed
+(async () => {
+  try {
+    const cssMappings = processCssFiles('./src'); // Adjust root directory as needed
 
-  fs.writeFileSync('mappings.json', JSON.stringify(cssMappings, null, 2));
-  console.log('CSS mappings saved to mappings.json');
+    fs.writeFileSync('mappings.json', JSON.stringify(cssMappings, null, 2));
+    console.log('CSS mappings saved to mappings.json');
 
-} catch (error) {
-  console.error('Error processing CSS files:', error);
-}
+  } catch (error) {
+    console.error('Error processing CSS files:', error);
+  }
+})();
