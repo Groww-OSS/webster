@@ -17,12 +17,6 @@ async function updateClassNames() {
         if (item.classNameOccurrences === 1) {
           const { className, semanticUtilClass, classNameFiles } = item;
 
-          // // Skip if className ends with a hyphen
-          // if (className.endsWith('-')) {
-          //   console.log(`Skipping className ending with "-": ${className}`);
-          //   return;
-          // }
-
           // Process each file where the className occurs
           await Promise.all(
             classNameFiles.map(async (file) => {
