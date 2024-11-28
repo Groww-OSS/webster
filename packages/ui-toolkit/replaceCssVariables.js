@@ -36,7 +36,7 @@ const propertyVarToUtilityMap = {
     'var(--gray300)': 'var(--border-disabled)',
     'var(--red500)': 'var(--border-accent)',
     'var(--yellow500)': 'var(--border-negative)',
-    'var(--purple500)': 'var(--border-neutral)'
+    'var(--gray900)': 'var(--border-neutral)'
   }
 };
 
