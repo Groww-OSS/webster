@@ -46,11 +46,11 @@ async function cleanupSpecificCss(mapping) {
           }
         });
 
-        // Remove the rule entirely if no declarations remain
-        if (rule.nodes.length === 0) {
-          rule.remove();
-          modified = true;
-        }
+        // // Remove the rule entirely if no declarations remain
+        // if (rule.nodes.length === 0) {
+        //   rule.remove();
+        //   modified = true;
+        // }
       }
     });
 
