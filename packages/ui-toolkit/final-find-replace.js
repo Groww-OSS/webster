@@ -31,12 +31,14 @@ const variableMap = {
 
 // Paths or patterns to exclude
 const exclusions = [
+  '.d.ts',  // Exclude TypeScript declaration files
+  // Add other exclusions as needed
 ];
 
 // Function to check if a path should be excluded
 function isExcluded(fullPath) {
   return exclusions.some(exclusion =>
-    fullPath.includes(exclusion)
+    fullPath.endsWith(exclusion)  // Check if the file ends with the exclusion pattern
   );
 }
 
