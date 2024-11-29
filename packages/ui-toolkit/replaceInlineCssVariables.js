@@ -41,14 +41,40 @@ const propertyVarToUtilityMap = {
 };
 
 // Arrays of properties for different categories
-const backgroundProperties = ['background', 'backgroundColor'];
-const colorProperties = ['color', 'textColor'];
-const borderProperties = [
-  'border', 'borderColor',
-  'borderTopColor', 'borderRightColor',
-  'borderBottomColor', 'borderLeftColor',
-  'outlineColor'
+// Properties to check for background-related styles
+const backgroundProperties = [ 
+  'background', 'background-color', 'background-image', 'background-blend-mode',
+  'backgroundColor', 'backgroundImage', 'backgroundBlendMode'
 ];
+
+// Properties to check for color-related styles
+const colorProperties = [ 
+  'color', 'text-shadow', 'fill', 'stroke', 'stroke-width', 'box-shadow', 'caret-color',
+  'color', 'textShadow', 'fill', 'stroke', 'strokeWidth', 'boxShadow', 'caretColor'
+];
+
+// Properties to check for border-related styles
+const borderProperties = [
+  'border', 'border-color', 'border-width', 'border-style', 
+  'border-top', 'border-top-color', 'border-top-width', 'border-top-style',
+  'border-right', 'border-right-color', 'border-right-width', 'border-right-style',
+  'border-bottom', 'border-bottom-color', 'border-bottom-width', 'border-bottom-style',
+  'border-left', 'border-left-color', 'border-left-width', 'border-left-style',
+  'border-block', 'border-block-color', 'border-block-width', 'border-block-style',
+  'border-inline', 'border-inline-color', 'border-inline-width', 'border-inline-style',
+  'outline', 'outline-color', 'outline-width', 'outline-style',
+  'box-shadow',
+  'borderColor', 'borderWidth', 'borderStyle',
+  'borderTop', 'borderTopColor', 'borderTopWidth', 'borderTopStyle',
+  'borderRight', 'borderRightColor', 'borderRightWidth', 'borderRightStyle',
+  'borderBottom', 'borderBottomColor', 'borderBottomWidth', 'borderBottomStyle',
+  'borderLeft', 'borderLeftColor', 'borderLeftWidth', 'borderLeftStyle',
+  'borderBlock', 'borderBlockColor', 'borderBlockWidth', 'borderBlockStyle',
+  'borderInline', 'borderInlineColor', 'borderInlineWidth', 'borderInlineStyle',
+  'outline', 'outlineColor', 'outlineWidth', 'outlineStyle',
+  'boxShadow'
+];
+
 
 /**
  * Replace variables in a single file

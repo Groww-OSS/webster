@@ -40,14 +40,27 @@ const propertyVarToUtilityMap = {
   }
 };
 
-// Properties to check for background, color, and border
-const backgroundProperties = [ 'background', 'background-color' ];
-const colorProperties = [ 'color', 'text-shadow' ];
+// Properties to check for background-related styles
+const backgroundProperties = [ 
+  'background', 'background-color', 'background-image', 'background-blend-mode' 
+];
+
+// Properties to check for color-related styles
+const colorProperties = [ 
+  'color', 'text-shadow', 'fill', 'stroke', 'stroke-width', 'box-shadow', 'caret-color' 
+];
+
+// Properties to check for border-related styles
 const borderProperties = [
-  'border', 'border-color', 'border-top', 'border-top-color',
-  'border-right', 'border-right-color', 'border-bottom', 'border-bottom-color',
-  'border-left', 'border-left-color', 'border-block', 'border-block-color',
-  'border-inline', 'border-inline-color', 'outline', 'outline-color'
+  'border', 'border-color', 'border-width', 'border-style', 
+  'border-top', 'border-top-color', 'border-top-width', 'border-top-style',
+  'border-right', 'border-right-color', 'border-right-width', 'border-right-style',
+  'border-bottom', 'border-bottom-color', 'border-bottom-width', 'border-bottom-style',
+  'border-left', 'border-left-color', 'border-left-width', 'border-left-style',
+  'border-block', 'border-block-color', 'border-block-width', 'border-block-style',
+  'border-inline', 'border-inline-color', 'border-inline-width', 'border-inline-style',
+  'outline', 'outline-color', 'outline-width', 'outline-style',
+  'box-shadow'
 ];
 
 /**
