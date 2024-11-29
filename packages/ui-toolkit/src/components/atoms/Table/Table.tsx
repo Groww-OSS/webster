@@ -46,7 +46,7 @@ class Table extends React.Component<TableProps, {}> {
 
   render() {
     const { children, className = '', style = {} } = this.props;
-    const classes = cn('tb10Table', className);
+    const classes = cn('tb10Table borderPrimary', className);
 
     return (
       <table style={style}

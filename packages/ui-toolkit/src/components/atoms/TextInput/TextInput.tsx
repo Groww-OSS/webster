@@ -26,7 +26,7 @@ class TextInput extends React.PureComponent<TextInputProps> {
 
     if (isMaterialUI) {
       labelClassName = cn({
-        txt88MlabelError: showError
+        txt88MlabelError contentNegative: showError
       });
 
     } else {

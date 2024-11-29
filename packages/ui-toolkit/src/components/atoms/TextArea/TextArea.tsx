@@ -19,7 +19,7 @@ const TextArea = (props: Props) => {
   } = props;
 
   const textAreaClassName = cn({
-    'txta37Area': true,
+    'txta37Area contentPrimary': true,
     'txta37Normal': error?.length === 0,
     'txta37Error': error && error.length !== 0
   });

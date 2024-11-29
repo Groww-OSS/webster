@@ -87,7 +87,7 @@ const NumberPicker = (props: Props) => {
 
   return (
     <span id="numPicker"
-        className='np15Root contentAccent'
+        className='np15Root backgroundAccentSubtle contentAccent'
       >
       <NumberInput
         ref={textInput}
@@ -140,7 +140,7 @@ NumberPicker.defaultProps = {
   stepValue: 1,
   onInput: () => { },
   onKeyDown: () => { },
-  inputClass: 'np15Input',
+  inputClass: 'np15Input contentAccent backgroundAccentSubtle',
   width: 50,
   maxWidth: 98,
   shouldFocusOnMount: false,

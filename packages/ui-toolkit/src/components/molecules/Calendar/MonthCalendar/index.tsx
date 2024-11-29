@@ -91,7 +91,7 @@ class MonthCalendar extends React.PureComponent<Props, State> {
                   <div
                     className={
                       cn('mn12MonthText valign-wrapper cur-po bodyBase', {
-                        'mn12MonthTextSelected contentInversePrimary':
+                        'mn12MonthTextSelected backgroundAccent contentInversePrimary':
                         index === currentMonthIndex &&
                         currentDate.getFullYear() === dateToShow.getFullYear(),
                         'mn12MonthBackHover':

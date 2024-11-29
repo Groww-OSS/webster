@@ -46,7 +46,7 @@ const Tabs = (props: Props) => {
           data.map((item, key) => {
             return (
               <div
-                className={`${customStyleTab} ${key === activeIndex && 'tabs8TextActive'}`}
+                className={`${customStyleTab} ${key === activeIndex && 'tabs8TextActive contentAccent contentAccent'}`}
                 title={item.description}
                 onClick={onTabClick.bind(null, key)}
                 style={item.style}
@@ -80,7 +80,7 @@ const getActiveTabDimensions = (data: Tab[], activeIndex: number) => {
 
   } else {
     if (typeof document !== 'undefined') {
-      const prevActiveElement = document?.getElementsByClassName('tabs8TextActive') as HTMLCollectionOf<HTMLElement>;
+      const prevActiveElement = document?.getElementsByClassName('tabs8TextActive contentAccent contentAccent') as HTMLCollectionOf<HTMLElement>;
 
       if (prevActiveElement && prevActiveElement.length) {
         const currentActiveElement = prevActiveElement[0]?.parentElement?.children[activeIndex] as HTMLElement;
@@ -111,7 +111,7 @@ const getActiveTabDimensions = (data: Tab[], activeIndex: number) => {
 const defaultProps: DefaultProps = {
   showBottomBorder: true,
   activeTabIndexOnMount: 0,
-  customStyleTab: 'tabs8Text',
+  customStyleTab: 'tabs8Text contentPrimary',
   isHorizScrollable: false
 };
 
