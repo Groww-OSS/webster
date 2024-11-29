@@ -31,7 +31,7 @@ const propertyVarToUtilityMap = {
     'var(--purple500)': 'var(--content-accent-secondary)',
     'var(--purple300)': 'var(--content-accent-secondary-subtle)'
   },
-  'border': {
+  'border-color': {
     'var(--gray150)': 'var(--border-primary)',
     'var(--gray300)': 'var(--border-disabled)',
     'var(--red500)': 'var(--border-accent)',
@@ -40,64 +40,64 @@ const propertyVarToUtilityMap = {
   }
 };
 
-// Properties to check for background, color, and border
-const backgroundProperties = [ 'background', 'background-color' ];
-const colorProperties = [ 'color', 'text-shadow' ];
+// Arrays of properties for different categories
+const backgroundProperties = ['background', 'backgroundColor'];
+const colorProperties = ['color', 'textColor'];
 const borderProperties = [
-  'border', 'border-color', 'border-top', 'border-top-color',
-  'border-right', 'border-right-color', 'border-bottom', 'border-bottom-color',
-  'border-left', 'border-left-color', 'border-block', 'border-block-color',
-  'border-inline', 'border-inline-color', 'outline', 'outline-color'
+  'border', 'borderColor',
+  'borderTopColor', 'borderRightColor',
+  'borderBottomColor', 'borderLeftColor',
+  'outlineColor'
 ];
 
 /**
- * Replace variables in a single CSS file
- * @param {string} filePath - Path to the CSS file
+ * Replace variables in a single file
+ * @param {string} filePath - Path to the file
  */
 function replaceCSSVariables(filePath) {
   try {
-    // Read the file
+    // Read the file content
     let content = fs.readFileSync(filePath, 'utf8');
 
-    // Replace background-color variables
-    backgroundProperties.forEach(prop => {
-      Object.entries(propertyVarToUtilityMap['background-color']).forEach(([ primitive, semantic ]) => {
-        const regex = new RegExp(`${prop}:[^;]*${escapeRegExp(primitive)}`, 'g');
-
-        content = content.replace(regex, match => match.replace(primitive, semantic));
-      });
-    });
-
-    // Replace color variables
-    colorProperties.forEach(prop => {
-      Object.entries(propertyVarToUtilityMap.color).forEach(([ primitive, semantic ]) => {
-        const regex = new RegExp(`${prop}:[^;]*${escapeRegExp(primitive)}`, 'g');
-
-        content = content.replace(regex, match => match.replace(primitive, semantic));
-      });
-    });
-
-    // Replace border color variables
-    borderProperties.forEach(prop => {
-      Object.entries(propertyVarToUtilityMap.border).forEach(([ primitive, semantic ]) => {
-        const regexPatterns = [
-          new RegExp(`${prop}:[^;]*${escapeRegExp(primitive)}`, 'g'),
-          new RegExp(`${prop}:\\s*\\d+px\\s+solid\\s*${escapeRegExp(primitive)}`, 'g')
-        ];
-
-        regexPatterns.forEach(regex => {
-          content = content.replace(regex, match => match.replace(primitive, semantic));
-        });
-      });
-    });
+    // Replace background-related variables
+    content = replaceVariables(content, backgroundProperties, 'background-color');
+    // Replace color-related variables
+    content = replaceVariables(content, colorProperties, 'color');
+    // Replace border-related variables
+    content = replaceVariables(content, borderProperties, 'border-color');
 
     // Write the modified content back to the file
     fs.writeFileSync(filePath, content, 'utf8');
     console.log(`Processed: ${filePath}`);
-
   } catch (error) {
     console.error(`Error processing ${filePath}:`, error);
   }
+}
+
+/**
+ * Replace variables for a specific category of properties
+ * @param {string} content - File content
+ * @param {Array} properties - Array of property names to replace
+ * @param {string} cssProperty - Key from the mapping to use for replacement
+ * @returns {string} Modified content
+ */
+function replaceVariables(content, properties, cssProperty) {
+  properties.forEach(property => {
+    Object.entries(propertyVarToUtilityMap[cssProperty]).forEach(([primitive, semantic]) => {
+      // 1. Handle JS/TS object syntax (e.g., backgroundColor: 'var(--green500)')
+      const jsObjectRegex = new RegExp(`(${property}):\\s*['"\`]${escapeRegExp(primitive)}['"\`]`, 'g');
+
+      // 2. Handle JSX/TSX inline prop (e.g., backgroundColor="var(--green500)" or backgroundColor={'var(--green500)'})
+      const jsxPropRegex = new RegExp(`${property}=\\s*{?['"\`]${escapeRegExp(primitive)}['"\`]}?`, 'g');
+
+      // Replace key-value pairs
+      content = content.replace(jsObjectRegex, match => match.replace(primitive, semantic));
+
+      // Replace inline JSX/TSX props
+      content = content.replace(jsxPropRegex, match => match.replace(primitive, semantic));
+    });
+  });
+  return content;
 }
 
 /**
@@ -110,7 +110,7 @@ function escapeRegExp(string) {
 }
 
 /**
- * Recursively process CSS files in a directory
+ * Recursively process files in a directory
  * @param {string} dirPath - Path to the directory
  */
 function processDirectory(dirPath) {
@@ -123,9 +123,8 @@ function processDirectory(dirPath) {
     if (stat.isDirectory()) {
       // Recursively process subdirectories
       processDirectory(fullPath);
-
-    } else if (path.extname(file).toLowerCase() === '.css') {
-      // Process CSS files
+    } else if (['.js', '.jsx', '.ts', '.tsx'].includes(path.extname(file).toLowerCase())) {
+      // Process files with supported extensions
       replaceCSSVariables(fullPath);
     }
   });
@@ -133,7 +132,6 @@ function processDirectory(dirPath) {
 
 // Usage
 const directoryPath = process.argv[2] || './src'; // Default to './src' if no path provided
-
 console.log(`Starting variable replacement in: ${directoryPath}`);
 processDirectory(directoryPath);
 console.log('Variable replacement complete.');
