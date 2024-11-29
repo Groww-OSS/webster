@@ -5,8 +5,8 @@ console.log('Replace variables in CSS files');
 
 // Variable map for replacements
 const variableMap = {
-  '--white': '--background--always-dark',
-  '--black': '--background-always-light',
+  '--white': '--background-always-light',
+  '--black': '--background-always-dark',
   '--gray50': '--background-secondary',
   '--gray100': '--background-tertiary',
   '--overlay00': '--background-transparent',
