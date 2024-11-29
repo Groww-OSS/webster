@@ -44,18 +44,18 @@ const propertyVarToUtilityMap = {
 };
 
 // Properties to check for background-related styles
-const backgroundProperties = [ 
-  'background', 'background-color', 'background-image', 'background-blend-mode' 
+const backgroundProperties = [
+  'background', 'background-color', 'background-image', 'background-blend-mode'
 ];
 
 // Properties to check for color-related styles
-const colorProperties = [ 
-  'color', 'text-shadow', 'fill', 'stroke', 'stroke-width', 'box-shadow', 'caret-color' 
+const colorProperties = [
+  'color', 'text-shadow', 'fill', 'stroke', 'stroke-width', 'box-shadow', 'caret-color'
 ];
 
 // Properties to check for border-related styles
 const borderProperties = [
-  'border', 'border-color', 'border-width', 'border-style', 
+  'border', 'border-color', 'border-width', 'border-style',
   'border-top', 'border-top-color', 'border-top-width', 'border-top-style',
   'border-right', 'border-right-color', 'border-right-width', 'border-right-style',
   'border-bottom', 'border-bottom-color', 'border-bottom-width', 'border-bottom-style',
@@ -97,8 +97,13 @@ function replaceCSSVariables(filePath) {
     borderProperties.forEach(prop => {
       Object.entries(propertyVarToUtilityMap.border).forEach(([ primitive, semantic ]) => {
         const regexPatterns = [
+      // Matches cases where the primitive is in a border declaration
           new RegExp(`${prop}:[^;]*${escapeRegExp(primitive)}`, 'g'),
-          new RegExp(`${prop}:\\s*\\d+px\\s+solid\\s*${escapeRegExp(primitive)}`, 'g')
+      // Matches declarations with optional width, style, and color in any order
+          new RegExp(
+            `${prop}:\\s*(\\d+px\\s+)?(\\w+\\s+)?${escapeRegExp(primitive)}|${escapeRegExp(primitive)}\\s+(\\w+\\s+)?(\\d+px)?`,
+            'g'
+          )
         ];
 
         regexPatterns.forEach(regex => {
@@ -106,6 +111,7 @@ function replaceCSSVariables(filePath) {
         });
       });
     });
+
 
     // Write the modified content back to the file
     fs.writeFileSync(filePath, content, 'utf8');
