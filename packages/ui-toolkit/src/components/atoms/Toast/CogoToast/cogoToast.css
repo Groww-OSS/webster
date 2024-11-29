@@ -75,7 +75,7 @@
   margin: 1px;
   border-radius: 50%;
   border: 2px solid var(--purple500);
-  border-color: var(--purple500) transparent var(--purple500) transparent;
+  border-color: var(--content-accent-secondary) transparent var(--purple500) transparent;
   animation: ct-icon-loading 1.2s linear infinite;
 }
 

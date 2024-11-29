@@ -15,15 +15,15 @@
 }
 
 .txta37Area::placeholder {
-  color: var(--gray500);
+  color: var(--content-tertiary);
 }
 
 .txta37Normal {
-  border: 2px solid var(--gray150);
+  border: 2px solid var(--border-primary);
 }
 
 .txta37Error {
-  border: 2px solid var(--red500);
+  border: 2px solid var(--border-negative);
 }
 
 .txta37ErrorMessage {

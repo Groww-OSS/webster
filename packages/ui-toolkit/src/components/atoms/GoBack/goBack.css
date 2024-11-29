@@ -1,5 +1,5 @@
 .gb6Box {
-  border-bottom: 1px solid var(--gray150);
+  border-bottom: 1px solid var(--border-primary);
   border-radius: 5px;
   width: 100%;
   padding: 16px 0;

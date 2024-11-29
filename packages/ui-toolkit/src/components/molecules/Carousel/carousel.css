@@ -167,7 +167,7 @@
   line-height: 1;
 
   opacity: 0.75;
-  color: var(--gray700);;
+  color: var(--content-secondary);;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -258,7 +258,7 @@
   text-align: center;
 
   opacity: 0.25;
-  color: var(--gray900);
+  color: var(--content-primary);
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -266,7 +266,7 @@
 
 .carousel14Dots li.carousel14Active button:before {
     opacity: 0.75;
-    color: var(--gray900);
+    color: var(--content-primary);
 }
 
 @media screen and (max-width: 768px) {

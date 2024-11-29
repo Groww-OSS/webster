@@ -2,14 +2,14 @@
   border-radius: 3px;
   max-width: 100%;
   position: relative;
-  background-color: var(--green100) !important;
-  color: var(--green500);
+  background-color: var(--background-accent-subtle) !important;
+  color: var(--content-accent);
   padding: 4px;
   text-align: center;
 }
 
 .np15Icon:active {
-  background-color: var(--gray100) !important;
+  background-color: var(--background-tertiary) !important;
 }
 
 .np15Root {
@@ -35,12 +35,12 @@
 }
 
 .np15InputErr {
-  color: var(--red500) !important;
+  color: var(--content-negative) !important;
   -webkit-box-shadow: 0 0 0 1000px var(--red100) inset;
 }
 
 .np15InputWarning {
-  color: var(--yellow500) !important;
+  color: var(--content-warning) !important;
   -webkit-box-shadow: 0 0 0 1000px var(--yellow100) inset;
 }
 
@@ -51,7 +51,7 @@
 .np15InputDiv {
   display: flex;
   align-items: center;
-  caret-color: var(--green500);
+  caret-color: var(--content-accent);
 }
 
 .addPaddingTop7 {

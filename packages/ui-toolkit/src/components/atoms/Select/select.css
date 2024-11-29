@@ -22,11 +22,11 @@
 }
 
 .se55DropdownPara:hover {
-  background: var(--gray50);
+  background: var(--background-secondary);
 }
 
 .se55DropdownParaHover {
-  background: var(--gray50);
+  background: var(--background-secondary);
 }
 
 .se55Input {

@@ -19,7 +19,7 @@
 }
 
 .mint-btn-default.mint-btn-secondary-default-border{
-  border: 1px solid var(--gray150);
+  border: 1px solid var(--border-primary);
 }
 
 .mint-btn-tertiary-label-border {
@@ -90,7 +90,7 @@
 }
 
 .mint-btn-loader-item-border-gray { /*used because the token doesn't override the existing color of loader*/
-  border: 2px solid var(--gray900);
+  border: 2px solid var(--border-neutral);
   border-top-color: transparent;
 }
 

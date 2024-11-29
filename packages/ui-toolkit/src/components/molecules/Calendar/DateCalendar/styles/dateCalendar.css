@@ -32,7 +32,7 @@
 .cc12DateNotSelected {}
 
 .cc12DateSelected {
-  background: var(--green500);
+  background: var(--background-accent);
 }
 
 .cc12DateNotSelectedHover:hover{
