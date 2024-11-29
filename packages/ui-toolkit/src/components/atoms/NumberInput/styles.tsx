@@ -49,30 +49,30 @@ export const Input = styled('input', {
   outline: 0,
   opacity: 1,
   caretColor: 'var(--content-accent)',
-  WebkitTextFillColor: 'var(--green500)',
+  WebkitTextFillColor: 'var(--content-accent)',
   padding: 0,
   variants: {
     variant: {
       warning: {
         caretColor: 'var(--content-warning)',
-        WebkitTextFillColor: 'var(--yellow500)'
+        WebkitTextFillColor: 'var(--content-warning)'
       },
       error: {
         caretColor: 'var(--content-negative)',
-        WebkitTextFillColor: 'var(--red500)'
+        WebkitTextFillColor: 'var(--content-negative)'
       },
       disabled: {
         pointerEvents: 'none',
         caretColor: 'var(--content-primary)',
-        WebkitTextFillColor: 'var(--gray900)'
+        WebkitTextFillColor: 'var(--content-primary)'
       },
       unstyled: {
         caretColor: 'var(--content-primary)',
-        WebkitTextFillColor: 'var(--gray900)'
+        WebkitTextFillColor: 'var(--content-primary)'
       },
       default: {
         caretColor: 'var(--content-accent)',
-        WebkitTextFillColor: 'var(--green500)'
+        WebkitTextFillColor: 'var(--content-accent)'
       }
     },
     showSteper: {
@@ -84,6 +84,6 @@ export const Input = styled('input', {
   },
   '&::placeholder': {
     color: 'var(--content-secondary)',
-    WebkitTextFillColor: 'var(--gray700)'
+    WebkitTextFillColor: 'var(--content-secondary)'
   }
 });

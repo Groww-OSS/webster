@@ -94,7 +94,7 @@
 }
 
 .txt88InputMUI {
-  border-bottom: 1px solid var(--gray700) !important;
+  border-bottom: 1px solid var(--content-secondary) !important;
 }
 
 .txt88MlabelError {
@@ -183,7 +183,7 @@
     width: 100%;
     border: none;
     -webkit-text-fill-color: var(--content-primary);
-    border-bottom: 1px solid var(--gray700);
+    border-bottom: 1px solid var(--content-secondary);
     background: var(--dangerouslySetPrimaryBg);
     color: var(--content-primary);
   }

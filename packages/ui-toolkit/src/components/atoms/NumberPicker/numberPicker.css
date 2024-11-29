@@ -36,12 +36,12 @@
 
 .np15InputErr {
   color: var(--content-negative) !important;
-  -webkit-box-shadow: 0 0 0 1000px var(--red100) inset;
+  -webkit-box-shadow: 0 0 0 1000px var(--background-negative-subtle) inset;
 }
 
 .np15InputWarning {
   color: var(--content-warning) !important;
-  -webkit-box-shadow: 0 0 0 1000px var(--yellow100) inset;
+  -webkit-box-shadow: 0 0 0 1000px var(--background-warning-subtle) inset;
 }
 
 #numPicker #txtinput88 {

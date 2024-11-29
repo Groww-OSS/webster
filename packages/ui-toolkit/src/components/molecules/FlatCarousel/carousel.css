@@ -5,7 +5,7 @@
 }
 
 .carousel__dot {
-  background: var(--gray700) !important;
+  background: var(--content-secondary) !important;
   transition: width 0.3s ease-in, background 0.2s ease-out;
 }
 

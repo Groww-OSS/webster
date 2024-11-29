@@ -155,7 +155,7 @@ class ProgressBar extends React.PureComponent<Props> {
   public static defaultProps: DefaultProps = {
     containerThickness: 1,
     color: 'var(--content-accent)',
-    backgroundColor: 'var(--gray150)',
+    backgroundColor: 'var(--border-primary)',
     isCircular: false,
     borderRadius: 5,
     text: '',

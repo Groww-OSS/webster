@@ -8,7 +8,7 @@
   display: block;
   width: 100%;
   border: none;
-  border-bottom: 1px solid var(--gray700);
+  border-bottom: 1px solid var(--content-secondary);
   box-shadow: none;
   background: var(--dangerouslySetPrimaryBg);
   color: var(--content-primary);
