@@ -49,10 +49,10 @@ class Toastify extends React.PureComponent<Props, State> {
     const { msgType, position, showCloseBtn, dataTestId } = this.props;
 
     return (
-      <div
+      (<div
         data-test-id={dataTestId?.length ? dataTestId : null}
         className={
-          cn('sb10Toastify', {
+          cn('sb10Toastify contentOnColour', {
             'sb10ToastifyShow': open,
             'sb10ToastifySuccess': msgType === TOASTIFY_TYPE.SUCCESS,
             'sb10ToastifyError': msgType === TOASTIFY_TYPE.ERROR,
@@ -74,7 +74,7 @@ class Toastify extends React.PureComponent<Props, State> {
               : null
           }
         </div>
-      </div>
+      </div>)
     );
   }
 

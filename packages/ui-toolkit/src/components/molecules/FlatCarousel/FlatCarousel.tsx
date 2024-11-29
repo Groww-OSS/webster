@@ -30,7 +30,7 @@ const Carousel = (props:Props) => {
   }, []);
 
   return (
-    <FlatCarousel
+    (<FlatCarousel
       initialIndex={0}
       autoplay={true}
       autoplayInterval={2500}
@@ -54,7 +54,7 @@ const Carousel = (props:Props) => {
               {
                 image.title &&
                 <div
-                  className={`center-align common171CarouselTitle ${titleClass}`}
+                  className={`center-align common171CarouselTitle contentPrimary ${titleClass}`}
                 >
                   {image.title}
                 </div>
@@ -62,7 +62,7 @@ const Carousel = (props:Props) => {
               {
                 image.description &&
                 <div
-                  className={`center-align common171CarouselDesc ${descriptionClass}`}
+                  className={`center-align common171CarouselDesc contentPrimary ${descriptionClass}`}
                 >
                   {image.description}
                 </div>
@@ -71,7 +71,7 @@ const Carousel = (props:Props) => {
           ))
           : children
       }
-    </FlatCarousel>
+    </FlatCarousel>)
   );
 };
 

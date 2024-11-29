@@ -41,8 +41,8 @@ class DateCalendar extends React.PureComponent<Props, State> {
   render() {
 
     return (
-      <div>
-        <div className="cc12Box">
+      (<div>
+        <div className='cc12Box contentPrimary'>
           <div>
             {this.getYearUI()}
           </div>
@@ -53,7 +53,7 @@ class DateCalendar extends React.PureComponent<Props, State> {
             {this.getDatesUI()}
           </div>
         </div>
-      </div>
+      </div>)
     );
   }
 

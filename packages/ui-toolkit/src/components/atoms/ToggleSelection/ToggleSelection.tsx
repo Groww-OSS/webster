@@ -23,23 +23,21 @@ const ToggleSelection = (props: Props) => {
 
 
   return (
-    <div className={`valign-wrapper tc341ToggleWrapper ${parentClass}`}>
+    (<div className={`valign-wrapper tc341ToggleWrapper borderAccent ${parentClass}`}>
       <div
         className={leftTextClasses}
         onClick={() => changeChoice(true)}
       >
         {leftText}
       </div>
-
-      <div className="tc341Divider"></div>
-
+      <div className='tc341Divider backgroundAccent'></div>
       <div
         className={rightTextClasses}
         onClick={() => changeChoice(false)}
       >
         {rightText}
       </div>
-    </div>
+    </div>)
   );
 
 };

@@ -26,17 +26,15 @@ const TextArea = (props: Props) => {
 
 
   return (
-    <div className={`txta37Div ${parentDivClass}`}>
-
+    (<div className={`txta37Div ${parentDivClass}`}>
       {
         label &&
         <div style={labelStyle}
-          className="txta37Label"
+          className='txta37Label contentTertiary'
         >
           {label}
         </div>
       }
-
       <textarea
         {...restProps}
         className={textAreaClassName}
@@ -46,16 +44,15 @@ const TextArea = (props: Props) => {
         onCopy={disableCopyPaste ? (e) => onCopy(e) : () => { }}
         onPaste={disableCopyPaste ? (e) => onPaste(e) : () => { }}
       />
-
       {
         error && error.length !== 0 &&
         <div style={errorStyle}
-          className="txta37ErrorMessage"
+          className='txta37ErrorMessage contentNegative'
         >
           {error}
         </div>
       }
-    </div>
+    </div>)
   );
 };
 

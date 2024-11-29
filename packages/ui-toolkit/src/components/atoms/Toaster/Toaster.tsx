@@ -179,7 +179,7 @@ const Toaster = (props: ToasterProps) => {
 
   return (
     // Remove item from normal navigation flow, only available via hotkey
-    <section
+    (<section
       aria-label={`${containerAriaLabel} ${hotkeyLabel}`}
       tabIndex={-1}
     >
@@ -256,7 +256,7 @@ const Toaster = (props: ToasterProps) => {
           );
         })
       }
-    </section>
+    </section>)
   );
 };
 
