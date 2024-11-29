@@ -4,6 +4,7 @@ const path = require('path');
 // Mapping of primitive to semantic variables
 const propertyVarToUtilityMap = {
   'background-color': {
+    'var( --dangerouslySetPrimaryBg)': 'var(--background-primary)',
     'var(--green500)': 'var(--background-accent)',
     'var(--gray50)': 'var(--background-secondary)',
     'var(--gray100)': 'var(--background-tertiary)',
@@ -12,6 +13,8 @@ const propertyVarToUtilityMap = {
     'var(--black)': 'var(--background-always-dark)',
     'var(--white)': 'var(--background-always-light)',
     'var(--red500)': 'var(--background-negative)',
+    'var(--yellow500)': 'var(--background-warning)',
+    'var(--yello100)': 'var(--background-warning-subtle)',
     'var(--green100)': 'var(--background-accent-subtle)',
     'var(--red100)': 'var(--background-negative-subtle)',
     'var(--yellow100)': 'var(--background-warning-subtle)',
@@ -33,9 +36,9 @@ const propertyVarToUtilityMap = {
   },
   'border-color': {
     'var(--gray150)': 'var(--border-primary)',
-    'var(--gray300)': 'var(--border-disabled)',
-    'var(--red500)': 'var(--border-accent)',
-    'var(--yellow500)': 'var(--border-negative)',
+    'var(--gray100)': 'var(--border-disabled)',
+    'var(--green500)': 'var(--border-accent)',
+    'var(--red500)': 'var(--border-negative)',
     'var(--gray900)': 'var(--border-neutral)'
   }
 };

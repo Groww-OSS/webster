@@ -12,11 +12,12 @@ const propertyVarToUtilityMap = {
     'var(--black)': 'backgroundAlwaysDark',
     'var(--white)': 'backgroundAlwaysLight',
     'var(--red500)': 'backgroundNegative',
+    'var(--yellow500)': 'backgroundWarning',
+    'var(--yello100)': 'backgroundWarningSubtle',
     'var(--green100)': 'backgroundAccentSubtle',
     'var(--red100)': 'backgroundNegativeSubtle',
-    'var(--yellow100)': 'backgroundWarningSubtle',
     'var(--purple500)': 'backgroundAccentSecondary',
-    'var(--purple100)': 'backgroundAccentSecondarySubtle'
+    'var(--purple100)': 'backgroundAccentSecondarySubtle',
   },
   'color': {
     'var(--gray900)': 'contentPrimary',
@@ -33,10 +34,10 @@ const propertyVarToUtilityMap = {
   },
   'border': {
     '1px solid var(--gray150)': 'borderPrimary',
-    '1px solid var(--gray300)': 'borderDisabled',
-    '1px solid var(--red500)': 'borderAccent',
-    '1px solid var(--yellow500)': 'borderNegative',
-    '2px solid var(--gray900)': 'borderNeutral'
+    '1px solid var(--gray100)': 'borderDisabled',
+    '1px solid var(--green500)': 'borderAccent',
+    '1px solid var(--red500)': 'borderNegative',
+    '1px solid var(--gray900)': 'borderNeutral'
   }
 };
 
