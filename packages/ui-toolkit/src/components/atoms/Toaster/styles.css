@@ -239,11 +239,11 @@
 }
 
 [data-sonner-toast][data-type="warning"] {
-  border-left: 3px solid var(--yellow500);
+  border-left: 3px solid var(--content-warning);
 }
 
 [data-sonner-toast][data-type="info"] {
-  border-left: 3px solid var(--purple500);
+  border-left: 3px solid var(--content-accent-secondary);
 }
 
 .success {
