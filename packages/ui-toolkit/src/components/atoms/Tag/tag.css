@@ -11,15 +11,10 @@
 
 .tg11Warning {
   background-color: var(--yellow100);
-  color: var(--gray900);
 }
 
 .tg11Error {
-  background-color: var(--red100);
-  color: var(--gray900);
 }
 
 .tg11Info {
-  background-color: var(--green100);
-  color: var(--gray900);
 }

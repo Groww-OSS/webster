@@ -1,7 +1,6 @@
 .txtinput88label {
   font-size: 13px;
   letter-spacing: 0.25px;
-  color: var(--gray700);
   text-align: left;
 }
 
@@ -31,7 +30,6 @@
   font-size: 16px;
   flex-grow: 1;
   outline: 0;
-  color: var(--gray900);
   /* -webkit-box-shadow: 0 0 0px 1000px white inset; */
 }
 
@@ -82,7 +80,6 @@
 }
 
 .infoText {
-  color: var(--yellow500);
   font-size: 14px;
   margin-top: 3px;
   text-align: left;
@@ -101,7 +98,6 @@
 }
 
 .txt88MlabelError {
-  color: var(--red500) !important;
 }
 
 .txt88Bar {
@@ -139,7 +135,6 @@
 }
 
 .txt88MErrorText {
-  color: var(--red500);
   font-size: 14px;
   margin-top: 3px;
   text-align: left;

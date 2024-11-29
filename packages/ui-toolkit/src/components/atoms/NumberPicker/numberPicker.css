@@ -18,8 +18,6 @@
   max-width: 100%;
   overflow: hidden;
   position: relative;
-  background-color: var(--green100) !important;
-  color: var(--green500);
   white-space: nowrap;
 }
 
@@ -28,10 +26,8 @@
 }
 
 .np15Input {
-  background-color: var(--green100) !important;
   width: 60px;
   height: 32px;
-  color: var(--green500) !important;
   font-size: 20px !important;
   font-weight: 500;
   letter-spacing: 0.33px;

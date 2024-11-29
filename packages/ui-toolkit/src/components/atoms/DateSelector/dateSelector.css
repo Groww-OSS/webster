@@ -10,14 +10,12 @@
 .date101Label {
   font-size: 16px;
   text-align: center;
-  color: var(--gray700);
 }
 
 .date101SelectedLabel {
   margin-top: 25px;
   font-size: 19px;
   text-align: center;
-  color: var(--gray900);
 }
 
 .date101Grid-container {
@@ -92,7 +90,6 @@
   opacity: 0.5;
   top: 10px;
   right: 10px;
-  color: var(--gray900);
   cursor: pointer;
 }
 

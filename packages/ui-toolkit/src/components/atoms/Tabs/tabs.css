@@ -12,11 +12,9 @@
   padding-right: 45px;
   height: 30px;
   cursor: pointer;
-  color: var(--gray900);
 }
 
 .tabs8TextActive {
-  color: var(--green500);
 }
 
 .tabs8Line {
@@ -61,7 +59,6 @@
   }
 
   .tabs8TextActive {
-    color: var(--green500);
   }
 
   .tabs8Line {
