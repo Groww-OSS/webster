@@ -26,7 +26,7 @@ class TextInput extends React.PureComponent<TextInputProps> {
 
     if (isMaterialUI) {
       labelClassName = cn({
-        txt88MlabelError contentNegative: showError
+        contentNegative: showError
       });
 
     } else {
@@ -65,8 +65,8 @@ class TextInput extends React.PureComponent<TextInputProps> {
 
     return (
       <div id="txtinput88"
-          className={cn({ 'txt88Width': fullWidth })}
-        >
+        className={cn({ 'txt88Width': fullWidth })}
+      >
         {!isMaterialUI && (showLabel || label) && <div className={`txtinput88label contentSecondary ${labelClassName}`}>{this.props.label}</div>}
         <div
           className={cssForInputParent}
