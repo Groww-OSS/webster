@@ -88,7 +88,8 @@ class TableRow extends React.PureComponent<Props, {}> {
         {...otherProps}
       >
         {childrenWithProps}
-      </tr>);
+      </tr>
+    );
 
   }
 }

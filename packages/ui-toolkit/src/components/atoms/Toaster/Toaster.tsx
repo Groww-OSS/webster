@@ -171,18 +171,17 @@ const Toaster = (props: ToasterProps) => {
             zIndex: 99999999
           } as CSSProperties
         }
-      >
-        Clear all
-      </div>
+      >Clear all
+              </div>
     );
   };
 
   return (
     // Remove item from normal navigation flow, only available via hotkey
-    (<section
-      aria-label={`${containerAriaLabel} ${hotkeyLabel}`}
-      tabIndex={-1}
-    >
+    <section
+        aria-label={`${containerAriaLabel} ${hotkeyLabel}`}
+        tabIndex={-1}
+      >
       {
         possiblePositions.map((position, index) => {
           const [ y, x ] = position.split('-');
@@ -256,7 +255,7 @@ const Toaster = (props: ToasterProps) => {
           );
         })
       }
-    </section>)
+    </section>
   );
 };
 

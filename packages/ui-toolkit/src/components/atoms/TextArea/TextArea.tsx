@@ -26,7 +26,7 @@ const TextArea = (props: Props) => {
 
 
   return (
-    (<div className={`txta37Div ${parentDivClass}`}>
+    <div className={`txta37Div ${parentDivClass}`}>
       {
         label &&
         <div style={labelStyle}
@@ -52,7 +52,7 @@ const TextArea = (props: Props) => {
           {error}
         </div>
       }
-    </div>)
+    </div>
   );
 };
 

@@ -33,13 +33,13 @@ const Popover = (props: Props) => {
   };
 
   return (
-    (<div
-      className="pop12Wrapper"
-      onClick={showTip}
-      onMouseEnter={showTip}
-      onMouseLeave={hideTip}
-      onTouchStart={hideTip}
-    >
+    <div
+        className="pop12Wrapper"
+        onClick={showTip}
+        onMouseEnter={showTip}
+        onMouseLeave={hideTip}
+        onTouchStart={hideTip}
+      >
       {children}
       {
         isPopoverVisible && (
@@ -48,7 +48,7 @@ const Popover = (props: Props) => {
           </div>
         )
       }
-    </div>)
+    </div>
   );
 };
 

@@ -41,7 +41,7 @@ class DateCalendar extends React.PureComponent<Props, State> {
   render() {
 
     return (
-      (<div>
+      <div>
         <div className='cc12Box contentPrimary'>
           <div>
             {this.getYearUI()}
@@ -53,7 +53,7 @@ class DateCalendar extends React.PureComponent<Props, State> {
             {this.getDatesUI()}
           </div>
         </div>
-      </div>)
+      </div>
     );
   }
 
@@ -97,7 +97,7 @@ class DateCalendar extends React.PureComponent<Props, State> {
 
   getMonthUI = () => {
     return (
-      (<div>
+      <div>
         <div className='cc12WeekNameBox valign-wrapper contentSecondary bodyBase'>
           {
             WEEK_DAYS.map(day => (
@@ -109,7 +109,7 @@ class DateCalendar extends React.PureComponent<Props, State> {
             ))
           }
         </div>
-      </div>)
+      </div>
     );
   }
 
@@ -138,7 +138,7 @@ class DateCalendar extends React.PureComponent<Props, State> {
                         const dateSelected = this.isDateSelected(date);
 
                         return (
-                          (<div className="cc12DateBlock">
+                          <div className="cc12DateBlock">
                             <div
                               className={
                                 cn('cc12Date valign-wrapper cur-po circle bodyBase', {
@@ -151,13 +151,11 @@ class DateCalendar extends React.PureComponent<Props, State> {
                             >
                               {date}
                             </div>
-                          </div>)
+                          </div>
                         );
                       }
 
-                      return (
-                        <div className="cc12DateBlock">&nbsp;</div>
-                      );
+                      return <div className="cc12DateBlock">&nbsp;</div>;
                     })
                   }
                 </div>

@@ -75,7 +75,7 @@ class Select extends React.PureComponent<Props> {
     }
 
     return (
-      (<div className="se55DropDownWrapper">
+      <div className="se55DropDownWrapper">
         <Dropdown
           className="width100"
           ref={ref => (this.selectDropdownRef = ref)}
@@ -110,20 +110,20 @@ class Select extends React.PureComponent<Props> {
                 {
                   options.map((item, index) => {
                     return (
-                      (<div
-                        key={`selectOption-${index}`}
-                        ref={this.optionsRefArr[index]}
-                        data-test-id={dataTestId.length ? index + '-' + dataTestId : null}
-                        className={
-                          cn('se55DropdownPara contentPrimary', {
-                            'se55DropdownParaHover': activeIndex === index,
-                            [optionClass]: true
-                          })
-                        }
-                        onClick={() => this.onSelectChange(index)}
-                      >
+                      <div
+                          key={`selectOption-${index}`}
+                          ref={this.optionsRefArr[index]}
+                          data-test-id={dataTestId.length ? index + '-' + dataTestId : null}
+                          className={
+                            cn('se55DropdownPara contentPrimary', {
+                              'se55DropdownParaHover': activeIndex === index,
+                              [optionClass]: true
+                            })
+                          }
+                          onClick={() => this.onSelectChange(index)}
+                        >
                         {item.label}
-                      </div>)
+                      </div>
                     );
                   })
                 }
@@ -131,7 +131,7 @@ class Select extends React.PureComponent<Props> {
             </div>
           </DropdownTrigger>
         </Dropdown>
-      </div>)
+      </div>
     );
   }
 

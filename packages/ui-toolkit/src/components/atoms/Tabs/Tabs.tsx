@@ -41,7 +41,6 @@ const Tabs = (props: Props) => {
           style={{ width, left }}
         />
       }
-
       <div className="valign-wrapper tabs8Parent">
         {
           data.map((item, key) => {

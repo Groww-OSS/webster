@@ -86,9 +86,9 @@ const NumberPicker = (props: Props) => {
   };
 
   return (
-    (<span id="numPicker"
-      className='np15Root contentAccent'
-    >
+    <span id="numPicker"
+        className='np15Root contentAccent'
+      >
       <NumberInput
         ref={textInput}
         id="numberPicker"
@@ -101,7 +101,7 @@ const NumberPicker = (props: Props) => {
         min={minValue}
         placeholder=""
       />
-    </span>)
+    </span>
   );
 };
 

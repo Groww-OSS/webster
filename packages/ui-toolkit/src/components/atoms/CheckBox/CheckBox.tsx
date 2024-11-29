@@ -96,7 +96,6 @@ const CheckBox = (props: Props) => {
       className={baseClasses}
     >
       <div className='valign-wrapper'>{isChecked ? active_svg : inactive_svg}</div>
-
       {label && <div className={labelClasses}>{label}</div>}
     </div>
   );

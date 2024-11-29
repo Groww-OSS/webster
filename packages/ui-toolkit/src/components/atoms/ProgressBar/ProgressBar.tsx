@@ -27,7 +27,6 @@ class ProgressBar extends React.PureComponent<Props> {
             isCircular ? this.getCircularProgressBar() : this.getLinearProgressBar()
           }
         </div>
-
       </Waypoint>
     );
   }
@@ -119,7 +118,6 @@ class ProgressBar extends React.PureComponent<Props> {
           strokeWidth={`${containerThickness}px`}
           stroke={backgroundColor}
         />
-
         <circle
           id={this.progressbarId}
           className="pb65CicleFiller"
@@ -129,7 +127,6 @@ class ProgressBar extends React.PureComponent<Props> {
           transform={`rotate(-90 ${sqSize / 2} ${sqSize / 2})`}
           style={fillerStyle}
         />
-
         {
           text &&
           <text
@@ -141,7 +138,6 @@ class ProgressBar extends React.PureComponent<Props> {
           </text>
         }
       </svg>
-
     );
 
   }

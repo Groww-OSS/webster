@@ -71,7 +71,7 @@ const InputField = (props: Props) => {
   };
 
   return (
-    (<div className="group inf11Input">
+    <div className="group inf11Input">
       <input
         className={customClass}
         style={fontSize === '' ? {} : { fontSize: fontSize }}
@@ -108,7 +108,7 @@ const InputField = (props: Props) => {
         !showError && (noErrorText !== '') &&
           <div className='noErrorText contentSecondary'>{noErrorText}</div>
       }
-    </div>)
+    </div>
   );
 };
 

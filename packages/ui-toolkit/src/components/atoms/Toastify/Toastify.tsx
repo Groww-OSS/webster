@@ -49,19 +49,19 @@ class Toastify extends React.PureComponent<Props, State> {
     const { msgType, position, showCloseBtn, dataTestId } = this.props;
 
     return (
-      (<div
-        data-test-id={dataTestId?.length ? dataTestId : null}
-        className={
-          cn('sb10Toastify contentOnColour', {
-            'sb10ToastifyShow': open,
-            'sb10ToastifySuccess': msgType === TOASTIFY_TYPE.SUCCESS,
-            'sb10ToastifyError': msgType === TOASTIFY_TYPE.ERROR,
-            'sb10ToastifyInfo': msgType === TOASTIFY_TYPE.INFO,
-            'sb10ToastifyPositionTop': position === TOASTIFY_POSITION.TOP,
-            'sb10ToastifyPositionBottom': position === TOASTIFY_POSITION.BOTTOM
-          })
-        }
-      >
+      <div
+          data-test-id={dataTestId?.length ? dataTestId : null}
+          className={
+            cn('sb10Toastify contentOnColour', {
+              'sb10ToastifyShow': open,
+              'sb10ToastifySuccess': msgType === TOASTIFY_TYPE.SUCCESS,
+              'sb10ToastifyError': msgType === TOASTIFY_TYPE.ERROR,
+              'sb10ToastifyInfo': msgType === TOASTIFY_TYPE.INFO,
+              'sb10ToastifyPositionTop': position === TOASTIFY_POSITION.TOP,
+              'sb10ToastifyPositionBottom': position === TOASTIFY_POSITION.BOTTOM
+            })
+          }
+        >
         <div className="valign-wrapper vspace-between">
           <div>{msg}</div>
           {
@@ -74,7 +74,7 @@ class Toastify extends React.PureComponent<Props, State> {
               : null
           }
         </div>
-      </div>)
+      </div>
     );
   }
 

@@ -64,9 +64,9 @@ class TextInput extends React.PureComponent<TextInputProps> {
 
 
     return (
-      (<div id="txtinput88"
-        className={cn({ 'txt88Width': fullWidth })}
-      >
+      <div id="txtinput88"
+          className={cn({ 'txt88Width': fullWidth })}
+        >
         {!isMaterialUI && (showLabel || label) && <div className={`txtinput88label contentSecondary ${labelClassName}`}>{this.props.label}</div>}
         <div
           className={cssForInputParent}
@@ -121,7 +121,7 @@ class TextInput extends React.PureComponent<TextInputProps> {
             {showInfo ? <div className='infoText contentWarning'>{infoText}</div> : null}
           </div>
         }
-      </div>)
+      </div>
     );
   }
 

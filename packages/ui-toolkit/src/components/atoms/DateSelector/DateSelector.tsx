@@ -78,7 +78,7 @@ class DateSelector extends PureComponent<Props, State> {
     const selectedDateLabel = `${ordinalSuffixOf(selectedDate)} of every month`;
 
     return (
-      (<div className="date101MainDiv">
+      <div className="date101MainDiv">
         <div className='date101Label contentSecondary'>
           {titleText}
         </div>
@@ -102,7 +102,7 @@ class DateSelector extends PureComponent<Props, State> {
           onClick={this.confirmDate}
           variant='Primary'
         />
-      </div>)
+      </div>
     );
   }
 

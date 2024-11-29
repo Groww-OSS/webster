@@ -30,11 +30,11 @@ const Carousel = (props:Props) => {
   }, []);
 
   return (
-    (<FlatCarousel
-      initialIndex={0}
-      autoplay={true}
-      autoplayInterval={2500}
-    >
+    <FlatCarousel
+        initialIndex={0}
+        autoplay={true}
+        autoplayInterval={2500}
+      >
       {
         !custom
           ? images.map((image, index) => (
@@ -71,7 +71,7 @@ const Carousel = (props:Props) => {
           ))
           : children
       }
-    </FlatCarousel>)
+    </FlatCarousel>
   );
 };
 

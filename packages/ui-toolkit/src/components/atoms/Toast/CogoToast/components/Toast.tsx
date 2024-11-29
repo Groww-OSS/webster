@@ -95,12 +95,10 @@ const Toast = (props:Props) => {
       <div className="ct-type-icon">
         {props.renderIcon ? props.renderIcon() : <CurrentIcon />}
       </div>
-
       <div className="ct-text-group">
         {props.title && <div className="ct-heading">{props.title}</div>}
         <div className="ct-text">{props.subText}</div>
       </div >
-
       <Close
         className="ct-close-icon"
         onClick={handleHide}
