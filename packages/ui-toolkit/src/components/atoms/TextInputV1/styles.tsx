@@ -1,7 +1,7 @@
 import { styled } from '@stitches/react';
 
 export const Container = styled('div', {
-  borderBottom: '2px solid var(--gray150)',
+  borderBottom: '2px solid var(--border-primary)',
   width: '100%',
   position: 'relative',
   variants: {
@@ -92,7 +92,7 @@ export const PrimaryInput = styled('input', {
   },
   '&::placeholder': {
     color: 'var(--content-secondary)',
-    WebkitTextFillColor: 'var(--gray700)'
+    WebkitTextFillColor: 'var(--content-secondary)'
   },
   '&:-webkit-autofill': {
     boxShadow: '0 0 0 30px var(--dangerouslySetPrimaryBg) inset !important',
