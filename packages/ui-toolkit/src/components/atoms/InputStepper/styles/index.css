@@ -1,0 +1,62 @@
+.inputStepper-inputContent {
+  position: relative;
+  display: flex;
+  height: 48px;
+  border-radius: 4px;
+  gap: 4px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+  
+.inputStepper-inputFocused {
+  outline-offset: -1px;
+  outline: 2px solid var(--gray900);
+}
+
+.inputStepper-input {
+  width: 100%;
+  font-size: 16px;
+  caret-color: var(--green500);
+  outline: none; /* Remove focus outline */
+  box-shadow: none; /* Remove any focus box-shadow */
+  border: none;
+  text-overflow: ellipsis;
+  text-align: center;
+  padding: 0;
+}
+
+.inputStepper-prefixContainer,
+.inputStepper-suffixContainer {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+.inputStepper-inputPrefixIcon,
+.inputStepper-inputPrefixLabel {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inputStepper-inputClearIcon {
+  cursor: pointer;
+}
+
+input::placeholder {
+  color: var(--gray500);
+}
+
+.inputStepper-inputBorderNeutral {
+  border: 2px solid var(--gray900);
+}
+
+.inputStepper-inputBorderNegative {
+  border: 2px solid var(--red500);
+  border-radius: 4px;
+}
