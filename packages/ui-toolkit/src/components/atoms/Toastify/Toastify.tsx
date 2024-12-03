@@ -52,10 +52,10 @@ class Toastify extends React.PureComponent<Props, State> {
       <div
         data-test-id={dataTestId?.length ? dataTestId : null}
         className={
-          cn('sb10Toastify', {
+          cn('sb10Toastify contentOnColour', {
             'sb10ToastifyShow': open,
-            'sb10ToastifySuccess': msgType === TOASTIFY_TYPE.SUCCESS,
-            'sb10ToastifyError': msgType === TOASTIFY_TYPE.ERROR,
+            'backgroundAccent': msgType === TOASTIFY_TYPE.SUCCESS,
+            'backgroundNegative': msgType === TOASTIFY_TYPE.ERROR,
             'sb10ToastifyInfo': msgType === TOASTIFY_TYPE.INFO,
             'sb10ToastifyPositionTop': position === TOASTIFY_POSITION.TOP,
             'sb10ToastifyPositionBottom': position === TOASTIFY_POSITION.BOTTOM

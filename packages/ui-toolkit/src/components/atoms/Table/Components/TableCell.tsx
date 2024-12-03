@@ -1,4 +1,5 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode } from 'react';
+
 
 type Props = {
   className?: string;
@@ -13,7 +14,7 @@ type Props = {
 
 
 const TableCell = (props: Props) => {
-  const { children, className = 'tb10Td', style, width, textAlign, colSpan = 1, rowSpan=1, onClick } = props;
+  const { children, className = 'tb10Td', style, width, textAlign, colSpan = 1, rowSpan = 1, onClick } = props;
 
   return (
     <td onClick={onClick}
