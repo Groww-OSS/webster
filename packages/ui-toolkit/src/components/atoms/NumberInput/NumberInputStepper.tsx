@@ -1,12 +1,9 @@
-import React from "react";
+import React from 'react';
 
-import {
-  Add,
-  Remove
-} from "@groww-tech/icon-store/mi";
+import { Add, Remove } from '@groww-tech/icon-store/mi';
 
-import BaseNumberInput from "./BaseNumberInput";
-import { NumberInputProps } from "./NumberInput";
+import BaseNumberInput from './BaseNumberInput';
+import { NumberInputProps } from './NumberInput';
 
 export const INPUT_ACTION_TYPE = {
   INCREMENT: 'INCREMENT',

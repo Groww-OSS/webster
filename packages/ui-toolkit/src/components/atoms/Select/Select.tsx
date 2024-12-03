@@ -111,17 +111,17 @@ class Select extends React.PureComponent<Props> {
                   options.map((item, index) => {
                     return (
                       <div
-                          key={`selectOption-${index}`}
-                          ref={this.optionsRefArr[index]}
-                          data-test-id={dataTestId.length ? index + '-' + dataTestId : null}
-                          className={
-                            cn('se55DropdownPara contentPrimary', {
-                              'se55DropdownParaHover': activeIndex === index,
-                              [optionClass]: true
-                            })
-                          }
-                          onClick={() => this.onSelectChange(index)}
-                        >
+                        key={`selectOption-${index}`}
+                        ref={this.optionsRefArr[index]}
+                        data-test-id={dataTestId.length ? index + '-' + dataTestId : null}
+                        className={
+                          cn('se55DropdownPara contentPrimary', {
+                            'se55DropdownParaHover': activeIndex === index,
+                            [optionClass]: true
+                          })
+                        }
+                        onClick={() => this.onSelectChange(index)}
+                      >
                         {item.label}
                       </div>
                     );

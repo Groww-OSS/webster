@@ -1,8 +1,4 @@
-import React, {
-  Children,
-  cloneElement,
-  isValidElement
-} from 'react';
+import React, { Children, cloneElement, isValidElement } from 'react';
 
 import cn from 'classnames';
 

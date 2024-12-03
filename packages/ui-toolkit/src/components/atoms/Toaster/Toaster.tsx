@@ -172,16 +172,16 @@ const Toaster = (props: ToasterProps) => {
           } as CSSProperties
         }
       >Clear all
-              </div>
+      </div>
     );
   };
 
   return (
     // Remove item from normal navigation flow, only available via hotkey
     <section
-        aria-label={`${containerAriaLabel} ${hotkeyLabel}`}
-        tabIndex={-1}
-      >
+      aria-label={`${containerAriaLabel} ${hotkeyLabel}`}
+      tabIndex={-1}
+    >
       {
         possiblePositions.map((position, index) => {
           const [ y, x ] = position.split('-');

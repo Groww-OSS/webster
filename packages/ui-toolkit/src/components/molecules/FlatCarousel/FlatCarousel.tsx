@@ -31,10 +31,10 @@ const Carousel = (props:Props) => {
 
   return (
     <FlatCarousel
-        initialIndex={0}
-        autoplay={true}
-        autoplayInterval={2500}
-      >
+      initialIndex={0}
+      autoplay={true}
+      autoplayInterval={2500}
+    >
       {
         !custom
           ? images.map((image, index) => (

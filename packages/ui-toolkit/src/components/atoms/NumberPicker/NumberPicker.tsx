@@ -87,8 +87,8 @@ const NumberPicker = (props: Props) => {
 
   return (
     <span id="numPicker"
-        className='np15Root backgroundAccentSubtle contentAccent'
-      >
+      className='np15Root backgroundAccentSubtle contentAccent'
+    >
       <NumberInput
         ref={textInput}
         id="numberPicker"
