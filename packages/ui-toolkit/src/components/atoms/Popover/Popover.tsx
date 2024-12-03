@@ -43,7 +43,7 @@ const Popover = (props: Props) => {
       {children}
       {
         isPopoverVisible && (
-          <div className={`pop12Popover contentPrimary borderPrimary borderPrimary backgroundPrimary ${popoverWrapperClass} ${direction || POPOVER_POSITIONS.TOP}`}>
+          <div className={`pop12Popover contentPrimary borderPrimary backgroundPrimary ${popoverWrapperClass} ${direction || POPOVER_POSITIONS.TOP}`}>
             {content}
           </div>
         )
