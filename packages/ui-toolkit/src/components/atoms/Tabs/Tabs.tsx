@@ -46,7 +46,7 @@ const Tabs = (props: Props) => {
           data.map((item, key) => {
             return (
               <div
-                className={`${customStyleTab} ${key === activeIndex && 'tabs8TextActive contentAccent contentAccent'}`}
+                className={`${customStyleTab} ${key === activeIndex && 'tabs8TextActive contentAccent'}`}
                 title={item.description}
                 onClick={onTabClick.bind(null, key)}
                 style={item.style}

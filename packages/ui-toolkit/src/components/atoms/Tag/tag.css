@@ -8,13 +8,3 @@
   min-height: 30px;
   -webkit-font-smoothing: auto;
 }
-
-.tg11Warning {
-  background-color: var(--background-warning-subtle);
-}
-
-.tg11Error {
-}
-
-.tg11Info {
-}

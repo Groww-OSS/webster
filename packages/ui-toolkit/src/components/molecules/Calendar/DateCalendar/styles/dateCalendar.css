@@ -29,12 +29,6 @@
   margin: 0 auto;
 }
 
-.cc12DateNotSelected {}
-
-.cc12DateSelected {
-  background: var(--background-accent);
-}
-
 .cc12DateNotSelectedHover:hover{
   background-color: var(--color-bg-calendar-hover);
 }

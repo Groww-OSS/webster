@@ -27,12 +27,6 @@
   top: 1px;
 }
 
-.sb10ToastifySuccess {
-}
-
-.sb10ToastifyError {
-}
-
 .sb10ToastifyInfo {
   background-color: var(--content-primary);
 }

@@ -24,9 +24,6 @@
   background-color: var(--color-bg-calendar-hover);
 }
 
-.mn12MonthTextSelected {
-}
-
 .mn12MonthBox {
   flex-wrap: wrap;
   justify-content: space-between;
