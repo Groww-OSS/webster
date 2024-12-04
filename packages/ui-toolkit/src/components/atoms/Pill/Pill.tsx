@@ -51,9 +51,7 @@ const Pill = (props: Props) => {
       onClick={handleClick}
     >
       {leadingIcon && <span className='valign-wrapper'>{leadingIcon?.(pillIconProps)}</span>}
-
       <span className={labelClasses}>{text}</span>
-
       {trailingIcon && <span className='valign-wrapper'>{trailingIcon?.(pillIconProps)}</span>}
     </div>
   );

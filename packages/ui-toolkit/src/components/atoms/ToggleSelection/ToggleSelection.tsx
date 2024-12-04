@@ -8,7 +8,7 @@ const ToggleSelection = (props: Props) => {
   const { leftText, rightText, isActive, onChange, parentClass } = props;
 
   const choiceClasses = 'bodyLargeHeavy fullWidth absolute-center tc341ChoiceClass ';
-  const activeChoiceClasses = choiceClasses + 'contentAccent tc341ActiveChoice';
+  const activeChoiceClasses = choiceClasses + 'contentAccent backgroundAccentSubtle';
   const inActiveChoiceClasses = choiceClasses + 'contentPrimary tc341InactiveChoice';
 
   const leftTextClasses = isActive ? activeChoiceClasses : inActiveChoiceClasses;
@@ -23,16 +23,14 @@ const ToggleSelection = (props: Props) => {
 
 
   return (
-    <div className={`valign-wrapper tc341ToggleWrapper ${parentClass}`}>
+    <div className={`valign-wrapper tc341ToggleWrapper borderAccent ${parentClass}`}>
       <div
         className={leftTextClasses}
         onClick={() => changeChoice(true)}
       >
         {leftText}
       </div>
-
-      <div className="tc341Divider"></div>
-
+      <div className='tc341Divider backgroundAccent'></div>
       <div
         className={rightTextClasses}
         onClick={() => changeChoice(false)}
@@ -49,8 +47,8 @@ const defaultProps: DefaultProps = {
   parentClass: '',
   leftText: 'En',
   rightText: 'हि',
-  activeBackgroundColor: 'var(--green500)',
-  inactiveBackgroundColor: 'var(--gray700)'
+  activeBackgroundColor: 'var(--content-accent)',
+  inactiveBackgroundColor: 'var(--content-secondary)'
 };
 
 

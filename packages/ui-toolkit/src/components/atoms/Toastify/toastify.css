@@ -10,7 +10,6 @@
   -webkit-font-smoothing: auto;
   letter-spacing: 0.1px;
   line-height: 17px;
-  color: var(--white);
   overflow: hidden;
 }
 
@@ -26,18 +25,6 @@
   margin-left: 5px;
   position: relative;
   top: 1px;
-}
-
-.sb10ToastifySuccess {
-  background-color: var(--green500);
-}
-
-.sb10ToastifyError {
-  background-color: var(--red500);
-}
-
-.sb10ToastifyInfo {
-  background-color: var(--gray900);
 }
 
 .sb10ToastifyPositionTop {

@@ -1,6 +1,14 @@
 import React from 'react';
 
-import { PrimaryInput, Label, ErrorLabel, Container, TrailingVisContainer, LeadingVisContainer, WrapperContainer } from './styles';
+import {
+  PrimaryInput,
+  Label,
+  ErrorLabel,
+  Container,
+  TrailingVisContainer,
+  LeadingVisContainer,
+  WrapperContainer
+} from './styles';
 
 import { TextInputProps } from './TextInputV1';
 

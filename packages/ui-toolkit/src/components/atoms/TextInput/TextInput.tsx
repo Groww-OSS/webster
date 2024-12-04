@@ -26,7 +26,7 @@ class TextInput extends React.PureComponent<TextInputProps> {
 
     if (isMaterialUI) {
       labelClassName = cn({
-        txt88MlabelError: showError
+        contentNegative: showError
       });
 
     } else {
@@ -67,13 +67,13 @@ class TextInput extends React.PureComponent<TextInputProps> {
       <div id="txtinput88"
         className={cn({ 'txt88Width': fullWidth })}
       >
-        {!isMaterialUI && (showLabel || label) && <div className={`txtinput88label ${labelClassName}`}>{this.props.label}</div>}
+        {!isMaterialUI && (showLabel || label) && <div className={`txtinput88label contentSecondary ${labelClassName}`}>{this.props.label}</div>}
         <div
           className={cssForInputParent}
         >
           {prefixComponent()}
           <input
-            className={`txtinput88input backgroundPrimary ${inputClass} ${isMaterialUI ? 'txt88InputMUI' : ''}`}
+            className={`txtinput88input contentPrimary backgroundPrimary ${inputClass} ${isMaterialUI ? 'txt88InputMUI' : ''}`}
             style={fontSize === '' ? isMaterialUI ? { padding: '10px 10px 10px 2px', ...inputStyle } : { ...inputStyle } : isMaterialUI ? { padding: '10px 10px 10px 2px', fontSize: fontSize, ...inputStyle } : { fontSize: fontSize, ...inputStyle }}
             id={id}
             name={name}
@@ -108,7 +108,7 @@ class TextInput extends React.PureComponent<TextInputProps> {
                 style={fontSize === '' ? {} : { fontSize: fontSize }}
               >{label}</label>
 
-              {showError && <div className="txt88MErrorText">{errorText}</div>}
+              {showError && <div className='txt88MErrorText contentNegative'>{errorText}</div>}
 
             </>
           }
@@ -118,7 +118,7 @@ class TextInput extends React.PureComponent<TextInputProps> {
           !isMaterialUI &&
           <div>
             {showError ? <div className={`errorText ${errorTextClass}`}>{errorText}</div> : null}
-            {showInfo ? <div className="infoText">{infoText}</div> : null}
+            {showInfo ? <div className='infoText contentWarning'>{infoText}</div> : null}
           </div>
         }
       </div>

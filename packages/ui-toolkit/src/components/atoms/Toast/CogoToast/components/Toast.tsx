@@ -20,7 +20,7 @@ const Toast = (props:Props) => {
   const marginType = `margin${place}`;
 
   const className = [
-    'ct-toast borderPrimary backgroundPrimary',
+    'ct-toast contentPrimary borderPrimary backgroundPrimary',
     props.onClick ? ' ct-cursor-pointer' : '',
     `ct-toast-${props.type}`
   ].join(' ');
@@ -95,12 +95,10 @@ const Toast = (props:Props) => {
       <div className="ct-type-icon">
         {props.renderIcon ? props.renderIcon() : <CurrentIcon />}
       </div>
-
       <div className="ct-text-group">
         {props.title && <div className="ct-heading">{props.title}</div>}
         <div className="ct-text">{props.subText}</div>
       </div >
-
       <Close
         className="ct-close-icon"
         onClick={handleHide}

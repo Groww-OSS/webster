@@ -83,7 +83,7 @@ class Select extends React.PureComponent<Props> {
           <DropdownTrigger>
             <div className="width100 pos-rel">
               <div
-                className={`pos-rel valign-wrapper se55SelectBox contentPrimary ${activeOptionBoxClass}`}
+                className={`pos-rel valign-wrapper se55SelectBox borderPrimary contentPrimary ${activeOptionBoxClass}`}
               >
                 <div>
                   {selectedOption ? selectedOption.label : placeholder}
@@ -104,7 +104,7 @@ class Select extends React.PureComponent<Props> {
               </div>
 
               <DropdownContent
-                className={`se55DropdownContent backgroundPrimary ${optionsParentClass}`}
+                className={`se55DropdownContent borderPrimary backgroundPrimary ${optionsParentClass}`}
                 animate={false}
               >
                 {
@@ -115,7 +115,7 @@ class Select extends React.PureComponent<Props> {
                         ref={this.optionsRefArr[index]}
                         data-test-id={dataTestId.length ? index + '-' + dataTestId : null}
                         className={
-                          cn('se55DropdownPara', {
+                          cn('se55DropdownPara contentPrimary', {
                             'se55DropdownParaHover': activeIndex === index,
                             [optionClass]: true
                           })

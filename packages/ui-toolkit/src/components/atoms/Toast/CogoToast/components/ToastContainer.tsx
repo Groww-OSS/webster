@@ -57,47 +57,45 @@ const ToastContainer = ({ toast, hiddenID }:Props) => {
   const rows = [ 'top', 'bottom' ];
   const groups = [ 'Left', 'Center', 'Right' ];
 
-  return (
-    <>
-      {
-        rows.map((row) => (
-          <div key={`row_${row}`}
-            className="ct-row"
-          >
-            {
-              groups.map((group) => {
-                const type = `${row}${group}`;
-                const className = [ 'ct-group', row === 'bottom' ? 'ct-flex-bottom' : '' ].join(' ');
+  return (<>
+    {
+      rows.map((row) => (
+        <div key={`row_${row}`}
+          className="ct-row"
+        >
+          {
+            groups.map((group) => {
+              const type = `${row}${group}`;
+              const className = [ 'ct-group', row === 'bottom' ? 'ct-flex-bottom' : '' ].join(' ');
 
-                return (
-                  <div key={type}
-                    className={className}
-                  >
-                    {
-                      allToasts[ type ].map((item) => (
-                        <Toast
-                          key={`${type}_${item.id}`}
-                          {...item}
-                          id={item.id}
-                          title={item.title}
-                          subText={item.subText}
-                          type={item.type}
-                          onClick={item.onClick}
-                          hideAfter={item.hideAfter}
-                          show={hiddenID !== item.id}
-                          onHide={handleRemove}
-                        />
-                      ))
-                    }
-                  </div>
-                );
-              })
-            }
-          </div>
-        ))
-      }
-    </>
-  );
+              return (
+                <div key={type}
+                  className={className}
+                >
+                  {
+                    allToasts[ type ].map((item) => (
+                      <Toast
+                        key={`${type}_${item.id}`}
+                        {...item}
+                        id={item.id}
+                        title={item.title}
+                        subText={item.subText}
+                        type={item.type}
+                        onClick={item.onClick}
+                        hideAfter={item.hideAfter}
+                        show={hiddenID !== item.id}
+                        onHide={handleRemove}
+                      />
+                    ))
+                  }
+                </div>
+              );
+            })
+          }
+        </div>
+      ))
+    }
+  </>);
 };
 
 

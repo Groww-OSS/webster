@@ -19,7 +19,7 @@ const TextArea = (props: Props) => {
   } = props;
 
   const textAreaClassName = cn({
-    'txta37Area': true,
+    'txta37Area contentPrimary': true,
     'txta37Normal': error?.length === 0,
     'txta37Error': error && error.length !== 0
   });
@@ -27,16 +27,14 @@ const TextArea = (props: Props) => {
 
   return (
     <div className={`txta37Div ${parentDivClass}`}>
-
       {
         label &&
         <div style={labelStyle}
-          className="txta37Label"
+          className='txta37Label contentTertiary'
         >
           {label}
         </div>
       }
-
       <textarea
         {...restProps}
         className={textAreaClassName}
@@ -46,11 +44,10 @@ const TextArea = (props: Props) => {
         onCopy={disableCopyPaste ? (e) => onCopy(e) : () => { }}
         onPaste={disableCopyPaste ? (e) => onPaste(e) : () => { }}
       />
-
       {
         error && error.length !== 0 &&
         <div style={errorStyle}
-          className="txta37ErrorMessage"
+          className='txta37ErrorMessage contentNegative'
         >
           {error}
         </div>
