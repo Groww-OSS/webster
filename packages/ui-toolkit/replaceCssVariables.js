@@ -16,10 +16,12 @@ const propertyVarToUtilityMap = {
     'var(--yellow500)': 'var(--background-warning)',
     'var(--yello100)': 'var(--background-warning-subtle)',
     'var(--green100)': 'var(--background-accent-subtle)',
+    'var(--green300)': 'var(--background-accent-subtle)',
     'var(--red100)': 'var(--background-negative-subtle)',
     'var(--yellow100)': 'var(--background-warning-subtle)',
     'var(--purple500)': 'var(--background-accent-secondary)',
-    'var(--purple100)': 'var(--background-accent-secondary-subtle)'
+    'var(--purple100)': 'var(--background-accent-secondary-subtle)',
+    'var(--gray900)': 'var(--background-inverse-primary)'
   },
   'color': {
     'var(--gray900)': 'var(--content-primary)',
@@ -32,14 +34,17 @@ const propertyVarToUtilityMap = {
     'var(--red500)': 'var(--content-negative)',
     'var(--yellow500)': 'var(--content-warning)',
     'var(--purple500)': 'var(--content-accent-secondary)',
-    'var(--purple300)': 'var(--content-accent-secondary-subtle)'
+    'var(--purple300)': 'var(--content-accent-secondary-subtle)',
+    'var(--gray600)': 'var(--content-tertiary)',
+    'var(--gray800)': 'var(--content-secondary)'
   },
   'border': {
     'var(--gray150)': 'var(--border-primary)',
     'var(--gray100)': 'var(--border-disabled)',
     'var(--green500)': 'var(--border-accent)',
     'var(--red500)': 'var(--border-negative)',
-    'var(--gray900)': 'var(--border-neutral)'
+    'var(--gray900)': 'var(--border-neutral)',
+    'var(--gray200)': 'var(--border-primary)'
   }
 };
 

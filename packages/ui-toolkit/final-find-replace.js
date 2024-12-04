@@ -5,7 +5,7 @@ console.log('Replace variables in CSS files');
 
 // Variable map for replacements
 const variableMap = {
-  '--white': '--background--always-light',
+  '--white': '--background-always-light',
   '--black': '--background-always-dark',
   '--gray50': '--background-secondary',
   '--gray100': '--background-tertiary',
@@ -27,6 +27,11 @@ const variableMap = {
   '--gray400': '--content-disabled',
   '--purple500': '--content-accent-secondary',
   '--purple300': '--content-accent-secondary-subtle',
+
+  '--gray600': '--content-tertiary',
+  '—-gray200': '--border-primary',
+  '--gray800': '--content-secondary',
+  '--green300': '--background-accent-subtle'
 };
 
 // Paths or patterns to exclude
