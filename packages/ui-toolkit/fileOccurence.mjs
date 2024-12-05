@@ -1,61 +1,121 @@
-import fs from 'fs';
+import fs from 'fs/promises';
 import path from 'path';
-import data from './mappings.json' assert { type: 'json' };
+import { Worker } from 'worker_threads';
+import os from 'os';
 
-const rootDirectory = './src';
-
-// Helper function to get all file paths recursively
-const getAllFiles = (dir, fileList = []) => {
-  const files = fs.readdirSync(dir);
-
-  files.forEach(file => {
-    const fullPath = path.join(dir, file);
-
-    if (fs.statSync(fullPath).isDirectory()) {
-      getAllFiles(fullPath, fileList);
-
-    } else if (/\.(js|ts|tsx|jsx)$/.test(fullPath)) {
-      fileList.push(fullPath);
-    }
-  });
-
+// Optimized file scanning with async operations
+const getAllFiles = async (dir, fileExtensions = ['.js', '.ts', '.tsx', '.jsx']) => {
+  const fileList = [];
+  
+  const scanDirectory = async (currentDir) => {
+    const entries = await fs.readdir(currentDir, { withFileTypes: true });
+    
+    const promises = entries.map(async (entry) => {
+      const fullPath = path.join(currentDir, entry.name);
+      
+      if (entry.isDirectory()) {
+        await scanDirectory(fullPath);
+      } else if (fileExtensions.some(ext => fullPath.endsWith(ext))) {
+        fileList.push(fullPath);
+      }
+    });
+    
+    await Promise.all(promises);
+  };
+  
+  await scanDirectory(dir);
   return fileList;
 };
 
-// Helper function to count occurrences of a className in files
-const countClassNameOccurrences = (className, filePaths) => {
-  const filesWithClassName = [];
+// Worker thread for processing file contents
+const createWorker = (filePaths, className) => {
+  return new Promise((resolve, reject) => {
+    const worker = new Worker(
+      `
+      const { parentPort, workerData } = require('worker_threads');
+      const fs = require('fs');
 
-  filePaths.forEach(filePath => {
-    const fileContent = fs.readFileSync(filePath, 'utf-8');
+      const { filePaths, className } = workerData;
+      const filesWithClassName = filePaths.filter(filePath => {
+        try {
+          const fileContent = fs.readFileSync(filePath, 'utf-8');
+          return fileContent.includes(className);
+        } catch (error) {
+          console.error(\`Error reading file \${filePath}: \${error}\`);
+          return false;
+        }
+      });
 
-    if (fileContent.includes(className)) {
-      filesWithClassName.push(filePath);
-    }
+      parentPort.postMessage(filesWithClassName);
+    `,
+      {
+        workerData: { filePaths, className },
+        eval: true
+      }
+    );
+
+    worker.on('message', resolve);
+    worker.on('error', reject);
+    worker.on('exit', (code) => {
+      if (code !== 0) reject(new Error(`Worker stopped with exit code ${code}`));
+    });
   });
-
-  return filesWithClassName;
 };
 
-// Get all files from the root directory
-const allFiles = getAllFiles(rootDirectory);
-
-// Process each entry in the JSON data
-const updatedData = data.map(entry => {
-  const { className } = entry;
-
-  // Find files where the className appears
-  const filesWithClassName = countClassNameOccurrences(className, allFiles);
-
-  // Add the new fields to the entry
-  return {
-    ...entry,
-    classNameOccurrences: filesWithClassName.length,
-    classNameFiles: filesWithClassName
+// Parallel processing of class name occurrences
+const processClassNameOccurrences = async (allFiles, data) => {
+  const cpuCount = os.cpus().length;
+  const batchSize = Math.ceil(data.length / cpuCount);
+  
+  const processChunk = async (chunk) => {
+    const results = await Promise.all(
+      chunk.map(async (entry) => {
+        const { className } = entry;
+        const filesWithClassName = await createWorker(allFiles, className);
+        
+        return {
+          ...entry,
+          classNameOccurrences: filesWithClassName.length,
+          classNameFiles: filesWithClassName
+        };
+      })
+    );
+    
+    return results;
   };
-});
+  
+  const processedData = [];
+  for (let i = 0; i < data.length; i += batchSize) {
+    const chunk = data.slice(i, i + batchSize);
+    const chunkResults = await processChunk(chunk);
+    processedData.push(...chunkResults);
+  }
+  
+  return processedData;
+};
 
-// Write the updated data back to the JSON file
-fs.writeFileSync('./updatedMappings.json', JSON.stringify(updatedData, null, 2), 'utf-8');
+// Main processing function
+const main = async () => {
+  try {
+    const rootDirectory = './src';
+    const { default: data } = await import('./mappings.json', { assert: { type: 'json' } });
+    
+    console.time('Total Processing Time');
+    
+    const allFiles = await getAllFiles(rootDirectory);
+    const updatedData = await processClassNameOccurrences(allFiles, data);
+    
+    await fs.writeFile(
+      './updatedMappings.json', 
+      JSON.stringify(updatedData, null, 2), 
+      'utf-8'
+    );
+    
+    console.timeEnd('Total Processing Time');
+    console.log('Updated data saved to updatedMappings.json');
+  } catch (error) {
+    console.error('Error processing files:', error);
+  }
+};
 
-console.log('Updated data saved to updatedMappings.json');
+main();
