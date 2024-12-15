@@ -3,10 +3,12 @@ module.exports = {
   "plugins": [
     "stylelint-declaration-strict-value",
     "stylelint-no-unsupported-browser-features",
-    "./custom-plugins/no-primitive-vars.js"
+    "./custom-plugins/no-primitive-vars.js",
+    "./custom-plugins/no-redeclare-util.js"
   ],
   "rules": {
     "mint/no-primitive-color-variables": true,
+    "mint/no-redeclared-utility-classes": true,
     "declaration-no-important": [true, { "severity": "warning" }],
     "rule-empty-line-before": ["always", { "severity": "warning" }],
     "selector-id-pattern": null,
