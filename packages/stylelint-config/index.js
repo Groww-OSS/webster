@@ -2,9 +2,11 @@ module.exports = {
   "extends": "stylelint-config-standard",
   "plugins": [
     "stylelint-declaration-strict-value",
-    "stylelint-no-unsupported-browser-features"
+    "stylelint-no-unsupported-browser-features",
+    "./custom-plugins/no-primitive-vars.js"
   ],
   "rules": {
+    "mint/no-primitive-color-variables": true,
     "declaration-no-important": [true, { "severity": "warning" }],
     "rule-empty-line-before": ["always", { "severity": "warning" }],
     "selector-id-pattern": null,
