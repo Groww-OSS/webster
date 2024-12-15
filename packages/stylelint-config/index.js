@@ -8,6 +8,7 @@ module.exports = {
     "./custom-plugins/no-redeclare-primitive-vars.js",
     "./custom-plugins/no-redeclare-semantic-vars.js",
     "./custom-plugins/html-redeclare-semantic-vars.js",
+    "./custom-plugins/use-util-over-vars.js"
   ],
   "rules": {
     "mint/no-primitive-color-variables": true,
@@ -15,6 +16,7 @@ module.exports = {
     "mint/no-redeclared-primitive-variables": true,
     "mint/no-redeclared-semantic-variables": true,
     "mint/html-redeclared-semantic-variables": true,
+    "mint/use-util-class-instead-of-semantic-variable": [true, { "severity": "warning" }],
     "declaration-no-important": [true, { "severity": "warning" }],
     "rule-empty-line-before": ["always", { "severity": "warning" }],
     "selector-id-pattern": null,
