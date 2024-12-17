@@ -1,6 +1,6 @@
 {
   "name": "@groww-tech/ui-toolkit",
-  "version": "0.7.9-alpha.2",
+  "version": "0.7.9-alpha.3",
   "description": "A lightning nature UI",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -95,7 +95,7 @@
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.3",
     "@types/react-lazyload": "^3.1.0",
-    "babel-loader": "^8.2.2",
+    "babel-loader": "8.2.2",
     "classnames": "2.2.6",
     "concurrently": "^6.0.2",
     "copyfiles": "^2.4.1",
