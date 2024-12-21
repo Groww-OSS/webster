@@ -1,0 +1,17 @@
+.iconButton {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    border-radius: 99px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .iconBtnMedium {
+    height: 24px;
+    width: 24px;
+  }
+ 
