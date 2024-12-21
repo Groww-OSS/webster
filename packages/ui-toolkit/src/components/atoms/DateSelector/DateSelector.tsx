@@ -79,7 +79,7 @@ class DateSelector extends PureComponent<Props, State> {
 
     return (
       <div className="date101MainDiv">
-        <div className="date101Label">
+        <div className='date101Label contentSecondary'>
           {titleText}
         </div>
         {
@@ -87,18 +87,16 @@ class DateSelector extends PureComponent<Props, State> {
             ? (
               <Clear
                 size={18}
-                className="date101CrossButton"
+                className='date101CrossButton contentPrimary'
                 onClick={onClose}
               />
             )
             : null
         }
-        <div className="date101SelectedLabel">
+        <div className='date101SelectedLabel contentPrimary'>
           {selectedDateLabel}
         </div>
-
         {this.getCalendarUI()}
-
         <Button
           buttonText={buttonText}
           onClick={this.confirmDate}

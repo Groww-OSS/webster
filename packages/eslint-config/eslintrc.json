@@ -38,6 +38,7 @@
     "@groww-tech/internal/prefer-type-alias": "warn",
     "@groww-tech/internal/two-line-above-function": "warn",
     "@groww-tech/internal/two-line-between-class-members": "warn",
+    "@groww-tech/internal/no-gcs-bucket-url": "error",
     "quotes": [
       "warn",
       "single"

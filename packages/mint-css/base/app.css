@@ -25,6 +25,10 @@ html {
   box-sizing: inherit;
 }
 
+*{
+  font-variant-ligatures: none;
+}
+
 div,
 i {
   -webkit-touch-callout: none;

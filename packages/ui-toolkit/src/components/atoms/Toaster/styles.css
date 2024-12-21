@@ -1,0 +1,263 @@
+:where([data-sonner-toaster]) {
+  --border-radius: 8px;
+  --css-inherit: inherit;
+
+  position: fixed;
+  width: var(--width);
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  outline: none;
+  z-index: 999999;
+}
+
+:where([data-toaster-clear-all]) {
+  position: fixed;
+  box-sizing: border-box;
+  cursor: pointer;
+  border-radius: 20px;
+  font-size: 14px;
+  padding: 0 6px;
+  margin: 0;
+  z-index: 999999;
+}
+
+:where([data-sonner-toast]) {
+  --y: translateY(100%);
+  --lift-amount: calc(var(--lift) * var(--gap));
+
+  z-index: var(--z-index);
+  position: absolute;
+  opacity: 0;
+  transform: var(--y);
+  filter: blur(0);
+
+  /* https://stackoverflow.com/questions/48124372/pointermove-event-not-working-with-touch-why-not */
+  touch-action: none;
+  transition: all 0.5s ease-in-out;
+  box-sizing: border-box;
+  outline: none;
+  overflow-wrap: anywhere;
+}
+
+:where([data-sonner-toast]) > * {
+  transition: opacity 400ms;
+}
+
+:where([data-sonner-toaster][data-x-position="right"]) {
+  right: max(var(--offset), env(safe-area-inset-right));
+}
+
+:where([data-toaster-clear-all][data-x-position="right"]) {
+  right: calc(var(--width) - 24px);
+}
+
+:where([data-sonner-toaster][data-x-position="left"]) {
+  left: max(var(--offset), env(safe-area-inset-left));
+}
+
+:where([data-sonner-toaster][data-x-position="center"]) {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+:where([data-sonner-toaster][data-y-position="top"]) {
+  top: max(var(--offset), env(safe-area-inset-top));
+}
+
+:where([data-toaster-clear-all][data-y-position="top"]) {
+  top: calc(var(--offset) - 16px);
+}
+
+:where([data-sonner-toaster][data-y-position="bottom"]) {
+  bottom: max(var(--offset), env(safe-area-inset-bottom));
+}
+
+:where([data-sonner-toast][data-styled="true"]) {
+  padding: 12px 16px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 12px #0000001A;
+  width: var(--width);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+:where([data-sonner-toast][data-y-position="top"]) {
+  --y: translateY(-100%);
+  --lift: 1;
+  --lift-amount: calc(1 * var(--gap));
+
+  top: 0;
+}
+
+:where([data-sonner-toast][data-y-position="bottom"]) {
+  bottom: 0;
+
+  --y: translateY(100%);
+  --lift: -1;
+  --lift-amount: calc(var(--lift) * var(--gap));
+}
+
+:where([data-sonner-toast][data-mounted="true"]) {
+  --y: translateY(0);
+
+  opacity: 1;
+}
+
+:where([data-sonner-toast][data-visible="false"]) {
+  opacity: 0;
+  pointer-events: none;
+}
+
+:where([data-toaster-clear-all]):hover {
+  color: var(--content-primary);
+  background: var(--background-always-light);
+}
+
+:where([data-sonner-toast]) :where([data-close-button]) {
+  position: absolute;
+  left: unset;
+  right: 0;
+  top: 0;
+  height: 20px;
+  width: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  transform: translate(-3px, 3px);
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1;
+}
+
+:where([data-sonner-toast][data-expanded="false"][data-front="false"]) {
+  --scale: var(--toasts-before) * 0.05 + 1;
+  --y: translateY(calc(var(--lift-amount) * var(--toasts-before))) scale(calc(-1 * var(--scale)));
+
+  height: var(--front-toast-height);
+}
+
+:where([data-sonner-toast][data-mounted="true"][data-expanded="true"]) {
+  --y: translateY(calc(var(--lift) * var(--offset)));
+
+  height: var(--initial-height);
+}
+
+:where([data-sonner-toast]) :where([data-icon]) {
+  display: flex;
+  height: 18px;
+  width: 18px;
+  position: relative;
+  justify-content: flex-start;
+  align-items: center;
+  flex-shrink: 0;
+  margin-left: -3px;
+}
+
+:where([data-sonner-toast]) :where([data-content]) {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-right: 12px;
+}
+
+:where([data-sonner-toast]) :where([data-icon]) > * {
+  flex-shrink: 0;
+}
+
+:where([data-sonner-toast]):hover :where([data-close-button]):hover {
+  background: var(--background-secondary);
+  border-color: var(--content-tertiary);
+}
+
+/* Needed to avoid setting hover to false when inbetween toasts */
+
+:where([data-sonner-toast])::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  height: calc(var(--gap) + 1px);
+  bottom: 100%;
+  width: 100%;
+}
+
+:where([data-sonner-toast][data-expanded="false"][data-front="false"][data-styled="true"]) > * {
+  opacity: 0;
+}
+
+/* Bump up the height to make sure hover state doesn"t get set to false */
+
+:where([data-sonner-toast][data-removed="true"][data-front="false"])::before {
+  height: calc(var(--initial-height) + 20%);
+}
+
+@media (max-width: 600px) {
+
+  [data-sonner-toaster] {
+    --mobile-offset: 16px;
+
+    position: fixed;
+    right: var(--mobile-offset);
+    left: var(--mobile-offset);
+    width: 100%;
+  }
+
+  [data-sonner-toaster] [data-sonner-toast] {
+    left: 0;
+    right: 0;
+    width: calc(100% - var(--mobile-offset) * 2);
+  }
+
+  [data-sonner-toaster][data-x-position="left"] {
+    left: var(--mobile-offset);
+  }
+
+  [data-sonner-toaster][data-y-position="bottom"] {
+    bottom: 20px;
+  }
+
+  [data-sonner-toaster][data-y-position="top"] {
+    top: 20px;
+  }
+
+  [data-sonner-toaster][data-x-position="center"] {
+    left: var(--mobile-offset);
+    right: var(--mobile-offset);
+    transform: none;
+  }
+}
+
+[data-sonner-toast][data-type="success"] {
+  border-left: 3px solid var(--border-accent);
+}
+
+[data-sonner-toast][data-type="error"] {
+  border-left: 3px solid var(--border-negative);
+}
+
+[data-sonner-toast][data-type="warning"] {
+  border-left: 3px solid var(--content-warning);
+}
+
+[data-sonner-toast][data-type="info"] {
+  border-left: 3px solid var(--content-accent-secondary);
+}
+
+.success {
+  color: var(--content-accent);
+}
+
+.info {
+  color: var(--content-accent-secondary);
+}
+
+.warning {
+  color: var(--content-warning);
+}
+
+.error {
+  color: var(--content-negative);
+}

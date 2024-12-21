@@ -13,22 +13,20 @@
   position: absolute;
   top: 43px;
   left: 0;
-  border: 1px solid var(--gray150);
   z-index: var(--zindex400);
 }
 
 .se55DropdownPara {
   margin: 0;
   padding: 9px 16px;
-  color: var(--gray900);
 }
 
 .se55DropdownPara:hover {
-  background: var(--gray50);
+  background: var(--background-secondary);
 }
 
 .se55DropdownParaHover {
-  background: var(--gray50);
+  background: var(--background-secondary);
 }
 
 .se55Input {
@@ -45,7 +43,6 @@
 .se55SelectBox {
   padding: 9px 16px;
   border-radius: 4px;
-  border: 1px solid var(--gray150);
   cursor: pointer;
   width: 100%;
   position: relative;

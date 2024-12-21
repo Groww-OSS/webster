@@ -92,7 +92,7 @@ export class Loader extends React.PureComponent<DefaultProps, {}> {
 
 
   getLinearLoaderUI = () => {
-    const containerClasses = this.getContainerClassName('loader14Linear');
+    const containerClasses = this.getContainerClassName('loader14Linear backgroundAccentSubtle');
 
     return (
       <div className={containerClasses}>

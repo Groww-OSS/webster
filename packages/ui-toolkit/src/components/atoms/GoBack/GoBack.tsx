@@ -21,7 +21,7 @@ const GoBack = (props: Props) => {
   };
 
   return (
-    <div className="gb6Box">
+    <div className='gb6Box contentPrimary'>
       <div className="web-align">
         <div className="valign-wrapper cur-po gb6Fit"
           onClick={handleOnClick}

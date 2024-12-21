@@ -1,7 +1,7 @@
 import { styled } from '@stitches/react';
 
 export const Container = styled('div', {
-  borderBottom: '2px solid var(--gray150)',
+  borderBottom: '2px solid var(--border-primary)',
   width: '100%',
   position: 'relative',
   variants: {
@@ -9,7 +9,7 @@ export const Container = styled('div', {
       default: {
       },
       exclusive: {
-        background: 'var(--gray50)'
+        background: 'var(--background-secondary)'
       },
       unstyled: {
         borderBottom: 'none',
@@ -23,7 +23,7 @@ export const Container = styled('div', {
       true: {
         borderBottom: 'none',
         '&:focus-within::after': {
-          background: 'var(--red500)',
+          background: 'var(--background-negative)',
           height: '2px'
         }
       }
@@ -31,7 +31,7 @@ export const Container = styled('div', {
     error: {
       true: {
         '&:focus-within::after': {
-          background: 'var(--red500)',
+          background: 'var(--background-negative)',
           height: '2px'
         }
       }
@@ -52,7 +52,7 @@ export const Container = styled('div', {
   '&:focus-within::after': {
     width: '100%',
     height: '2px',
-    background: 'var(--green500)'
+    background: 'var(--background-accent)'
   }
 });
 
@@ -61,15 +61,15 @@ export const PrimaryInput = styled('input', {
   flexGrow: 1,
   outline: 0,
   padding: 0,
-  color: 'var(--gray900)',
+  color: 'var(--content-primary)',
   background: 'var(--dangerouslySetPrimaryBg)',
-  caretColor: 'var(--green500)',
+  caretColor: 'var(--content-accent)',
   variants: {
     variant: {
       default: {
       },
       exclusive: {
-        background: 'var(--gray50)',
+        background: 'var(--background-secondary)',
         borderRadius: '4px 4px 0px 0px'
       },
       unstyled: {
@@ -91,8 +91,8 @@ export const PrimaryInput = styled('input', {
     border: 'none'
   },
   '&::placeholder': {
-    color: 'var(--gray700)',
-    WebkitTextFillColor: 'var(--gray700)'
+    color: 'var(--content-secondary)',
+    WebkitTextFillColor: 'var(--content-secondary)'
   },
   '&:-webkit-autofill': {
     boxShadow: '0 0 0 30px var(--dangerouslySetPrimaryBg) inset !important',
@@ -102,13 +102,13 @@ export const PrimaryInput = styled('input', {
 
 
 export const Label = styled('div', {
-  color: 'var(--gray700)',
+  color: 'var(--content-secondary)',
   marginBottom: '8px',
   textAlign: 'left'
 });
 
 export const ErrorLabel = styled('div', {
-  color: 'var(--red500)',
+  color: 'var(--content-negative)',
   minHeight: '24px',
   marginTop: '4px',
   marginBottom: '4px',
@@ -149,7 +149,7 @@ export const TrailingVisContainer = styled('span', {
       default: {
       },
       exclusive: {
-        background: 'var(--gray50)'
+        background: 'var(--background-secondary)'
       },
       unstyled: {
 
@@ -165,7 +165,7 @@ export const LeadingVisContainer = styled('span', {
       default: {
       },
       exclusive: {
-        background: 'var(--gray50)'
+        background: 'var(--background-secondary)'
       },
       unstyled: {
       }

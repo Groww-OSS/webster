@@ -15,12 +15,12 @@
 }
 
 .ib31IconDefault:hover {
- background-color: var(--gray100);
+ background-color: var(--background-tertiary);
 }
 
 
 .iconLoader {
- border: 2px solid var(--gray900);
+ border: 2px solid var(--border-neutral);
  border-right-color: transparent;
  margin: 6px;
 }

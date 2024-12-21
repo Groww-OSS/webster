@@ -1,18 +1,19 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import { StoryFn } from "@storybook/react";
+import { StoryFn } from '@storybook/react';
 
-import { NumberPicker } from "../src/components/atoms";
-import { Props as NumberPickerProps } from "../src/components/atoms/NumberPicker/NumberPicker";
+import { NumberPicker } from '../src/components/atoms';
+import { Props as NumberPickerProps } from '../src/components/atoms/NumberPicker/NumberPicker';
 
 export default {
-  title: "NumberPicker",
+  title: 'NumberPicker',
   component: NumberPicker,
   tags: [ 'autodocs' ]
 };
 
+
 const Template: StoryFn<NumberPickerProps> = (args) => {
-  const [value, setValue] = useState(1);
+  const [ value, setValue ] = useState(1);
 
   return (
     <NumberPicker
@@ -31,8 +32,8 @@ export const Primary = {
   args: {
     minValue: 1,
     stepValue: 1,
-    variant: "default",
-  },
+    variant: 'default'
+  }
 };
 
 export const Warning = {
@@ -41,8 +42,8 @@ export const Warning = {
   args: {
     minValue: 1,
     stepValue: 1,
-    variant: "warning",
-  },
+    variant: 'warning'
+  }
 };
 
 export const Error = {
@@ -51,8 +52,8 @@ export const Error = {
   args: {
     minValue: 1,
     stepValue: 1,
-    variant: "error",
-  },
+    variant: 'error'
+  }
 };
 
 export const Default = {
@@ -61,8 +62,8 @@ export const Default = {
   args: {
     minValue: 1,
     stepValue: 1,
-    variant: "default",
-  },
+    variant: 'default'
+  }
 };
 
 export const Disabled = {
@@ -71,8 +72,8 @@ export const Disabled = {
   args: {
     minValue: 1,
     stepValue: 1,
-    variant: "disabled",
-  },
+    variant: 'disabled'
+  }
 };
 
 export const Unstyled = {
@@ -81,6 +82,6 @@ export const Unstyled = {
   args: {
     minValue: 1,
     stepValue: 1,
-    variant: "unstyled",
-  },
+    variant: 'unstyled'
+  }
 };
