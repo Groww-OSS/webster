@@ -26,7 +26,7 @@ const IconButtonV2: React.FC<IconButtonProps> = ({
 }) => {
   const iconBtnContainerSizeClass = cn({
     [`icon-btn-container-${size}-compact`]: isCompact && !shape,
-    [`icon-btn-container-${size}`]: !isCompact
+    [`icon-btn-container-${size}`]: !isCompact || shape
   });
 
   const iconBtnContainerShapeClass = cn({
