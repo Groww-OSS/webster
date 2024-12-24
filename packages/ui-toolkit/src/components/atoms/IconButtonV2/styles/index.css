@@ -1,17 +1,96 @@
-.iconButton {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    border-radius: 99px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    flex-shrink: 0;
-  }
+button{
+  all: unset;
+  /* background-color: turquoise; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .iconBtnMedium {
-    height: 24px;
-    width: 24px;
+
+
+.icon-btn-container-sm{
+  height: 32px;
+  width: 32px;
+}
+
+.icon-btn-container-md{
+  height: 40px;
+  width: 40px;
+
+}
+
+.icon-btn-container-lg{
+  height: 48px;
+  width: 48px;
+
+}
+
+.icon-btn-container-sm-compact{
+  height: 16px;
+  width: 16px;
+
+}
+
+.icon-btn-container-md-compact{
+  height: 24px;
+  width: 24px;
+
+}
+
+.icon-btn-container-lg-compact{
+  height: 32px;
+  width: 32px;
+}
+
+.icon-btn-container-sm-circle{
+  height: 32px;
+  width: 32px;
+  border-radius: 99px;
+}
+
+.icon-btn-container-md-circle{
+  height: 40px;
+  width: 40px;
+  border-radius: 99px;
+}
+
+.icon-btn-container-lg-circle{
+  height: 48px;
+  width: 48px;
+  border-radius: 99px;
+}
+
+.icon-btn-container-sm-square{
+  height: 32px;
+  width: 32px;
+  border-radius: 8px;
+}
+
+.icon-btn-container-md-square{
+  height: 40px;
+  width: 40px;
+  border-radius: 8px;
+}
+
+.icon-btn-container-lg-square{
+  height: 48px;
+  width: 48px;
+  border-radius: 8px;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
   }
- 
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.icon-spinner {
+  animation: rotate 1s linear infinite;
+}
+
+.icon-btn-background-disabled {
+  background-color: var(--bg-transparent-hover);
+}
