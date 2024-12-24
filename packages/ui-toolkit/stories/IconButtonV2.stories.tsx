@@ -1,6 +1,6 @@
 import React from 'react';
 import { StoryFn } from '@storybook/react';
-import IconButtonV2, { IconButtonProps } from '../src/components/atoms/newIconButtonV2/IconButtonV2';
+import IconButtonV2, { IconButtonProps } from '../src/components/atoms/IconButtonV2/IconButtonV2';
 import { MdsIcAddPlus } from '@groww-tech/icon-store/mint-icons';
 
 export default {
