@@ -24,8 +24,8 @@ Default.args = {
   disabled: false
 };
 
-export const Disabled = Template.bind({});
-Disabled.args = {
-  Icon: MdsIcAddPlus,
-  disabled: true
-};
+// export const Disabled = Template.bind({});
+// Disabled.args = {
+//   Icon: MdsIcAddPlus,
+//   disabled: true
+// };
