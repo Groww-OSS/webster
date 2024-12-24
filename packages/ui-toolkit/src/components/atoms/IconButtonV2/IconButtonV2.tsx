@@ -6,36 +6,36 @@ export type IconButtonProps = {
   onClick: () => void;
   Icon: ReactIconComponentType;
   disabled?: boolean;
-  contentColor?: 'contentPrimary'
-  | 'contentSecondary'
-  | 'contentTertiary'
-  | 'contentInversePrimary'
-  | 'contentInverseSecondary'
-  | 'contentAccent'
-  | 'contentNegative'
-  | 'contentWarning'
-  | 'contentPositive'
-  | 'contentDisabled'
-  | 'contentOnColour'
-  | 'contentOnColourInverse'
-  | 'contentAccentSecondary'
-  | 'contentAccentSecondarySubtle';
+  loading?: boolean;
+  size?: 'sm' | 'md' | 'lg';
+  isCompact?: boolean;
+  shape?: 'circle' | 'square';
+  outline?: boolean;
+  // selectedColor?: 'neutral' | 'accent';
 };
 
 
-const IconButtonV2: React.FC<IconButtonProps> = ({ onClick, Icon, disabled = false, contentColor = 'contentPrimary' }) => {
+const IconButtonV2: React.FC<IconButtonProps> = ({
+  onClick,
+  Icon,
+  disabled = false,
+  loading = false,
+  size = 'md',
+  isCompact = false,
+  shape = 'circle',
+  outline = false
+  // selectedColor = 'neutral',
+}) => {
+
   return (
     <button
       onClick={onClick}
-      className={`iconButton iconBtnMedium ${disabled ? 'contentDisable' : `${contentColor} backgroundTransparentHover`}`}
       disabled={disabled}
     >
-      <div className='iconBtnMedium'>
-        <Icon/>
-
+      <div>
+        <Icon />
       </div>
     </button>
-
   );
 };
 
