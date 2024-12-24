@@ -1,10 +1,10 @@
 import React from 'react';
 import { StoryFn } from '@storybook/react';
-import IconButtonV2, { IconButtonProps } from '../src/components/atoms/IconButtonV2/IconButtonV2';
+import IconButtonV2, { IconButtonProps } from '../src/components/atoms/TempIconButtonV2/TempIconButtonV2';
 import { MdsIcAddPlus } from '@groww-tech/icon-store/mint-icons';
 
 export default {
-  title: 'IconButtonV2',
+  title: 'TempIconButtonV2',
   component: IconButtonV2,
   argTypes: {
     disabled: { control: 'boolean' },
