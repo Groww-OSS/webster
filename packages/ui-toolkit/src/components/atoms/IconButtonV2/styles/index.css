@@ -1,12 +1,9 @@
 button{
   all: unset;
-  /* background-color: turquoise; */
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
-
 
 .icon-btn-container-sm{
   height: 32px;
@@ -94,3 +91,4 @@ button{
 .icon-btn-background-disabled {
   background-color: var(--bg-transparent-hover);
 }
+
