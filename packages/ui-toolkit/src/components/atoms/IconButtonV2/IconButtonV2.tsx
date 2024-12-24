@@ -38,8 +38,9 @@ const IconButtonV2: React.FC<IconButtonProps> = ({
 
   // Placeholder for background class logic
   const iconBtnBackgroundClass = cn({
-    ['icon-btn-background-disabled']: disabled && shape,
+    ['icon-btn-background-disabled']: (disabled && shape) || isLoading,
     ['backgroundTransparentHover']: !disabled
+
   });
 
   const iconBtnColorClass = cn({
