@@ -24,19 +24,21 @@ const IconButtonV2: React.FC<IconButtonProps> = ({
   isCompact = false,
   shape
 }) => {
-  const iconBtnContainerClass = cn({
+  const iconBtnContainerSizeClass = cn({
     [`icon-btn-container-${size}-compact`]: isCompact && !shape,
-    [`icon-btn-container-${size}-${shape}`]: shape,
-    [`icon-btn-container-${size}`]: !isCompact && !shape
+    [`icon-btn-container-${size}`]: !isCompact
   });
 
-  // Class for button border based on shape and disabled state
+  const iconBtnContainerShapeClass = cn({
+    ['icon-btn-container-circle']: !shape || shape === 'circle',
+    ['icon-btn-container-square']: shape === 'square'
+  });
+
   const iconBtnBorderClass = cn({
     ['icon-btn-border-none']: !shape || (shape && disabled),
     ['borderPrimary']: shape && !disabled
   });
 
-  // Placeholder for background class logic
   const iconBtnBackgroundClass = cn({
     ['icon-btn-background-disabled']: (disabled && shape) || isLoading,
     ['backgroundTransparentHover']: !disabled
@@ -48,11 +50,12 @@ const IconButtonV2: React.FC<IconButtonProps> = ({
     ['contentprimary']: !disabled
   });
 
+
   return (
     <button
       onClick={onClick}
       disabled={disabled}
-      className={cn(iconBtnContainerClass, iconBtnBorderClass, iconBtnBackgroundClass, iconBtnColorClass)}
+      className={cn(iconBtnContainerSizeClass, iconBtnContainerShapeClass, iconBtnBorderClass, iconBtnBackgroundClass, iconBtnColorClass)}
     >
       {
         isLoading ? (

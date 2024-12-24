@@ -13,13 +13,11 @@ button{
 .icon-btn-container-md{
   height: 40px;
   width: 40px;
-
 }
 
 .icon-btn-container-lg{
   height: 48px;
   width: 48px;
-
 }
 
 .icon-btn-container-sm-compact{
@@ -42,36 +40,38 @@ button{
 .icon-btn-container-sm-circle{
   height: 32px;
   width: 32px;
-  border-radius: 99px;
 }
 
 .icon-btn-container-md-circle{
   height: 40px;
   width: 40px;
-  border-radius: 99px;
 }
 
 .icon-btn-container-lg-circle{
   height: 48px;
   width: 48px;
-  border-radius: 99px;
 }
 
 .icon-btn-container-sm-square{
   height: 32px;
   width: 32px;
-  border-radius: 8px;
 }
 
 .icon-btn-container-md-square{
   height: 40px;
   width: 40px;
-  border-radius: 8px;
 }
 
 .icon-btn-container-lg-square{
   height: 48px;
   width: 48px;
+}
+
+.icon-btn-container-circle{
+  border-radius: 99px;
+}
+
+.icon-btn-container-square{
   border-radius: 8px;
 }
 
