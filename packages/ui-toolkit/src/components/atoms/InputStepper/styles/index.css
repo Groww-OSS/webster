@@ -60,3 +60,8 @@ input::placeholder {
   border: 2px solid var(--red500);
   border-radius: 4px;
 }
+
+.inputStepper-inputBorderWarning{
+  border: 2px solid var(--yellow500);
+  border-radius: 4px;
+}
