@@ -39,7 +39,7 @@
     "@groww-tech/internal/two-line-above-function": "warn",
     "@groww-tech/internal/two-line-between-class-members": "warn",
     "@groww-tech/internal/no-gcs-bucket-url": "error",
-    "@groww-tech/internal/no-primitive": "error",
+    "@groww-tech/internal/no-primitive-color-variables": "error",
     "quotes": [
       "warn",
       "single"

@@ -1,6 +1,6 @@
 import { RuleTester } from "eslint";
 
-import rule from "../../../lib/rules/no-primitive.js";
+import rule from "../../../lib/rules/no-primitive-color-variables.js";
 
 const ruleTester = new RuleTester({
   parserOptions: {
@@ -9,7 +9,7 @@ const ruleTester = new RuleTester({
   },
 });
 
-ruleTester.run("no-primitive", rule, {
+ruleTester.run("no-primitive-color-variables", rule, {
   valid: [
     // Cases where the CSS variables are not disallowed
     `const styles = "color: var(--blue500);";`,
