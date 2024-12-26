@@ -49,6 +49,7 @@ const InputStepper: React.FC<InputStepperProps> = ({
   step = 1,
   typable = true,
   onKeyDown,
+  onKeyUp,
   textStyle = 'bodyLarge',
   backgroundColor = 'backgroundTransparent',
   textColor = 'contentPrimary',
@@ -148,8 +149,9 @@ const InputStepper: React.FC<InputStepperProps> = ({
           <IconButtonV2
             onClick={handleMinus}
             Icon={MdsIcRemoveMinus}
-            contentColor='contentPrimary'
             disabled={disabled || value <= min}
+            size='md'
+            isCompact={true}
           />
         </div>
 
@@ -169,14 +171,16 @@ const InputStepper: React.FC<InputStepperProps> = ({
           onWheel={handleWheel}
           readOnly={!typable}
           onKeyDown={onKeyDown}
+          onKeyUp={onKeyUp}
         />
 
         <div className="inputStepper-suffixContainer">
           <IconButtonV2
             onClick={handlePlus}
             Icon={MdsIcAddPlus}
-            contentColor='contentPrimary'
             disabled={disabled || value >= max}
+            size='md'
+            isCompact={true}
           />
         </div>
       </div>
