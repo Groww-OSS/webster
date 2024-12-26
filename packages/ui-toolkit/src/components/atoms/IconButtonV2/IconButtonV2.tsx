@@ -9,7 +9,7 @@ export type IconButtonProps = {
   Icon: ReactIconComponentType;
   disabled?: boolean;
   isLoading?: boolean;
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'small' | 'medium' | 'large';
   isCompact?: boolean;
   shape?: 'circle' | 'square';
 };
@@ -55,7 +55,7 @@ const IconButtonV2: React.FC<IconButtonProps> = ({
     <button
       onClick={onClick}
       disabled={disabled}
-      className={cn(iconBtnContainerSizeClass, iconBtnContainerShapeClass, iconBtnBorderClass, iconBtnBackgroundClass, iconBtnColorClass)}
+      className={cn(iconBtnContainerSizeClass, iconBtnContainerShapeClass, iconBtnBorderClass, iconBtnBackgroundClass, iconBtnColorClass, 'cur-po')}
     >
       {
         isLoading ? (
