@@ -7,8 +7,8 @@ export default {
   title: 'FreeFormInput',
   component: FreeFormInput,
   argTypes: {
-    prefixIcon: { control: 'text' },
-    suffixIcon: { control: 'text' }
+    PrefixIcon: { control: 'text' },
+    SuffixIcon: { control: 'text' }
   },
   tags: [ 'autodocs' ]
 
@@ -77,7 +77,7 @@ export const WithPrefixIcons = Template.bind({});
 WithPrefixIcons.args = {
   placeholder: 'Enter text...',
   value: '',
-  prefixIcon: <MdsIcChevronRight />,
+  PrefixIcon: MdsIcChevronRight,
   error: { hasError: false, message: '' },
   width: '300px'
 };
@@ -86,7 +86,7 @@ export const WithSuffixIcons = Template.bind({});
 WithSuffixIcons.args = {
   placeholder: 'Enter text...',
   value: '',
-  suffixIcon: <MdsIcChevronRight/>,
+  suffixIcon: MdsIcChevronRight,
   error: { hasError: false, message: '' },
   width: '300px'
 };
