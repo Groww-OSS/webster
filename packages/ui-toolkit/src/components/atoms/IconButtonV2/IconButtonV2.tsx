@@ -20,7 +20,7 @@ const IconButtonV2: React.FC<IconButtonProps> = ({
   Icon,
   disabled = false,
   isLoading = false,
-  size = 'md',
+  size = 'medium',
   isCompact = false,
   shape
 }) => {
@@ -60,11 +60,11 @@ const IconButtonV2: React.FC<IconButtonProps> = ({
       {
         isLoading ? (
           <MdsIcSpinnerLoader
-            size={20}
+            size={size === 'small' ? 16 : size === 'large' ? 24 : 20}
             className="icon-spinner"
           />
         ) : (
-          <Icon size={20} />
+          <Icon size={size === 'small' ? 16 : size === 'large' ? 24 : 20} />
         )
       }
     </button>
