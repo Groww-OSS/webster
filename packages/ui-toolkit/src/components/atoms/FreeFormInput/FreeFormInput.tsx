@@ -26,8 +26,8 @@ export type FreeFormInputProps = {
   dataTestId?: string;
   width?: string;
   maxLength?: number;
-  prefixIcon?: ReactIconComponentType;
-  suffixIcon?: ReactIconComponentType;
+  PrefixIcon?: ReactIconComponentType;
+  SuffixIcon?: ReactIconComponentType;
   suffixIconButton?: SuffixIconButtonProps;
   prefixLabel?: string;
   error?: { hasError: boolean; message: string };
@@ -53,9 +53,9 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
   dataTestId,
   width = '128px',
   maxLength,
-  prefixIcon,
+  PrefixIcon,
   suffixIconButton,
-  suffixIcon,
+  SuffixIcon,
   prefixLabel,
   error = { hasError: false, message: '' },
   clearable = false,
@@ -92,8 +92,8 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
     'backgroundPrimary': !disabled,
     'freeform-inputBorderNegative': error.hasError,
     'freeform-inputClearable': clearable,
-    'freeform-inputPrefix': prefixIcon || prefixLabel,
-    'freeform-inputSuffix': suffixIcon || (clearable && showClearIcon) || variant === 'password',
+    'freeform-inputPrefix': PrefixIcon || prefixLabel,
+    'freeform-inputSuffix': SuffixIcon || (clearable && showClearIcon) || variant === 'password',
     'freeform-inputFocused': isFocused && !disabled && !error.hasError,
     'backgroundSecondary contentSecondary': disabled
   });
@@ -129,9 +129,9 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
       {label && <div className='bodySmallHeavy contentSecondary'>{label}</div>}
       <div className={`${inputContentClasses}`}>
         {
-          (prefixIcon || prefixLabel) && (
+          (PrefixIcon || prefixLabel) && (
             <div className='freeform-prefixContainer'>
-              {prefixIcon && <div className='freeform-inputPrefixIcon'>{prefixIcon}</div>}
+              {PrefixIcon && <div className='freeform-inputPrefixIcon'><PrefixIcon size={20}/></div>}
               {prefixLabel && <div className={`freeform-inputPrefixLabel ${perfixTextColor} ${prefixTextStyle}`}>{prefixLabel}</div>}
             </div>
           )
@@ -162,32 +162,38 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
           onKeyUp={onKeyUp}
         />
         {
-          (clearable && showClearIcon) || variant === 'password' || suffixIcon || suffixIconButton ? (
+          (clearable && showClearIcon) || variant === 'password' || SuffixIcon || suffixIconButton ? (
             <div className='freeform-suffixContainer'>
               {
                 clearable && showClearIcon && (
-                  <div className='freeform-inputClearIcon'
-                    onClick={handleClear}
-                  >
-                    <MdsIcCancelCircle />
+                  <div className='freeform-inputClearIcon'>
+                    <IconButtonV2 onClick={handleClear}
+                      Icon={MdsIcCancelCircle}
+                      size='medium'
+                      isCompact={true}
+                    />
                   </div>
                 )
               }
               {
                 variant === 'password' && (
-                  <div className='freeform-inputSuffixIcon'
-                    onClick={togglePasswordVisibility}
-                  >
-                    {showPassword ? <MdsIcHideEye /> : <MdsIcShowEye />}
+                  <div className='freeform-inputSuffixIcon'>
+                    <IconButtonV2 onClick={togglePasswordVisibility}
+                      Icon={showPassword ? MdsIcHideEye : MdsIcShowEye}
+                      size='medium'
+                      isCompact={true}
+                    />
                   </div>
                 )
               }
-              {suffixIcon && <div className='freeform-inputSuffixIcon'>{suffixIcon}</div>}
+              {SuffixIcon && <div className='freeform-inputSuffixIcon'><SuffixIcon size={20}/></div>}
               {
                 suffixIconButton && (
                   <div className='freeform-inputSuffixIcon'>
                     <IconButtonV2 onClick={suffixIconButton.onClick}
                       Icon={suffixIconButton.icon}
+                      size='medium'
+                      isCompact={true}
                     />
                   </div>
                 )
