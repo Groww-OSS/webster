@@ -113,7 +113,7 @@
 
 :where([data-toaster-clear-all]):hover {
   color: var(--content-primary);
-  background: var(--background-always-light);
+  background: var(--background-primary);
 }
 
 :where([data-sonner-toast]) :where([data-close-button]) {
