@@ -91,13 +91,10 @@ const InputField = (props: Props) => {
         required
         data-test-id={inputDataTestId.length ? inputDataTestId : null}
       />
-
       <span className={barClass} />
-
       <label className={labelClass}
         style={fontSize === '' ? {} : { fontSize: fontSize }}
       >{label}</label>
-
       {
         showError &&
           <div
@@ -107,10 +104,9 @@ const InputField = (props: Props) => {
             {errorText}
           </div>
       }
-
       {
         !showError && (noErrorText !== '') &&
-          <div className="noErrorText">{noErrorText}</div>
+          <div className='noErrorText contentSecondary'>{noErrorText}</div>
       }
     </div>
   );

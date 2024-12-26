@@ -150,7 +150,6 @@ const MutableAccordion = (props: Props) => {
             : null
         }
       </div>
-
       {
         useAnimateHeight ? getAnimateHeightUI()
         : <div style={

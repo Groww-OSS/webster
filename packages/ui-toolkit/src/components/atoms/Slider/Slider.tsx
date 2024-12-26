@@ -38,7 +38,6 @@ const Slider = (props: Props) => {
       value={value}
       minDistance={step}
     />
-
   );
 };
 

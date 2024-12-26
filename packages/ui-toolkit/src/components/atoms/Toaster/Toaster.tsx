@@ -171,8 +171,7 @@ const Toaster = (props: ToasterProps) => {
             zIndex: 99999999
           } as CSSProperties
         }
-      >
-        Clear all
+      >Clear all
       </div>
     );
   };

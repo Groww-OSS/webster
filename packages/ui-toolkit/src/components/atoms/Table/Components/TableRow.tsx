@@ -1,8 +1,4 @@
-import React, {
-  Children,
-  cloneElement,
-  isValidElement
-} from 'react';
+import React, { Children, cloneElement, isValidElement } from 'react';
 
 import cn from 'classnames';
 
@@ -88,7 +84,8 @@ class TableRow extends React.PureComponent<Props, {}> {
         {...otherProps}
       >
         {childrenWithProps}
-      </tr>);
+      </tr>
+    );
 
   }
 }

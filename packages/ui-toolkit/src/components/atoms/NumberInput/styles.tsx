@@ -4,34 +4,34 @@ import { styled } from '@stitches/react';
 export const Container = styled('div', {
   display: 'flex',
   alignItems: 'center',
-  background: 'var(--green100)',
+  background: 'var(--background-accent-subtle)',
   width: 'fit-content',
   height: '30px',
-  color: 'var(--green500)',
+  color: 'var(--content-accent)',
   borderRadius: '2px',
   padding: '0px 5px',
   variants: {
     variant: {
       warning: {
-        background: 'var(--yellow100)',
-        color: 'var(--yellow500)'
+        background: 'var(--background-warning-subtle)',
+        color: 'var(--content-warning)'
       },
       error: {
-        background: 'var(--red100)',
-        color: 'var(--red500)'
+        background: 'var(--background-negative-subtle)',
+        color: 'var(--content-negative)'
       },
       disabled: {
-        background: 'var(--gray50)',
-        color: 'var(--gray900)'
+        background: 'var(--background-secondary)',
+        color: 'var(--content-primary)'
       },
       unstyled: {
         background: 'transparent',
-        color: 'var(--gray900)',
+        color: 'var(--content-primary)',
         border: 'none'
       },
       default: {
-        background: 'var(--green100)',
-        color: 'var(--green500)'
+        background: 'var(--background-accent-subtle)',
+        color: 'var(--content-accent)'
       }
     }
   }
@@ -48,31 +48,31 @@ export const Input = styled('input', {
   flexGrow: 1,
   outline: 0,
   opacity: 1,
-  caretColor: 'var(--green500)',
-  WebkitTextFillColor: 'var(--green500)',
+  caretColor: 'var(--content-accent)',
+  WebkitTextFillColor: 'var(--content-accent)',
   padding: 0,
   variants: {
     variant: {
       warning: {
-        caretColor: 'var(--yellow500)',
-        WebkitTextFillColor: 'var(--yellow500)'
+        caretColor: 'var(--content-warning)',
+        WebkitTextFillColor: 'var(--content-warning)'
       },
       error: {
-        caretColor: 'var(--red500)',
-        WebkitTextFillColor: 'var(--red500)'
+        caretColor: 'var(--content-negative)',
+        WebkitTextFillColor: 'var(--content-negative)'
       },
       disabled: {
         pointerEvents: 'none',
-        caretColor: 'var(--gray900)',
-        WebkitTextFillColor: 'var(--gray900)'
+        caretColor: 'var(--content-primary)',
+        WebkitTextFillColor: 'var(--content-primary)'
       },
       unstyled: {
-        caretColor: 'var(--gray900)',
-        WebkitTextFillColor: 'var(--gray900)'
+        caretColor: 'var(--content-primary)',
+        WebkitTextFillColor: 'var(--content-primary)'
       },
       default: {
-        caretColor: 'var(--green500)',
-        WebkitTextFillColor: 'var(--green500)'
+        caretColor: 'var(--content-accent)',
+        WebkitTextFillColor: 'var(--content-accent)'
       }
     },
     showSteper: {
@@ -83,7 +83,7 @@ export const Input = styled('input', {
     }
   },
   '&::placeholder': {
-    color: 'var(--gray700)',
-    WebkitTextFillColor: 'var(--gray700)'
+    color: 'var(--content-secondary)',
+    WebkitTextFillColor: 'var(--content-secondary)'
   }
 });

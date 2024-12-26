@@ -1,8 +1,13 @@
 /* Token files */
+@import './utils/background-utils.css';
+@import './utils/border-utils.css';
+@import './utils/content-utils.css';
+@import './utils/temp-background-utils.css';
+@import './utils/interaction-state-utils.css';
+
 @import './tokens/background-tokens.css';
 @import './tokens/border-tokens.css';
 @import './tokens/content-tokens.css';
-@import './tokens/temp-background-tokens.css';
 @import './tokens/interaction-state-tokens.css';
 
 /* Variables */
