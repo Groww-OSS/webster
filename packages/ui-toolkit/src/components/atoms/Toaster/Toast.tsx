@@ -5,7 +5,6 @@ import React, {
   useEffect,
   useLayoutEffect,
   useCallback,
-  isValidElement,
   CSSProperties
 } from 'react';
 
@@ -17,14 +16,10 @@ import { HeightT, ToastProps } from './types';
 
 import './styles.css';
 
-// Default lifetime of a toasts (in ms)
-const TOAST_LIFETIME = 5000;
 
-// Equal to exit animation duration
-const TIME_BEFORE_UNMOUNT = 50;
-
-// Default gap between toasts
-const GAP = 14;
+const TOAST_LIFETIME = 5000; // Default lifetime of a toasts (in ms)
+const TIME_BEFORE_UNMOUNT = 50; // Equal to exit animation duration
+const GAP = 14; // Default gap between toasts
 
 
 const Toast = (props: ToastProps) => {
@@ -47,22 +42,27 @@ const Toast = (props: ToastProps) => {
   const [ removed, setRemoved ] = useState(false);
   const [ offsetBeforeRemove, setOffsetBeforeRemove ] = useState(0);
   const [ initialHeight, setInitialHeight ] = useState(0);
+
   const toastRef = useRef<HTMLLIElement>(null);
+  const closeTimerStartTimeRef = useRef(0);
+  const lastCloseTimerStartTimeRef = useRef(0);
+  const offset = useRef(0);
+
   const isFront = index === 0;
   const isVisible = index + 1 <= visibleToasts;
   const toastType = toast.type || 'default';
   const dismissible = toast.dismissible !== false;
+  const showCloseButton = toast.closeButton ?? true; // Default to true
+  const duration = toast.duration || TOAST_LIFETIME;
+  const [ y, x ] = position.split('-');
+  const isDocumentHidden = useIsDocumentHidden();
+
   // Height index is used to calculate the offset as it gets updated before the toast array, which means we can calculate the new layout faster.
   const heightIndex = useMemo(
     () => heights.findIndex((height) => height.toastId === toast.id) || 0,
     [ heights, toast.id ]
   );
-  const showCloseButton = toast.closeButton ?? true; // Default to true
-  const duration = toast.duration || TOAST_LIFETIME;
-  const closeTimerStartTimeRef = useRef(0);
-  const offset = useRef(0);
-  const lastCloseTimerStartTimeRef = useRef(0);
-  const [ y, x ] = position.split('-');
+
   const toastsHeightBefore = useMemo(() => {
     return heights.reduce((prev, curr, reducerIndex) => {
       // Calculate offset up until current  toast
@@ -73,14 +73,12 @@ const Toast = (props: ToastProps) => {
       return prev + curr.height;
     }, 0);
   }, [ heights, heightIndex ]);
-  const isDocumentHidden = useIsDocumentHidden();
 
   offset.current = useMemo(() => heightIndex * gap + toastsHeightBefore, [ heightIndex, toastsHeightBefore ]);
 
 
   useEffect(() => {
-    // Trigger enter animation without using CSS animation
-    setMounted(true);
+    setMounted(true); // Trigger enter animation without using CSS animation
   }, []);
 
 
@@ -207,7 +205,7 @@ const Toast = (props: ToastProps) => {
       tabIndex={0}
       ref={toastRef}
       className='borderPrimary backgroundPrimary'
-      data-sonner-toast=""
+      data-sonner-toast
       data-styled={!Boolean(toast.jsx)}
       data-mounted={mounted}
       data-removed={removed}
@@ -249,9 +247,7 @@ const Toast = (props: ToastProps) => {
         ) : null
       }
       {
-        toast.jsx || isValidElement(toast.title) ? (
-          toast.jsx || toast.title
-        ) : (
+        toast.jsx || (
           <>
             {
               toastType ? (
@@ -264,11 +260,9 @@ const Toast = (props: ToastProps) => {
               ) : null
             }
 
-            <div data-content="">
+            <div data-content>
               {toast.title ? <div className=' bodyLargeHeavy'>{toast.title}</div> : null}
-              {
-                toast.description ? <div className='bodyBase'>{toast.description}</div> : null
-              }
+              {toast.description ? <div className='bodyBase'>{toast.description}</div> : null}
             </div>
           </>
         )

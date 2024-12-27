@@ -4,7 +4,8 @@ import React, {
   useRef,
   useCallback,
   useEffect,
-  CSSProperties
+  CSSProperties,
+  Fragment
 } from 'react';
 import ReactDOM from 'react-dom';
 
@@ -20,17 +21,10 @@ import {
 
 import './styles.css';
 
-// Visible no of toasts at a time in the viewport
-const VISIBLE_TOASTS_AMOUNT = 251;
-
-// Viewport padding
-const VIEWPORT_OFFSET = '28px';
-
-// Default toast width
-const TOAST_WIDTH = 356;
-
-// Default gap between toasts
-const GAP = 14;
+const VISIBLE_TOASTS_AMOUNT = 251; // Visible no of toasts at a time in the viewport
+const VIEWPORT_OFFSET = '28px'; // Viewport padding
+const TOAST_WIDTH = 356; // Default toast width
+const GAP = 14; // Default gap between toasts
 
 
 const Toaster = (props: ToasterProps) => {
@@ -44,20 +38,20 @@ const Toaster = (props: ToasterProps) => {
     containerAriaLabel = 'Notifications',
     pauseWhenPageIsHidden = true
   } = props;
+
   const [ toasts, setToasts ] = useState<ToastT[]>([]);
-
-  const possiblePositions: Position[] = useMemo(() => {
-    const allToastPositions = toasts.filter(toast => toast.position !== undefined).map(toast => toast.position as Position);
-
-    return Array.from(new Set([ ...allToastPositions ]));
-  }, [ toasts, position ]);
-
   const [ heights, setHeights ] = useState<HeightT[]>([]);
   const [ expanded, setExpanded ] = useState(false);
   const [ interacting, setInteracting ] = useState(false);
 
   const listRef = useRef<HTMLOListElement>(null);
   const hotkeyLabel = hotkey.join('+').replace(/Key/g, '').replace(/Digit/g, '');
+
+  const possiblePositions: Position[] = useMemo(() => {
+    const allToastPositions = toasts.filter(toast => toast.position !== undefined).map(toast => toast.position as Position);
+
+    return Array.from(new Set([ ...allToastPositions ]));
+  }, [ toasts, position ]);
 
 
   const removeToast = useCallback((toastToRemove: ToastT) => {
@@ -103,14 +97,13 @@ const Toaster = (props: ToasterProps) => {
 
   useEffect(() => {
     // Ensure expanded is always false when no toasts are present / only one left
-    if (toasts.length <= 1) {
-      setExpanded(false);
-    }
+    if (toasts.length <= 1) setExpanded(false);
   }, [ toasts ]);
+
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      const isHotkeyPressed = hotkey.every((key) => (event as any)[key] || event.code === key);
+      const isHotkeyPressed = hotkey.every((key) => event[key as keyof KeyboardEvent] || event.code === key);
 
       if (isHotkeyPressed) {
         setExpanded(true);
@@ -130,17 +123,25 @@ const Toaster = (props: ToasterProps) => {
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [ hotkey ]);
 
-  if (!toasts.length) return null;
+  const calculateTopRightToastsHeight = useCallback(() => {
+    const topRightToastsHeightArray = heights.filter(toast => toast.position === 'top-right');
+    //sum of all toast height with position top right
+    let topRightToastsHeight = topRightToastsHeightArray.reduce((sum, t) => sum + t.height, 0);
 
-  const topRightToastsHeightArray = Array.isArray(heights) ? heights.filter(toast => toast.position === 'top-right') : [];
+    topRightToastsHeight = topRightToastsHeight + (topRightToastsHeightArray.length - 1) * gap;
+    topRightToastsHeight = typeof topRightToastsHeight === 'number' ? Math.ceil(topRightToastsHeight) : topRightToastsHeight;
 
-  //sum of all toast height with position top right + gap
-  let sumOfTopRightToastsHeight = topRightToastsHeightArray.reduce((a, b) => { return a + b.height; }, 0);
+    return topRightToastsHeight;
+  }, [ heights, gap ]);
 
-  sumOfTopRightToastsHeight = sumOfTopRightToastsHeight + (topRightToastsHeightArray.length - 1) * gap;
-  sumOfTopRightToastsHeight = typeof sumOfTopRightToastsHeight === 'number' ? Math.ceil(sumOfTopRightToastsHeight) : sumOfTopRightToastsHeight;
 
-  const expandedViewStyle: CSSProperties = expanded ? { height: `${sumOfTopRightToastsHeight}px`, overflow: 'scroll', backdropFilter: 'blur(4px)' } : {};
+  const expandedViewStyle: CSSProperties = expanded
+    ? {
+      height: `${calculateTopRightToastsHeight()}px`,
+      overflow: 'scroll',
+      backdropFilter: 'blur(4px)'
+    }
+    : {};
 
 
   const removeAllToasts = () => {
@@ -148,21 +149,21 @@ const Toaster = (props: ToasterProps) => {
   };
 
 
-  const clearAllButtonUI = (yPosition: string, xPosition: string) => {
-    //close button handle only for top-right position
+  const clearAllButtonUI = (position: string) => {
+    //close all toast button is handled only for top-right position
     const topRightToastsArray = toasts.filter(toast => toast.position === 'top-right');
 
-    if (yPosition !== 'top' || xPosition !== 'right' || topRightToastsArray.length <= 1) return null;
+    if (position !== 'top-right' || topRightToastsArray.length <= 1) return null;
+    const [ y, x ] = position.split('-');
 
     return (
       <div
         className='backgroundSecondary borderPrimary clear-all'
         data-toaster-clear-all
         onClick={removeAllToasts}
-        data-y-position={yPosition}
-        data-x-position={xPosition}
+        data-y-position={y}
+        data-x-position={x}
         onMouseEnter={() => setExpanded(true)}
-        onMouseMove={() => setExpanded(true)}
         onMouseLeave={() => setExpanded(false)}
         style={
           {
@@ -171,10 +172,13 @@ const Toaster = (props: ToasterProps) => {
             zIndex: 99999999
           } as CSSProperties
         }
-      >Clear all
+      >
+        Clear all
       </div>
     );
   };
+
+  if (!toasts.length) return null;
 
   return (
     // Remove item from normal navigation flow, only available via hotkey
@@ -187,10 +191,9 @@ const Toaster = (props: ToasterProps) => {
           const [ y, x ] = position.split('-');
 
           return (
-            <>
-              {clearAllButtonUI(y, x)}
+            <Fragment key={position + index}>
+              {clearAllButtonUI(position)}
               <ol
-                key={position}
                 tabIndex={-1}
                 ref={listRef}
                 data-sonner-toaster
@@ -208,15 +211,7 @@ const Toaster = (props: ToasterProps) => {
                   } as CSSProperties
                 }
                 onMouseEnter={() => setExpanded(true)}
-                onMouseMove={() => setExpanded(true)}
-                onMouseLeave={
-                  () => {
-              // Avoid setting expanded to false when interacting with a toast, e.g. swiping
-                    if (!interacting) {
-                      setExpanded(false);
-                    }
-                  }
-                }
+                onMouseLeave={() => !interacting && setExpanded(false)}
                 onPointerDown={
                   (event) => {
                     const isNotDismissible =
@@ -251,7 +246,7 @@ const Toaster = (props: ToasterProps) => {
                     ))
                 }
               </ol>
-            </>
+            </Fragment>
           );
         })
       }
