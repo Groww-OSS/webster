@@ -1,5 +1,5 @@
 import { RuleTester } from "eslint";
-import rule from "../../../lib/rules/no-redeclare-primitive-variables.js";
+import rule from "../../../lib/rules/no-redeclare-mint-tokens.js";
 
 const ruleTester = new RuleTester({
   parserOptions: {
