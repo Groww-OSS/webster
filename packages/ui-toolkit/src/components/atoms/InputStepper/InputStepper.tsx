@@ -150,7 +150,7 @@ const InputStepper: React.FC<InputStepperProps> = ({
             onClick={handleMinus}
             Icon={MdsIcRemoveMinus}
             disabled={disabled || value <= min}
-            size='md'
+            size='medium'
             isCompact={true}
           />
         </div>
@@ -179,7 +179,7 @@ const InputStepper: React.FC<InputStepperProps> = ({
             onClick={handlePlus}
             Icon={MdsIcAddPlus}
             disabled={disabled || value >= max}
-            size='md'
+            size='medium'
             isCompact={true}
           />
         </div>
