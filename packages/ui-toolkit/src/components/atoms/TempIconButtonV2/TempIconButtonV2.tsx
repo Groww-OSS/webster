@@ -23,20 +23,18 @@ export type IconButtonProps = {
 };
 
 
-const IconButtonV2: React.FC<IconButtonProps> = ({ onClick, Icon, disabled = false, contentColor = 'contentPrimary' }) => {
+const TempIconButtonV2: React.FC<IconButtonProps> = ({ onClick, Icon, disabled = false, contentColor = 'contentPrimary' }) => {
   return (
     <button
       onClick={onClick}
       className={`iconButton iconBtnMedium ${disabled ? 'contentDisable' : `${contentColor} backgroundTransparentHover`}`}
       disabled={disabled}
     >
-      <div className='iconBtnMedium'>
-        <Icon/>
+      <Icon size={20}/>
 
-      </div>
     </button>
 
   );
 };
 
-export default IconButtonV2;
+export default TempIconButtonV2;

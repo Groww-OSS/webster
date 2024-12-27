@@ -8,6 +8,7 @@ import {
   MdsIcHideEye
 } from '@groww-tech/icon-store/mint-icons';
 import IconButtonV2 from '../IconButtonV2/IconButtonV2';
+import TempIconButtonV2 from '../TempIconButtonV2/TempIconButtonV2';
 import { ReactIconComponentType } from '@groww-tech/icon-store/types.d';
 import { ContentMintTokens } from '../../../types/mint-token-types/content-mint-tokens';
 
@@ -167,10 +168,8 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
               {
                 clearable && showClearIcon && (
                   <div className='freeform-inputClearIcon'>
-                    <IconButtonV2 onClick={handleClear}
+                    <TempIconButtonV2 onClick={handleClear}
                       Icon={MdsIcCancelCircle}
-                      size='medium'
-                      isCompact={true}
                     />
                   </div>
                 )
@@ -178,10 +177,8 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
               {
                 variant === 'password' && (
                   <div className='freeform-inputSuffixIcon'>
-                    <IconButtonV2 onClick={togglePasswordVisibility}
+                    <TempIconButtonV2 onClick={togglePasswordVisibility}
                       Icon={showPassword ? MdsIcHideEye : MdsIcShowEye}
-                      size='medium'
-                      isCompact={true}
                     />
                   </div>
                 )
@@ -190,10 +187,9 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
               {
                 suffixIconButton && (
                   <div className='freeform-inputSuffixIcon'>
-                    <IconButtonV2 onClick={suffixIconButton.onClick}
+                    <TempIconButtonV2 onClick={suffixIconButton.onClick}
                       Icon={suffixIconButton.icon}
-                      size='medium'
-                      isCompact={true}
+                      disabled={disabled}
                     />
                   </div>
                 )
