@@ -8,7 +8,7 @@ const ruleTester = new RuleTester({
   },
 });
 
-ruleTester.run("no-redeclare-primitive-variables", rule, {
+ruleTester.run("no-redeclare-mint-tokens", rule, {
   valid: [
     // Using variables (not declaring them)
     `const styles = "var(--green500)";`,
