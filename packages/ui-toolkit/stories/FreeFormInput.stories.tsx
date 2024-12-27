@@ -86,7 +86,7 @@ export const WithSuffixIcons = Template.bind({});
 WithSuffixIcons.args = {
   placeholder: 'Enter text...',
   value: '',
-  suffixIcon: MdsIcChevronRight,
+  SuffixIcon: MdsIcChevronRight,
   error: { hasError: false, message: '' },
   width: '300px'
 };
