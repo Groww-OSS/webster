@@ -1,4 +1,4 @@
-export const primitiveTokens = [
+const primitiveTokens = [
     '--black',
     '--white',
     '--gray900',
@@ -31,10 +31,9 @@ export const primitiveTokens = [
     '--tempNbtBlue',
     '--tempNbtGray',
     '--tempNbtRed',
-  ];
-  
+];
 
-export const backgroundTokens = [
+const backgroundTokens = [
     '--background-primary',
     '--background-secondary',
     '--background-tertiary',
@@ -57,9 +56,8 @@ export const backgroundTokens = [
     '--background-accent-secondary',
     '--background-accent-secondary-subtle',
 ];
-  
 
-export const borderTokens = [
+const borderTokens = [
     '--border-primary',
     '--border-disabled',
     '--border-accent',
@@ -67,9 +65,8 @@ export const borderTokens = [
     '--border-negative',
     '--border-neutral',
 ];
-  
 
-export const contentTokens = [
+const contentTokens = [
     '--content-primary',
     '--content-secondary',
     '--content-tertiary',
@@ -84,10 +81,9 @@ export const contentTokens = [
     '--content-positive',
     '--content-accent-secondary',
     '--content-accent-secondary-subtle',
-  ];
-  
+];
 
-  export const interactionTokens = [
+const interactionTokens = [
     '--bg-transparent-hover',
     '--bg-accent-hover',
     '--bg-accent-subtle-hover',
@@ -108,17 +104,16 @@ export const contentTokens = [
     '--bg-negative-selected',
     '--bg-negative-subtle-selected',
     '--bg-transparent-negative-selected',
-  ];  
+];
 
-  export const semanticTokens = [
+const semanticTokens = [
     ...backgroundTokens,
     ...contentTokens,
     ...borderTokens,
     ...interactionTokens,
-  ];
-  
+];
 
-  export const backgroundUtilClasses = [
+const backgroundUtilClasses = [
     'backgroundPrimary',
     'backgroundSecondary',
     'backgroundTertiary',
@@ -140,18 +135,18 @@ export const contentTokens = [
     'backgroundWarningSubtle',
     'backgroundAccentSecondary',
     'backgroundAccentSecondarySubtle',
-  ];
-  
-  export const borderUtilClasses = [
+];
+
+const borderUtilClasses = [
     'borderPrimary',
     'borderDisabled',
     'borderAccent',
     'borderPositive',
     'borderNegative',
     'borderNeutral',
-  ];
+];
 
-  export const contentUtilClasses = [
+const contentUtilClasses = [
     'contentPrimary',
     'contentSecondary',
     'contentTertiary',
@@ -166,9 +161,9 @@ export const contentTokens = [
     'contentOnColourInverse',
     'contentAccentSecondary',
     'contentAccentSecondarySubtle',
-  ];
-  
-  export const interactionUtilClasses = [
+];
+
+const interactionUtilClasses = [
     'backgroundTransparentHover',
     'backgroundAccentHover',
     'backgroundAccentSubtleHover',
@@ -189,20 +184,35 @@ export const contentTokens = [
     'backgroundNegativeSelected',
     'backgroundNegativeSubtleSelected',
     'backgroundTransparentNegativeSelected',
-  ];
-  export const tempPodUtilClasses = [
+];
+
+const tempPodUtilClasses = [
     'tempNbtBackgroundPink',
     'tempNbtBackgroundYellow',
     'tempNbtBackgroundBlue',
     'tempNbtBackgroundGray',
     'tempNbtBackgroundRed',
-  ];
-  
-  export const allUtilClasses = [
+];
+
+const allUtilClasses = [
     ...backgroundUtilClasses,
     ...borderUtilClasses,
     ...contentUtilClasses,
     ...interactionUtilClasses,
     ...tempPodUtilClasses,
-  ];
-  
+];
+
+module.exports = {
+    primitiveTokens,
+    backgroundTokens,
+    borderTokens,
+    contentTokens,
+    interactionTokens,
+    semanticTokens,
+    backgroundUtilClasses,
+    borderUtilClasses,
+    contentUtilClasses,
+    interactionUtilClasses,
+    tempPodUtilClasses,
+    allUtilClasses,
+};
