@@ -3,7 +3,6 @@ import cn from 'classnames';
 import './styles/index.css';
 import { ReactIconComponentType } from '@groww-tech/icon-store/types.d';
 import { MdsIcRemoveMinus, MdsIcAddPlus } from '@groww-tech/icon-store/mint-icons';
-import IconButtonV2 from '../IconButtonV2/IconButtonV2';
 import TempIconButtonV2 from '../TempIconButtonV2/TempIconButtonV2';
 import { ContentMintTokens } from '../../../types/mint-token-types/content-mint-tokens';
 import { BackgroundMintTokens } from '../../../types/mint-token-types/background-mint-tokens';
