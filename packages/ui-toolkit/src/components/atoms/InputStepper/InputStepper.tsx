@@ -72,7 +72,9 @@ const InputStepper: React.FC<InputStepperProps> = ({
     }
   }, [ inputRef, shouldFocusOnMount ]);
 
-  const inputClasses = cn('inputStepper-input');
+  const inputClasses = cn('inputStepper-input', {
+    contentDisabled: disabled
+  });
   const inputWrapperClasses = cn('inputStepper-inputWrapper');
 
 
@@ -88,7 +90,8 @@ const InputStepper: React.FC<InputStepperProps> = ({
       'inputStepper-inputBorderWarning': warning,
       'inputStepper-inputPrefix': prefixIcon || prefixLabel,
       'inputStepper-inputFocused': isFocused && !disabled && !error,
-      'backgroundSecondary contentSecondary': disabled
+      'backgroundSecondary contentSecondary': disabled,
+      contentDisabled: disabled
     }
   );
 
@@ -151,7 +154,7 @@ const InputStepper: React.FC<InputStepperProps> = ({
             onClick={handleMinus}
             Icon={MdsIcRemoveMinus}
             disabled={disabled || value <= min}
-            size='small'
+            size="small"
           />
         </div>
 
@@ -179,7 +182,7 @@ const InputStepper: React.FC<InputStepperProps> = ({
             onClick={handlePlus}
             Icon={MdsIcAddPlus}
             disabled={disabled || value >= max}
-            size='small'
+            size="small"
           />
         </div>
       </div>
