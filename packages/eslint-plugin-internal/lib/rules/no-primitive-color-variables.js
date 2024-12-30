@@ -1,3 +1,5 @@
+const {primitiveTokens} = require('../../mint-values/index.js');
+
 module.exports = {
   meta: {
     docs: {
@@ -9,7 +11,7 @@ module.exports = {
   },
 
   create(context) {
-    const disallowedVariables = ["--green500", "--gray900", "--red500"];
+    const disallowedVariables = [...primitiveTokens];
 
     return {
       Literal(node) {

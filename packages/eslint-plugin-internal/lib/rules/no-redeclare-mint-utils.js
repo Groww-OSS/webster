@@ -1,3 +1,5 @@
+const {allUtilClasses} = require('../../mint-values/index.js');
+
 module.exports = {
     meta: {
       docs: {
@@ -10,7 +12,7 @@ module.exports = {
   
     create(context) {
       // List of disallowed CSS class names
-      const disallowedClasses = ["contentPrimary", "borderAccent", "backgroundPrimary"];
+      const disallowedClasses = [...allUtilClasses];
   
       const cssClassDeclarationPattern = (className) => new RegExp(`\\.${className}\\s*{`, "i");
   
