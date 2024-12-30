@@ -6,8 +6,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    flex-shrink: 0;
+  }
+
+.iconBtnSmall {
+    height: 24px;
+    width: 24px;
   }
 
   .iconBtnMedium {
