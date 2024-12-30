@@ -2,14 +2,16 @@ const stylelint = require('stylelint');
 
 const ruleName = 'mint/no-redeclared-semantic-variables';
 
+const {semanticTokens} =require('../mint-values/index.js');
+
+
 const messages = stylelint.utils.ruleMessages(ruleName, {
   rejected: (variable) => `The primitive variable "${variable}" is already defined in mint and cannot be redeclared.`
 });
 
-// List of banned primitive variables that cannot be redeclared
+// List of banned semantic variables that cannot be redeclared
 const bannedPrimitives = [
-  '--content-primary',
-  '--background-primary'
+  ...semanticTokens
 ];
 
 const plugin = stylelint.createPlugin(ruleName, function (enabled) {

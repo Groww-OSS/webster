@@ -2,14 +2,14 @@ const stylelint = require('stylelint');
 
 const ruleName = 'mint/no-redeclared-primitive-variables';
 
+const {primitiveTokens} =require('../mint-values/index.js');
+
 const messages = stylelint.utils.ruleMessages(ruleName, {
   rejected: (variable) => `The primitive variable "${variable}" is already defined in mint and cannot be redeclared.`
 });
 
-// List of banned primitive variables that cannot be redeclared
 const bannedPrimitives = [
-  '--green500',
-  '--gray900'
+  ...primitiveTokens
 ];
 
 const plugin = stylelint.createPlugin(ruleName, function (enabled) {

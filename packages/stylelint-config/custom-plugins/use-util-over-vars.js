@@ -1,31 +1,16 @@
 const stylelint = require('stylelint');
 
 const ruleName = 'mint/use-util-class-instead-of-semantic-variable';
+
+const {semanticTokens} =require('../mint-values/index.js');
+
 const messages = stylelint.utils.ruleMessages(ruleName, {
   warning: (variable, property) =>
     `Avoid using the semantic variable "${variable}" directly for "${property}". Use a utility class instead.`
 });
 
 const semanticVariables = [
-  "--content-primary",
-  "--content-secondary",
-  "--content-tertiary",
-  "--content-inverse-primary",
-  "--content-inverse-secondary",
-  "--background-primary",
-  "--background-secondary",
-  "--background-tertiary",
-  "--background-overlay-primary",
-  "--background-overlay-secondary",
-  "--background-accent",
-  "--background-positive",
-  "--background-negative",
-  "--background-warning",
-  "--border-primary",
-  "--border-accent",
-  "--border-positive",
-  "--border-negative",
-  "--border-warning"
+ ...semanticTokens
 ];
 
 const isColorRelatedProperty = (property) => {

@@ -2,13 +2,15 @@ const stylelint = require('stylelint');
 
 const ruleNameClasses = 'mint/no-redeclared-utility-classes';
 
+const {allUtilClasses} =require('../mint-values/index.js');
+
+
 const messagesClasses = stylelint.utils.ruleMessages(ruleNameClasses, {
   rejected: (className) => `The utility class "${className}" is already defined in mint and cannot be redeclared.`
 });
 
 const bannedClasses = [
-  'contentPrimary',
-  'backgroundPrimary'
+  ...allUtilClasses
 ];
 
 const pluginClasses = stylelint.createPlugin(ruleNameClasses, function (enabled) {
