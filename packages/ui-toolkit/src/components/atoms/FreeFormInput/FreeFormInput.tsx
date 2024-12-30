@@ -7,7 +7,6 @@ import {
   MdsIcShowEye,
   MdsIcHideEye
 } from '@groww-tech/icon-store/mint-icons';
-import IconButtonV2 from '../IconButtonV2/IconButtonV2';
 import TempIconButtonV2 from '../TempIconButtonV2/TempIconButtonV2';
 import { ReactIconComponentType } from '@groww-tech/icon-store/types.d';
 import { ContentMintTokens } from '../../../types/mint-token-types/content-mint-tokens';
