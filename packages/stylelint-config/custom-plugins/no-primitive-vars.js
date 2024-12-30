@@ -2,14 +2,13 @@ const stylelint = require('stylelint');
 
 const ruleName = 'mint/no-primitive-color-variables';
 
+const {primitiveTokens} =require('../mint-values/index.js');
 const messages = stylelint.utils.ruleMessages(ruleName, {
   rejected: (variable) => `The primitive color variable "${variable}" is not allowed. Use a semantic token or a utility class instead. Using a utility class is preferred.`
 });
 
-// List of banned primitive color variables
 const bannedVariables = [
-  '--green500',
-  '--gray900'
+  ...primitiveTokens
 ];
 
 const plugin = stylelint.createPlugin(ruleName, function (enabled) {
