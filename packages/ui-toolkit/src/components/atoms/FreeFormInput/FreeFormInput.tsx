@@ -170,6 +170,7 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
                   <div className='freeform-inputClearIcon'>
                     <TempIconButtonV2 onClick={handleClear}
                       Icon={MdsIcCancelCircle}
+                      size='medium'
                     />
                   </div>
                 )
@@ -179,6 +180,7 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
                   <div className='freeform-inputSuffixIcon'>
                     <TempIconButtonV2 onClick={togglePasswordVisibility}
                       Icon={showPassword ? MdsIcHideEye : MdsIcShowEye}
+                      size='medium'
                     />
                   </div>
                 )
@@ -190,6 +192,7 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
                     <TempIconButtonV2 onClick={suffixIconButton.onClick}
                       Icon={suffixIconButton.icon}
                       disabled={disabled}
+                      size='medium'
                     />
                   </div>
                 )

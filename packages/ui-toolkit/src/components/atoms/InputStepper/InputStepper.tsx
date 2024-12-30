@@ -4,6 +4,7 @@ import './styles/index.css';
 import { ReactIconComponentType } from '@groww-tech/icon-store/types.d';
 import { MdsIcRemoveMinus, MdsIcAddPlus } from '@groww-tech/icon-store/mint-icons';
 import IconButtonV2 from '../IconButtonV2/IconButtonV2';
+import TempIconButtonV2 from '../TempIconButtonV2/TempIconButtonV2';
 import { ContentMintTokens } from '../../../types/mint-token-types/content-mint-tokens';
 import { BackgroundMintTokens } from '../../../types/mint-token-types/background-mint-tokens';
 
@@ -146,12 +147,11 @@ const InputStepper: React.FC<InputStepperProps> = ({
     >
       <div className={`${inputContentClasses}`}>
         <div className="inputStepper-prefixContainer">
-          <IconButtonV2
+          <TempIconButtonV2
             onClick={handleMinus}
             Icon={MdsIcRemoveMinus}
             disabled={disabled || value <= min}
-            size='medium'
-            isCompact={true}
+            size='small'
           />
         </div>
 
@@ -175,12 +175,11 @@ const InputStepper: React.FC<InputStepperProps> = ({
         />
 
         <div className="inputStepper-suffixContainer">
-          <IconButtonV2
+          <TempIconButtonV2
             onClick={handlePlus}
             Icon={MdsIcAddPlus}
             disabled={disabled || value >= max}
-            size='medium'
-            isCompact={true}
+            size='small'
           />
         </div>
       </div>
