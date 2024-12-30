@@ -9,8 +9,8 @@ module.exports = {
   },
 
   create(context) {
-    const disallowedVariables = ["green500", "gray900", "red500"];
-    const cssVarDeclarationPattern = (variable) => new RegExp(`--${variable}\\s*:\\s*`, "i");
+    const disallowedVariables = ["--green500", "--gray900", "--red500"];
+    const cssVarDeclarationPattern = (variable) => new RegExp(`${variable}\\s*:\\s*`, "i");
 
     function checkCSSDeclarations(node) {
       if (typeof node.value === "string") {
