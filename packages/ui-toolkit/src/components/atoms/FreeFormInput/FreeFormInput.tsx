@@ -41,6 +41,7 @@ export type FreeFormInputProps = {
   perfixTextColor?: ContentMintTokens;
   prefixTextStyle?: 'bodyBase' | 'bodyBaseHeavy';
   onEnterPress?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  disableCopyPaste?: boolean;
 };
 
 
@@ -67,7 +68,8 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
   onKeyUp,
   perfixTextColor = 'contentSecondary',
   prefixTextStyle = 'bodyBase',
-  onEnterPress
+  onEnterPress,
+  disableCopyPaste = false
 }) => {
   const [ showClearIcon, setShowClearIcon ] = useState(false);
   const [ isFocused, setIsFocused ] = useState(false);
@@ -106,6 +108,13 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
       } as React.ChangeEvent<HTMLInputElement>;
 
       onChange(event);
+    }
+  };
+
+
+  const handleCopyPaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+    if (disableCopyPaste) {
+      e.preventDefault();
     }
   };
 
@@ -160,6 +169,9 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
           onKeyDown={handleKeyDown}
           autoComplete={autoComplete}
           onKeyUp={onKeyUp}
+          onCopy={handleCopyPaste}
+          onCut={handleCopyPaste}
+          onPaste={handleCopyPaste}
         />
         {
           (clearable && showClearIcon) || variant === 'password' || SuffixIcon || suffixIconButton ? (
