@@ -26,6 +26,7 @@ export type DataRowInputProps = {
   textColor?: ContentMintTokens;
   perfixTextColor?: ContentMintTokens;
   backgroundColor?: BackgroundMintTokens;
+  disableCopyPaste?: boolean;
 }
 
 
@@ -49,7 +50,8 @@ const DataRowInput: React.FC<DataRowInputProps> = ({
   textStyle = 'bodyLarge',
   textColor = 'contentPrimary',
   perfixTextColor = 'contentSecondary',
-  backgroundColor = 'backgroundPrimary'
+  backgroundColor = 'backgroundPrimary',
+  disableCopyPaste = false
 }) => {
   const [ isFocused, setIsFocused ] = useState(false);
 
@@ -68,6 +70,13 @@ const DataRowInput: React.FC<DataRowInputProps> = ({
     }
 
     onKeyDown && onKeyDown(e);
+  };
+
+
+  const handleCopyPaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+    if (disableCopyPaste) {
+      e.preventDefault();
+    }
   };
 
   const inputContentClasses = cn(
@@ -112,6 +121,9 @@ const DataRowInput: React.FC<DataRowInputProps> = ({
           onKeyDown={handleKeyDown}
           step={1}
           onKeyUp={onKeyUp}
+          onCopy={handleCopyPaste}
+          onCut={handleCopyPaste}
+          onPaste={handleCopyPaste}
         />
       </div>
     </div>

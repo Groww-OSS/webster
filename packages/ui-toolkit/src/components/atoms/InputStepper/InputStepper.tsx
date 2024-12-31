@@ -29,6 +29,7 @@ export type InputStepperProps = {
   backgroundColor?: BackgroundMintTokens;
   textColor?: ContentMintTokens;
   shouldFocusOnMount?: boolean;
+  disableCopyPaste?: boolean;
 }
 
 
@@ -53,7 +54,8 @@ const InputStepper: React.FC<InputStepperProps> = ({
   textStyle = 'bodyLarge',
   backgroundColor = 'backgroundTransparent',
   textColor = 'contentPrimary',
-  shouldFocusOnMount = false
+  shouldFocusOnMount = false,
+  disableCopyPaste = false
 }) => {
   const [ isFocused, setIsFocused ] = useState(false);
   const [ inputValue, setInputValue ] = useState(value.toString());
@@ -93,6 +95,13 @@ const InputStepper: React.FC<InputStepperProps> = ({
       contentDisabled: disabled
     }
   );
+
+
+  const handleCopyPaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+    if (disableCopyPaste) {
+      e.preventDefault();
+    }
+  };
 
 
   const handleMinus = () => {
@@ -174,6 +183,9 @@ const InputStepper: React.FC<InputStepperProps> = ({
           readOnly={!typable}
           onKeyDown={onKeyDown}
           onKeyUp={onKeyUp}
+          onCopy={handleCopyPaste}
+          onCut={handleCopyPaste}
+          onPaste={handleCopyPaste}
         />
 
         <div className="inputStepper-suffixContainer">
