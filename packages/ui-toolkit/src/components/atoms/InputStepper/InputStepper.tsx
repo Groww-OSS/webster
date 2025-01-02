@@ -80,12 +80,8 @@ const InputStepper: React.FC<InputStepperProps> = ({
   const inputClasses = cn('inputStepper-input', {
     contentDisabled: disabled
   });
+
   const inputWrapperClasses = cn('inputStepper-inputWrapper');
-
-
-  const handleWheel = (e: React.WheelEvent<HTMLInputElement>) => {
-    e.currentTarget.blur();
-  };
 
   const inputContentClasses = cn(
     `inputStepper-inputContent ${textStyle} ${textColor} borderPrimary`,
@@ -99,6 +95,11 @@ const InputStepper: React.FC<InputStepperProps> = ({
       contentDisabled: disabled
     }
   );
+
+
+  const handleWheel = (e: React.WheelEvent<HTMLInputElement>) => {
+    e.currentTarget.blur();
+  };
 
 
   const handleCopyPaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
@@ -172,18 +173,57 @@ const InputStepper: React.FC<InputStepperProps> = ({
   };
 
   return (
-    <div className={inputWrapperClasses}
+    <div
+      className={inputWrapperClasses}
       style={{ width: width }}
+      data-testid={`${dataTestId}-container`}
     >
-      <div className={`${inputContentClasses}`}>
-        <div className="inputStepper-prefixContainer">
+      <div
+        className={`${inputContentClasses}`}
+        data-testid={`${dataTestId}-content`}
+      >
+        <div
+          className="inputStepper-prefixContainer"
+          data-testid={`${dataTestId}-minus-container`}
+        >
           <TempIconButtonV2
             onClick={handleMinus}
             Icon={MdsIcRemoveMinus}
             disabled={disabled || value <= min}
             size="small"
+            data-testid={`${dataTestId}-minus-button`}
           />
         </div>
+
+        {
+          (prefixIcon || prefixLabel) && (
+            <div
+              className='inputStepper-prefixWrapper'
+              data-testid={`${dataTestId}-prefix-container`}
+            >
+              {
+                prefixIcon && (
+                  <div
+                    className='inputStepper-prefixIcon'
+                    data-testid={`${dataTestId}-prefix-icon`}
+                  >
+                    {prefixIcon}
+                  </div>
+                )
+              }
+              {
+                prefixLabel && (
+                  <div
+                    className='inputStepper-prefixLabel'
+                    data-testid={`${dataTestId}-prefix-label`}
+                  >
+                    {prefixLabel}
+                  </div>
+                )
+              }
+            </div>
+          )
+        }
 
         <input
           className={`${inputClasses} ${backgroundColor} ${textStyle} ${textColor}`}
@@ -207,12 +247,16 @@ const InputStepper: React.FC<InputStepperProps> = ({
           onPaste={handleCopyPaste}
         />
 
-        <div className="inputStepper-suffixContainer">
+        <div
+          className="inputStepper-suffixContainer"
+          data-testid={`${dataTestId}-plus-container`}
+        >
           <TempIconButtonV2
             onClick={handlePlus}
             Icon={MdsIcAddPlus}
             disabled={disabled || value >= max}
             size="small"
+            data-testid={`${dataTestId}-plus-button`}
           />
         </div>
       </div>

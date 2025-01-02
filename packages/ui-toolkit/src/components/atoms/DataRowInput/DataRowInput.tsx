@@ -28,7 +28,6 @@ export type DataRowInputProps = {
   backgroundColor?: BackgroundMintTokens;
   disableCopyPaste?: boolean;
   onEnterPress?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
-
 }
 
 
@@ -76,7 +75,6 @@ const DataRowInput: React.FC<DataRowInputProps> = ({
       onEnterPress(e);
     }
 
-
     onKeyDown && onKeyDown(e);
   };
 
@@ -100,15 +98,41 @@ const DataRowInput: React.FC<DataRowInputProps> = ({
   );
 
   return (
-    <div className={inputWrapperClasses}
+    <div
+      className={inputWrapperClasses}
       style={{ width: width }}
+      data-testid={`${dataTestId}-container`}
     >
-      <div className={`${inputContentClasses}`}>
+      <div
+        className={`${inputContentClasses}`}
+        data-testid={`${dataTestId}-content`}
+      >
         {
           (prefixIcon || prefixLabel) && (
-            <div className='datarow-prefixContainer'>
-              {prefixIcon && <div className='datarow-inputPrefixIcon'>{prefixIcon}</div>}
-              {prefixLabel && <div className={`datarow-inputPrefixLabel ${perfixTextColor}`}>{prefixLabel}</div>}
+            <div
+              className='datarow-prefixContainer'
+              data-testid={`${dataTestId}-prefix-container`}
+            >
+              {
+                prefixIcon && (
+                  <div
+                    className='datarow-inputPrefixIcon'
+                    data-testid={`${dataTestId}-prefix-icon`}
+                  >
+                    {prefixIcon}
+                  </div>
+                )
+              }
+              {
+                prefixLabel && (
+                  <div
+                    className={`datarow-inputPrefixLabel ${perfixTextColor}`}
+                    data-testid={`${dataTestId}-prefix-label`}
+                  >
+                    {prefixLabel}
+                  </div>
+                )
+              }
             </div>
           )
         }
