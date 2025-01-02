@@ -12,13 +12,13 @@
 
 .datarow-inputFocused {
   outline-offset: -1px;
-  outline: 2px solid var(--gray900);
+  outline: 2px solid var(--border-neutral);
 }
 
 .datarow-input {
   width: 100%;
   font-size: 16px;
-  caret-color: var(--green500);
+  caret-color: var(--content-accent);
   outline: none; /* Remove focus outline */
   box-shadow: none; /* Remove any focus box-shadow */
   border: none;
@@ -43,19 +43,19 @@
 }
 
 input::placeholder {
-  color: var(--gray500);
+  color: var(--content-tertiary);
 }
 
 .datarow-inputBorderNeutral {
-  border: 2px solid var(--gray900);
+  border: 2px solid var(--border-neutral);
 }
 
 .datarow-inputBorderNegative {
-  border: 2px solid var(--red500);
+  border: 2px solid var(--border-negative);
   border-radius: 4px;
 }
 
 .datarow-inputBorderWarning {
-  border: 2px solid var(--yellow500);
+  border: 2px solid var(--content-warning);
   border-radius: 4px;
 }
