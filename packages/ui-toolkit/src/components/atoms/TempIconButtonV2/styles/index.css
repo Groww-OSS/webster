@@ -1,20 +1,24 @@
 .iconButton {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    border-radius: 99px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 99px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0; 
+}
 
 .iconBtnSmall {
-    height: 24px;
-    width: 24px;
-  }
+  height: 24px;
+  width: 24px;
+  min-height: 24px; 
+  min-width: 24px;
+}
 
-  .iconBtnMedium {
-    height: 32px;
-    width: 32px;
-  }
- 
+.iconBtnMedium {
+  height: 32px;
+  width: 32px;
+  min-height: 32px; 
+  min-width: 32px;
+}
