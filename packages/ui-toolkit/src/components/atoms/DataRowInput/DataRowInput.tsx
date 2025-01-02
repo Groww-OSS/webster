@@ -27,6 +27,8 @@ export type DataRowInputProps = {
   perfixTextColor?: ContentMintTokens;
   backgroundColor?: BackgroundMintTokens;
   disableCopyPaste?: boolean;
+  onEnterPress?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+
 }
 
 
@@ -51,7 +53,8 @@ const DataRowInput: React.FC<DataRowInputProps> = ({
   textColor = 'contentPrimary',
   perfixTextColor = 'contentSecondary',
   backgroundColor = 'backgroundPrimary',
-  disableCopyPaste = false
+  disableCopyPaste = false,
+  onEnterPress
 }) => {
   const [ isFocused, setIsFocused ] = useState(false);
 
@@ -68,6 +71,11 @@ const DataRowInput: React.FC<DataRowInputProps> = ({
     if (disableDecimal && e.key === '.') {
       e.preventDefault();
     }
+
+    if (e.key === 'Enter' && onEnterPress) {
+      onEnterPress(e);
+    }
+
 
     onKeyDown && onKeyDown(e);
   };
