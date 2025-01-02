@@ -30,6 +30,8 @@ export type InputStepperProps = {
   textColor?: ContentMintTokens;
   shouldFocusOnMount?: boolean;
   disableCopyPaste?: boolean;
+  onEnterPress?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  disableDecimal?: boolean;
 }
 
 
@@ -55,7 +57,9 @@ const InputStepper: React.FC<InputStepperProps> = ({
   backgroundColor = 'backgroundTransparent',
   textColor = 'contentPrimary',
   shouldFocusOnMount = false,
-  disableCopyPaste = false
+  disableCopyPaste = false,
+  onEnterPress,
+  disableDecimal = false
 }) => {
   const [ isFocused, setIsFocused ] = useState(false);
   const [ inputValue, setInputValue ] = useState(value.toString());
@@ -152,6 +156,21 @@ const InputStepper: React.FC<InputStepperProps> = ({
     }
   };
 
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && onEnterPress) {
+      onEnterPress(e);
+    }
+
+    if (disableDecimal && e.key === '.') {
+      e.preventDefault();
+    }
+
+    if (onKeyDown) {
+      onKeyDown(e);
+    }
+  };
+
   return (
     <div className={inputWrapperClasses}
       style={{ width: width }}
@@ -181,7 +200,7 @@ const InputStepper: React.FC<InputStepperProps> = ({
           ref={inputRef}
           onWheel={handleWheel}
           readOnly={!typable}
-          onKeyDown={onKeyDown}
+          onKeyDown={handleKeyDown}
           onKeyUp={onKeyUp}
           onCopy={handleCopyPaste}
           onCut={handleCopyPaste}

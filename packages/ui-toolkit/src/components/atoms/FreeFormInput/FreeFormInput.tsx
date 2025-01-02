@@ -42,6 +42,7 @@ export type FreeFormInputProps = {
   prefixTextStyle?: 'bodyBase' | 'bodyBaseHeavy';
   onEnterPress?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   disableCopyPaste?: boolean;
+  disableDecimal?: boolean;
 };
 
 
@@ -69,7 +70,8 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
   perfixTextColor = 'contentSecondary',
   prefixTextStyle = 'bodyBase',
   onEnterPress,
-  disableCopyPaste = false
+  disableCopyPaste = false,
+  disableDecimal = false
 }) => {
   const [ showClearIcon, setShowClearIcon ] = useState(false);
   const [ isFocused, setIsFocused ] = useState(false);
@@ -128,6 +130,10 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
     if (onKeyDown) onKeyDown(e);
     if (e.key === 'Enter' && onEnterPress) {
       onEnterPress(e);
+    }
+
+    if (disableDecimal && (e.key === '.')) {
+      e.preventDefault();
     }
   };
 
