@@ -101,23 +101,23 @@ const DataRowInput: React.FC<DataRowInputProps> = ({
     <div
       className={inputWrapperClasses}
       style={{ width: width }}
-      data-testid={`${dataTestId}-container`}
+      data-test-id={`${dataTestId}-container`}
     >
       <div
         className={`${inputContentClasses}`}
-        data-testid={`${dataTestId}-content`}
+        data-test-id={`${dataTestId}-content`}
       >
         {
           (prefixIcon || prefixLabel) && (
             <div
               className='datarow-prefixContainer'
-              data-testid={`${dataTestId}-prefix-container`}
+              data-test-id={`${dataTestId}-prefix-container`}
             >
               {
                 prefixIcon && (
                   <div
                     className='datarow-inputPrefixIcon'
-                    data-testid={`${dataTestId}-prefix-icon`}
+                    data-test-id={`${dataTestId}-prefix-icon`}
                   >
                     {prefixIcon}
                   </div>
@@ -127,7 +127,7 @@ const DataRowInput: React.FC<DataRowInputProps> = ({
                 prefixLabel && (
                   <div
                     className={`datarow-inputPrefixLabel ${perfixTextColor}`}
-                    data-testid={`${dataTestId}-prefix-label`}
+                    data-test-id={`${dataTestId}-prefix-label`}
                   >
                     {prefixLabel}
                   </div>
@@ -145,7 +145,7 @@ const DataRowInput: React.FC<DataRowInputProps> = ({
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           disabled={disabled}
-          data-testid={dataTestId}
+          data-test-id={dataTestId}
           ref={ref}
           onWheel={handleWheel}
           min={min}
