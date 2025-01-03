@@ -140,13 +140,13 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
     <div
       className={inputWrapperClasses}
       style={{ width: width }}
-      data-testid={`${dataTestId}-container`}
+      data-test-id={`${dataTestId}-container`}
     >
       {
         label && (
           <div
             className='bodySmallHeavy contentSecondary'
-            data-testid={`${dataTestId}-label`}
+            data-test-id={`${dataTestId}-label`}
           >
             {label}
           </div>
@@ -154,19 +154,19 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
       }
       <div
         className={`${inputContentClasses}`}
-        data-testid={`${dataTestId}-input-content`}
+        data-test-id={`${dataTestId}-input-content`}
       >
         {
           (PrefixIcon || prefixLabel) && (
             <div
               className='freeform-prefixContainer'
-              data-testid={`${dataTestId}-prefix-container`}
+              data-test-id={`${dataTestId}-prefix-container`}
             >
               {
                 PrefixIcon && (
                   <div
                     className='freeform-inputPrefixIcon'
-                    data-testid={`${dataTestId}-prefix-icon`}
+                    data-test-id={`${dataTestId}-prefix-icon`}
                   >
                     <PrefixIcon size={20}/>
                   </div>
@@ -176,7 +176,7 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
                 prefixLabel && (
                   <div
                     className={`freeform-inputPrefixLabel ${perfixTextColor} ${prefixTextStyle}`}
-                    data-testid={`${dataTestId}-prefix-label`}
+                    data-test-id={`${dataTestId}-prefix-label`}
                   >
                     {prefixLabel}
                   </div>
@@ -202,7 +202,7 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           disabled={disabled}
-          data-testid={dataTestId}
+          data-test-id={dataTestId}
           maxLength={maxLength}
           ref={ref}
           onWheel={handleWheel}
@@ -217,19 +217,19 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
           (clearable && showClearIcon) || variant === 'password' || SuffixIcon || suffixIconButton ? (
             <div
               className='freeform-suffixContainer'
-              data-testid={`${dataTestId}-suffix-container`}
+              data-test-id={`${dataTestId}-suffix-container`}
             >
               {
                 clearable && showClearIcon && (
                   <div
                     className='freeform-inputClearIcon'
-                    data-testid={`${dataTestId}-clear-icon`}
+                    data-test-id={`${dataTestId}-clear-icon`}
                   >
                     <IconButtonV2
                       onClick={handleClear}
                       Icon={MdsIcCancelCircle}
                       size='medium'
-                      data-testid={`${dataTestId}-clear-button`}
+                      data-test-id={`${dataTestId}-clear-button`}
                       isCompact={true}
                     />
                   </div>
@@ -239,13 +239,13 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
                 variant === 'password' && (
                   <div
                     className='freeform-inputSuffixIcon'
-                    data-testid={`${dataTestId}-password-toggle`}
+                    data-test-id={`${dataTestId}-password-toggle`}
                   >
                     <IconButtonV2
                       onClick={togglePasswordVisibility}
                       Icon={showPassword ? MdsIcHideEye : MdsIcShowEye}
                       size='medium'
-                      data-testid={`${dataTestId}-password-toggle-button`}
+                      data-test-id={`${dataTestId}-password-toggle-button`}
                       isCompact={true}
                     />
                   </div>
@@ -255,7 +255,7 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
                 SuffixIcon && (
                   <div
                     className='freeform-inputSuffixIcon'
-                    data-testid={`${dataTestId}-suffix-icon`}
+                    data-test-id={`${dataTestId}-suffix-icon`}
                   >
                     <SuffixIcon size={20}/>
                   </div>
@@ -265,7 +265,7 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
                 suffixIconButton && (
                   <div
                     className='freeform-inputSuffixIcon'
-                    data-testid={`${dataTestId}-suffix-button`}
+                    data-test-id={`${dataTestId}-suffix-button`}
                   >
                     <IconButtonV2
                       onClick={suffixIconButton.onClick}
@@ -285,7 +285,7 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
         helperText && (
           <div
             className='contentSecondary bodySmall'
-            data-testid={`${dataTestId}-helper-text`}
+            data-test-id={`${dataTestId}-helper-text`}
           >
             {helperText}
           </div>
@@ -295,7 +295,7 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
         error.hasError && error.message && (
           <div
             className='contentNegative freeform-inputErrorText bodySmall'
-            data-testid={`${dataTestId}-error-message`}
+            data-test-id={`${dataTestId}-error-message`}
           >
             <MdsIcError size={16}/>
             {error.message}

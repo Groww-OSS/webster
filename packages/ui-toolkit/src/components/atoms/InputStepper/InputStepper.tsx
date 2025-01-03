@@ -177,22 +177,22 @@ const InputStepper: React.FC<InputStepperProps> = ({
     <div
       className={inputWrapperClasses}
       style={{ width: width }}
-      data-testid={`${dataTestId}-container`}
+      data-test-id={`${dataTestId}-container`}
     >
       <div
         className={`${inputContentClasses}`}
-        data-testid={`${dataTestId}-content`}
+        data-test-id={`${dataTestId}-content`}
       >
         <div
           className="inputStepper-prefixContainer"
-          data-testid={`${dataTestId}-minus-container`}
+          data-test-id={`${dataTestId}-minus-container`}
         >
           <IconButtonV2
             onClick={handleMinus}
             Icon={MdsIcRemoveMinus}
             disabled={disabled || value <= min}
             size="medium"
-            data-testid={`${dataTestId}-minus-button`}
+            data-test-id={`${dataTestId}-minus-button`}
             isCompact={true}
           />
         </div>
@@ -201,13 +201,13 @@ const InputStepper: React.FC<InputStepperProps> = ({
           (prefixIcon || prefixLabel) && (
             <div
               className='inputStepper-prefixWrapper'
-              data-testid={`${dataTestId}-prefix-container`}
+              data-test-id={`${dataTestId}-prefix-container`}
             >
               {
                 prefixIcon && (
                   <div
                     className='inputStepper-prefixIcon'
-                    data-testid={`${dataTestId}-prefix-icon`}
+                    data-test-id={`${dataTestId}-prefix-icon`}
                   >
                     {prefixIcon}
                   </div>
@@ -217,7 +217,7 @@ const InputStepper: React.FC<InputStepperProps> = ({
                 prefixLabel && (
                   <div
                     className='inputStepper-prefixLabel'
-                    data-testid={`${dataTestId}-prefix-label`}
+                    data-test-id={`${dataTestId}-prefix-label`}
                   >
                     {prefixLabel}
                   </div>
@@ -238,7 +238,7 @@ const InputStepper: React.FC<InputStepperProps> = ({
           onFocus={() => setIsFocused(true)}
           onBlur={handleBlur}
           disabled={disabled}
-          data-testid={dataTestId}
+          data-test-id={dataTestId}
           ref={inputRef}
           onWheel={handleWheel}
           readOnly={!typable}
@@ -251,14 +251,14 @@ const InputStepper: React.FC<InputStepperProps> = ({
 
         <div
           className="inputStepper-suffixContainer"
-          data-testid={`${dataTestId}-plus-container`}
+          data-test-id={`${dataTestId}-plus-container`}
         >
           <IconButtonV2
             onClick={handlePlus}
             Icon={MdsIcAddPlus}
             disabled={disabled || value >= max}
             size="medium"
-            data-testid={`${dataTestId}-plus-button`}
+            data-test-id={`${dataTestId}-plus-button`}
             isCompact={true}
           />
         </div>
