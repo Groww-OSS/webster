@@ -8,6 +8,7 @@ import {
   MdsIcHideEye
 } from '@groww-tech/icon-store/mint-icons';
 import TempIconButtonV2 from '../TempIconButtonV2/TempIconButtonV2';
+import IconButtonV2 from '../IconButtonV2/IconButtonV2';
 import { ReactIconComponentType } from '@groww-tech/icon-store/types.d';
 import { ContentMintTokens } from '../../../types/mint-token-types/content-mint-tokens';
 
@@ -224,11 +225,12 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
                     className='freeform-inputClearIcon'
                     data-testid={`${dataTestId}-clear-icon`}
                   >
-                    <TempIconButtonV2
+                    <IconButtonV2
                       onClick={handleClear}
                       Icon={MdsIcCancelCircle}
                       size='medium'
                       data-testid={`${dataTestId}-clear-button`}
+                      isCompact={true}
                     />
                   </div>
                 )
@@ -239,11 +241,12 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
                     className='freeform-inputSuffixIcon'
                     data-testid={`${dataTestId}-password-toggle`}
                   >
-                    <TempIconButtonV2
+                    <IconButtonV2
                       onClick={togglePasswordVisibility}
                       Icon={showPassword ? MdsIcHideEye : MdsIcShowEye}
                       size='medium'
                       data-testid={`${dataTestId}-password-toggle-button`}
+                      isCompact={true}
                     />
                   </div>
                 )
@@ -264,11 +267,12 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
                     className='freeform-inputSuffixIcon'
                     data-testid={`${dataTestId}-suffix-button`}
                   >
-                    <TempIconButtonV2
+                    <IconButtonV2
                       onClick={suffixIconButton.onClick}
                       Icon={suffixIconButton.icon}
                       disabled={disabled}
                       size='medium'
+                      isCompact={true}
                     />
                   </div>
                 )
