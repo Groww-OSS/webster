@@ -1,11 +1,8 @@
 .datarow-inputContent {
   position: relative;
   display: flex;
-  height: 48px;
+  height: 32px;
   border-radius: 4px;
-  gap: 8px;
-  padding-top: 12px;
-  padding-bottom: 12px;
   padding-left: 8px;
   padding-right: 8px;
 }

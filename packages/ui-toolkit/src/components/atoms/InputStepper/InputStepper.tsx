@@ -6,6 +6,7 @@ import { MdsIcRemoveMinus, MdsIcAddPlus } from '@groww-tech/icon-store/mint-icon
 import TempIconButtonV2 from '../TempIconButtonV2/TempIconButtonV2';
 import { ContentMintTokens } from '../../../types/mint-token-types/content-mint-tokens';
 import { BackgroundMintTokens } from '../../../types/mint-token-types/background-mint-tokens';
+import IconButtonV2 from '../IconButtonV2/IconButtonV2';
 
 export type InputStepperProps = {
   placeholder?: string;
@@ -186,12 +187,13 @@ const InputStepper: React.FC<InputStepperProps> = ({
           className="inputStepper-prefixContainer"
           data-testid={`${dataTestId}-minus-container`}
         >
-          <TempIconButtonV2
+          <IconButtonV2
             onClick={handleMinus}
             Icon={MdsIcRemoveMinus}
             disabled={disabled || value <= min}
-            size="small"
+            size="medium"
             data-testid={`${dataTestId}-minus-button`}
+            isCompact={true}
           />
         </div>
 
@@ -251,12 +253,13 @@ const InputStepper: React.FC<InputStepperProps> = ({
           className="inputStepper-suffixContainer"
           data-testid={`${dataTestId}-plus-container`}
         >
-          <TempIconButtonV2
+          <IconButtonV2
             onClick={handlePlus}
             Icon={MdsIcAddPlus}
             disabled={disabled || value >= max}
-            size="small"
+            size="medium"
             data-testid={`${dataTestId}-plus-button`}
+            isCompact={true}
           />
         </div>
       </div>
