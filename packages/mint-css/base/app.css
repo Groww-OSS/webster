@@ -56,7 +56,7 @@ p {
 
 body {
   background: var(--dangerouslySetPrimaryBg) !important;
-  color: var(--gray900) !important;
+  color: var(--content-primary) !important;
   margin: 0;
   box-sizing: border-box;
   font-weight: 435;
@@ -66,7 +66,7 @@ body {
 }
 
 a {
-  color: var(--green500);
+  color: var(--content-accent);
   text-decoration: none;
 }
 
