@@ -187,13 +187,12 @@ const InputStepper: React.FC<InputStepperProps> = ({
           className="inputStepper-prefixContainer"
           data-test-id={`${dataTestId}-minus-container`}
         >
-          <IconButtonV2
+          <TempIconButtonV2
             onClick={handleMinus}
             Icon={MdsIcRemoveMinus}
             disabled={disabled || value <= min}
-            size="medium"
+            size="small"
             data-test-id={`${dataTestId}-minus-button`}
-            isCompact={true}
           />
         </div>
 
@@ -253,13 +252,12 @@ const InputStepper: React.FC<InputStepperProps> = ({
           className="inputStepper-suffixContainer"
           data-test-id={`${dataTestId}-plus-container`}
         >
-          <IconButtonV2
+          <TempIconButtonV2
             onClick={handlePlus}
             Icon={MdsIcAddPlus}
             disabled={disabled || value >= max}
-            size="medium"
+            size="small"
             data-test-id={`${dataTestId}-plus-button`}
-            isCompact={true}
           />
         </div>
       </div>
