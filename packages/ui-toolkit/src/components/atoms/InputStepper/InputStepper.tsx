@@ -192,7 +192,7 @@ const InputStepper: React.FC<InputStepperProps> = ({
             Icon={MdsIcRemoveMinus}
             disabled={disabled || value <= min}
             size="small"
-            data-test-id={`${dataTestId}-minus-button`}
+            dataTestId={`${dataTestId}-minus-button`}
           />
         </div>
 
@@ -257,7 +257,7 @@ const InputStepper: React.FC<InputStepperProps> = ({
             Icon={MdsIcAddPlus}
             disabled={disabled || value >= max}
             size="small"
-            data-test-id={`${dataTestId}-plus-button`}
+            dataTestId={`${dataTestId}-plus-button`}
           />
         </div>
       </div>
