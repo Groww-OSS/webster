@@ -86,7 +86,7 @@ const DataRowInput: React.FC<DataRowInputProps> = ({
   };
 
   const inputContentClasses = cn(
-    `datarow-inputContent ${textStyle} ${textColor} borderPrimary`,
+    `datarow-inputContent ${textColor} borderPrimary`,
     {
       [backgroundColor]: !disabled,
       'datarow-inputBorderNegative': error,
@@ -137,7 +137,7 @@ const DataRowInput: React.FC<DataRowInputProps> = ({
           )
         }
         <input
-          className={`${inputClasses} ${textColor} datarow-contentPrimary`}
+          className={`${inputClasses} ${textStyle} ${textColor} datarow-contentPrimary`}
           type="number"
           placeholder={placeholder}
           value={value}

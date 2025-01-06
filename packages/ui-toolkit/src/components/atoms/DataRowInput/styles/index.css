@@ -5,10 +5,10 @@
   border-radius: 4px;
   padding-left: 8px;
   padding-right: 8px;
+  outline-offset: -2px;
 }
 
 .datarow-inputFocused {
-  outline-offset: -1px;
   outline: 2px solid var(--border-neutral);
 }
 
@@ -44,15 +44,20 @@ input::placeholder {
 }
 
 .datarow-inputBorderNeutral {
-  border: 2px solid var(--border-neutral);
+  outline: 2px solid var(--border-neutral);
 }
 
 .datarow-inputBorderNegative {
-  border: 2px solid var(--border-negative);
-  border-radius: 4px;
+  outline: 2px solid var(--border-negative);
 }
 
 .datarow-inputBorderWarning {
-  border: 2px solid var(--content-warning);
-  border-radius: 4px;
+  outline: 2px solid var(--content-warning);
+}
+.datarow-inputFocused.datarow-inputBorderNegative {
+  outline: 2px solid var(--border-negative); 
+}
+
+.datarow-inputFocused.datarow-inputBorderWarning {
+  outline: 2px solid var(--content-warning);
 }
