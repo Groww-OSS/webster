@@ -3,11 +3,13 @@ module.exports = {
   "plugins": [
     "stylelint-declaration-strict-value",
     "stylelint-no-unsupported-browser-features",
-    "./custom-plugins/no-primitive-vars.js",
-    "./custom-plugins/no-redeclare-util.js",
-    "./custom-plugins/no-redeclare-primitive-vars.js",
-    "./custom-plugins/no-redeclare-semantic-vars.js",
-    "./custom-plugins/use-util-over-vars.js"
+    "./custom-plugins/no-redeclare-mint-primitive-vars.js",
+    "./custom-plugins/no-redeclare-mint-semantic-vars.js",
+    "./custom-plugins/no-redeclare-mint-util.js",
+    "./custom-plugins/no-usage-mint-primitive-vars.js",
+    "./custom-plugins/use-mint-util-over-vars.js",
+
+
   ],
   "rules": {
     "mint/no-primitive-color-variables": true,
