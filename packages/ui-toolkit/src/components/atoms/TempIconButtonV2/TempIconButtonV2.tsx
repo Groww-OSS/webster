@@ -21,6 +21,7 @@ export type IconButtonProps = {
   | 'contentOnColourInverse'
   | 'contentAccentSecondary'
   | 'contentAccentSecondarySubtle';
+  dataTestId?: string;
 };
 
 
@@ -29,7 +30,8 @@ const TempIconButtonV2: React.FC<IconButtonProps> = ({
   Icon,
   size = 'medium',
   disabled = false,
-  contentColor = 'contentPrimary'
+  contentColor = 'contentPrimary',
+  dataTestId
 }) => {
 
   return (
@@ -41,6 +43,7 @@ const TempIconButtonV2: React.FC<IconButtonProps> = ({
         }`
       }
       disabled={disabled}
+      data-test-id={dataTestId}
     >
       <Icon size={20} />
     </button>
