@@ -44,6 +44,8 @@ const TempIconButtonV2: React.FC<IconButtonProps> = ({
       }
       disabled={disabled}
       data-test-id={dataTestId}
+      tabIndex={disabled ? -1 : 0}
+      aria-disabled={disabled}
     >
       <Icon size={20} />
     </button>
