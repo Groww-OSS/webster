@@ -5,10 +5,10 @@
   border-radius: 4px;
   padding-left: 4px;
   padding-right: 4px;
+  outline-offset: -2px;
 }
   
 .inputStepper-inputFocused {
-  outline-offset: -1px;
   outline: 2px solid var(--border-neutral);
 }
 
@@ -50,15 +50,13 @@ input::placeholder {
 }
 
 .inputStepper-inputBorderNeutral {
-  border: 2px solid var(--border-neutral);
+  outline: 2px solid var(--border-neutral);
 }
 
 .inputStepper-inputBorderNegative {
-  border: 2px solid var(--border-negative);
-  border-radius: 4px;
+  outline: 2px solid var(--border-negative);
 }
 
 .inputStepper-inputBorderWarning{
-  border: 2px solid var(--content-warning);
-  border-radius: 4px;
+  outline: 2px solid var(--content-warning);
 }
