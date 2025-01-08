@@ -105,8 +105,11 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
   const handleClear = () => {
     if (onChange) {
       const event = {
-        target: { value: '' }
-      } as React.ChangeEvent<HTMLInputElement>;
+        target: { value: '' },
+        currentTarget: { value: '' },
+        preventDefault: () => {},
+        stopPropagation: () => {}
+      } as unknown as React.ChangeEvent<HTMLInputElement>;
 
       onChange(event);
     }
@@ -120,7 +123,11 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
   };
 
 
-  const togglePasswordVisibility = () => {
+  const togglePasswordVisibility = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (e.key === 'Tab') {
+      e.preventDefault();
+    }
+
     setShowPassword(!showPassword);
   };
 
