@@ -143,7 +143,7 @@
   font-weight: 500;
   line-height: 1.29;
   letter-spacing: 0.23px;
-  color: var(--green500);
+  color: var(--content-accent);
   margin-left: 5px;
   cursor: pointer;
 }
@@ -157,7 +157,7 @@
   border-style: dashed;
   border-width: 1px;
   opacity: 0.2;
-  color: var(--gray700);
+  color: var(--content-secondary);
   width: 100%;
 }
 
@@ -190,6 +190,6 @@ html[xmlns] .clearfix {
 
 .componentsMainHeading {
   font-weight: 500;
-  color: var(--gray900);
+  color: var(--content-primary);
   margin: 0;
 }
