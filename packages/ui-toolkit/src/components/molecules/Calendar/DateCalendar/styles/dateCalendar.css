@@ -22,6 +22,10 @@
   flex-basis: 14.285%;
 }
 
+.cc12DateSelected {
+  background: var(--background-accent);
+}
+
 .cc12Date {
   width: 32px;
   height: 32px;
