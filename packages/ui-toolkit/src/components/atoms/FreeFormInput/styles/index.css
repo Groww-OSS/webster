@@ -15,10 +15,11 @@
   padding: 0px;
   gap: 0px;
   align-items:center ;
+  outline-offset: -2px;
+
 }
 
 .freeform-inputFocused {
-  outline-offset: -1px;
   outline: 2px solid var(--border-neutral);
 }
 
@@ -66,12 +67,11 @@ input::placeholder {
 }
 
 .freeform-inputBorderNeutral {
-  border: 2px solid var(--border-neutral);
+  outline: 2px solid var(--border-neutral);
 }
 
 .freeform-inputBorderNegative {
-  border: 2px solid var(--border-negative);
-  border-radius: 4px;
+  outline: 2px solid var(--border-negative);
 }
 
 .freeform-inputErrorText {
