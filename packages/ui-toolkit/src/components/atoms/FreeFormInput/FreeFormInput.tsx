@@ -124,6 +124,7 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
 
 
   const togglePasswordVisibility = () => {
+
     setShowPassword(!showPassword);
   };
 
