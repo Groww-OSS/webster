@@ -123,11 +123,7 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
   };
 
 
-  const togglePasswordVisibility = (e: React.KeyboardEvent<HTMLButtonElement>) => {
-    if (e.key === 'Tab') {
-      e.preventDefault();
-    }
-
+  const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
