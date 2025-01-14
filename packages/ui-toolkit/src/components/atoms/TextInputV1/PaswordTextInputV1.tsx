@@ -4,6 +4,7 @@ import BaseTextInputV1 from './BaseTextInputV1';
 import { TextInputProps } from './TextInputV1';
 
 import { Visibility, VisibilityOff } from '@groww-tech/icon-store/mi';
+import './styles.css';
 
 
 const PasswordTextInputV1 = React.forwardRef<HTMLInputElement, TextInputProps>((props: TextInputProps, ref) => {

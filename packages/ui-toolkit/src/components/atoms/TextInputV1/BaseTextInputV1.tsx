@@ -1,17 +1,6 @@
 import React from 'react';
-
-import {
-  PrimaryInput,
-  Label,
-  ErrorLabel,
-  Container,
-  TrailingVisContainer,
-  LeadingVisContainer,
-  WrapperContainer
-} from './styles';
-
+import './styles.css';
 import { TextInputProps } from './TextInputV1';
-
 
 const BaseTextInputV1 = React.forwardRef<HTMLInputElement, TextInputProps>((props, ref) => {
   const {
@@ -27,56 +16,51 @@ const BaseTextInputV1 = React.forwardRef<HTMLInputElement, TextInputProps>((prop
     errorDataTestId = '',
     PrefixComponent,
     SuffixComponent,
+    disabled,
     ...rest
   } = props;
 
-  //switch for size
+  const containerClassName = `text-input-container ${variant} ${error ? 'error' : ''} ${disabled ? 'disabled' : ''}`;
+  const wrapperClassName = `text-input-wrapper ${variant}`;
+  const inputClassName = `text-input ${variant} ${calculateInputClass(size)} ${disabled ? 'disabled' : ''}`;
+  const errorClassName = `text-input-error ${error ? 'visible' : 'hidden'}`;
+
   return (
     <>
-      {
-        label && <Label className='bodyBase'>{label}</Label>
-      }
-      <Container
-        error={error ? true : false}
-        variant={variant}
-      >
-        <WrapperContainer variant={variant}>
-          {PrefixComponent && <TrailingVisContainer variant={variant}>{PrefixComponent()}</TrailingVisContainer>}
-          <PrimaryInput
+      {label && <div className="text-input-label bodyBase">{label}</div>}
+      <div className={containerClassName}>
+        <div className={wrapperClassName}>
+          {
+            PrefixComponent && (
+              <span className={`text-input-trailing ${variant}`}>{PrefixComponent()}</span>
+            )
+          }
+          <input
             ref={ref}
-            data-test-id={inputDataTestId.length ? inputDataTestId : null}
-            className={calculateInputClass(size)}
+            data-test-id={inputDataTestId || null}
+            className={inputClassName}
             onCopy={onCopy}
             onPaste={onPaste}
             onKeyUp={onKeyUp}
             onKeyDown={onKeyDown}
-            variant={variant}
             {...rest}
           />
-          {SuffixComponent && <LeadingVisContainer variant={variant}>  {SuffixComponent()} </LeadingVisContainer>}
-        </WrapperContainer>
-      </Container>
-      {/* In case of unstyled variant don't create space for error */}
+          {
+            SuffixComponent && (
+              <span className={`text-input-leading ${variant}`}>{SuffixComponent()}</span>
+            )
+          }
+        </div>
+      </div>
       {
-        error && variant === 'unstyled' &&
-
-        <ErrorLabel
-          className='bodyBase'
-          data-test-id={errorDataTestId.length ? errorDataTestId : null}
-          error={error ? true : false}
-        >
-          {error}
-        </ErrorLabel>
-      }
-      {
-        variant !== 'unstyled' &&
-        <ErrorLabel
-          className='bodyBase'
-          error={error ? true : false}
-          data-test-id={errorDataTestId.length ? errorDataTestId : null}
-        >
-          {error}
-        </ErrorLabel>
+        (variant !== 'unstyled' || error) && (
+          <div
+            className={errorClassName}
+            data-test-id={errorDataTestId || null}
+          >
+            {error}
+          </div>
+        )
       }
     </>
   );
@@ -84,29 +68,19 @@ const BaseTextInputV1 = React.forwardRef<HTMLInputElement, TextInputProps>((prop
 
 
 const calculateInputClass = (size: TextInputProps['size']): string => {
-  let className = '';
-
   switch (size) {
     case 'small':
-      className = 'bodyBase';
-      break;
+      return 'bodyBase';
 
     case 'medium':
-      className = 'bodyLarge';
-      break;
+      return 'bodyLarge';
 
     case 'large':
-      className = 'headingLarge';
-      break;
+      return 'headingLarge';
 
     default:
-      className = 'bodyLarge';
-      break;
-
+      return 'bodyLarge';
   }
-
-  return className;
 };
-
 
 export default BaseTextInputV1;
