@@ -30,14 +30,13 @@ import '@groww-tech/mint-css/dist/index.css';
 
 The `dist/index.css` is complied and minfied version of the CSS library which will serve all the tokens/classes which can be used in your project.
 
-##  Fragments
+## Fragments
 
 If you prefer not to import all classes at once by using `'dist/index.css'` or want to use specific parts of **mint-css**, you can leverage **fragments**. Fragments allow you to import only the styles you need, keeping your bundle size smaller and more focused.
 
 - **Optimized Imports:** Only include the CSS you need, reducing unused styles.
 - **Flexibility:** Customize your usage by combining specific fragments as required.
 - **Scalability:** Easily add or remove fragments as your project evolves.
-
 
 #### Variables
 
@@ -114,7 +113,7 @@ There are two categories through which we will be exposing various semantic toke
 
    ```
    .contentPrimary {
-       color: var(--gray900);
+     color: var(--content-primary);
    }
    ```
 
