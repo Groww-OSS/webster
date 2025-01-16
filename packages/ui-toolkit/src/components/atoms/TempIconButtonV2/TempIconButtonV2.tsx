@@ -7,7 +7,7 @@ export type IconButtonProps = {
   Icon: ReactIconComponentType;
   size?: 'small' | 'medium';
   disabled?: boolean;
-  contentColor?: 'contentPrimary'
+  iconColor?: 'contentPrimary'
   | 'contentSecondary'
   | 'contentTertiary'
   | 'contentInversePrimary'
@@ -30,7 +30,7 @@ const TempIconButtonV2: React.FC<IconButtonProps> = ({
   Icon,
   size = 'medium',
   disabled = false,
-  contentColor = 'contentPrimary',
+  iconColor = 'contentPrimary',
   dataTestId
 }) => {
 
@@ -39,7 +39,7 @@ const TempIconButtonV2: React.FC<IconButtonProps> = ({
       onClick={onClick}
       className={
         `iconButton ${size === 'small' ? 'iconBtnSmall' : 'iconBtnMedium'} ${
-          disabled ? 'contentDisabled' : `${contentColor} backgroundTransparentHover`
+          disabled ? 'contentDisabled' : `${iconColor} backgroundTransparentHover`
         }`
       }
       disabled={disabled}
