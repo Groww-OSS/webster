@@ -1,6 +1,6 @@
 {
   "name": "@groww-tech/mint-css",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "A CSS library that provides classes, tokens, variables, fonts and other essential stylings governed under MINT design system, used by Groww",
   "main": "./dist/bundle.css",
   "files": [
@@ -41,6 +41,14 @@
     {
       "name": "Shivesh Raj Nigam",
       "url": "https://www.linkedin.com/in/shiveshrajnigam/"
+    },
+    {
+      "name": "Vishwa Gaurav",
+      "url": "https://www.linkedin.com/in/VishwaGauravIn"
+    },
+    {
+      "name": "Saloni Seth",
+      "url": "https://www.linkedin.com/in/saloni-seth"
     }
   ],
   "license": "MIT",
@@ -51,5 +59,8 @@
     "rollup": "2.45.2",
     "rollup-plugin-copy": "3.4.0",
     "rollup-plugin-postcss": "4.0.0"
+  },
+  "dependencies": {
+    "postcss-url": "^10.1.3"
   }
 }
