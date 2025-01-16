@@ -59,5 +59,8 @@
     "rollup": "2.45.2",
     "rollup-plugin-copy": "3.4.0",
     "rollup-plugin-postcss": "4.0.0"
+  },
+  "dependencies": {
+    "postcss-url": "^10.1.3"
   }
 }

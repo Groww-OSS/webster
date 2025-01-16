@@ -1,6 +1,7 @@
 import postcss from 'rollup-plugin-postcss';
 import postcssImport from 'postcss-import';
 import copy from 'rollup-plugin-copy';
+import postcssUrl from 'postcss-url';
 import path from 'path';
 import fs from 'fs';
 
@@ -22,7 +23,15 @@ const fragmentConfigs = getCSSFiles(fragmentsFolder).map((file) => ({
   },
   plugins: [
     postcss({
-      plugins: [postcssImport()],
+      plugins: [postcssImport(), postcssUrl({
+        url: ({ url }) => {
+          // Replace "./" with "../" in font URLs
+          if (url.includes('woff2') && url.startsWith('./')) {
+            return url.replace('./', '../');
+          }
+          return url;
+        },
+      }),],
       extract: true,
       minimize: true,
       sourceMap: false,
