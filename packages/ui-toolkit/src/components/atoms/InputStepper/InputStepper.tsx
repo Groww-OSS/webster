@@ -23,7 +23,7 @@ export type InputStepperProps = {
   min?: number;
   max?: number;
   step?: number;
-  typable?: boolean;
+  typeable?: boolean;
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   onKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   textStyle?: 'bodyLarge' | 'bodyLargeHeavy';
@@ -51,7 +51,7 @@ const InputStepper: React.FC<InputStepperProps> = ({
   min = 0,
   max = Number.MAX_SAFE_INTEGER,
   step = 1,
-  typable = true,
+  typeable = true,
   onKeyDown,
   onKeyUp,
   textStyle = 'bodyLarge',
@@ -125,7 +125,7 @@ const InputStepper: React.FC<InputStepperProps> = ({
 
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!typable) return;
+    if (!typeable) return;
 
     const newValue = e.target.value;
 
@@ -240,7 +240,7 @@ const InputStepper: React.FC<InputStepperProps> = ({
           data-test-id={dataTestId}
           ref={inputRef}
           onWheel={handleWheel}
-          readOnly={!typable}
+          readOnly={!typeable}
           onKeyDown={handleKeyDown}
           onKeyUp={onKeyUp}
           onCopy={handleCopyPaste}

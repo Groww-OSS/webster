@@ -10,7 +10,7 @@ export default {
     error: { control: 'boolean' },
     warning: { control: 'boolean' },
     disabled: { control: 'boolean' },
-    typable: { control: 'boolean' }
+    typeable: { control: 'boolean' }
   },
   tags: [ 'autodocs' ]
 };
@@ -83,9 +83,9 @@ CustomStep.args = {
   step: 10
 };
 
-export const NonTypable = Template.bind({});
-NonTypable.args = {
+export const Nontypeable = Template.bind({});
+Nontypeable.args = {
   placeholder: '0',
   value: 0,
-  typable: false
+  typeable: false
 };
