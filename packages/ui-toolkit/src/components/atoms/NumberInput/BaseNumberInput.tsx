@@ -58,6 +58,7 @@ const BaseNumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>((pr
       const increasedVal = numberValue + step;
       const floorValue = Math.floor(increasedVal / step) * step;
 
+      //we are synthentically generating custome event to set value
       onChange({ target: { value: floorValue } } as any);
     }
   };
@@ -68,6 +69,7 @@ const BaseNumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>((pr
       const increasedVal = numberValue - step;
       const floorValue = Math.floor(increasedVal / step) * step;
 
+      //we are synthentically generating custome event to set value
       onChange({ target: { value: floorValue } } as any);
     }
   };
