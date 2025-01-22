@@ -5,6 +5,7 @@ import BaseTextInputV1 from './BaseTextInputV1';
 import { Cancel } from '@groww-tech/icon-store/mi';
 
 import { TextInputProps } from './TextInputV1';
+import './styles.css';
 
 
 const ClerableTextInput = React.forwardRef<HTMLInputElement, TextInputProps>((props, ref) => {

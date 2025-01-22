@@ -3,6 +3,7 @@ import React from 'react';
 import BaseTextInputV1 from './BaseTextInputV1';
 import PasswordTextInputV1 from './PaswordTextInputV1';
 import ClerableTextInputV1 from './ClerableTextInputV1';
+import './styles.css';
 
 
 //The Following component is a wrapper used to manage different variants implemented. Main Logic written in BaseTextInputV1

@@ -3,7 +3,7 @@ import React from 'react';
 import { KEYBOARD_EVENTS } from '../../../utils/constant';
 import { preventDefaultEventBehaviour, preventNumberInputWheelChangeOnBlur, preventNumberInputWheelChangeOnFocus } from './helpers';
 import { NumberInputProps } from './NumberInput';
-import { Container, Input } from './styles';
+import './styles.css';
 
 const BaseNumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>((props, ref) => {
   const {
@@ -18,7 +18,7 @@ const BaseNumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>((pr
     disableDecimal = false,
     onKeyDown = () => { }
   } = props;
-  const { size, disableScroll = true, ...rest } = props;
+  const { size, disableScroll = true, showSteper, ...rest } = props;
 
   const numberValue = Number(value);
 
@@ -58,9 +58,7 @@ const BaseNumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>((pr
       const increasedVal = numberValue + step;
       const floorValue = Math.floor(increasedVal / step) * step;
 
-      // @ts-ignore : to prevent onChange re writing as it can be passed by user
-      //we are synthentically generating custome event to set value
-      onChange({ target: { value: floorValue } });
+      onChange({ target: { value: floorValue } } as any);
     }
   };
 
@@ -70,20 +68,21 @@ const BaseNumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>((pr
       const increasedVal = numberValue - step;
       const floorValue = Math.floor(increasedVal / step) * step;
 
-      // @ts-ignore : to prevent onChange re writing as it can be passed by user
-      //we are synthentically generating custome event to set value
-      onChange({ target: { value: floorValue } });
+      onChange({ target: { value: floorValue } } as any);
     }
   };
 
   let restPropsUpdated = { ...rest };
 
 
-  const onFocus = (e: React.FocusEvent<HTMLInputElement>) => { preventNumberInputWheelChangeOnFocus(e, preventDefaultEventBehaviour); };
+  const onFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    preventNumberInputWheelChangeOnFocus(e, preventDefaultEventBehaviour);
+  };
 
 
-  const onBlur = (e: React.FocusEvent<HTMLInputElement>) => { preventNumberInputWheelChangeOnBlur(e, preventDefaultEventBehaviour); };
-
+  const onBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    preventNumberInputWheelChangeOnBlur(e, preventDefaultEventBehaviour);
+  };
 
   if (disableScroll) {
     restPropsUpdated = {
@@ -93,12 +92,14 @@ const BaseNumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>((pr
     };
   }
 
+  const containerClassName = `number-input-container ${props.variant || 'default'}`;
+  const inputClassName = `number-input ${calculateInputClass(size)} ${props.variant || 'default'} ${showSteper ? 'show-stepper' : ''}`;
 
   return (
-    <Container variant={props.variant}>
-      {PrefixComponent && <span>{PrefixComponent()} </span>}
-      <Input
-        className={calculateInputClass(size)}
+    <div className={containerClassName}>
+      {PrefixComponent && <span>{PrefixComponent()}</span>}
+      <input
+        className={inputClassName}
         max={max}
         min={min}
         onKeyDown={_onKeyDown}
@@ -108,35 +109,25 @@ const BaseNumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>((pr
         ref={ref}
       />
       {SuffixComponent && <span>{SuffixComponent()}</span>}
-    </Container>
+    </div>
   );
 });
 
 
 const calculateInputClass = (size: NumberInputProps['size']): string => {
-  let className = '';
-
   switch (size) {
     case 'small':
-      className = 'bodyLargeHeavy';
-      break;
+      return 'bodyLargeHeavy';
 
     case 'medium':
-      className = 'bodyXLargeHeavy';
-      break;
+      return 'bodyXLargeHeavy';
 
     case 'large':
-      className = 'headingLarge';
-      break;
+      return 'headingLarge';
 
     default:
-      className = 'bodyXLargeHeavy';
-      break;
-
+      return 'bodyXLargeHeavy';
   }
-
-  return className;
 };
-
 
 export default BaseNumberInput;
