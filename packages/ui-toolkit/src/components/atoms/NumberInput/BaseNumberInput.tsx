@@ -1,9 +1,9 @@
 import React from 'react';
+import './styles.css';
 
 import { KEYBOARD_EVENTS } from '../../../utils/constant';
 import { preventDefaultEventBehaviour, preventNumberInputWheelChangeOnBlur, preventNumberInputWheelChangeOnFocus } from './helpers';
 import { NumberInputProps } from './NumberInput';
-import './styles.css';
 
 const BaseNumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>((props, ref) => {
   const {
@@ -16,15 +16,16 @@ const BaseNumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>((pr
     step = 1,
     allowSpecialCharacters = false,
     disableDecimal = false,
-    onKeyDown = () => { }
+    onKeyDown = () => { },
+    variant = 'default'
   } = props;
-  const { size, disableScroll = true, showSteper, ...rest } = props;
+  const { size, disableScroll = true, ...rest } = props;
 
   const numberValue = Number(value);
 
 
   const _onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(e);
+    onChange({ target: { value: Number(e.target.value) } });
   };
 
 
@@ -94,14 +95,11 @@ const BaseNumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>((pr
     };
   }
 
-  const containerClassName = `number-input-container ${props.variant || 'default'}`;
-  const inputClassName = `number-input ${calculateInputClass(size)} ${props.variant || 'default'} ${showSteper ? 'show-stepper' : ''}`;
-
   return (
-    <div className={containerClassName}>
+    <div className={`number-input-container ${variant}`}>
       {PrefixComponent && <span>{PrefixComponent()}</span>}
       <input
-        className={inputClassName}
+        className={`number-input ${calculateInputClass(size)} ${variant} ${props.showSteper ? 'show-stepper' : ''}`}
         max={max}
         min={min}
         onKeyDown={_onKeyDown}
@@ -109,6 +107,7 @@ const BaseNumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>((pr
         {...restPropsUpdated}
         onChange={_onChange}
         ref={ref}
+        value={value}
       />
       {SuffixComponent && <span>{SuffixComponent()}</span>}
     </div>
