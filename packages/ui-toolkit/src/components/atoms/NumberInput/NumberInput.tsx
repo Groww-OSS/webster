@@ -22,7 +22,7 @@ export type _NumberInputProps = {
   min?: number;
   max?: number;
   step?: number;
-  onChange: (e: { target: { value: number } }) => void;
+  onChange: React.FormEventHandler<HTMLInputElement>;
   value: string | number;
   variant?: 'warning' | 'error' | 'default' | 'disabled' | 'unstyled';
   showSteper?: boolean;

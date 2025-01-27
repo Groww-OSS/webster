@@ -25,7 +25,7 @@ const BaseNumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>((pr
 
 
   const _onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onChange({ target: { value: Number(e.target.value) } });
+    onChange(e);
   };
 
 

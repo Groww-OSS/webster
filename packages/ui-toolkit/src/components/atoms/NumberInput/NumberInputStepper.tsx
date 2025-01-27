@@ -30,7 +30,8 @@ const StepSuffixComponent = ({ step = 1, max = Number.POSITIVE_INFINITY, value, 
       const floorValue = Math.floor(increasedVal / step) * step;
 
       //we are synthentically generating custome event to set value
-      onChange({ target: { value: floorValue } } as any);
+      // sending actionType to detect that value has been increased by clicking on the + icon
+      onChange({ target: { value: floorValue }, actionType: INPUT_ACTION_TYPE.INCREMENT } as any);
     }
   };
 
@@ -55,7 +56,8 @@ const StepPrefixComponent = ({ step = 1, min = Number.NEGATIVE_INFINITY, value, 
       const floorValue = Math.floor(increasedVal / step) * step;
 
       //we are synthentically generating custome event to set value
-      onChange({ target: { value: floorValue } } as any);
+      // sending actionType to detect that value has been decreased by clicking on the - icon
+      onChange({ target: { value: floorValue }, actionType: INPUT_ACTION_TYPE.DECREMENT } as any);
     }
   };
 
