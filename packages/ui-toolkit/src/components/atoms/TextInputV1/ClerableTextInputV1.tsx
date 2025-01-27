@@ -17,6 +17,8 @@ const ClerableTextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pr
 
 
 const ClearableTextInputTrailingVisual = ({ value, onChange }: Pick<TextInputProps, 'value' | 'onChange'>) => {
+
+  //we are synthentically generating custome event to set value
   const e: React.ChangeEvent<HTMLInputElement> = { target: { value: '' } } as any;
 
   if (!value) return null;
