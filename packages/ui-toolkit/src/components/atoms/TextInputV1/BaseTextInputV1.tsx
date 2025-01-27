@@ -1,5 +1,6 @@
 import React from 'react';
 import './styles.css';
+
 import { TextInputProps } from './TextInputV1';
 
 const BaseTextInputV1 = React.forwardRef<HTMLInputElement, TextInputProps>((props, ref) => {
@@ -16,47 +17,41 @@ const BaseTextInputV1 = React.forwardRef<HTMLInputElement, TextInputProps>((prop
     errorDataTestId = '',
     PrefixComponent,
     SuffixComponent,
-    disabled,
     ...rest
   } = props;
 
-  const containerClassName = `text-input-container ${variant} ${error ? 'error' : ''} ${disabled ? 'disabled' : ''}`;
-  const wrapperClassName = `text-input-wrapper ${variant}`;
-  const inputClassName = `text-input ${variant} ${calculateInputClass(size)} ${disabled ? 'disabled' : ''}`;
-  const errorClassName = `text-input-error ${error ? 'visible' : 'hidden'}`;
-
   return (
     <>
-      {label && <div className="text-input-label bodyBase">{label}</div>}
-      <div className={containerClassName}>
-        <div className={wrapperClassName}>
-          {
-            PrefixComponent && (
-              <span className={`text-input-trailing ${variant}`}>{PrefixComponent()}</span>
-            )
-          }
+      {label && <div className="text-input-v1-label bodyBase">{label}</div>}
+      <div className={`text-input-v1-container ${variant} ${error ? 'error' : ''}`}>
+        <div className={`text-input-v1-wrapper ${variant}`}>
+          {PrefixComponent && <span className={`text-input-v1-trailing-vis ${variant}`}>{PrefixComponent()}</span>}
           <input
             ref={ref}
-            data-test-id={inputDataTestId || null}
-            className={inputClassName}
+            data-test-id={inputDataTestId.length ? inputDataTestId : null}
+            className={`text-input-v1-primary-input ${calculateInputClass(size)} ${variant}`}
             onCopy={onCopy}
             onPaste={onPaste}
             onKeyUp={onKeyUp}
             onKeyDown={onKeyDown}
             {...rest}
           />
-          {
-            SuffixComponent && (
-              <span className={`text-input-leading ${variant}`}>{SuffixComponent()}</span>
-            )
-          }
+          {SuffixComponent && <span className={`text-input-v1-leading-vis ${variant}`}>{SuffixComponent()}</span>}
         </div>
       </div>
       {
-        (variant !== 'unstyled' || error) && (
-          <div
-            className={errorClassName}
-            data-test-id={errorDataTestId || null}
+        error && variant === 'unstyled' && (
+          <div className="text-input-v1-error-label bodyBase"
+            data-test-id={errorDataTestId.length ? errorDataTestId : null}
+          >
+            {error}
+          </div>
+        )
+      }
+      {
+        variant !== 'unstyled' && (
+          <div className="text-input-v1-error-label bodyBase"
+            data-test-id={errorDataTestId.length ? errorDataTestId : null}
           >
             {error}
           </div>

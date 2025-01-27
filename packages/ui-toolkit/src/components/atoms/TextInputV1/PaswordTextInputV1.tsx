@@ -1,11 +1,7 @@
-import React, { useState, useRef } from 'react';
-
+import React, { useState } from 'react';
 import BaseTextInputV1 from './BaseTextInputV1';
 import { TextInputProps } from './TextInputV1';
-
 import { Visibility, VisibilityOff } from '@groww-tech/icon-store/mi';
-import './styles.css';
-
 
 const PasswordTextInputV1 = React.forwardRef<HTMLInputElement, TextInputProps>((props: TextInputProps, ref) => {
   const { type } = props;
@@ -31,8 +27,7 @@ const PasswordTextInputV1 = React.forwardRef<HTMLInputElement, TextInputProps>((
 });
 
 
-const PasswordTrailingVisual = ({ type, setType }:{type:string | undefined; setType:()=>void}) => {
-
+const PasswordTrailingVisual = ({ type, setType }: { type: string | undefined; setType: () => void }) => {
   if (type === 'password') {
     return (
       <Visibility
