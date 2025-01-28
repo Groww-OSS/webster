@@ -1,0 +1,114 @@
+.text-input-v1-container {
+  border-bottom: 2px solid var(--border-primary);
+  width: 100%;
+  position: relative;
+}
+
+.text-input-v1-container:focus-within {
+  outline: 0;
+  border: none;
+}
+
+.text-input-v1-container:after {
+  content: '';
+  display: block;
+  margin: auto;
+  width: 0px;
+  background: transparent;
+  transition: 0.2s ease all;
+}
+
+.text-input-v1-container:focus-within::after {
+  width: 100%;
+  height: 2px;
+  background: var(--background-accent);
+}
+
+.text-input-v1-container.error:focus-within::after {
+  background: var(--background-negative);
+  height: 2px;
+}
+
+.text-input-v1-container.unstyled {
+  border-bottom: none;
+}
+
+.text-input-v1-container.unstyled:after {
+  display: none;
+  border-bottom: none;
+}
+
+.text-input-v1-container.exclusive {
+  background: var(--background-secondary);
+}
+
+.text-input-v1-primary-input {
+  border: none;
+  flex-grow: 1;
+  outline: 0;
+  padding: 0;
+  color: var(--content-primary);
+  background: var(--dangerouslySetPrimaryBg);
+  caret-color: var(--content-accent);
+}
+
+.text-input-v1-primary-input:focus {
+  outline: 0;
+  border: none;
+}
+
+.text-input-v1-primary-input::placeholder {
+  color: var(--content-secondary);
+  -webkit-text-fill-color: var(--content-secondary);
+}
+
+.text-input-v1-primary-input:-webkit-autofill {
+  box-shadow: 0 0 0 30px var(--dangerouslySetPrimaryBg) inset !important;
+  background-color: var(--dangerouslySetPrimaryBg) !important;
+}
+
+.text-input-v1-primary-input.exclusive {
+  background: var(--background-secondary);
+  border-radius: 4px 4px 0px 0px;
+}
+
+.text-input-v1-label {
+  color: var(--content-secondary);
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.text-input-v1-error-label {
+  color: var(--content-negative);
+  min-height: 24px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  text-align: left;
+}
+
+.text-input-v1-error-label.error {
+  visibility: visible;
+}
+
+.text-input-v1-error-label:not(.error) {
+  visibility: hidden;
+}
+
+.text-input-v1-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.text-input-v1-wrapper.exclusive {
+  padding: 12px;
+}
+
+.text-input-v1-trailing-vis,
+.text-input-v1-leading-vis {
+  height: 100%;
+}
+
+.text-input-v1-trailing-vis.exclusive,
+.text-input-v1-leading-vis.exclusive {
+  background: var(--background-secondary);
+}
