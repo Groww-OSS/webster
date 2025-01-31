@@ -31,6 +31,7 @@ const primitiveTokens = [
     '--tempNbtBlue',
     '--tempNbtGray',
     '--tempNbtRed',
+    '--yellow11',
 ];
 
 const backgroundTokens = [
@@ -81,6 +82,7 @@ const contentTokens = [
     '--content-positive',
     '--content-accent-secondary',
     '--content-accent-secondary-subtle',
+    '--content-on-warning-subtle',
 ];
 
 const interactionTokens = [
