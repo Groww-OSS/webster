@@ -3,6 +3,13 @@ import './styles.css';
 
 import { TextInputProps } from './TextInputV1';
 
+const bodyClasses = [
+  'bodySmall', 'bodySmallHeavy', 'bodyBase', 'bodyBaseHeavy',
+  'bodyLarge', 'bodyLargeHeavy', 'bodyXLarge', 'bodyXLargeHeavy',
+  'headingXSmall', 'headingSmall', 'headingBase', 'headingLarge'
+];
+
+
 const BaseTextInputV1 = React.forwardRef<HTMLInputElement, TextInputProps>((props, ref) => {
   const {
     onKeyDown = () => { },
@@ -17,8 +24,12 @@ const BaseTextInputV1 = React.forwardRef<HTMLInputElement, TextInputProps>((prop
     errorDataTestId = '',
     PrefixComponent,
     SuffixComponent,
+    className = '',
     ...rest
   } = props;
+
+  const shouldApplyCalculatedClass = !bodyClasses.some(bodyClass => className.includes(bodyClass));
+  const computedClass = shouldApplyCalculatedClass ? calculateInputClass(size) : '';
 
   return (
     <>
@@ -29,7 +40,7 @@ const BaseTextInputV1 = React.forwardRef<HTMLInputElement, TextInputProps>((prop
           <input
             ref={ref}
             data-test-id={inputDataTestId.length ? inputDataTestId : null}
-            className={`text-input-v1-primary-input ${calculateInputClass(size)} ${variant}`}
+            className={`text-input-v1-primary-input ${computedClass} ${className} ${variant}`}
             onCopy={onCopy}
             onPaste={onPaste}
             onKeyUp={onKeyUp}
