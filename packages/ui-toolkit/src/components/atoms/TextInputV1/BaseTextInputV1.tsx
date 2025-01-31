@@ -40,7 +40,7 @@ const BaseTextInputV1 = React.forwardRef<HTMLInputElement, TextInputProps>((prop
           <input
             ref={ref}
             data-test-id={inputDataTestId.length ? inputDataTestId : null}
-            className={`text-input-v1-primary-input ${className} ${computedClass} ${variant}`}
+            className={`text-input-v1-primary-input ${computedClass} ${className} ${variant}`}
             onCopy={onCopy}
             onPaste={onPaste}
             onKeyUp={onKeyUp}

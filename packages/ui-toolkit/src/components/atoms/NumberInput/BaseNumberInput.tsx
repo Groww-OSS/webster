@@ -108,7 +108,7 @@ const BaseNumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>((pr
     <div className={`number-input-container ${variant}`}>
       {PrefixComponent && <span>{PrefixComponent()}</span>}
       <input
-        className={`number-input ${className} ${computedClass} ${variant} ${props.showSteper ? 'show-stepper' : ''}`}
+        className={`number-input ${computedClass} ${className} ${variant} ${props.showSteper ? 'show-stepper' : ''}`}
         max={max}
         min={min}
         onKeyDown={_onKeyDown}
