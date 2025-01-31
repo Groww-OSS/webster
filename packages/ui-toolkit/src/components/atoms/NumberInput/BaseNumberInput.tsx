@@ -17,11 +17,20 @@ const BaseNumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>((pr
     allowSpecialCharacters = false,
     disableDecimal = false,
     onKeyDown = () => { },
-    variant = 'default'
+    variant = 'default',
+    className = ''
   } = props;
   const { size, disableScroll = true, ...rest } = props;
 
   const numberValue = Number(value);
+
+  const bodyClasses = [
+    'bodySmall', 'bodySmallHeavy', 'bodyBase', 'bodyBaseHeavy',
+    'bodyLarge', 'bodyLargeHeavy', 'bodyXLarge', 'bodyXLargeHeavy',
+    'headingXSmall', 'headingSmall', 'headingBase', 'headingLarge'
+  ];
+  const shouldApplyCalculatedClass = !bodyClasses.some(bodyClass => className.includes(bodyClass));
+  const computedClass = shouldApplyCalculatedClass ? calculateInputClass(size) : '';
 
 
   const _onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -99,7 +108,7 @@ const BaseNumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>((pr
     <div className={`number-input-container ${variant}`}>
       {PrefixComponent && <span>{PrefixComponent()}</span>}
       <input
-        className={`number-input ${calculateInputClass(size)} ${variant} ${props.showSteper ? 'show-stepper' : ''}`}
+        className={`number-input ${className} ${computedClass} ${variant} ${props.showSteper ? 'show-stepper' : ''}`}
         max={max}
         min={min}
         onKeyDown={_onKeyDown}

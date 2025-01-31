@@ -5,8 +5,10 @@ import { TextInputProps } from './TextInputV1';
 
 const bodyClasses = [
   'bodySmall', 'bodySmallHeavy', 'bodyBase', 'bodyBaseHeavy',
-  'bodyLarge', 'bodyLargeHeavy', 'bodyXLarge', 'bodyXLargeHeavy'
+  'bodyLarge', 'bodyLargeHeavy', 'bodyXLarge', 'bodyXLargeHeavy',
+  'headingXSmall', 'headingSmall', 'headingBase', 'headingLarge'
 ];
+
 
 const BaseTextInputV1 = React.forwardRef<HTMLInputElement, TextInputProps>((props, ref) => {
   const {
