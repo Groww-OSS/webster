@@ -1,16 +1,13 @@
 import React from 'react';
-
-import {
-  PrimaryInput,
-  Label,
-  ErrorLabel,
-  Container,
-  TrailingVisContainer,
-  LeadingVisContainer,
-  WrapperContainer
-} from './styles';
+import './styles.css';
 
 import { TextInputProps } from './TextInputV1';
+
+const bodyClasses = [
+  'bodySmall', 'bodySmallHeavy', 'bodyBase', 'bodyBaseHeavy',
+  'bodyLarge', 'bodyLargeHeavy', 'bodyXLarge', 'bodyXLargeHeavy',
+  'headingXSmall', 'headingSmall', 'headingBase', 'headingLarge'
+];
 
 
 const BaseTextInputV1 = React.forwardRef<HTMLInputElement, TextInputProps>((props, ref) => {
@@ -27,56 +24,49 @@ const BaseTextInputV1 = React.forwardRef<HTMLInputElement, TextInputProps>((prop
     errorDataTestId = '',
     PrefixComponent,
     SuffixComponent,
+    className = '',
     ...rest
   } = props;
 
-  //switch for size
+  const shouldApplyCalculatedClass = !bodyClasses.some(bodyClass => className.includes(bodyClass));
+  const computedClass = shouldApplyCalculatedClass ? calculateInputClass(size) : '';
+
   return (
     <>
-      {
-        label && <Label className='bodyBase'>{label}</Label>
-      }
-      <Container
-        error={error ? true : false}
-        variant={variant}
-      >
-        <WrapperContainer variant={variant}>
-          {PrefixComponent && <TrailingVisContainer variant={variant}>{PrefixComponent()}</TrailingVisContainer>}
-          <PrimaryInput
+      {label && <div className="text-input-v1-label bodyBase">{label}</div>}
+      <div className={`text-input-v1-container ${variant} ${error ? 'error' : ''}`}>
+        <div className={`text-input-v1-wrapper ${variant}`}>
+          {PrefixComponent && <span className={`text-input-v1-trailing-vis ${variant}`}>{PrefixComponent()}</span>}
+          <input
             ref={ref}
             data-test-id={inputDataTestId.length ? inputDataTestId : null}
-            className={calculateInputClass(size)}
+            className={`text-input-v1-primary-input ${computedClass} ${className} ${variant}`}
             onCopy={onCopy}
             onPaste={onPaste}
             onKeyUp={onKeyUp}
             onKeyDown={onKeyDown}
-            variant={variant}
             {...rest}
           />
-          {SuffixComponent && <LeadingVisContainer variant={variant}>  {SuffixComponent()} </LeadingVisContainer>}
-        </WrapperContainer>
-      </Container>
-      {/* In case of unstyled variant don't create space for error */}
+          {SuffixComponent && <span className={`text-input-v1-leading-vis ${variant}`}>{SuffixComponent()}</span>}
+        </div>
+      </div>
       {
-        error && variant === 'unstyled' &&
-
-        <ErrorLabel
-          className='bodyBase'
-          data-test-id={errorDataTestId.length ? errorDataTestId : null}
-          error={error ? true : false}
-        >
-          {error}
-        </ErrorLabel>
+        error && variant === 'unstyled' && (
+          <div className="text-input-v1-error-label bodyBase"
+            data-test-id={errorDataTestId.length ? errorDataTestId : null}
+          >
+            {error}
+          </div>
+        )
       }
       {
-        variant !== 'unstyled' &&
-        <ErrorLabel
-          className='bodyBase'
-          error={error ? true : false}
-          data-test-id={errorDataTestId.length ? errorDataTestId : null}
-        >
-          {error}
-        </ErrorLabel>
+        variant !== 'unstyled' && (
+          <div className="text-input-v1-error-label bodyBase"
+            data-test-id={errorDataTestId.length ? errorDataTestId : null}
+          >
+            {error}
+          </div>
+        )
       }
     </>
   );
@@ -84,29 +74,19 @@ const BaseTextInputV1 = React.forwardRef<HTMLInputElement, TextInputProps>((prop
 
 
 const calculateInputClass = (size: TextInputProps['size']): string => {
-  let className = '';
-
   switch (size) {
     case 'small':
-      className = 'bodyBase';
-      break;
+      return 'bodyBase';
 
     case 'medium':
-      className = 'bodyLarge';
-      break;
+      return 'bodyLarge';
 
     case 'large':
-      className = 'headingLarge';
-      break;
+      return 'headingLarge';
 
     default:
-      className = 'bodyLarge';
-      break;
-
+      return 'bodyLarge';
   }
-
-  return className;
 };
-
 
 export default BaseTextInputV1;
