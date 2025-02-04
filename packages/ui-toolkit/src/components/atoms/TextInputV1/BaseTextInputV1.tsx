@@ -34,7 +34,7 @@ const BaseTextInputV1 = React.forwardRef<HTMLInputElement, TextInputProps>((prop
   return (
     <>
       {label && <div className="text-input-v1-label bodyBase">{label}</div>}
-      <div className={`text-input-v1-container ${variant} ${error ? 'error' : ''}`}>
+      <div className={`text-input-v1-container ${variant}`}>
         <div className={`text-input-v1-wrapper ${variant}`}>
           {PrefixComponent && <span className={`text-input-v1-trailing-vis ${variant}`}>{PrefixComponent()}</span>}
           <input
@@ -52,7 +52,7 @@ const BaseTextInputV1 = React.forwardRef<HTMLInputElement, TextInputProps>((prop
       </div>
       {
         error && variant === 'unstyled' && (
-          <div className="text-input-v1-error-label bodyBase"
+          <div className={`text-input-v1-error-label bodyBase ${error ? 'error' : ''}`}
             data-test-id={errorDataTestId.length ? errorDataTestId : null}
           >
             {error}
@@ -61,7 +61,7 @@ const BaseTextInputV1 = React.forwardRef<HTMLInputElement, TextInputProps>((prop
       }
       {
         variant !== 'unstyled' && (
-          <div className="text-input-v1-error-label bodyBase"
+          <div className={`text-input-v1-error-label bodyBase ${error ? 'error' : ''}`}
             data-test-id={errorDataTestId.length ? errorDataTestId : null}
           >
             {error}
