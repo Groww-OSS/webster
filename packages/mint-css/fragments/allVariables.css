@@ -1,0 +1,12 @@
+/* This file contains all the variables existing in the mint-css package */
+/* This approach is used to segregate utility classes making us future-ready if we want to use any utility based library */
+
+/* Theme Variables */
+@import "../theme/variables/index.css";
+@import "../theme/tokens/background-tokens.css";
+@import "../theme/tokens/border-tokens.css";
+@import "../theme/tokens/content-tokens.css";
+@import "../theme/tokens/interaction-state-tokens.css";
+
+/* Typography Variables */
+@import "../typography//variables/index.css";

@@ -1,0 +1,7 @@
+/* This contains all the utility classes related to typography */
+/* ! don't forget to import variables when using these utilities in your project */
+
+@import "../typography/tokens/body-tokens.css";
+@import "../typography/tokens/button-tokens.css";
+@import "../typography/tokens/display-tokens.css";
+@import "../typography/tokens/heading-tokens.css";

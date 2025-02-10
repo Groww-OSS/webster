@@ -53,3 +53,7 @@
 .contentAccentSecondarySubtle {
   color: var(--content-accent-secondary-subtle);
 }
+
+.contentOnWarningSubtle {
+  color: var(--content-on-warning-subtle);
+}

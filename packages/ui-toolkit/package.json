@@ -1,6 +1,6 @@
 {
   "name": "@groww-tech/ui-toolkit",
-  "version": "0.7.9-beta.1",
+  "version": "0.7.9-beta.4",
   "description": "A lightning nature UI",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -82,7 +82,6 @@
     "@babel/runtime": "^7.14.6",
     "@rollup/plugin-commonjs": "^19.0.0",
     "@rollup/plugin-node-resolve": "^11.2.1",
-    "@stitches/react": "^1.2.7",
     "@storybook/addon-actions": "8.2.7",
     "@storybook/addon-essentials": "8.2.7",
     "@storybook/addon-links": "8.2.7",

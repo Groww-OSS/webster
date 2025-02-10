@@ -16,6 +16,7 @@ html {
   --content-positive: var(--green500);
   --content-accent-secondary: var(--purple500);
   --content-accent-secondary-subtle: var(--purple300);
+  --content-on-warning-subtle: var(--yellow11);
 }
 
 html[data-theme="dark"] {
