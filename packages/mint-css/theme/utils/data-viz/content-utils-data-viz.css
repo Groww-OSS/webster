@@ -1,0 +1,87 @@
+.contentDataVizLilac {
+  color: var(--data-viz-lilac);
+}
+
+.contentDataVizLilacSubtle {
+  color: var(--data-viz-lilac-subtle);
+}
+
+.contentDataVizBlue {
+  color: var(--data-viz-blue);
+}
+
+.contentDataVizBlueSubtle {
+  color: var(--data-viz-blue-subtle);
+}
+
+.contentDataVizSkyBlue {
+  color: var(--data-viz-sky-blue);
+}
+
+.contentDataVizSkyBlueSubtle {
+  color: var(--data-viz-sky-blue-subtle);
+}
+
+.contentDataVizMintGreen {
+  color: var(--data-viz-mint-green);
+}
+
+.contentDataVizMintGreenSubtle {
+  color: var(--data-viz-mint-green-subtle);
+}
+
+.contentDataVizOliveGreen {
+  color: var(--data-viz-olive-green);
+}
+
+.contentDataVizOliveGreenSubtle {
+  color: var(--data-viz-olive-green-subtle);
+}
+
+.contentDataVizYellow {
+  color: var(--data-viz-yellow);
+}
+
+.contentDataVizYellowSubtle {
+  color: var(--data-viz-yellow-subtle);
+}
+
+.contentDataVizOrange {
+  color: var(--data-viz-orange);
+}
+
+.contentDataVizOrangeSubtle {
+  color: var(--data-viz-orange-subtle);
+}
+
+.contentDataVizRed {
+  color: var(--data-viz-red);
+}
+
+.contentDataVizRedSubtle {
+  color: var(--data-viz-red-subtle);
+}
+
+.contentDataVizMagenta {
+  color: var(--data-viz-magenta);
+}
+
+.contentDataVizMagentaSubtle {
+  color: var(--data-viz-magenta-subtle);
+}
+
+.contentDataVizBrown {
+  color: var(--data-viz-brown);
+}
+
+.contentDataVizBrownSubtle {
+  color: var(--data-viz-brown-subtle);
+}
+
+.contentDataVizGrey {
+  color: var(--data-viz-grey);
+}
+
+.contentDataVizGreySubtle {
+  color: var(--data-viz-grey-subtle);
+}
