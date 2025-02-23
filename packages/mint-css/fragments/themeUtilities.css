@@ -1,8 +1,12 @@
 /* This contains all the utility classes related to theme */
-/* ! don't forget to import variables when using these utilities in your project */
+/* don't forget to import variables when using these utilities in your project */
 
 @import "../theme/utils/background-utils.css";
 @import "../theme/utils/border-utils.css";
 @import "../theme/utils/content-utils.css";
 @import "../theme/utils/interaction-state-utils.css";
 @import "../theme/utils/temp-background-utils.css";
+
+@import "../theme/utils/data-viz/background-utils-data-viz.css";
+@import "../theme/utils/data-viz/border-utils-data-viz.css";
+@import "../theme/utils/data-viz/content-utils-data-viz.css";
