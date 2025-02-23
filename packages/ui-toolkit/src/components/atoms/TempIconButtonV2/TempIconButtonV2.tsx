@@ -1,31 +1,20 @@
 import React from 'react';
-import { ReactIconComponentType } from '@groww-tech/icon-store/types.d';
+import type { ReactIconComponentType } from '@groww-tech/icon-store';
+import { ContentMintTokens } from '../../../types/mint-token-types/content-mint-tokens';
+
 import './styles/index.css';
 
-export type IconButtonProps = {
+export type TempIconButtonV2Props = {
   onClick: () => void;
   Icon: ReactIconComponentType;
   size?: 'small' | 'medium';
   disabled?: boolean;
-  iconColor?: 'contentPrimary'
-  | 'contentSecondary'
-  | 'contentTertiary'
-  | 'contentInversePrimary'
-  | 'contentInverseSecondary'
-  | 'contentAccent'
-  | 'contentNegative'
-  | 'contentWarning'
-  | 'contentPositive'
-  | 'contentDisabled'
-  | 'contentOnColour'
-  | 'contentOnColourInverse'
-  | 'contentAccentSecondary'
-  | 'contentAccentSecondarySubtle';
+  iconColor?: ContentMintTokens;
   dataTestId?: string;
 };
 
 
-const TempIconButtonV2: React.FC<IconButtonProps> = ({
+const TempIconButtonV2: React.FC<TempIconButtonV2Props> = ({
   onClick,
   Icon,
   size = 'medium',
