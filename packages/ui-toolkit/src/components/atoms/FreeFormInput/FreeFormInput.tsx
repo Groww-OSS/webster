@@ -8,8 +8,7 @@ import {
   MdsIcHideEye
 } from '@groww-tech/icon-store/mint-icons';
 import TempIconButtonV2 from '../TempIconButtonV2/TempIconButtonV2';
-import IconButtonV2 from '../IconButtonV2/IconButtonV2';
-import { ReactIconComponentType } from '@groww-tech/icon-store/types.d';
+import type { ReactIconComponentType } from '@groww-tech/icon-store';
 import { ContentMintTokens } from '../../../types/mint-token-types/content-mint-tokens';
 
 
@@ -31,7 +30,8 @@ export type FreeFormInputProps = {
   SuffixIcon?: ReactIconComponentType;
   suffixIconButton?: SuffixIconButtonProps;
   prefixLabel?: string;
-  error?: { hasError: boolean; message: string };
+  error?: boolean;
+  errorMessage?: string;
   clearable?: boolean;
   ref?: React.RefObject<HTMLInputElement>;
   helperText?: string;
@@ -60,7 +60,8 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
   suffixIconButton,
   SuffixIcon,
   prefixLabel,
-  error = { hasError: false, message: '' },
+  error = false,
+  errorMessage = '',
   clearable = false,
   ref,
   helperText,
@@ -86,11 +87,11 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
   const inputWrapperClasses = cn('freeform-inputWrapper');
   const inputContentClasses = cn('freeform-inputContent contentPrimary borderPrimary', {
     'backgroundPrimary': !disabled,
-    'freeform-inputBorderNegative': error.hasError,
+    'freeform-inputBorderNegative': error,
     'freeform-inputClearable': clearable,
     'freeform-inputPrefix': PrefixIcon || prefixLabel,
     'freeform-inputSuffix': SuffixIcon || (clearable && showClearIcon) || variant === 'password',
-    'freeform-inputFocused': isFocused && !disabled && !error.hasError,
+    'freeform-inputFocused': isFocused && !disabled && !error,
     'backgroundSecondary contentSecondary': disabled
   });
 
@@ -293,13 +294,13 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
         )
       }
       {
-        error.hasError && error.message && (
+        error && errorMessage && (
           <div
             className='contentNegative freeform-inputErrorText bodySmall'
             data-test-id={`${dataTestId}-error-message`}
           >
             <MdsIcError size={16}/>
-            {error.message}
+            {errorMessage}
           </div>
         )
       }
