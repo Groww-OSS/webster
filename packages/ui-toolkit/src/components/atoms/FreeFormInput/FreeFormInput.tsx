@@ -173,6 +173,7 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
                     className='freeform-inputPrefixIcon'
                     data-test-id={`${dataTestId}-prefix-icon`}
                   >
+                    {/* Hardcoding size to 20 to maintain consistency across different icons and elements */}
                     <PrefixIcon size={20}/>
                   </div>
                 )
@@ -260,6 +261,7 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
                     className='freeform-inputSuffixIcon'
                     data-test-id={`${dataTestId}-suffix-icon`}
                   >
+                    {/* Hardcoding size to 20 to maintain consistency across different icons and elements */}
                     <SuffixIcon size={20}/>
                   </div>
                 )
