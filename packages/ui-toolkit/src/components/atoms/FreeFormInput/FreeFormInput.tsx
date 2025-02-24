@@ -84,7 +84,7 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
   }, [ clearable, value ]);
 
   const inputClasses = cn('freeform-input');
-  const inputWrapperClasses = cn('freeform-inputWrapper');
+  const inputWrapperClasses = cn('freeform-inputWrapper flex width100');
   const inputContentClasses = cn('freeform-inputContent contentPrimary borderPrimary', {
     'backgroundPrimary': !disabled,
     'freeform-inputBorderNegative': error,

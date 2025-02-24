@@ -77,14 +77,14 @@ const InputStepper: React.FC<InputStepperProps> = ({
     }
   }, [ inputRef, shouldFocusOnMount ]);
 
-  const inputClasses = cn('inputStepper-input', {
+  const inputClasses = cn('inputStepper-input width100 center-align', {
     contentDisabled: disabled
   });
 
   const inputWrapperClasses = cn('inputStepper-inputWrapper');
 
   const inputContentClasses = cn(
-    `inputStepper-inputContent ${textStyle} ${textColor} borderPrimary`,
+    `inputStepper-inputContent pos-rel flex ${textStyle} ${textColor} borderPrimary`,
     {
       [backgroundColor]: !disabled,
       'inputStepper-inputBorderNegative': error,
@@ -183,7 +183,7 @@ const InputStepper: React.FC<InputStepperProps> = ({
         data-test-id={`${dataTestId}-content`}
       >
         <div
-          className="inputStepper-prefixContainer"
+          className="valign-wrapper"
           data-test-id={`${dataTestId}-minus-container`}
         >
           <TempIconButtonV2
@@ -248,7 +248,7 @@ const InputStepper: React.FC<InputStepperProps> = ({
         />
 
         <div
-          className="inputStepper-suffixContainer"
+          className="valign-wrapper"
           data-test-id={`${dataTestId}-plus-container`}
         >
           <TempIconButtonV2
