@@ -9,9 +9,9 @@
 @import "../theme/tokens/interaction-state-tokens.css";
 
 @import '../theme/variables/data-viz.variables.css';
-@import './tokens/data-viz/background-tokens-data-viz.css';
-@import './tokens/data-viz/border-tokens-data-viz.css';
-@import './tokens/data-viz/content-tokens-data-viz.css';
+@import '../theme/tokens/data-viz/background-tokens-data-viz.css';
+@import '../theme/tokens/data-viz/border-tokens-data-viz.css';
+@import '../theme/tokens/data-viz/content-tokens-data-viz.css';
 
 /* Typography Variables */
 @import "../typography/variables/index.css";
