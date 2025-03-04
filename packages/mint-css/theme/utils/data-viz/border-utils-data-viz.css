@@ -1,87 +1,87 @@
 .borderDataVizLilac {
-  border-color: var(--data-viz-lilac);
+  border-color: var(--border-data-viz-lilac);
 }
 
 .borderDataVizLilacSubtle {
-  border-color: var(--data-viz-lilac-subtle);
+  border-color: var(--border-data-viz-lilac-subtle);
 }
 
 .borderDataVizBlue {
-  border-color: var(--data-viz-blue);
+  border-color: var(--border-data-viz-blue);
 }
 
 .borderDataVizBlueSubtle {
-  border-color: var(--data-viz-blue-subtle);
+  border-color: var(--border-data-viz-blue-subtle);
 }
 
 .borderDataVizSkyBlue {
-  border-color: var(--data-viz-sky-blue);
+  border-color: var(--border-data-viz-sky-blue);
 }
 
 .borderDataVizSkyBlueSubtle {
-  border-color: var(--data-viz-sky-blue-subtle);
+  border-color: var(--border-data-viz-sky-blue-subtle);
 }
 
 .borderDataVizMintGreen {
-  border-color: var(--data-viz-mint-green);
+  border-color: var(--border-data-viz-mint-green);
 }
 
 .borderDataVizMintGreenSubtle {
-  border-color: var(--data-viz-mint-green-subtle);
+  border-color: var(--border-data-viz-mint-green-subtle);
 }
 
 .borderDataVizOliveGreen {
-  border-color: var(--data-viz-olive-green);
+  border-color: var(--border-data-viz-olive-green);
 }
 
 .borderDataVizOliveGreenSubtle {
-  border-color: var(--data-viz-olive-green-subtle);
+  border-color: var(--border-data-viz-olive-green-subtle);
 }
 
 .borderDataVizYellow {
-  border-color: var(--data-viz-yellow);
+  border-color: var(--border-data-viz-yellow);
 }
 
 .borderDataVizYellowSubtle {
-  border-color: var(--data-viz-yellow-subtle);
+  border-color: var(--border-data-viz-yellow-subtle);
 }
 
 .borderDataVizOrange {
-  border-color: var(--data-viz-orange);
+  border-color: var(--border-data-viz-orange);
 }
 
 .borderDataVizOrangeSubtle {
-  border-color: var(--data-viz-orange-subtle);
+  border-color: var(--border-data-viz-orange-subtle);
 }
 
 .borderDataVizRed {
-  border-color: var(--data-viz-red);
+  border-color: var(--border-data-viz-red);
 }
 
 .borderDataVizRedSubtle {
-  border-color: var(--data-viz-red-subtle);
+  border-color: var(--border-data-viz-red-subtle);
 }
 
 .borderDataVizMagenta {
-  border-color: var(--data-viz-magenta);
+  border-color: var(--border-data-viz-magenta);
 }
 
 .borderDataVizMagentaSubtle {
-  border-color: var(--data-viz-magenta-subtle);
+  border-color: var(--border-data-viz-magenta-subtle);
 }
 
 .borderDataVizBrown {
-  border-color: var(--data-viz-brown);
+  border-color: var(--border-data-viz-brown);
 }
 
 .borderDataVizBrownSubtle {
-  border-color: var(--data-viz-brown-subtle);
+  border-color: var(--border-data-viz-brown-subtle);
 }
 
 .borderDataVizGrey {
-  border-color: var(--data-viz-grey);
+  border-color: var(--border-data-viz-grey);
 }
 
 .borderDataVizGreySubtle {
-  border-color: var(--data-viz-grey-subtle);
+  border-color: var(--border-data-viz-grey-subtle);
 }

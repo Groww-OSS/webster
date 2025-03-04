@@ -1,0 +1,25 @@
+html {
+    --content-data-viz-lilac: var(--data-viz-lilac);
+    --content-data-viz-lilac-subtle: var(--data-viz-lilac-subtle);
+    --content-data-viz-blue: var(--data-viz-blue);
+    --content-data-viz-blue-subtle: var(--data-viz-blue-subtle);
+    --content-data-viz-sky-blue: var(--data-viz-sky-blue);
+    --content-data-viz-sky-blue-subtle: var(--data-viz-sky-blue-subtle);
+    --content-data-viz-mint-green: var(--data-viz-mint-green);
+    --content-data-viz-mint-green-subtle: var(--data-viz-mint-green-subtle);
+    --content-data-viz-olive-green: var(--data-viz-olive-green);
+    --content-data-viz-olive-green-subtle: var(--data-viz-olive-green-subtle);
+    --content-data-viz-yellow: var(--data-viz-yellow);
+    --content-data-viz-yellow-subtle: var(--data-viz-yellow-subtle);
+    --content-data-viz-orange: var(--data-viz-orange);
+    --content-data-viz-orange-subtle: var(--data-viz-orange-subtle);
+    --content-data-viz-red: var(--data-viz-red);
+    --content-data-viz-red-subtle: var(--data-viz-red-subtle);
+    --content-data-viz-magenta: var(--data-viz-magenta);
+    --content-data-viz-magenta-subtle: var(--data-viz-magenta-subtle);
+    --content-data-viz-brown: var(--data-viz-brown);
+    --content-data-viz-brown-subtle: var(--data-viz-brown-subtle);
+    --content-data-viz-grey: var(--data-viz-grey);
+    --content-data-viz-grey-subtle: var(--data-viz-grey-subtle);
+  }
+  
