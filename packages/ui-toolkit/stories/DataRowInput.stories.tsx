@@ -65,7 +65,7 @@ export const WithPrefixIcon = Template.bind({});
 WithPrefixIcon.args = {
   placeholder: 'Enter number...',
   value: '',
-  prefixIcon: <MdsIcChevronRight />,
+  PrefixIcon: MdsIcChevronRight,
   width: '300px'
 };
 

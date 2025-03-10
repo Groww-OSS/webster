@@ -4,6 +4,7 @@ import './styles/index.css';
 import type { ReactIconComponentType } from '@groww-tech/icon-store';
 import { ContentMintTokens } from '../../../types/mint-token-types/content-mint-tokens';
 import { BackgroundMintTokens } from '../../../types/mint-token-types/background-mint-tokens';
+import { BorderMintTokens } from '../../../types/mint-token-types/border-mint-tokens';
 
 export type DataRowInputProps = {
   placeholder?: string;
@@ -11,7 +12,7 @@ export type DataRowInputProps = {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   dataTestId?: string;
   width?: string;
-  prefixIcon?: ReactIconComponentType;
+  PrefixIcon?: ReactIconComponentType;
   prefixLabel?: string;
   ref?: React.RefObject<HTMLInputElement>;
   disabled?: boolean;
@@ -24,7 +25,10 @@ export type DataRowInputProps = {
   onKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   textStyle?: 'bodyLarge' | 'bodyLargeHeavy';
   textColor?: ContentMintTokens;
+  textAlign?: 'left-align' | 'right-align' | 'center-align';
+  borderColor?: BorderMintTokens;
   perfixTextColor?: ContentMintTokens;
+  prefixIconColor?: ContentMintTokens;
   backgroundColor?: BackgroundMintTokens;
   disableCopyPaste?: boolean;
   onEnterPress?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
@@ -37,7 +41,7 @@ const DataRowInput: React.FC<DataRowInputProps> = ({
   onChange,
   dataTestId,
   width = '128px',
-  prefixIcon,
+  PrefixIcon,
   prefixLabel,
   ref,
   disabled = false,
@@ -50,14 +54,17 @@ const DataRowInput: React.FC<DataRowInputProps> = ({
   onKeyUp,
   textStyle = 'bodyLarge',
   textColor = 'contentPrimary',
+  textAlign = 'right-align',
   perfixTextColor = 'contentSecondary',
+  prefixIconColor = 'contentSecondary',
   backgroundColor = 'backgroundPrimary',
+  borderColor = 'borderPrimary',
   disableCopyPaste = false,
   onEnterPress
 }) => {
   const [ isFocused, setIsFocused ] = useState(false);
 
-  const inputClasses = cn('datarow-input');
+  const inputClasses = cn('datarow-input', textAlign);
   const inputWrapperClasses = cn('datarow-inputWrapper');
 
 
@@ -86,12 +93,12 @@ const DataRowInput: React.FC<DataRowInputProps> = ({
   };
 
   const inputContentClasses = cn(
-    `datarow-inputContent ${textColor} borderPrimary`,
+    `datarow-inputContent ${textColor} ${borderColor}`,
     {
       [backgroundColor]: !disabled,
       'datarow-inputBorderNegative': error,
       'datarow-inputBorderWarning': warning,
-      'datarow-inputPrefix': prefixIcon || prefixLabel,
+      'datarow-inputPrefix': PrefixIcon || prefixLabel,
       'datarow-inputFocused': isFocused && !disabled && !error,
       'backgroundSecondary contentSecondary': disabled
     }
@@ -108,18 +115,19 @@ const DataRowInput: React.FC<DataRowInputProps> = ({
         data-test-id={`${dataTestId}-content`}
       >
         {
-          (prefixIcon || prefixLabel) && (
+          (PrefixIcon || prefixLabel) && (
             <div
               className='datarow-prefixContainer'
               data-test-id={`${dataTestId}-prefix-container`}
             >
               {
-                prefixIcon && (
+                PrefixIcon && (
                   <div
-                    className='datarow-inputPrefixIcon'
+                    className={`datarow-inputPrefixIcon ${prefixIconColor}`}
                     data-test-id={`${dataTestId}-prefix-icon`}
                   >
-                    {prefixIcon}
+                    {/* Hardcoding size to 20 to maintain consistency across different icons and elements */}
+                    <PrefixIcon size={20}/>
                   </div>
                 )
               }

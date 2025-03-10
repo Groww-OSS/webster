@@ -21,6 +21,7 @@ export type FreeFormInputProps = {
   placeholder?: string;
   value: string;
   label?: string;
+  labelColor?: ContentMintTokens;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   disabled?: boolean;
   dataTestId?: string;
@@ -35,6 +36,7 @@ export type FreeFormInputProps = {
   clearable?: boolean;
   ref?: React.RefObject<HTMLInputElement>;
   helperText?: string;
+  helperTextColor?: ContentMintTokens;
   variant?: 'text' | 'password' | 'number';
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   autoComplete?: string;
@@ -51,6 +53,7 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
   placeholder,
   value,
   label,
+  labelColor = 'contentSecondary',
   onChange,
   disabled,
   dataTestId,
@@ -65,6 +68,7 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
   clearable = false,
   ref,
   helperText,
+  helperTextColor = 'contentSecondary',
   variant = 'text',
   onKeyDown,
   autoComplete,
@@ -150,7 +154,7 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
       {
         label && (
           <div
-            className='bodySmallHeavy contentSecondary'
+            className={`bodySmallHeavy ${labelColor}`}
             data-test-id={`${dataTestId}-label`}
           >
             {label}
@@ -258,7 +262,7 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
               {
                 SuffixIcon && (
                   <div
-                    className='freeform-inputSuffixIcon'
+                    className='freeform-inputSuffixIcon contentAccent'
                     data-test-id={`${dataTestId}-suffix-icon`}
                   >
                     {/* Hardcoding size to 20 to maintain consistency across different icons and elements */}
@@ -288,7 +292,7 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
       {
         helperText && (
           <div
-            className='contentSecondary bodySmall'
+            className={`bodySmall ${helperTextColor}`}
             data-test-id={`${dataTestId}-helper-text`}
           >
             {helperText}
