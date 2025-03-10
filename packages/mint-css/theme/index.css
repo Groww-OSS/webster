@@ -13,6 +13,9 @@
 @import './tokens/border-tokens.css';
 @import './tokens/content-tokens.css';
 @import './tokens/interaction-state-tokens.css';
+@import './tokens/data-viz/background-tokens-data-viz.css';
+@import './tokens/data-viz/border-tokens-data-viz.css';
+@import './tokens/data-viz/content-tokens-data-viz.css';
 
 /* Variables */
 @import './variables/';
