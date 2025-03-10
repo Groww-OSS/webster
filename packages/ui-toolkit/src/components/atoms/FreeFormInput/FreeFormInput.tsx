@@ -46,6 +46,12 @@ export type FreeFormInputProps = {
   onEnterPress?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   disableCopyPaste?: boolean;
   disableDecimal?: boolean;
+  prefixIconColor?: ContentMintTokens;
+  suffixIconColor?: ContentMintTokens;
+  suffixIconButtonColor?: ContentMintTokens;
+  clearIconColor?: ContentMintTokens;
+  passwordToggleIconColor?: ContentMintTokens;
+
 };
 
 
@@ -77,7 +83,12 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
   prefixTextStyle = 'bodyBase',
   onEnterPress,
   disableCopyPaste = false,
-  disableDecimal = false
+  disableDecimal = false,
+  prefixIconColor = 'contentSecondary',
+  suffixIconColor = 'contentSecondary',
+  suffixIconButtonColor = 'contentSecondary',
+  clearIconColor = 'contentSecondary',
+  passwordToggleIconColor = 'contentSecondary'
 }) => {
   const [ showClearIcon, setShowClearIcon ] = useState(false);
   const [ isFocused, setIsFocused ] = useState(false);
@@ -174,7 +185,7 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
               {
                 PrefixIcon && (
                   <div
-                    className='freeform-inputPrefixIcon'
+                    className={`freeform-inputPrefixIcon ${prefixIconColor}`}
                     data-test-id={`${dataTestId}-prefix-icon`}
                   >
                     {/* Hardcoding size to 20 to maintain consistency across different icons and elements */}
@@ -240,6 +251,7 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
                       Icon={MdsIcCancelCircle}
                       size='medium'
                       data-test-id={`${dataTestId}-clear-button`}
+                      iconColor={clearIconColor}
                     />
                   </div>
                 )
@@ -255,6 +267,7 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
                       Icon={showPassword ? MdsIcHideEye : MdsIcShowEye}
                       size='medium'
                       data-test-id={`${dataTestId}-password-toggle-button`}
+                      iconColor={passwordToggleIconColor}
                     />
                   </div>
                 )
@@ -262,7 +275,7 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
               {
                 SuffixIcon && (
                   <div
-                    className='freeform-inputSuffixIcon contentAccent'
+                    className={`freeform-inputSuffixIcon ${suffixIconColor}`}
                     data-test-id={`${dataTestId}-suffix-icon`}
                   >
                     {/* Hardcoding size to 20 to maintain consistency across different icons and elements */}
@@ -281,6 +294,7 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
                       Icon={suffixIconButton.icon}
                       disabled={disabled}
                       size='medium'
+                      iconColor={suffixIconButtonColor}
                     />
                   </div>
                 )
