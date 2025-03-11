@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import cn from 'classnames';
-import './styles/index.css';
 import {
   MdsIcCancelCircle,
   MdsIcError,
@@ -10,6 +9,7 @@ import {
 import TempIconButtonV2 from '../TempIconButtonV2/TempIconButtonV2';
 import type { ReactIconComponentType } from '@groww-tech/icon-store';
 import { ContentMintTokens } from '../../../types/mint-token-types/content-mint-tokens';
+import './styles/index.css';
 
 
 type SuffixIconButtonProps = {

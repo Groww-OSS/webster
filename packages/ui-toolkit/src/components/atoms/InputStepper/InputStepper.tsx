@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import cn from 'classnames';
-import './styles/index.css';
 import type { ReactIconComponentType } from '@groww-tech/icon-store';
 import { MdsIcRemoveMinus, MdsIcAddPlus } from '@groww-tech/icon-store/mint-icons';
 import TempIconButtonV2 from '../TempIconButtonV2/TempIconButtonV2';
 import { ContentMintTokens } from '../../../types/mint-token-types/content-mint-tokens';
 import { BackgroundMintTokens } from '../../../types/mint-token-types/background-mint-tokens';
+import './styles/index.css';
+
 
 export type InputStepperProps = {
   placeholder?: string;

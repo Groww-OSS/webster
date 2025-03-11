@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import cn from 'classnames';
-import './styles/index.css';
 import type { ReactIconComponentType } from '@groww-tech/icon-store';
 import { ContentMintTokens } from '../../../types/mint-token-types/content-mint-tokens';
 import { BackgroundMintTokens } from '../../../types/mint-token-types/background-mint-tokens';
 import { BorderMintTokens } from '../../../types/mint-token-types/border-mint-tokens';
+import './styles/index.css';
 
 export type DataRowInputProps = {
   placeholder?: string;
