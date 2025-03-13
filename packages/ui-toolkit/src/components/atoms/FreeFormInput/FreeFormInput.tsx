@@ -208,15 +208,7 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
         }
         <input
           className={`${inputClasses} bodyBase contentPrimary`}
-          type={
-            variant === 'password'
-              ? showPassword
-                ? 'text'
-                : 'password'
-              : variant === 'number'
-                ? 'number'
-                : 'text'
-          }
+          type={variant === 'password' ? (showPassword ? 'text' : 'password') : variant}
           placeholder={placeholder}
           value={value}
           onChange={onChange}
