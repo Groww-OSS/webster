@@ -298,7 +298,7 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
       {
         helperText && (
           <div
-            className={`bodySmall ${helperTextColor}`}
+            className={`bodySmall ${helperTextColor} freeform-helperText`}
             data-test-id={`${dataTestId}-helper-text`}
           >
             {helperText}
