@@ -1,0 +1,35 @@
+.inputStepper-inputContent {
+  height: 32px;
+  border-radius: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+  outline-offset: -2px;
+}
+  
+.inputStepper-inputFocused {
+  outline: 2px solid var(--border-neutral);
+}
+
+.inputStepper-input {
+  caret-color: var(--content-accent);
+  outline: none; /* Remove focus outline */
+  box-shadow: none; /* Remove any focus box-shadow */
+  border: none;
+  text-overflow: ellipsis;
+}
+
+input::placeholder {
+  color: var(--content-tertiary);
+}
+
+.inputStepper-inputBorderNeutral {
+  outline: 2px solid var(--border-neutral);
+}
+
+.inputStepper-inputBorderNegative {
+  outline: 2px solid var(--border-negative);
+}
+
+.inputStepper-inputBorderWarning{
+  outline: 2px solid var(--content-warning);
+}

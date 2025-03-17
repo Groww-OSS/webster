@@ -1,0 +1,95 @@
+.freeform-inputWrapper {
+  display: flex;
+  width: 100%;
+  border: none;
+  flex-direction: column;
+  gap: 8px;
+  padding: 1px;
+}
+
+.freeform-inputContent {
+  position: relative;
+  display: flex;
+  height: 48px;
+  border-radius: 4px;
+  padding: 0px;
+  gap: 0px;
+  align-items:center ;
+  outline-offset: -2px;
+
+}
+
+.freeform-inputFocused {
+  outline: 2px solid var(--border-neutral);
+}
+
+
+
+.freeform-input {
+  width: 100%;
+  font-size: 16px;
+  caret-color: var(--content-accent);
+  outline: none; /* Remove focus outline */
+  box-shadow: none; /* Remove any focus box-shadow */
+  border: none;
+  margin-right:12px ;
+  margin-left: 12px;
+  background: transparent;
+}
+
+.freeform-suffixContainer {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin-right:8px ;
+  margin-left: 8px;
+  height: 100%;
+  gap:12px;
+}
+
+.freeform-inputPrefixIcon,
+.freeform-inputSuffixIcon,
+.freeform-inputClearIcon {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.freeform-inputClearIcon {
+  cursor: pointer;
+}
+
+input::placeholder {
+  color: var(--content-tertiary);
+}
+
+.freeform-inputBorderNeutral {
+  outline: 2px solid var(--border-neutral);
+}
+
+.freeform-inputBorderNegative {
+  outline: 2px solid var(--border-negative);
+}
+
+.freeform-inputErrorText {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.freeform-prefixContainer{
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  margin-left:12px ;
+}
+
+.freeform-helperText {
+  padding-left: 1px;
+
+}

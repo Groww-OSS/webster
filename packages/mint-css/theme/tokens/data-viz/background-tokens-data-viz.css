@@ -1,0 +1,24 @@
+html {
+    --background-data-viz-lilac: var(--data-viz-lilac);
+    --background-data-viz-lilac-subtle: var(--data-viz-lilac-subtle);
+    --background-data-viz-blue: var(--data-viz-blue);
+    --background-data-viz-blue-subtle: var(--data-viz-blue-subtle);
+    --background-data-viz-sky-blue: var(--data-viz-sky-blue);
+    --background-data-viz-sky-blue-subtle: var(--data-viz-sky-blue-subtle);
+    --background-data-viz-mint-green: var(--data-viz-mint-green);
+    --background-data-viz-mint-green-subtle: var(--data-viz-mint-green-subtle);
+    --background-data-viz-olive-green: var(--data-viz-olive-green);
+    --background-data-viz-olive-green-subtle: var(--data-viz-olive-green-subtle);
+    --background-data-viz-yellow: var(--data-viz-yellow);
+    --background-data-viz-yellow-subtle: var(--data-viz-yellow-subtle);
+    --background-data-viz-orange: var(--data-viz-orange);
+    --background-data-viz-orange-subtle: var(--data-viz-orange-subtle);
+    --background-data-viz-red: var(--data-viz-red);
+    --background-data-viz-red-subtle: var(--data-viz-red-subtle);
+    --background-data-viz-magenta: var(--data-viz-magenta);
+    --background-data-viz-magenta-subtle: var(--data-viz-magenta-subtle);
+    --background-data-viz-brown: var(--data-viz-brown);
+    --background-data-viz-brown-subtle: var(--data-viz-brown-subtle);
+    --background-data-viz-grey: var(--data-viz-grey);
+    --background-data-viz-grey-subtle: var(--data-viz-grey-subtle);
+  }
