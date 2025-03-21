@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, forwardRef } from 'react';
 import cn from 'classnames';
 import {
   MdsIcCancelCircle,
@@ -34,7 +34,6 @@ export type FreeFormInputProps = {
   error?: boolean;
   errorMessage?: string;
   clearable?: boolean;
-  ref?: React.RefObject<HTMLInputElement>;
   helperText?: string;
   helperTextColor?: ContentMintTokens;
   variant?: 'text' | 'password' | 'number';
@@ -51,11 +50,11 @@ export type FreeFormInputProps = {
   suffixIconButtonColor?: ContentMintTokens;
   clearIconColor?: ContentMintTokens;
   passwordToggleIconColor?: ContentMintTokens;
-
+  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
 };
 
-
-const FreeFormInput: React.FC<FreeFormInputProps> = ({
+const FreeFormInput = forwardRef<HTMLInputElement, FreeFormInputProps>(({
   placeholder,
   value,
   label,
@@ -72,7 +71,6 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
   error = false,
   errorMessage = '',
   clearable = false,
-  ref,
   helperText,
   helperTextColor = 'contentSecondary',
   variant = 'text',
@@ -88,8 +86,10 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
   suffixIconColor = 'contentSecondary',
   suffixIconButtonColor = 'contentSecondary',
   clearIconColor = 'contentSecondary',
-  passwordToggleIconColor = 'contentSecondary'
-}) => {
+  passwordToggleIconColor = 'contentSecondary',
+  onFocus,
+  onBlur
+}, ref) => {
   const [ showClearIcon, setShowClearIcon ] = useState(false);
   const [ isFocused, setIsFocused ] = useState(false);
   const [ showPassword, setShowPassword ] = useState(false);
@@ -140,7 +140,6 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
 
 
   const togglePasswordVisibility = () => {
-
     setShowPassword(!showPassword);
   };
 
@@ -156,6 +155,18 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
     }
   };
 
+
+  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    setIsFocused(true);
+    onFocus && onFocus(e);
+  };
+
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    setIsFocused(false);
+    onBlur && onBlur(e);
+  };
+
   return (
     <div
       className={inputWrapperClasses}
@@ -165,7 +176,7 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
       {
         label && (
           <div
-            className={`bodySmallHeavy ${labelColor}`}
+            className={`bodySmallHeavy freeform-label ${labelColor}`}
             data-test-id={`${dataTestId}-label`}
           >
             {label}
@@ -212,8 +223,8 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
           placeholder={placeholder}
           value={value}
           onChange={onChange}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
           disabled={disabled}
           data-test-id={dataTestId}
           maxLength={maxLength}
@@ -318,6 +329,6 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
       }
     </div>
   );
-};
+});
 
 export default FreeFormInput;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, forwardRef } from 'react';
 import cn from 'classnames';
 import type { ReactIconComponentType } from '@groww-tech/icon-store';
 import { ContentMintTokens } from '../../../types/mint-token-types/content-mint-tokens';
@@ -14,7 +14,6 @@ export type DataRowInputProps = {
   width?: string;
   PrefixIcon?: ReactIconComponentType;
   prefixLabel?: string;
-  ref?: React.RefObject<HTMLInputElement>;
   disabled?: boolean;
   error?: boolean;
   warning?: boolean;
@@ -32,10 +31,11 @@ export type DataRowInputProps = {
   backgroundColor?: BackgroundMintTokens;
   disableCopyPaste?: boolean;
   onEnterPress?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
 }
 
-
-const DataRowInput: React.FC<DataRowInputProps> = ({
+const DataRowInput = forwardRef<HTMLInputElement, DataRowInputProps>(({
   placeholder,
   value,
   onChange,
@@ -43,7 +43,6 @@ const DataRowInput: React.FC<DataRowInputProps> = ({
   width = '128px',
   PrefixIcon,
   prefixLabel,
-  ref,
   disabled = false,
   error = false,
   warning = false,
@@ -60,8 +59,10 @@ const DataRowInput: React.FC<DataRowInputProps> = ({
   backgroundColor = 'backgroundPrimary',
   borderColor = 'borderPrimary',
   disableCopyPaste = false,
-  onEnterPress
-}) => {
+  onEnterPress,
+  onFocus,
+  onBlur
+}, ref) => {
   const [ isFocused, setIsFocused ] = useState(false);
 
   const inputClasses = cn('datarow-input', textAlign);
@@ -90,6 +91,18 @@ const DataRowInput: React.FC<DataRowInputProps> = ({
     if (disableCopyPaste) {
       e.preventDefault();
     }
+  };
+
+
+  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    setIsFocused(true);
+    onFocus && onFocus(e);
+  };
+
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    setIsFocused(false);
+    onBlur && onBlur(e);
   };
 
   const inputContentClasses = cn(
@@ -150,8 +163,8 @@ const DataRowInput: React.FC<DataRowInputProps> = ({
           placeholder={placeholder}
           value={value}
           onChange={onChange}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
           disabled={disabled}
           data-test-id={dataTestId}
           ref={ref}
@@ -168,6 +181,6 @@ const DataRowInput: React.FC<DataRowInputProps> = ({
       </div>
     </div>
   );
-};
+});
 
 export default DataRowInput;

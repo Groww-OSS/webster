@@ -36,7 +36,9 @@ Default.args = {
   errorMessage: '',
   disabled: false,
   clearable: false,
-  helperText: 'Helper text here'
+  helperText: 'Helper text here',
+  onFocus: () => console.log('Focused'),
+  onBlur: () => console.log('Blurred'),
 };
 
 export const WithError = Template.bind({});

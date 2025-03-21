@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, forwardRef } from 'react';
 import cn from 'classnames';
 import type { ReactIconComponentType } from '@groww-tech/icon-store';
 import { MdsIcRemoveMinus, MdsIcAddPlus } from '@groww-tech/icon-store/mint-icons';
@@ -6,7 +6,6 @@ import TempIconButtonV2 from '../TempIconButtonV2/TempIconButtonV2';
 import { ContentMintTokens } from '../../../types/mint-token-types/content-mint-tokens';
 import { BackgroundMintTokens } from '../../../types/mint-token-types/background-mint-tokens';
 import './styles/index.css';
-
 
 export type InputStepperProps = {
   placeholder?: string;
@@ -16,7 +15,6 @@ export type InputStepperProps = {
   width?: string;
   prefixIcon?: ReactIconComponentType;
   prefixLabel?: string;
-  ref?: React.RefObject<HTMLInputElement>;
   error?: boolean;
   warning?: boolean;
   disabled?: boolean;
@@ -33,10 +31,11 @@ export type InputStepperProps = {
   disableCopyPaste?: boolean;
   onEnterPress?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   disableDecimal?: boolean;
-}
+  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
+};
 
-
-const InputStepper: React.FC<InputStepperProps> = ({
+const InputStepper = forwardRef<HTMLInputElement, InputStepperProps>(({
   placeholder,
   value,
   onChange,
@@ -44,7 +43,6 @@ const InputStepper: React.FC<InputStepperProps> = ({
   width = '128px',
   prefixIcon,
   prefixLabel,
-  ref,
   error = false,
   warning = false,
   disabled = false,
@@ -60,23 +58,24 @@ const InputStepper: React.FC<InputStepperProps> = ({
   shouldFocusOnMount = false,
   disableCopyPaste = false,
   onEnterPress,
-  disableDecimal = false
-}) => {
+  disableDecimal = false,
+  onFocus,
+  onBlur
+}, ref) => {
   const [ isFocused, setIsFocused ] = useState(false);
   const [ inputValue, setInputValue ] = useState(value.toString());
 
-  const internalRef = useRef<HTMLInputElement>(null);
-  const inputRef = ref || internalRef;
-
+  // Update inputValue when value prop changes.
   useEffect(() => {
     setInputValue(value.toString());
   }, [ value ]);
 
+  // Focus on mount only if a parent ref is provided and it's a mutable ref object.
   useEffect(() => {
-    if (shouldFocusOnMount && inputRef.current) {
-      inputRef.current.focus();
+    if (shouldFocusOnMount && ref && typeof ref !== 'function' && ref.current) {
+      ref.current.focus();
     }
-  }, [ inputRef, shouldFocusOnMount ]);
+  }, [ shouldFocusOnMount, ref ]);
 
   const inputClasses = cn('inputStepper-input width100 center-align', {
     contentDisabled: disabled
@@ -126,7 +125,6 @@ const InputStepper: React.FC<InputStepperProps> = ({
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!typeable) return;
-
     const newValue = e.target.value;
 
     if (newValue === '') {
@@ -144,7 +142,7 @@ const InputStepper: React.FC<InputStepperProps> = ({
   };
 
 
-  const handleBlur = () => {
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     setIsFocused(false);
     if (inputValue === '') {
       setInputValue('0');
@@ -156,6 +154,16 @@ const InputStepper: React.FC<InputStepperProps> = ({
       setInputValue(numValue.toString());
       onChange(numValue);
     }
+
+    onBlur && onBlur(e);
+
+  };
+
+
+  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    setIsFocused(true);
+    onFocus && onFocus(e);
+
   };
 
 
@@ -176,11 +184,11 @@ const InputStepper: React.FC<InputStepperProps> = ({
   return (
     <div
       className={inputWrapperClasses}
-      style={{ width: width }}
+      style={{ width }}
       data-test-id={`${dataTestId}-container`}
     >
       <div
-        className={`${inputContentClasses}`}
+        className={inputContentClasses}
         data-test-id={`${dataTestId}-content`}
       >
         <div
@@ -199,13 +207,13 @@ const InputStepper: React.FC<InputStepperProps> = ({
         {
           (prefixIcon || prefixLabel) && (
             <div
-              className='inputStepper-prefixWrapper'
+              className="inputStepper-prefixWrapper"
               data-test-id={`${dataTestId}-prefix-container`}
             >
               {
                 prefixIcon && (
                   <div
-                    className='inputStepper-prefixIcon'
+                    className="inputStepper-prefixIcon"
                     data-test-id={`${dataTestId}-prefix-icon`}
                   >
                     {prefixIcon}
@@ -215,7 +223,7 @@ const InputStepper: React.FC<InputStepperProps> = ({
               {
                 prefixLabel && (
                   <div
-                    className='inputStepper-prefixLabel'
+                    className="inputStepper-prefixLabel"
                     data-test-id={`${dataTestId}-prefix-label`}
                   >
                     {prefixLabel}
@@ -234,11 +242,11 @@ const InputStepper: React.FC<InputStepperProps> = ({
           placeholder={placeholder}
           value={inputValue}
           onChange={handleChange}
-          onFocus={() => setIsFocused(true)}
+          onFocus={handleFocus}
           onBlur={handleBlur}
           disabled={disabled}
           data-test-id={dataTestId}
-          ref={inputRef}
+          ref={ref}
           onWheel={handleWheel}
           readOnly={!typeable}
           onKeyDown={handleKeyDown}
@@ -263,6 +271,6 @@ const InputStepper: React.FC<InputStepperProps> = ({
       </div>
     </div>
   );
-};
+});
 
 export default InputStepper;
