@@ -83,6 +83,10 @@ const DataRowInput = forwardRef<HTMLInputElement, DataRowInputProps>(({
       onEnterPress(e);
     }
 
+    if (e.key === 'e' || e.key === 'E') {
+      e.preventDefault();
+    }
+
     onKeyDown && onKeyDown(e);
   };
 
@@ -116,6 +120,7 @@ const DataRowInput = forwardRef<HTMLInputElement, DataRowInputProps>(({
       'backgroundSecondary contentSecondary': disabled
     }
   );
+  console.log('Ref', ref);
 
   return (
     <div

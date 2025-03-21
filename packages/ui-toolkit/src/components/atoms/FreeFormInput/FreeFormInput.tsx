@@ -153,6 +153,13 @@ const FreeFormInput = forwardRef<HTMLInputElement, FreeFormInputProps>(({
     if (disableDecimal && (e.key === '.')) {
       e.preventDefault();
     }
+
+    if (variant === 'number') {
+      if (e.key === 'e' || e.key === 'E') {
+        e.preventDefault();
+      }
+
+    }
   };
 
 
