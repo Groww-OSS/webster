@@ -156,7 +156,7 @@ function generateUtilityClassesCSS(prefix, tokensInput, utilConfig = {}) {
 const distDir = path.join(__dirname, 'theme');
 const outputTypes = [
   { name: 'css', base: path.join(distDir, 'css') },
-  { name: 'ts', base: path.join(distDir, 'ts') },
+  { name: 'types', base: path.join(distDir, 'types') },
   { name: 'names', base: path.join(distDir, 'names') }
 ];
 
@@ -198,7 +198,7 @@ for (const group in config.primitives) {
     const tokenNames = Object.keys(tokens).map(toKebabCase).sort();
     aggregatedTokens = aggregatedTokens.concat(tokenNames);
     const tsContent = `// Auto-generated types for ${group} primitives (${category})\nexport const ${group.replace(/\W/g, '')}${toPascalCase(category)}PrimitiveTokens = ${JSON.stringify(tokenNames, null, 2)} as const;\nexport type ${group.replace(/\W/g, '')}${toPascalCase(category)}PrimitiveToken = typeof ${group.replace(/\W/g, '')}${toPascalCase(category)}PrimitiveTokens[number];\n`;
-    const tsDir = path.join(distDir, 'ts', categoryFolderMap.primitives, toKebabCase(group));
+    const tsDir = path.join(distDir, 'types', categoryFolderMap.primitives, toKebabCase(group));
     ensureDir(tsDir);
     fs.writeFileSync(path.join(tsDir, `${categoryFolder}-types.d.ts`), tsContent);
     console.log(`Generated TS types for primitives group: ${group}, category: ${category}`);
@@ -212,7 +212,7 @@ for (const group in config.primitives) {
   // Aggregated files for primitives in this group
   aggregatedTokens = Array.from(new Set(aggregatedTokens)).sort();
   const aggTsContent = `// Auto-generated aggregated types for ${group} primitives\nexport const ${group.replace(/\W/g, '')}PrimitiveTokens = ${JSON.stringify(aggregatedTokens, null, 2)} as const;\nexport type ${group.replace(/\W/g, '')}PrimitiveToken = typeof ${group.replace(/\W/g, '')}PrimitiveTokens[number];\n`;
-  fs.writeFileSync(path.join(distDir, 'ts', categoryFolderMap.primitives, toKebabCase(group), 'primitives-types.d.ts'), aggTsContent);
+  fs.writeFileSync(path.join(distDir, 'types', categoryFolderMap.primitives, toKebabCase(group), 'primitives-types.d.ts'), aggTsContent);
   const aggNamesContent = `// Auto-generated aggregated names for ${group} primitives\nexport const ${group.replace(/\W/g, '')}PrimitiveTokenNames = ${JSON.stringify(aggregatedTokens, null, 2)};\n`;
   fs.writeFileSync(path.join(distDir, 'names', categoryFolderMap.primitives, toKebabCase(group), 'primitives-names.js'), aggNamesContent);
   console.log(`Generated aggregated TS types and names for primitives group: ${group}`);
@@ -238,7 +238,7 @@ for (const group in config.semanticTokens) {
     tokenNames.sort();
     aggregatedTokens = aggregatedTokens.concat(tokenNames);
     const tsContent = `// Auto-generated types for ${group} semantic tokens (${tokenCategory})\nexport const ${group.replace(/\W/g, '')}${toPascalCase(tokenCategory)}SemanticTokens = ${JSON.stringify(tokenNames, null, 2)} as const;\nexport type ${group.replace(/\W/g, '')}${toPascalCase(tokenCategory)}SemanticToken = typeof ${group.replace(/\W/g, '')}${toPascalCase(tokenCategory)}SemanticTokens[number];\n`;
-    const tsDir = path.join(distDir, 'ts', categoryFolderMap.semanticTokens, toKebabCase(group));
+    const tsDir = path.join(distDir, 'types', categoryFolderMap.semanticTokens, toKebabCase(group));
     ensureDir(tsDir);
     fs.writeFileSync(path.join(tsDir, `${categoryFolder}-types.d.ts`), tsContent);
     console.log(`Generated TS types for semantic tokens group: ${group}, category: ${tokenCategory}`);
@@ -252,7 +252,7 @@ for (const group in config.semanticTokens) {
   // Aggregated files for semantic tokens in this group
   aggregatedTokens = Array.from(new Set(aggregatedTokens)).sort();
   const aggTsContent = `// Auto-generated aggregated types for ${group} semantic tokens\nexport const ${group.replace(/\W/g, '')}SemanticTokens = ${JSON.stringify(aggregatedTokens, null, 2)} as const;\nexport type ${group.replace(/\W/g, '')}SemanticToken = typeof ${group.replace(/\W/g, '')}SemanticTokens[number];\n`;
-  fs.writeFileSync(path.join(distDir, 'ts', categoryFolderMap.semanticTokens, toKebabCase(group), 'tokens-types.d.ts'), aggTsContent);
+  fs.writeFileSync(path.join(distDir, 'types', categoryFolderMap.semanticTokens, toKebabCase(group), 'tokens-types.d.ts'), aggTsContent);
   const aggNamesContent = `// Auto-generated aggregated names for ${group} semantic tokens\nexport const ${group.replace(/\W/g, '')}SemanticTokenNames = ${JSON.stringify(aggregatedTokens, null, 2)};\n`;
   fs.writeFileSync(path.join(distDir, 'names', categoryFolderMap.semanticTokens, toKebabCase(group), 'tokens-names.js'), aggNamesContent);
   console.log(`Generated aggregated TS types and names for semantic tokens group: ${group}`);
@@ -297,7 +297,7 @@ for (const group in config.utilityClasses) {
     classNames.sort();
     aggregatedUtils = aggregatedUtils.concat(classNames);
     const tsContent = `// Auto-generated types for ${group} utility classes (${utilKey})\nexport const ${group.replace(/\W/g, '')}${toPascalCase(utilKey)}UtilityClasses = ${JSON.stringify(classNames, null, 2)} as const;\nexport type ${group.replace(/\W/g, '')}${toPascalCase(utilKey)}UtilityClass = typeof ${group.replace(/\W/g, '')}${toPascalCase(utilKey)}UtilityClasses[number];\n`;
-    const tsDir = path.join(distDir, 'ts', categoryFolderMap.utilityClasses, toKebabCase(group));
+    const tsDir = path.join(distDir, 'types', categoryFolderMap.utilityClasses, toKebabCase(group));
     ensureDir(tsDir);
     fs.writeFileSync(path.join(tsDir, `${categoryFolder}-types.d.ts`), tsContent);
     console.log(`Generated TS types for utility classes group: ${group}, category: ${utilKey}`);
@@ -311,7 +311,7 @@ for (const group in config.utilityClasses) {
   // Aggregated files for utility classes in this group
   aggregatedUtils = Array.from(new Set(aggregatedUtils)).sort();
   const aggTsContent = `// Auto-generated aggregated types for ${group} utility classes\nexport const ${group.replace(/\W/g, '')}UtilityClasses = ${JSON.stringify(aggregatedUtils, null, 2)} as const;\nexport type ${group.replace(/\W/g, '')}UtilityClass = typeof ${group.replace(/\W/g, '')}UtilityClasses[number];\n`;
-  fs.writeFileSync(path.join(distDir, 'ts', categoryFolderMap.utilityClasses, toKebabCase(group), 'utils-types.d.ts'), aggTsContent);
+  fs.writeFileSync(path.join(distDir, 'types', categoryFolderMap.utilityClasses, toKebabCase(group), 'utils-types.d.ts'), aggTsContent);
   const aggNamesContent = `// Auto-generated aggregated names for ${group} utility classes\nexport const ${group.replace(/\W/g, '')}UtilityClassNames = ${JSON.stringify(aggregatedUtils, null, 2)};\n`;
   fs.writeFileSync(path.join(distDir, 'names', categoryFolderMap.utilityClasses, toKebabCase(group), 'utils-names.js'), aggNamesContent);
   console.log(`Generated aggregated TS types and names for utility classes group: ${group}`);
