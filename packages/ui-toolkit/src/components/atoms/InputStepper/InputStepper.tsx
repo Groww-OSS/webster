@@ -1,4 +1,10 @@
-import React, { useState, useEffect, forwardRef } from 'react';
+import React, {
+  useState,
+  useEffect,
+  forwardRef,
+  useCallback,
+  memo
+} from 'react';
 import cn from 'classnames';
 import type { ReactIconComponentType } from '@groww-tech/icon-store';
 import { MdsIcRemoveMinus, MdsIcAddPlus } from '@groww-tech/icon-store/mint-icons';
@@ -13,8 +19,6 @@ export type InputStepperProps = {
   onChange: (value: number) => void;
   dataTestId?: string;
   width?: string;
-  prefixIcon?: ReactIconComponentType;
-  prefixLabel?: string;
   error?: boolean;
   warning?: boolean;
   disabled?: boolean;
@@ -35,14 +39,40 @@ export type InputStepperProps = {
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
 };
 
+// Memoized stepper button component
+const StepperButton = memo(({
+  onClick,
+  Icon,
+  disabled,
+  dataTestId
+}: {
+  onClick: () => void;
+  Icon: ReactIconComponentType;
+  disabled: boolean;
+  dataTestId: string;
+}) => (
+  <div
+    className="valign-wrapper"
+    data-test-id={dataTestId}
+  >
+    <TempIconButtonV2
+      onClick={onClick}
+      Icon={Icon}
+      disabled={disabled}
+      size="small"
+      dataTestId={`${dataTestId}-button`}
+    />
+  </div>
+));
+
+StepperButton.displayName = 'StepperButton';
+
 const InputStepper = forwardRef<HTMLInputElement, InputStepperProps>(({
   placeholder,
   value,
   onChange,
   dataTestId,
   width = '128px',
-  prefixIcon,
-  prefixLabel,
   error = false,
   warning = false,
   disabled = false,
@@ -65,65 +95,36 @@ const InputStepper = forwardRef<HTMLInputElement, InputStepperProps>(({
   const [ isFocused, setIsFocused ] = useState(false);
   const [ inputValue, setInputValue ] = useState(value.toString());
 
-  // Update inputValue when value prop changes.
+  // Update inputValue when value prop changes
   useEffect(() => {
     setInputValue(value.toString());
   }, [ value ]);
 
-  // Focus on mount only if a parent ref is provided and it's a mutable ref object.
+  // Focus on mount if needed
   useEffect(() => {
     if (shouldFocusOnMount && ref && typeof ref !== 'function' && ref.current) {
       ref.current.focus();
     }
   }, [ shouldFocusOnMount, ref ]);
 
-  const inputClasses = cn('inputStepper-input width100 center-align', {
-    contentDisabled: disabled
-  });
-
-  const inputWrapperClasses = cn('inputStepper-inputWrapper');
-
-  const inputContentClasses = cn(
-    `inputStepper-inputContent pos-rel flex ${textStyle} ${textColor} borderPrimary`,
-    {
-      [backgroundColor]: !disabled,
-      'inputStepper-inputBorderNegative': error,
-      'inputStepper-inputBorderWarning': warning,
-      'inputStepper-inputPrefix': prefixIcon || prefixLabel,
-      'inputStepper-inputFocused': isFocused && !disabled && !error,
-      'backgroundSecondary contentSecondary': disabled,
-      contentDisabled: disabled
-    }
-  );
-
-
-  const handleWheel = (e: React.WheelEvent<HTMLInputElement>) => {
+  // Memoized event handlers
+  const handleWheel = useCallback((e: React.WheelEvent<HTMLInputElement>) => {
     e.currentTarget.blur();
-  };
+  }, []);
 
-
-  const handleCopyPaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
-    if (disableCopyPaste) {
-      e.preventDefault();
-    }
-  };
-
-
-  const handleMinus = () => {
+  const handleMinus = useCallback(() => {
     if (value > min && !disabled) {
       onChange(value - step);
     }
-  };
+  }, [ value, min, disabled, onChange, step ]);
 
-
-  const handlePlus = () => {
+  const handlePlus = useCallback(() => {
     if (value < max && !disabled) {
       onChange(value + step);
     }
-  };
+  }, [ value, max, disabled, onChange, step ]);
 
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     if (!typeable) return;
     const newValue = e.target.value;
 
@@ -139,11 +140,11 @@ const InputStepper = forwardRef<HTMLInputElement, InputStepperProps>(({
         onChange(numValue);
       }
     }
-  };
+  }, [ typeable, min, max, onChange ]);
 
-
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+  const handleBlur = useCallback((e: React.FocusEvent<HTMLInputElement>) => {
     setIsFocused(false);
+
     if (inputValue === '') {
       setInputValue('0');
       onChange(0);
@@ -155,35 +156,77 @@ const InputStepper = forwardRef<HTMLInputElement, InputStepperProps>(({
       onChange(numValue);
     }
 
-    onBlur && onBlur(e);
+    onBlur?.(e);
+  }, [ inputValue, onChange, onBlur ]);
 
-  };
-
-
-  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+  const handleFocus = useCallback((e: React.FocusEvent<HTMLInputElement>) => {
     setIsFocused(true);
-    onFocus && onFocus(e);
+    onFocus?.(e);
+  }, [ onFocus ]);
 
-  };
+  const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
+    // Only block decimal point when disableDecimal is true
+    if (disableDecimal && e.key === '.') {
+      e.preventDefault();
+      return;
+    }
 
+    // Allow navigation/control keys
+    const allowedKeys = [ 'Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab', 'Enter', 'Home', 'End' ];
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    // Block keys that aren't digits, a period, or in the allowed keys list
+    if (!/^[0-9]$/.test(e.key) && e.key !== '.' && !allowedKeys.includes(e.key)) {
+      e.preventDefault();
+      return;
+    }
+
     if (e.key === 'Enter' && onEnterPress) {
       onEnterPress(e);
     }
 
-    if (disableDecimal && e.key === '.') {
-      e.preventDefault();
+    onKeyDown?.(e);
+  }, [ onEnterPress, disableDecimal, onKeyDown ]);
+
+  const handleKeyUp = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'ArrowUp') {
+      if (value < max && !disabled) {
+        onChange(value + step);
+      }
+
+    } else if (e.key === 'ArrowDown') {
+      if (value > min && !disabled) {
+        onChange(value - step);
+      }
     }
 
-    if (onKeyDown) {
-      onKeyDown(e);
+    onKeyUp?.(e);
+  }, [ value, max, min, disabled, onChange, step, onKeyUp ]);
+  const handleCopyPaste = useCallback((e: React.ClipboardEvent<HTMLInputElement>) => {
+    if (disableCopyPaste) {
+      e.preventDefault();
     }
-  };
+  }, [ disableCopyPaste ]);
+
+  // Memoized class names
+  const inputClasses = cn('inputStepper-input width100 center-align', {
+    contentDisabled: disabled
+  });
+
+  const inputContentClasses = cn(
+    `inputStepper-inputContent pos-rel flex ${textStyle} ${textColor} borderPrimary`,
+    {
+      [backgroundColor]: !disabled,
+      'inputStepper-inputBorderNegative': error,
+      'inputStepper-inputBorderWarning': warning,
+      'inputStepper-inputFocused': isFocused && !disabled && !error,
+      'backgroundSecondary contentSecondary': disabled,
+      contentDisabled: disabled
+    }
+  );
 
   return (
     <div
-      className={inputWrapperClasses}
+      className="inputStepper-inputWrapper"
       style={{ width }}
       data-test-id={`${dataTestId}-container`}
     >
@@ -191,54 +234,17 @@ const InputStepper = forwardRef<HTMLInputElement, InputStepperProps>(({
         className={inputContentClasses}
         data-test-id={`${dataTestId}-content`}
       >
-        <div
-          className="valign-wrapper"
-          data-test-id={`${dataTestId}-minus-container`}
-        >
-          <TempIconButtonV2
-            onClick={handleMinus}
-            Icon={MdsIcRemoveMinus}
-            disabled={disabled || value <= min}
-            size="small"
-            dataTestId={`${dataTestId}-minus-button`}
-          />
-        </div>
-
-        {
-          (prefixIcon || prefixLabel) && (
-            <div
-              className="inputStepper-prefixWrapper"
-              data-test-id={`${dataTestId}-prefix-container`}
-            >
-              {
-                prefixIcon && (
-                  <div
-                    className="inputStepper-prefixIcon"
-                    data-test-id={`${dataTestId}-prefix-icon`}
-                  >
-                    {prefixIcon}
-                  </div>
-                )
-              }
-              {
-                prefixLabel && (
-                  <div
-                    className="inputStepper-prefixLabel"
-                    data-test-id={`${dataTestId}-prefix-label`}
-                  >
-                    {prefixLabel}
-                  </div>
-                )
-              }
-            </div>
-          )
-        }
+        <StepperButton
+          onClick={handleMinus}
+          Icon={MdsIcRemoveMinus}
+          disabled={disabled || value <= min}
+          dataTestId={`${dataTestId}-minus-container`}
+        />
 
         <input
           className={`${inputClasses} ${backgroundColor} ${textStyle} ${textColor}`}
           type="text"
           inputMode="numeric"
-          pattern="[0-9]*"
           placeholder={placeholder}
           value={inputValue}
           onChange={handleChange}
@@ -250,27 +256,21 @@ const InputStepper = forwardRef<HTMLInputElement, InputStepperProps>(({
           onWheel={handleWheel}
           readOnly={!typeable}
           onKeyDown={handleKeyDown}
-          onKeyUp={onKeyUp}
+          onKeyUp={handleKeyUp}
           onCopy={handleCopyPaste}
           onCut={handleCopyPaste}
           onPaste={handleCopyPaste}
         />
 
-        <div
-          className="valign-wrapper"
-          data-test-id={`${dataTestId}-plus-container`}
-        >
-          <TempIconButtonV2
-            onClick={handlePlus}
-            Icon={MdsIcAddPlus}
-            disabled={disabled || value >= max}
-            size="small"
-            dataTestId={`${dataTestId}-plus-button`}
-          />
-        </div>
+        <StepperButton
+          onClick={handlePlus}
+          Icon={MdsIcAddPlus}
+          disabled={disabled || value >= max}
+          dataTestId={`${dataTestId}-plus-container`}
+        />
       </div>
     </div>
   );
 });
 
-export default InputStepper;
+export default memo(InputStepper);
