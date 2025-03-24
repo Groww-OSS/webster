@@ -315,6 +315,11 @@ module.exports = {
         property: "border",
         tokens: "{semanticTokens.groww-primary.border}",
       },
+      content:{
+        prefix: "content",
+        property: "color",
+        tokens: "{semanticTokens.groww-primary.content}",
+      },
       interactionState: {
         prefix: "background",
         property: "background-color",
