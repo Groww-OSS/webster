@@ -128,7 +128,7 @@ const DataRowInput = forwardRef<HTMLInputElement, DataRowInputProps>(({
     }
 
     // Allow navigation/control keys (backspace, delete, arrows, etc.)
-    const allowedKeys = [ 'Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab', 'Enter', 'Home', 'End' ];
+    const allowedKeys = [ 'Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Tab', 'Enter', 'Home', 'End' ];
 
     // If it's not a digit, not a period, and not in the allowed keys list, block it
     if (!/^[0-9]$/.test(e.key) && e.key !== '.' && !allowedKeys.includes(e.key)) {

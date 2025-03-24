@@ -292,6 +292,10 @@ const FreeFormInput = forwardRef<HTMLInputElement, FreeFormInputProps>(({
       return;
     }
 
+    if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+      e.preventDefault();
+    }
+
     // For number variant, only prevent non-numeric input with exceptions for navigation keys
     if (variant === 'number') {
       const allowedKeys = [ 'Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab', 'Enter', 'Home', 'End', '.' ];

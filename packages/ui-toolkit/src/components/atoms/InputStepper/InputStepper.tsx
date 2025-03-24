@@ -171,8 +171,12 @@ const InputStepper = forwardRef<HTMLInputElement, InputStepperProps>(({
       return;
     }
 
+    if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+      e.preventDefault();
+    }
+
     // Allow navigation/control keys
-    const allowedKeys = [ 'Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab', 'Enter', 'Home', 'End' ];
+    const allowedKeys = [ 'Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Tab', 'Enter', 'Home', 'End' ];
 
     // Block keys that aren't digits, a period, or in the allowed keys list
     if (!/^[0-9]$/.test(e.key) && e.key !== '.' && !allowedKeys.includes(e.key)) {
