@@ -87,3 +87,11 @@ select,
 textarea {
   font-family: inherit;
 }
+
+html.color-theme-in-transition,
+html.color-theme-in-transition *,
+html.color-theme-in-transition *::before,
+html.color-theme-in-transition *::after {
+  transition: all 300ms !important;
+  transition-delay: 0 !important;
+}
