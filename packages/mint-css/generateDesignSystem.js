@@ -1,8 +1,3 @@
-// generate.js
-// A dependency-free Node.js script that reads designSystemConfig.js and generates
-// a folder structure with CSS, TypeScript types, and names files.
-// Folder and variable names are driven entirely by the config and follow kebab-case conventions.
-
 const fs = require('fs');
 const path = require('path');
 const config = require('./designSystemConfig');
