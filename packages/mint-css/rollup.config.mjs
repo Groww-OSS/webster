@@ -58,7 +58,8 @@ export default [
       copy({
         targets: [
           { src: './typography/fonts/*.woff2', dest: 'dist' },
-          { src: './theme/types', dest: 'dist' }, // Copy theme/types to dist
+          { src: './theme/types', dest: 'dist' },  // Copy theme/types to dist
+          { src: './theme/names', dest: 'dist' },  // Copy theme/names to dist
         ],
         after: [
           {
