@@ -54,7 +54,7 @@ const Button = (props: Props) => {
   const secondaryButtonClasses = cn('mint-btn-secondary', {
     'mint-btn-secondary-default': !isAccent,
     'mint-btn-secondary-accent backgroundAccentSubtle': (isAccent && !isDisabled) || (isAccent && isDisabled && isLoading),
-    'mint-btn-secondary-default-border': !isAccent
+    'mint-btn-secondary-default-border': !isAccent && !isDisabled
   });
 
   const tertiaryButtonClasses = cn('mint-btn-tertiary', {
@@ -93,7 +93,7 @@ const Button = (props: Props) => {
       'mint-btn-full-width': isFullWidth,
       'mint-btn-loader': isLoading,
       'mint-btn-compact': variant === VARIANTS.TERTIARY && isCompact,
-      'mint-btn-disabled': isDisabled && !isLoading
+      'mint-btn-disabled backgroundDisabled': isDisabled && !isLoading
     });
 
 
