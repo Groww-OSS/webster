@@ -18,6 +18,6 @@
 @import './tokens/data-viz/content-tokens-data-viz.css';
 
 /* Variables */
-@import './variables/';
+@import './variables/index.css';
 
 @import './variables/data-viz.variables.css';
