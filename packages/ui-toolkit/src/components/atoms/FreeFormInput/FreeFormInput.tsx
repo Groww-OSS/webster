@@ -22,7 +22,7 @@ type PrefixSectionProps = {
   PrefixIcon?: ReactIconComponentType;
   prefixLabel?: string;
   prefixIconColor: ContentMintTokens;
-  perfixTextColor: ContentMintTokens;
+  prefixTextColor: ContentMintTokens;
   prefixTextStyle: 'bodyBase' | 'bodyBaseHeavy';
   dataTestId?: string;
 };
@@ -31,7 +31,7 @@ const PrefixSection = memo<PrefixSectionProps>(({
   PrefixIcon,
   prefixLabel,
   prefixIconColor,
-  perfixTextColor,
+  prefixTextColor,
   prefixTextStyle,
   dataTestId
 }) => {
@@ -53,7 +53,7 @@ const PrefixSection = memo<PrefixSectionProps>(({
       {
         prefixLabel && (
           <div
-            className={`freeform-inputPrefixLabel ${perfixTextColor} ${prefixTextStyle}`}
+            className={`freeform-inputPrefixLabel ${prefixTextColor} ${prefixTextStyle}`}
             data-test-id={`${dataTestId}-prefix-label`}
           >
             {prefixLabel}
@@ -196,7 +196,7 @@ export type FreeFormInputProps = {
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   autoComplete?: string;
   onKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
-  perfixTextColor?: ContentMintTokens;
+  prefixTextColor?: ContentMintTokens;
   prefixTextStyle?: 'bodyBase' | 'bodyBaseHeavy';
   onEnterPress?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   disableCopyPaste?: boolean;
@@ -233,7 +233,7 @@ const FreeFormInput = forwardRef<HTMLInputElement, FreeFormInputProps>(({
   onKeyDown,
   autoComplete,
   onKeyUp,
-  perfixTextColor = 'contentSecondary',
+  prefixTextColor = 'contentSecondary',
   prefixTextStyle = 'bodyBase',
   onEnterPress,
   disableCopyPaste = false,
@@ -352,7 +352,7 @@ const FreeFormInput = forwardRef<HTMLInputElement, FreeFormInputProps>(({
           PrefixIcon={PrefixIcon}
           prefixLabel={prefixLabel}
           prefixIconColor={prefixIconColor}
-          perfixTextColor={perfixTextColor}
+          prefixTextColor={prefixTextColor}
           prefixTextStyle={prefixTextStyle}
           dataTestId={dataTestId}
         />
