@@ -402,8 +402,8 @@ importers:
         specifier: 1.4.6
         version: 1.4.6(react-dom@18.0.0(react@18.0.0))(react@18.0.0)
       '@groww-tech/mint-css':
-        specifier: 0.2.8
-        version: 0.2.8(postcss@8.4.21)
+        specifier: 0.2.9
+        version: 0.2.9(postcss@8.4.21)
       flat-carousel:
         specifier: 0.0.1
         version: 0.0.1
@@ -1478,8 +1478,8 @@ packages:
   '@groww-tech/mint-css@0.0.6':
     resolution: {integrity: sha512-ZIWslLwF9vJw4K1bfJh08Hu9hzKexhEYHnydPr7oVZ/H98bIQqLwVz6zG9YZ3CNKWHPBX9/uuWWS/4KNul5xWw==}
 
-  '@groww-tech/mint-css@0.2.8':
-    resolution: {integrity: sha512-2SAKBSXcN9KLGVbeQcqOTQmO4XQWF4vQKBauzIxZLzGXKfhIN1qCYayjZAJQnqYUpGlvALFMa0p/I3OFAyiyKQ==}
+  '@groww-tech/mint-css@0.2.9':
+    resolution: {integrity: sha512-FdmSyV3wWICYzU8kcojhaB3vcKTSAz30hSiv3KqQ6v5bbpBxyQ8eagnkdBeiHO/sMl1I9yI9uPbSBq1OsM0Byw==}
 
   '@groww-tech/tsconfig@1.0.2':
     resolution: {integrity: sha512-UkF7nUcPWof2HKiIpBAJ/r4CRUIZ9eadrQfFzEj+c9k/ex7GIPFJn5eHaLiQuEPUi9ZJ30Vih4Y2SOPlV11dww==}
@@ -8303,7 +8303,7 @@ snapshots:
 
   '@groww-tech/mint-css@0.0.6': {}
 
-  '@groww-tech/mint-css@0.2.8(postcss@8.4.21)':
+  '@groww-tech/mint-css@0.2.9(postcss@8.4.21)':
     dependencies:
       postcss-url: 10.1.3(postcss@8.4.21)
     transitivePeerDependencies:
