@@ -85,3 +85,7 @@
 .backgroundAccentSecondarySubtle {
   background-color: var(--background-accent-secondary-subtle);
 }
+
+.backgroundDisabled{
+  background-color: var(--background-disabled);
+}
