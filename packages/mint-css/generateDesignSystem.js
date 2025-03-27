@@ -31,7 +31,8 @@ function resolveReference(value) {
 }
 
 // Generates CSS for primitives (colors) with light and dark themes.
-function generatePrimitiveCSS(colors) {
+// If groupAppend is true, wraps selectors with the group name.
+function generatePrimitiveCSS(colors, groupAppend, groupName) {
   let lightCSS = '';
   let darkCSS = '';
   for (const [tokenName, tokenValue] of Object.entries(colors)) {
@@ -48,13 +49,19 @@ function generatePrimitiveCSS(colors) {
       darkCSS += `  ${cssVarName}: ${value};\n`;
     }
   }
-  return `html {\n${lightCSS}}\n\nhtml[data-theme="dark"] {\n${darkCSS}}\n`;
+  if (groupAppend) {
+    // Append group name as a class on the html element.
+    return `html.${groupName} {\n${lightCSS}}\n\nhtml[data-theme="dark"].${groupName} {\n${darkCSS}}\n`;
+  } else {
+    return `html {\n${lightCSS}}\n\nhtml[data-theme="dark"] {\n${darkCSS}}\n`;
+  }
 }
 
 // Generates CSS for semantic tokens.
 // Each token generates a CSS variable named "--[category]-[token-name]".
 // If a token is provided as a single string, it is used for both light and dark themes.
-function generateTokenCSS(category, tokens) {
+// If groupAppend is true, wraps selectors with the group name.
+function generateTokenCSS(category, tokens, groupAppend, groupName) {
   let lightCSS = '';
   let darkCSS = '';
   for (const [tokenName, tokenValue] of Object.entries(tokens)) {
@@ -78,7 +85,11 @@ function generateTokenCSS(category, tokens) {
       darkCSS += `  ${cssVarName}: ${value};\n`;
     }
   }
-  return `html {\n${lightCSS}}\n\nhtml[data-theme="dark"] {\n${darkCSS}}\n`;
+  if (groupAppend) {
+    return `html.${groupName} {\n${lightCSS}}\n\nhtml[data-theme="dark"].${groupName} {\n${darkCSS}}\n`;
+  } else {
+    return `html {\n${lightCSS}}\n\nhtml[data-theme="dark"] {\n${darkCSS}}\n`;
+  }
 }
 
 // Generates CSS for utility classes.
@@ -193,11 +204,17 @@ const aggregatedUtilsByCategory = {};
 
 // ---------- Process Primitives ----------
 for (const group in config.primitives) {
-  const groupData = config.primitives[group]; // e.g., { colors: { ... } }
+  const groupData = config.primitives[group]; // e.g., { colors: { ... }, appendToHtml: true }
   let aggregatedTokens = [];
+  // Determine if we need to append group name in the CSS selectors.
+  const groupAppend = !!groupData.appendToHtml;
+  // Use the group name in lower-case.
+  const groupName = toKebabCase(group);
   for (const category in groupData) {
+    // Skip the "appendToHtml" property if present.
+    if (category === 'appendToHtml') continue;
     const tokens = groupData[category];
-    const cssContent = generatePrimitiveCSS(tokens);
+    const cssContent = generatePrimitiveCSS(tokens, groupAppend, groupName);
     const categoryFolder = toKebabCase(category);
     const cssDir = path.join(distDir, 'css', categoryFolderMap.primitives, toKebabCase(group));
     ensureDir(cssDir);
@@ -235,9 +252,13 @@ for (const group in config.primitives) {
 for (const group in config.semanticTokens) {
   const groupData = config.semanticTokens[group]; // e.g., { background: { ... }, border: { ... }, ... }
   let aggregatedTokens = [];
+  // Determine if we need to append group name in the CSS selectors.
+  // We check if the corresponding primitives group has appendToHtml set.
+  const groupAppend = !!(config.primitives[group] && config.primitives[group].appendToHtml);
+  const groupName = toKebabCase(group);
   for (const tokenCategory in groupData) {
     const tokens = groupData[tokenCategory];
-    const cssContent = generateTokenCSS(tokenCategory, tokens);
+    const cssContent = generateTokenCSS(tokenCategory, tokens, groupAppend, groupName);
     const categoryFolder = toKebabCase(tokenCategory);
     const cssDir = path.join(distDir, 'css', categoryFolderMap.semanticTokens, toKebabCase(group));
     ensureDir(cssDir);

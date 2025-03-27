@@ -106,10 +106,17 @@ module.exports = {
         tempNbtRed: { light: "#ffc7bb", dark: "#c85d0f" },
       },
     },
+    // For the "wealth" group, appendToHtml is set to true.
+    "wealth": {
+      appendToHtml: true,
+      colors: {
+        gold: { light: "#FFD700", dark: "#FFD700" },
+        silver: { light: "#C0C0C0", dark: "#C0C0C0" },
+      }
+    }
   },
   semanticTokens: {
     "groww-primary": {
-      // Extended mapping based on the provided CSS variables
       background: {
         primary: {
           light: "{groww-primary.colors.white}",
@@ -189,30 +196,23 @@ module.exports = {
         onWarningSubtle: "{groww-primary.colors.yellow11}",
       },
       bg: {
-        // Hover State
         transparentHover: "{groww-primary.colors.transparentHover}",
         accentHover: "{groww-primary.colors.accentHover}",
         accentSubtleHover: "{groww-primary.colors.accentSubtleHover}",
         transparentAccentHover: "{groww-primary.colors.transparentAccentHover}",
-    
         positiveHover: "{groww-primary.colors.positiveHover}",
         positiveSubtleHover: "{groww-primary.colors.positiveSubtleHover}",
         transparentPositiveHover: "{groww-primary.colors.transparentPositiveHover}",
-    
         negativeHover: "{groww-primary.colors.negativeHover}",
         negativeSubtleHover: "{groww-primary.colors.negativeSubtleHover}",
         transparentNegativeHover: "{groww-primary.colors.transparentNegativeHover}",
-    
-        // Selected State
         transparentSelected: "{groww-primary.colors.transparentSelected}",
         accentSelected: "{groww-primary.colors.accentSelected}",
         accentSubtleSelected: "{groww-primary.colors.accentSubtleSelected}",
         transparentAccentSelected: "{groww-primary.colors.transparentAccentSelected}",
-    
         positiveSelected: "{groww-primary.colors.positiveSelected}",
         positiveSubtleSelected: "{groww-primary.colors.positiveSubtleSelected}",
         transparentPositiveSelected: "{groww-primary.colors.transparentPositiveSelected}",
-    
         negativeSelected: "{groww-primary.colors.negativeSelected}",
         negativeSubtleSelected: "{groww-primary.colors.negativeSubtleSelected}",
         transparentNegativeSelected: "{groww-primary.colors.transparentNegativeSelected}",
@@ -291,7 +291,6 @@ module.exports = {
         dataVizGrey: "{data-viz.colors.dataVizGrey}",
         dataVizGreySubtle: "{data-viz.colors.dataVizGreySubtle}",
       },
-    
     },
     temporary: {
       background: {
@@ -300,6 +299,13 @@ module.exports = {
         tempNbtYellow: "{temporary.colors.tempNbtYellow}",
         tempNbtGray: "{temporary.colors.tempNbtGray}",
         tempNbtRed: "{temporary.colors.tempNbtRed}",
+      },
+    },
+    "wealth": {
+      appendToHtml: true,
+      background: {
+        primary: "{wealth.colors.gold}",
+        secondary: "{wealth.colors.silver}",
       },
     },
   },
@@ -349,6 +355,14 @@ module.exports = {
         prefix: "background",
         property: "background-color",
         tokens: "{semanticTokens.temporary.background}",
+      },
+      
+      },
+    wealth: {
+      background: {
+        prefix: "background",
+        property: "background-color",
+        tokens: "{semanticTokens.wealth.background}",
       },
     },
   },
