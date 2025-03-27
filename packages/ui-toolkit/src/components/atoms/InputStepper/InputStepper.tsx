@@ -13,6 +13,9 @@ import { ContentMintTokens } from '../../../types/mint-token-types/content-mint-
 import { BackgroundMintTokens } from '../../../types/mint-token-types/background-mint-tokens';
 import './styles/index.css';
 
+    // Allow navigation/control keys
+const allowedKeys = [ 'Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Tab', 'Enter', 'Home', 'End' ];
+
 export type InputStepperProps = {
   placeholder?: string;
   value: number;
@@ -175,8 +178,6 @@ const InputStepper = forwardRef<HTMLInputElement, InputStepperProps>(({
       e.preventDefault();
     }
 
-    // Allow navigation/control keys
-    const allowedKeys = [ 'Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Tab', 'Enter', 'Home', 'End' ];
 
     // Block keys that aren't digits, a period, or in the allowed keys list
     if (!/^[0-9]$/.test(e.key) && e.key !== '.' && !allowedKeys.includes(e.key)) {

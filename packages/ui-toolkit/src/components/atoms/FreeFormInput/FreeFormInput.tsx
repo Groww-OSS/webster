@@ -17,6 +17,8 @@ import type { ReactIconComponentType } from '@groww-tech/icon-store';
 import { ContentMintTokens } from '../../../types/mint-token-types/content-mint-tokens';
 import './styles/index.css';
 
+const allowedKeys = [ 'Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab', 'Enter', 'Home', 'End', '.' ];
+
 
 type PrefixSectionProps = {
   PrefixIcon?: ReactIconComponentType;
@@ -298,7 +300,6 @@ const FreeFormInput = forwardRef<HTMLInputElement, FreeFormInputProps>(({
 
     // For number variant, only prevent non-numeric input with exceptions for navigation keys
     if (variant === 'number') {
-      const allowedKeys = [ 'Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab', 'Enter', 'Home', 'End', '.' ];
 
       if (!/^[0-9]$/.test(e.key) && !allowedKeys.includes(e.key)) {
         e.preventDefault();

@@ -11,6 +11,10 @@ import { BackgroundMintTokens } from '../../../types/mint-token-types/background
 import { BorderMintTokens } from '../../../types/mint-token-types/border-mint-tokens';
 import './styles/index.css';
 
+// Allow navigation/control keys (backspace, delete, arrows, etc.)
+const allowedKeys = [ 'Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Tab', 'Enter', 'Home', 'End' ];
+
+
 export type DataRowInputProps = {
   placeholder?: string;
   value: string;
@@ -127,8 +131,6 @@ const DataRowInput = forwardRef<HTMLInputElement, DataRowInputProps>(({
       return;
     }
 
-    // Allow navigation/control keys (backspace, delete, arrows, etc.)
-    const allowedKeys = [ 'Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Tab', 'Enter', 'Home', 'End' ];
 
     // If it's not a digit, not a period, and not in the allowed keys list, block it
     if (!/^[0-9]$/.test(e.key) && e.key !== '.' && !allowedKeys.includes(e.key)) {
