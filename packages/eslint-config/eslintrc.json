@@ -1,6 +1,8 @@
 {
   "parser": "@typescript-eslint/parser",
   "extends": [
+    "airbnb",
+    "prettier",
     "plugin:import/errors",
     "plugin:react-hooks/recommended"
   ],
