@@ -28,6 +28,13 @@
   "rules": {
     "import/no-duplicates": "warn",
     "react-hooks/exhaustive-deps": "warn",
+    "@groww-tech/internal/no-primitive-color-variables": "error",
+    "@groww-tech/internal/no-redeclare-mint-tokens": "error",
+    "@groww-tech/internal/no-redeclare-mint-utils": "error",
+    "quotes": [
+      "warn",
+      "single"
+    ],
     "react/jsx-uses-react": "warn",
     "react/jsx-uses-vars": "warn",
     "react/jsx-key": 1,
