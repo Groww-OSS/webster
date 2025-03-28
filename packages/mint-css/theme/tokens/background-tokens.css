@@ -16,6 +16,13 @@ html {
   --background-always-dark: var(--black);
   --background-always-light: var(--white);
 
+  /***
+  * This token is mapped with temporary token
+  * will be replaced with semantic tokens after the new token palette is integrated 
+  ***/
+
+  --background-disabled: var(--temp-neutrals-02);
+
   /* Extended Tokens */
   --background-accent: var(--green500);
   --background-positive: var(--green500);
@@ -36,4 +43,11 @@ html[data-theme="dark"] {
   --background-surface-primary: var(--gray50);
   --background-surface-secondary: var(--gray100);
   --background-inverse-primary: var(--white);
+
+  /***
+  * This token is mapped with temporary token
+  * will be replaced with semantic tokens after the new token palette is integrated 
+  ***/
+  
+  --background-disabled: var(--temp-neutrals-02);
 }

@@ -58,6 +58,13 @@ html {
   --tempNbtBlue: #d6eeff;
   --tempNbtGray: #f0f0f2;
   --tempNbtRed: #ffc7bb;
+
+  /***
+  * Temporary Tokens
+  * will be replaced with semantic tokens after the new token palette is integrated 
+  ***/
+  
+  --temp-neutrals-02: #F8F8F8
 }
 
 html[data-theme="dark"] {
@@ -149,5 +156,12 @@ html[data-theme="dark"] {
   --bg-negative-selected: #C95036;
   --bg-negative-subtle-selected: #4A2018;
   --bg-transparent-negative-selected: #D554380F;
+
+   /***
+  * Temporary Tokens
+  * will be replaced with semantic tokens after the new token palette is integrated 
+  ***/
+  
+  --temp-neutrals-02: #1B1B1B;
 
 }
