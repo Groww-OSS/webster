@@ -16,11 +16,13 @@ const BaseNumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>((pr
     step = 1,
     allowSpecialCharacters = false,
     disableDecimal = false,
-    onKeyDown = () => { },
+    onKeyDown = () => {},
     variant = 'default',
-    className = ''
+    className = '',
+    size,
+    disableScroll = true,
+    ...rest
   } = props;
-  const { size, disableScroll = true, ...rest } = props;
 
   const numberValue = Number(value);
 
