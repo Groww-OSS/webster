@@ -110,9 +110,19 @@ module.exports = {
     "wealth": {
       appendToHtml: true,
       colors: {
-        gold: { light: "#FFD700", dark: "#FFD700" },
-        silver: { light: "#C0C0C0", dark: "#C0C0C0" },
-      }
+        hueGold_1: { light: "#FEFDFB", dark: "#090705" },
+        hueGold_2: { light: "#FEF5E3", dark: "#241F16" },
+        hueGold_3: { light: "#FEF1D6", dark: "#262117" },
+        hueGold_4: { light: "#FBE8C1", dark: "#30291B" },
+        hueGold_5: { light: "#F6DEAB", dark: "#30291B" },
+        hueGold_6: { light: "#EAD19D", dark: "#4A3D21" },
+        hueGold_7: { light: "#DBC28D", dark: "#5E4C25" },
+        hueGold_8: { light: "#CAAB68", dark: "#7A612A" },
+        hueGold_9: { light: "#C7A865", dark: "#C7A865" },
+        hueGold_10: { light: "#C09C4A", dark: "#BC9D5A" },
+        hueGold_11: { light: "#856926", dark: "#D8B875" },
+        hueGold_12: { light: "#252017", dark: "#F5E3BD" },
+      },
     }
   },
   semanticTokens: {
@@ -304,8 +314,16 @@ module.exports = {
     "wealth": {
       appendToHtml: true,
       background: {
-        primary: "{wealth.colors.gold}",
-        secondary: "{wealth.colors.silver}",
+       accent: "{wealth.colors.hueGold_9}",
+       accentSubtle: "{wealth.colors.hueGold_2}",
+      },
+      border: {
+        accent: "{wealth.colors.hueGold_9}",
+        accentSubtle: "{wealth.colors.hueGold_2}",
+      },
+      content: {
+        accent: "{wealth.colors.hueGold_9}",
+        accentSubtle: "{wealth.colors.hueGold_2}",
       },
     },
   },
