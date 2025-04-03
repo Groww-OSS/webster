@@ -1,15 +1,13 @@
 {
   "parser": "@typescript-eslint/parser",
   "extends": [
-    "airbnb",
-    "prettier",
     "plugin:import/errors",
-    "plugin:react-hooks/recommended"
+    "plugin:react-hooks/recommended",
+    "prettier"
   ],
   "plugins": [
     "react",
     "react-hooks",
-    "@typescript-eslint",
     "@groww-tech/eslint-plugin-internal"
   ],
   "parserOptions": {
@@ -38,14 +36,6 @@
     "react/jsx-uses-react": "warn",
     "react/jsx-uses-vars": "warn",
     "react/jsx-key": 1,
-    "@typescript-eslint/no-use-before-define": [
-      "warn",
-      {
-        "functions": false,
-        "classes": false,
-        "variables": false
-      }
-    ],
     "no-var": "warn",
     "no-unused-vars": [
       "warn",
