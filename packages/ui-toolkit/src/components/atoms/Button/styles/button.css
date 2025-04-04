@@ -55,7 +55,6 @@
 .mint-btn-disabled{
   cursor: default;
   pointer-events: none;
-  background-color: var(--border-primary);
 }
 
 .mint-btn-disabled.mint-btn-tertiary-disabled{
