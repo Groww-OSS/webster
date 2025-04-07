@@ -17,40 +17,47 @@ function toPascalCase(str) {
     .join('');
 }
 
-// If a value is a reference string like "{group.colors.tokenName}",
-// this function returns a CSS variable call pointing to that token.
-function resolveReference(value) {
-  const match = value.match(/^\{([^}]+)\}$/);
-  if (match) {
-    const parts = match[1].split('.');
-    // The referenced token name will be the last part, converted to kebab-case.
-    const refName = toKebabCase(parts[parts.length - 1]);
-    return `var(--${refName})`;
+// Build a reverse lookup map for primitives (by object reference)
+const primitiveRefMap = new Map();
+// Also build maps for literal color values for light and dark themes.
+const primitiveLightLiteralMap = new Map();
+const primitiveDarkLiteralMap = new Map();
+
+for (const group in config.primitives) {
+  const groupData = config.primitives[group];
+  for (const category in groupData) {
+    if (category === 'appendToHtml') continue;
+    const tokens = groupData[category];
+    for (const tokenName in tokens) {
+      const tokenObj = tokens[tokenName];
+      // Map by object reference
+      primitiveRefMap.set(tokenObj, toKebabCase(tokenName));
+      // Map literal values if available
+      if (tokenObj.light && typeof tokenObj.light === 'string') {
+        primitiveLightLiteralMap.set(tokenObj.light, toKebabCase(tokenName));
+      }
+      if (tokenObj.dark && typeof tokenObj.dark === 'string') {
+        primitiveDarkLiteralMap.set(tokenObj.dark, toKebabCase(tokenName));
+      }
+    }
   }
-  return value;
 }
 
 // Generates CSS for primitives (colors) with light and dark themes.
-// If groupAppend is true, wraps selectors with the group name.
 function generatePrimitiveCSS(colors, groupAppend, groupName) {
   let lightCSS = '';
   let darkCSS = '';
   for (const [tokenName, tokenValue] of Object.entries(colors)) {
     const cssVarName = `--${toKebabCase(tokenName)}`;
-    if (typeof tokenValue === 'object' && tokenValue.light && tokenValue.dark) {
+    if (tokenValue && tokenValue.light && tokenValue.dark) {
       lightCSS += `  ${cssVarName}: ${tokenValue.light};\n`;
       darkCSS += `  ${cssVarName}: ${tokenValue.dark};\n`;
     } else {
-      // If only a single value is provided, use it for both light and dark themes.
-      const value = typeof tokenValue === 'string'
-        ? resolveReference(tokenValue)
-        : tokenValue;
-      lightCSS += `  ${cssVarName}: ${value};\n`;
-      darkCSS += `  ${cssVarName}: ${value};\n`;
+      lightCSS += `  ${cssVarName}: ${tokenValue};\n`;
+      darkCSS += `  ${cssVarName}: ${tokenValue};\n`;
     }
   }
   if (groupAppend) {
-    // Append group name as a class on the html element.
     return `html.${groupName} {\n${lightCSS}}\n\nhtml[data-theme="dark"].${groupName} {\n${darkCSS}}\n`;
   } else {
     return `html {\n${lightCSS}}\n\nhtml[data-theme="dark"] {\n${darkCSS}}\n`;
@@ -58,32 +65,42 @@ function generatePrimitiveCSS(colors, groupAppend, groupName) {
 }
 
 // Generates CSS for semantic tokens.
-// Each token generates a CSS variable named "--[category]-[token-name]".
-// If a token is provided as a single string, it is used for both light and dark themes.
-// If groupAppend is true, wraps selectors with the group name.
+// Every value is resolved as a CSS variable reference if it matches a primitive.
 function generateTokenCSS(category, tokens, groupAppend, groupName) {
   let lightCSS = '';
   let darkCSS = '';
   for (const [tokenName, tokenValue] of Object.entries(tokens)) {
-    // Ensure keys (even if camelCase) are converted to kebab-case.
     const cssVarName = `--${toKebabCase(category)}-${toKebabCase(tokenName)}`;
-    if (typeof tokenValue === 'object' && tokenValue.light && tokenValue.dark) {
-      const lightVal = typeof tokenValue.light === 'string'
-        ? resolveReference(tokenValue.light)
-        : tokenValue.light;
-      const darkVal = typeof tokenValue.dark === 'string'
-        ? resolveReference(tokenValue.dark)
-        : tokenValue.dark;
-      lightCSS += `  ${cssVarName}: ${lightVal};\n`;
-      darkCSS += `  ${cssVarName}: ${darkVal};\n`;
+    let lightVal, darkVal;
+    if (tokenValue && tokenValue.light && tokenValue.dark) {
+      // Resolve light value: check if it's an object first…
+      if (typeof tokenValue.light === 'object' && primitiveRefMap.has(tokenValue.light)) {
+        lightVal = `var(--${primitiveRefMap.get(tokenValue.light)})`;
+      } else if (typeof tokenValue.light === 'string' && primitiveLightLiteralMap.has(tokenValue.light)) {
+        lightVal = `var(--${primitiveLightLiteralMap.get(tokenValue.light)})`;
+      } else {
+        lightVal = tokenValue.light;
+      }
+      // Resolve dark value similarly.
+      if (typeof tokenValue.dark === 'object' && primitiveRefMap.has(tokenValue.dark)) {
+        darkVal = `var(--${primitiveRefMap.get(tokenValue.dark)})`;
+      } else if (typeof tokenValue.dark === 'string' && primitiveDarkLiteralMap.has(tokenValue.dark)) {
+        darkVal = `var(--${primitiveDarkLiteralMap.get(tokenValue.dark)})`;
+      } else {
+        darkVal = tokenValue.dark;
+      }
     } else {
-      // Use the same value for both themes if a single value is provided.
-      const value = typeof tokenValue === 'string'
-        ? resolveReference(tokenValue)
-        : tokenValue;
-      lightCSS += `  ${cssVarName}: ${value};\n`;
-      darkCSS += `  ${cssVarName}: ${value};\n`;
+      // If tokenValue is a literal, try to resolve via maps.
+      if (typeof tokenValue === 'string' && primitiveLightLiteralMap.has(tokenValue)) {
+        lightVal = `var(--${primitiveLightLiteralMap.get(tokenValue)})`;
+        darkVal = `var(--${primitiveDarkLiteralMap.get(tokenValue)})`;
+      } else {
+        lightVal = tokenValue;
+        darkVal = tokenValue;
+      }
     }
+    lightCSS += `  ${cssVarName}: ${lightVal};\n`;
+    darkCSS += `  ${cssVarName}: ${darkVal};\n`;
   }
   if (groupAppend) {
     return `html.${groupName} {\n${lightCSS}}\n\nhtml[data-theme="dark"].${groupName} {\n${darkCSS}}\n`;
@@ -93,65 +110,17 @@ function generateTokenCSS(category, tokens, groupAppend, groupName) {
 }
 
 // Generates CSS for utility classes.
-// Each class is generated with the CSS property specified in the config (property is required).
-// Supports optional pseudo selectors.
-function generateUtilityClassesCSS(prefix, tokensInput, utilConfig = {}) {
-  // Determine if tokensInput is a reference string from semanticTokens.
-  let varPrefix = utilConfig.prefix; // default to the provided prefix
-  if (typeof tokensInput === 'string') {
-    const refMatch = tokensInput.match(/^\{([^}]+)\}$/);
-    if (refMatch) {
-      const refParts = refMatch[1].split('.');
-      if (refParts[0] === 'semanticTokens' && refParts.length >= 3) {
-        // Use the token category (third part) as the CSS variable prefix.
-        varPrefix = refParts[2];
-      }
-    }
-  }
-
-  // Resolve tokens if tokensInput is a reference string.
-  let tokensObj = tokensInput;
-  if (typeof tokensObj === 'string') {
-    const refMatch = tokensObj.match(/^\{([^}]+)\}$/);
-    if (refMatch) {
-      const refParts = refMatch[1].split('.');
-      if (refParts[0] === 'semanticTokens') {
-        const groupName = refParts[1];
-        const tokenCategory = refParts[2];
-        tokensObj = config.semanticTokens[groupName][tokenCategory];
-      } else if (refParts[0] === 'primitives') {
-        const groupName = refParts[1];
-        const tokenCategory = refParts[2];
-        tokensObj = config.primitives[groupName][tokenCategory];
-      } else {
-        // Fallback resolution
-        if (config.primitives[refParts[0]] && config.primitives[refParts[0]][refParts[1]]) {
-          tokensObj = config.primitives[refParts[0]][refParts[1]];
-        } else if (config.semanticTokens[refParts[0]] && config.semanticTokens[refParts[0]][refParts[1]]) {
-          tokensObj = config.semanticTokens[refParts[0]][refParts[1]];
-        }
-      }
-    }
-  }
-
-  // Always use the CSS property defined in the configuration.
+function generateUtilityClassesCSS(prefix, tokensObj, utilConfig = {}) {
   const property = utilConfig.property;
   if (!property) {
     throw new Error(`Utility config for prefix "${utilConfig.prefix}" requires a "property" field.`);
   }
-
-  // Optional pseudo-selector (e.g., :hover)
   const pseudo = utilConfig.pseudo || '';
-
   let css = '';
   for (const tokenKey in tokensObj) {
-    // Convert token key from camelCase (if applicable) to kebab-case.
     const tokenKebab = toKebabCase(tokenKey);
-    // Create a class name from the util prefix and token name (in PascalCase).
     const className = utilConfig.prefix + toPascalCase(tokenKebab);
-    // Build the CSS variable name from the resolved varPrefix (converted to kebab-case) and token name.
-    const cssVarName = `--${toKebabCase(varPrefix)}-${tokenKebab}`;
-    // Generate the CSS rule using the property from the config.
+    const cssVarName = `--${toKebabCase(utilConfig.prefix)}-${tokenKebab}`;
     if (property === 'border') {
       css += `.${className}${pseudo} { border: 1px solid var(${cssVarName}); }\n\n`;
     } else {
@@ -169,7 +138,6 @@ const outputTypes = [
   { name: 'names', base: path.join(distDir, 'names') }
 ];
 
-// Mapping of config categories to folder names (in kebab-case)
 const categoryFolderMap = {
   primitives: 'variables',
   semanticTokens: 'tokens',
@@ -183,7 +151,6 @@ function ensureDir(dir) {
   }
 }
 
-// Create base folder structure
 outputTypes.forEach(({ base }) => {
   ensureDir(base);
   Object.values(categoryFolderMap).forEach(sub => {
@@ -191,27 +158,19 @@ outputTypes.forEach(({ base }) => {
   });
 });
 
-// Global aggregated arrays for overall files
 let aggregatedPrimitivesAll = [];
 let aggregatedSemanticAll = [];
 let aggregatedUtilsAll = [];
-
-// Global aggregator for semantic tokens by category (e.g., background, border, etc.)
 const aggregatedSemanticByCategory = {};
-
-// Global aggregator for utility classes by category (e.g., background, border, etc.)
 const aggregatedUtilsByCategory = {};
 
 // ---------- Process Primitives ----------
 for (const group in config.primitives) {
-  const groupData = config.primitives[group]; // e.g., { colors: { ... }, appendToHtml: true }
+  const groupData = config.primitives[group];
   let aggregatedTokens = [];
-  // Determine if we need to append group name in the CSS selectors.
   const groupAppend = !!groupData.appendToHtml;
-  // Use the group name in lower-case.
   const groupName = toKebabCase(group);
   for (const category in groupData) {
-    // Skip the "appendToHtml" property if present.
     if (category === 'appendToHtml') continue;
     const tokens = groupData[category];
     const cssContent = generatePrimitiveCSS(tokens, groupAppend, groupName);
@@ -236,9 +195,7 @@ for (const group in config.primitives) {
     fs.writeFileSync(path.join(namesDir, `${categoryFolder}-names.js`), namesContent);
     console.log(`Generated names file for primitives group: ${group}, category: ${category}`);
   }
-  // Aggregated files for primitives in this group
   aggregatedTokens = Array.from(new Set(aggregatedTokens)).sort();
-  // Append to global aggregated primitives
   aggregatedPrimitivesAll = aggregatedPrimitivesAll.concat(aggregatedTokens);
   
   const aggTsContent = `// Auto-generated aggregated types for ${group} primitives\nexport const ${group.replace(/\W/g, '')}PrimitiveTokens = ${JSON.stringify(aggregatedTokens, null, 2)} as const;\nexport type ${group.replace(/\W/g, '')}PrimitiveToken = typeof ${group.replace(/\W/g, '')}PrimitiveTokens[number];\n`;
@@ -250,13 +207,13 @@ for (const group in config.primitives) {
 
 // ---------- Process Semantic Tokens ----------
 for (const group in config.semanticTokens) {
-  const groupData = config.semanticTokens[group]; // e.g., { background: { ... }, border: { ... }, ... }
+  const groupData = config.semanticTokens[group];
   let aggregatedTokens = [];
-  // Determine if we need to append group name in the CSS selectors.
-  // We check if the corresponding primitives group has appendToHtml set.
   const groupAppend = !!(config.primitives[group] && config.primitives[group].appendToHtml);
   const groupName = toKebabCase(group);
   for (const tokenCategory in groupData) {
+    if (tokenCategory === 'appendToHtml') continue;
+    
     const tokens = groupData[tokenCategory];
     const cssContent = generateTokenCSS(tokenCategory, tokens, groupAppend, groupName);
     const categoryFolder = toKebabCase(tokenCategory);
@@ -271,10 +228,8 @@ for (const group in config.semanticTokens) {
     }
     tokenNames.sort();
     aggregatedTokens = aggregatedTokens.concat(tokenNames);
-    // Append to global aggregated semantic tokens
     aggregatedSemanticAll = aggregatedSemanticAll.concat(tokenNames);
 
-    // Append to global aggregator by category
     const categoryKey = toKebabCase(tokenCategory);
     if (!aggregatedSemanticByCategory[categoryKey]) {
       aggregatedSemanticByCategory[categoryKey] = [];
@@ -293,7 +248,6 @@ for (const group in config.semanticTokens) {
     fs.writeFileSync(path.join(namesDir, `${categoryFolder}-names.js`), namesContent);
     console.log(`Generated names file for semantic tokens group: ${group}, category: ${tokenCategory}`);
   }
-  // Aggregated files for semantic tokens in this group
   aggregatedTokens = Array.from(new Set(aggregatedTokens)).sort();
   const aggTsContent = `// Auto-generated aggregated types for ${group} semantic tokens\nexport const ${group.replace(/\W/g, '')}SemanticTokens = ${JSON.stringify(aggregatedTokens, null, 2)} as const;\nexport type ${group.replace(/\W/g, '')}SemanticToken = typeof ${group.replace(/\W/g, '')}SemanticTokens[number];\n`;
   fs.writeFileSync(path.join(distDir, 'types', categoryFolderMap.semanticTokens, toKebabCase(group), 'tokens-types.d.ts'), aggTsContent);
@@ -304,28 +258,10 @@ for (const group in config.semanticTokens) {
 
 // ---------- Process Utility Classes ----------
 for (const group in config.utilityClasses) {
-  const groupData = config.utilityClasses[group]; // e.g., { background: { prefix, property, tokens }, ... }
+  const groupData = config.utilityClasses[group];
   let aggregatedUtils = [];
   for (const utilKey in groupData) {
     const utilConfig = groupData[utilKey];
-    let tokensObj = utilConfig.tokens;
-    if (typeof tokensObj === 'string') {
-      const refMatch = tokensObj.match(/^\{([^}]+)\}$/);
-      if (refMatch) {
-        const refParts = refMatch[1].split('.');
-        if (refParts[0] === 'semanticTokens') {
-          tokensObj = config.semanticTokens[refParts[1]][refParts[2]];
-        } else if (refParts[0] === 'primitives') {
-          tokensObj = config.primitives[refParts[1]][refParts[2]];
-        } else {
-          if (config.primitives[refParts[0]] && config.primitives[refParts[0]][refParts[1]]) {
-            tokensObj = config.primitives[refParts[0]][refParts[1]];
-          } else if (config.semanticTokens[refParts[0]] && config.semanticTokens[refParts[0]][refParts[1]]) {
-            tokensObj = config.semanticTokens[refParts[0]][refParts[1]];
-          }
-        }
-      }
-    }
     const cssContent = generateUtilityClassesCSS(utilConfig.prefix, utilConfig.tokens, utilConfig);
     const categoryFolder = toKebabCase(utilKey);
     const cssDir = path.join(distDir, 'css', categoryFolderMap.utilityClasses, toKebabCase(group));
@@ -334,16 +270,14 @@ for (const group in config.utilityClasses) {
     console.log(`Generated CSS for utility classes group: ${group}, category: ${utilKey}`);
 
     let classNames = [];
-    for (const tokenKey in tokensObj) {
+    for (const tokenKey in utilConfig.tokens) {
       const className = utilConfig.prefix + toPascalCase(toKebabCase(tokenKey));
       classNames.push(className);
     }
     classNames.sort();
     aggregatedUtils = aggregatedUtils.concat(classNames);
-    // Append to global aggregated utils
     aggregatedUtilsAll = aggregatedUtilsAll.concat(classNames);
 
-    // Append to global aggregator by util category
     const utilKeyKebab = toKebabCase(utilKey);
     if (!aggregatedUtilsByCategory[utilKeyKebab]) {
       aggregatedUtilsByCategory[utilKeyKebab] = [];
@@ -362,7 +296,6 @@ for (const group in config.utilityClasses) {
     fs.writeFileSync(path.join(namesDir, `${categoryFolder}-names.js`), namesContent);
     console.log(`Generated names file for utility classes group: ${group}, category: ${utilKey}`);
   }
-  // Aggregated files for utility classes in this group
   aggregatedUtils = Array.from(new Set(aggregatedUtils)).sort();
   const aggTsContent = `// Auto-generated aggregated types for ${group} utility classes\nexport const ${group.replace(/\W/g, '')}UtilityClasses = ${JSON.stringify(aggregatedUtils, null, 2)} as const;\nexport type ${group.replace(/\W/g, '')}UtilityClass = typeof ${group.replace(/\W/g, '')}UtilityClasses[number];\n`;
   fs.writeFileSync(path.join(distDir, 'types', categoryFolderMap.utilityClasses, toKebabCase(group), 'utils-types.d.ts'), aggTsContent);
@@ -371,24 +304,19 @@ for (const group in config.utilityClasses) {
   console.log(`Generated aggregated TS types and names for utility classes group: ${group}`);
 }
 
-// Remove duplicates from global aggregated arrays and sort them
 aggregatedPrimitivesAll = Array.from(new Set(aggregatedPrimitivesAll)).sort();
 aggregatedSemanticAll = Array.from(new Set(aggregatedSemanticAll)).sort();
 aggregatedUtilsAll = Array.from(new Set(aggregatedUtilsAll)).sort();
 
-// Remove duplicates and sort for each semantic token category
 for (const categoryKey in aggregatedSemanticByCategory) {
   aggregatedSemanticByCategory[categoryKey] = Array.from(new Set(aggregatedSemanticByCategory[categoryKey])).sort();
 }
 
-// Remove duplicates and sort for each utility class category
 for (const utilKey in aggregatedUtilsByCategory) {
   aggregatedUtilsByCategory[utilKey] = Array.from(new Set(aggregatedUtilsByCategory[utilKey])).sort();
 }
 
 // ---------- Generate Overall Aggregated Files ----------
-
-// For Types
 const primitivesAllTsPath = path.join(distDir, 'types', categoryFolderMap.primitives, 'all-primitives-types.d.ts');
 const semanticAllTsPath = path.join(distDir, 'types', categoryFolderMap.semanticTokens, 'all-semantic-tokens-types.d.ts');
 const utilsAllTsPath = path.join(distDir, 'types', categoryFolderMap.utilityClasses, 'all-utils-types.d.ts');
@@ -421,15 +349,11 @@ fs.writeFileSync(utilsAllNamesPath, utilsAllNamesContent);
 console.log("Generated overall aggregated names files for primitives, semantic tokens, and utility classes.");
 
 // ---------- Generate Per-Semantic Category Aggregated Files ----------
-
-// For each semantic token category (e.g., background, border, etc.)
 for (const categoryKey in aggregatedSemanticByCategory) {
-  // Types file
   const perCategoryTsPath = path.join(distDir, 'types', categoryFolderMap.semanticTokens, `all-${categoryKey}-types.d.ts`);
   const perCategoryTsContent = `// Auto-generated aggregated types for all semantic tokens in category "${categoryKey}"\nexport const all${toPascalCase(categoryKey)}SemanticTokens = ${JSON.stringify(aggregatedSemanticByCategory[categoryKey], null, 2)} as const;\nexport type All${toPascalCase(categoryKey)}SemanticToken = typeof all${toPascalCase(categoryKey)}SemanticTokens[number];\n`;
   fs.writeFileSync(perCategoryTsPath, perCategoryTsContent);
 
-  // Names file
   const perCategoryNamesPath = path.join(distDir, 'names', categoryFolderMap.semanticTokens, `all-${categoryKey}-names.js`);
   const perCategoryNamesContent = `// Auto-generated aggregated names for all semantic tokens in category "${categoryKey}"\nexport const all${toPascalCase(categoryKey)}SemanticTokenNames = ${JSON.stringify(aggregatedSemanticByCategory[categoryKey], null, 2)};\n`;
   fs.writeFileSync(perCategoryNamesPath, perCategoryNamesContent);
@@ -438,15 +362,11 @@ for (const categoryKey in aggregatedSemanticByCategory) {
 }
 
 // ---------- Generate Per-Utility Category Aggregated Files ----------
-
-// For each utility class category (e.g., background, border, etc.)
 for (const utilKey in aggregatedUtilsByCategory) {
-  // Types file
   const perUtilTsPath = path.join(distDir, 'types', categoryFolderMap.utilityClasses, `all-${utilKey}-types.d.ts`);
   const perUtilTsContent = `// Auto-generated aggregated types for all utility classes in category "${utilKey}"\nexport const all${toPascalCase(utilKey)}UtilityClasses = ${JSON.stringify(aggregatedUtilsByCategory[utilKey], null, 2)} as const;\nexport type All${toPascalCase(utilKey)}UtilityClass = typeof all${toPascalCase(utilKey)}UtilityClasses[number];\n`;
   fs.writeFileSync(perUtilTsPath, perUtilTsContent);
 
-  // Names file
   const perUtilNamesPath = path.join(distDir, 'names', categoryFolderMap.utilityClasses, `all-${utilKey}-names.js`);
   const perUtilNamesContent = `// Auto-generated aggregated names for all utility classes in category "${utilKey}"\nexport const all${toPascalCase(utilKey)}UtilityClassNames = ${JSON.stringify(aggregatedUtilsByCategory[utilKey], null, 2)};\n`;
   fs.writeFileSync(perUtilNamesPath, perUtilNamesContent);
@@ -455,8 +375,6 @@ for (const utilKey in aggregatedUtilsByCategory) {
 }
 
 // ---------- Generate Index CSS ----------
-// This function recursively collects all .css files under the given directory and
-// generates an index.css with @import rules relative to the outermost output directory.
 function generateIndexCss(rootDir, relativeDir = '') {
   let imports = '';
   const entries = fs.readdirSync(rootDir, { withFileTypes: true });
@@ -466,7 +384,6 @@ function generateIndexCss(rootDir, relativeDir = '') {
     if (entry.isDirectory()) {
       imports += generateIndexCss(entryPath, entryRelativePath);
     } else if (entry.isFile() && entry.name.endsWith('.css')) {
-      // Create a relative path from the theme folder
       const importPath = './' + path.join('css', entryRelativePath).replace(/\\/g, '/');
       imports += `@import '${importPath}';\n`;
     }
