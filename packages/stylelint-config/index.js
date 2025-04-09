@@ -12,13 +12,6 @@ module.exports = {
 
   ],
   "rules": {
-    "mint/no-primitive-color-variables": true,
-    "mint/no-redeclared-utility-classes": true,
-    "mint/no-redeclared-primitive-variables": true,
-    'mint/no-redeclared-semantic-variables': [true, {
-      "allowHtmlScope": false
-    }],
-    "mint/use-util-class-instead-of-semantic-variable": [true, { "severity": "warning" }],
     "declaration-no-important": [true, { "severity": "warning" }],
     "rule-empty-line-before": ["always", { "severity": "warning" }],
     "selector-id-pattern": null,

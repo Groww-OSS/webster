@@ -2,32 +2,29 @@ const stylelint = require('stylelint');
 
 const ruleName = 'mint/no-primitive-color-variables';
 
-const {primitiveTokens} =require('../mint-values/index.js');
-
 const messages = stylelint.utils.ruleMessages(ruleName, {
-  rejected: (variable) => `The primitive color variable "${variable}" is not allowed. Use a semantic token or a utility class instead. Using a utility class is preferred.`
+  rejected: (variable) =>
+    `The primitive color variable "${variable}" is not allowed. Use a semantic token or a utility class instead. Using a utility class is preferred.`
 });
 
-const bannedVariables = [
-  ...primitiveTokens
-];
+const plugin = stylelint.createPlugin(ruleName, function (primaryOption, secondaryOptions) {
+  const rawTokens = (secondaryOptions && Array.isArray(secondaryOptions.primitiveTokens))
+    ? secondaryOptions.primitiveTokens
+    : [];
 
-const plugin = stylelint.createPlugin(ruleName, function (enabled) {
-  return function(root, result) {
-    // Skip if the rule is not enabled
-    if (!enabled) return;
+  // Normalize to var(--token) format
+  const bannedVariables = rawTokens.map(t => `var(--${t})`);
 
-    // Walk through all CSS declarations
+  return function (root, result) {
+    if (!primaryOption) return;
+
     root.walkDecls(decl => {
-      // Normalize whitespace in the declaration value
       const normalizedValue = decl.value.replace(/\s+/g, ' ');
 
-      // Check if any banned variables are used
-      const usedBannedVariable = bannedVariables.find(variable => 
-        normalizedValue.includes(`var(${variable})`)
+      const usedBannedVariable = bannedVariables.find(variable =>
+        normalizedValue.includes(variable)
       );
 
-      // Report an error if a banned variable is found
       if (usedBannedVariable) {
         stylelint.utils.report({
           node: decl,

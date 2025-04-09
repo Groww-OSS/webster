@@ -2,16 +2,10 @@ const stylelint = require('stylelint');
 
 const ruleName = 'mint/use-util-class-instead-of-semantic-variable';
 
-const {semanticTokens} =require('../mint-values/index.js');
-
 const messages = stylelint.utils.ruleMessages(ruleName, {
   warning: (variable, property) =>
     `Avoid using the semantic variable "${variable}" directly for "${property}". Use a utility class instead.`
 });
-
-const semanticVariables = [
- ...semanticTokens
-];
 
 const isColorRelatedProperty = (property) => {
   return [
@@ -25,8 +19,15 @@ const isValidBorder = (value) => {
   return value.includes('1px solid');
 };
 
-module.exports = stylelint.createPlugin(ruleName, function(primaryOption) {
-  return function(root, result) {
+const plugin = stylelint.createPlugin(ruleName, function (primaryOption, secondaryOptions) {
+  const rawTokens = (secondaryOptions && Array.isArray(secondaryOptions.semanticTokens))
+    ? secondaryOptions.semanticTokens
+    : [];
+
+  // Normalize to `var(--token-name)` format
+  const semanticVariables = rawTokens.map(t =>`var(--${t})`);
+
+  return function (root, result) {
     const validOptions = stylelint.utils.validateOptions(
       result,
       ruleName,
@@ -42,25 +43,16 @@ module.exports = stylelint.createPlugin(ruleName, function(primaryOption) {
       const property = decl.prop;
       const value = decl.value;
 
-      // Ignore non-custom properties
-      if (!semanticVariables.some((variable) => value.includes(variable))) return;
+      const usedSemanticVariable = semanticVariables.find((variable) => value.includes(variable));
+      if (!usedSemanticVariable) return;
 
-      // Exception for pseudo-classes and combinators
+      // Ignore pseudo-classes and combinators
       const parent = decl.parent;
-      if (parent && parent.selector && /::?\w|\s[>+~]/.test(parent.selector)) {
-        return;
-      }
+      if (parent && parent.selector && /::?\w|\s[>+~]/.test(parent.selector)) return;
 
-      if (isColorRelatedProperty(property)) {
+      if (isColorRelatedProperty(property) || (property === 'border' && isValidBorder(value))) {
         stylelint.utils.report({
-          message: messages.warning(value, property),
-          node: decl,
-          result,
-          ruleName
-        });
-      } else if (property === 'border' && isValidBorder(value)) {
-        stylelint.utils.report({
-          message: messages.warning(value, property),
+          message: messages.warning(usedSemanticVariable, property),
           node: decl,
           result,
           ruleName
@@ -70,5 +62,7 @@ module.exports = stylelint.createPlugin(ruleName, function(primaryOption) {
   };
 });
 
-module.exports.ruleName = ruleName;
-module.exports.messages = messages;
+plugin.ruleName = ruleName;
+plugin.messages = messages;
+
+module.exports = plugin;
