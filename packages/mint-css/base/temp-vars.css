@@ -1,0 +1,25 @@
+html.color-theme-in-transition,
+html.color-theme-in-transition *,
+html.color-theme-in-transition *::before,
+html.color-theme-in-transition *::after {
+  transition: all 300ms !important;
+  transition-delay: 0 !important;
+}
+
+
+html{
+    --dangerouslySetPrimaryBg: #ffffff;
+    --tempNbtPink: #f1e3f3;
+    --tempNbtYellow: #fff3c8;
+    --tempNbtBlue: #d6eeff;
+    --tempNbtGray: #f0f0f2;
+    --tempNbtRed: #ffc7bb;
+  }
+  html[data-theme="dark"]{
+    --dangerouslySetPrimaryBg: #121212;
+    --tempNbtPink: #9b63a3;
+    --tempNbtYellow: #b27a00;
+    --tempNbtBlue: #3e79a4;
+    --tempNbtGray: #5c5c6f;
+    --tempNbtRed: #c85d0f;
+  }

@@ -1,48 +1,52 @@
-const {primitiveTokens,semanticTokens} = require('../../mint-values/index.js');
-
 module.exports = {
   meta: {
     docs: {
       description: "Disallow declaration of mint tokens",
     },
+    type: "problem",
+    schema: [
+      {
+        type: "object",
+        properties: {
+          tokens: {
+            type: "array",
+            items: { type: "string" },
+          },
+        },
+        additionalProperties: false,
+      },
+    ],
     messages: {
       disallowedCssVarDeclaration: "Declaration of CSS variable '{{ variable }}' is disallowed.",
     },
   },
 
   create(context) {
-    const disallowedVariables = [...primitiveTokens,...semanticTokens];
-    const cssVarDeclarationPattern = (variable) => new RegExp(`${variable}\\s*:\\s*`, "i");
+    const options = context.options[0] || {};
+    const disallowedVariables = options.tokens || [];
+    const cssVarDeclarationPattern = (variable) => new RegExp(`\\b${variable}\\s*:\\s*`, "i");
 
-    function checkCSSDeclarations(node) {
-      if (typeof node.value === "string") {
-        disallowedVariables.forEach((variable) => {
-          if (cssVarDeclarationPattern(variable).test(node.value)) {
-            context.report({
-              node,
-              messageId: "disallowedCssVarDeclaration",
-              data: { variable },
-            });
-          }
-        });
-      }
+    function checkCSSDeclarations(value, node) {
+      disallowedVariables.forEach((variable) => {
+        if (cssVarDeclarationPattern(variable).test(value)) {
+          context.report({
+            node,
+            messageId: "disallowedCssVarDeclaration",
+            data: { variable },
+          });
+        }
+      });
     }
 
     return {
       Literal(node) {
-        checkCSSDeclarations(node);
+        if (typeof node.value === "string") {
+          checkCSSDeclarations(node.value, node);
+        }
       },
       TemplateLiteral(node) {
         node.quasis.forEach((quasi) => {
-          disallowedVariables.forEach((variable) => {
-            if (cssVarDeclarationPattern(variable).test(quasi.value.raw)) {
-              context.report({
-                node: quasi,
-                messageId: "disallowedCssVarDeclaration",
-                data: { variable },
-              });
-            }
-          });
+          checkCSSDeclarations(quasi.value.raw, quasi);
         });
       },
     };

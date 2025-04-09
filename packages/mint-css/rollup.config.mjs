@@ -7,6 +7,7 @@ import fs from 'fs';
 
 // getting all CSS files from the fragments folder
 const getCSSFiles = (folder) => {
+  if (!fs.existsSync(folder)) return [];
   const files = fs.readdirSync(folder);
   return files.filter((file) => file.endsWith('.css'));
 };
@@ -31,7 +32,7 @@ const fragmentConfigs = getCSSFiles(fragmentsFolder).map((file) => ({
           }
           return url;
         },
-      }),],
+      })],
       extract: true,
       minimize: true,
       sourceMap: false,
@@ -57,6 +58,8 @@ export default [
       copy({
         targets: [
           { src: './typography/fonts/*.woff2', dest: 'dist' },
+          { src: './theme/types', dest: 'dist' },  // Copy theme/types to dist
+          { src: './theme/names', dest: 'dist' },  // Copy theme/names to dist
         ],
         after: [
           {
