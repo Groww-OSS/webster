@@ -29,7 +29,6 @@ const primitives = {
       overlay30: { light: "rgba(18, 18, 18, 0.3)", dark: "rgba(18, 18, 18, 0.3)" },
       overlay70: { light: "rgba(18, 18, 18, 0.7)", dark: "rgba(18, 18, 18, 0.7)" },
       yellow11: { light: "#A16B00", dark: "#F5BC56" },
-      dangerouslySetPrimaryBg: { light: "#ffffff", dark: "#121212" },
       // Hover States
       transparentHover: { light: "#44475B0F", dark: "#44475B0F" },
       accentHover: { light: "#04AD83", dark: "#04AD83" },
@@ -78,15 +77,6 @@ const primitives = {
       dataVizBrownSubtle: { light: "#DFCECD", dark: "#332322" },
       dataVizGrey: { light: "#808FA3", dark: "#808FA3" },
       dataVizGreySubtle: { light: "#BEC6D0", dark: "#434C56" },
-    },
-  },
-  temporary: {
-    colors: {
-      tempNbtPink: { light: "#f1e3f3", dark: "#9b63a3" },
-      tempNbtYellow: { light: "#fff3c8", dark: "#b27a00" },
-      tempNbtBlue: { light: "#d6eeff", dark: "#3e79a4" },
-      tempNbtGray: { light: "#f0f0f2", dark: "#5c5c6f" },
-      tempNbtRed: { light: "#ffc7bb", dark: "#c85d0f" },
     },
   },
   wealth: {
@@ -286,15 +276,6 @@ const semanticTokens = {
       dataVizGreySubtle: primitives["data-viz"].colors.dataVizGreySubtle,
     },
   },
-  temporary: {
-    background: {
-      tempNbtPink: primitives.temporary.colors.tempNbtPink,
-      tempNbtBlue: primitives.temporary.colors.tempNbtBlue,
-      tempNbtYellow: primitives.temporary.colors.tempNbtYellow,
-      tempNbtGray: primitives.temporary.colors.tempNbtGray,
-      tempNbtRed: primitives.temporary.colors.tempNbtRed,
-    },
-  },
   wealth: {
     appendToHtml: true,
     background: {
@@ -353,13 +334,6 @@ const utilityClasses = {
       prefix: "color",
       property: "color",
       tokens: semanticTokens["data-viz"].content,
-    },
-  },
-  temporary: {
-    background: {
-      prefix: "background",
-      property: "background-color",
-      tokens: semanticTokens.temporary.background,
     },
   },
   wealth: {

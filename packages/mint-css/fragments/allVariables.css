@@ -9,11 +9,10 @@
 @import '../theme/css/tokens/groww-primary/bg.css';
 @import '../theme/css/tokens/groww-primary/border.css';
 @import '../theme/css/tokens/groww-primary/content.css';
-@import '../theme/css/tokens/temporary/background.css';
 
 @import '../theme/css/variables/data-viz/colors.css';
 @import '../theme/css/variables/groww-primary/colors.css';
-@import '../theme/css/variables/temporary/colors.css';
+@import '../base/temp-vars.css';
 
 
 /* Typography Variables */
