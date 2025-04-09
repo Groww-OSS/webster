@@ -1,5 +1,4 @@
 const stylelint = require('stylelint');
-const { semanticTokens } = require('../mint-values/index.js');
 
 const ruleName = 'mint/no-redeclared-semantic-variables';
 const messages = stylelint.utils.ruleMessages(ruleName, {
@@ -7,9 +6,13 @@ const messages = stylelint.utils.ruleMessages(ruleName, {
   restricted: (variable) => `Variable "${variable}" can only be declared within html scope.`
 });
 
-const bannedSemantics = [...semanticTokens];
-
 const plugin = stylelint.createPlugin(ruleName, function (primaryOption, secondaryOptions) {
+  const rawTokens = (secondaryOptions && Array.isArray(secondaryOptions.semanticTokens))
+    ? secondaryOptions.semanticTokens
+    : [];
+
+  const bannedSemantics = rawTokens.map(token => `--${token}`);
+
   return function (root, result) {
     if (primaryOption === false) return;
 
@@ -24,6 +27,7 @@ const plugin = stylelint.createPlugin(ruleName, function (primaryOption, seconda
         actual: secondaryOptions,
         possible: {
           allowHtmlScope: [true, false],
+          semanticTokens: [() => true] // Accept any array for now
         },
         optional: true
       }
@@ -35,6 +39,7 @@ const plugin = stylelint.createPlugin(ruleName, function (primaryOption, seconda
 
     root.walkDecls((decl) => {
       if (!decl.prop.startsWith('--')) return;
+
       const isBanned = bannedSemantics.includes(decl.prop);
       if (!isBanned) return;
 
