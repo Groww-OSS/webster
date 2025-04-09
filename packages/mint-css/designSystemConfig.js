@@ -51,6 +51,9 @@ const primitives = {
       negativeSelected: { light: "#E15A3E", dark: "#E15A3E" },
       negativeSubtleSelected: { light: "#F9E0DB", dark: "#F9E0DB" },
       transparentNegativeSelected: { light: "#EB5B3C0F", dark: "#EB5B3C0F" },
+
+      //neutrals
+      neutral_2: { light: "#F8F8F8", dark: "#1B1B1B" },
     },
   },
   "data-viz": {
@@ -108,6 +111,7 @@ const semanticTokens = {
       },
       secondary: primitives["groww-primary"].colors.gray50,
       tertiary: primitives["groww-primary"].colors.gray100,
+      disabled: primitives["groww-primary"].colors.neutral_2,
       transparent: primitives["groww-primary"].colors.overlay00,
       surfacePrimary: {
         light: primitives["groww-primary"].colors.white,
