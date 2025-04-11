@@ -183,7 +183,8 @@ const semanticTokens = {
       accentSecondary: primitives["groww-primary"].colors.purple500,
       accentSecondarySubtle: primitives["groww-primary"].colors.purple300,
     },
-    bg: {
+    interactionStateHover: {
+      prefix: "bg",
       transparentHover: primitives["groww-primary"].colors.transparentHover,
       accentHover: primitives["groww-primary"].colors.accentHover,
       accentSubtleHover: primitives["groww-primary"].colors.accentSubtleHover,
@@ -194,6 +195,9 @@ const semanticTokens = {
       negativeHover: primitives["groww-primary"].colors.negativeHover,
       negativeSubtleHover: primitives["groww-primary"].colors.negativeSubtleHover,
       transparentNegativeHover: primitives["groww-primary"].colors.transparentNegativeHover,
+    },
+    interactionStateSelected:{
+      prefix: "bg",
       transparentSelected: primitives["groww-primary"].colors.transparentSelected,
       accentSelected: primitives["groww-primary"].colors.accentSelected,
       accentSubtleSelected: primitives["groww-primary"].colors.accentSubtleSelected,
@@ -316,11 +320,17 @@ const utilityClasses = {
       property: "color",
       tokens: semanticTokens["groww-primary"].content,
     },
-    interactionState: {
+    interactionStateHover: {
       prefix: "background",
       property: "background-color",
-      tokens: semanticTokens["groww-primary"].bg,
+      tokens: semanticTokens["groww-primary"].interactionStateHover,
       pseudo: ":hover",
+    },
+    interactionStateSelected: {
+      prefix: "background",
+      property: "background-color",
+      tokens: semanticTokens["groww-primary"].interactionStateSelected,
+      pseudo: ":active",
     },
   },
   "data-viz": {

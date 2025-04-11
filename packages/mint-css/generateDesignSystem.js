@@ -85,8 +85,14 @@ function generateTokenCSS(category, tokens, groupAppend, groupName, groupKey) {
   const lightLiteralMap = groupPrimitiveLightLiteralMap.get(groupKey);
   const darkLiteralMap = groupPrimitiveDarkLiteralMap.get(groupKey);
 
+  // Use the tokens prefix if provided; otherwise, fall back to the category name.
+  const semanticPrefix = tokens.prefix ? tokens.prefix : category;
+
   for (const [tokenName, tokenValue] of Object.entries(tokens)) {
-    const cssVarName = `--${toKebabCase(category)}-${toKebabCase(tokenName)}`;
+    // Skip the reserved "prefix" property
+    if (tokenName === 'prefix') continue;
+    
+    const cssVarName = `--${toKebabCase(semanticPrefix)}-${toKebabCase(tokenName)}`;
     let lightVal, darkVal;
     if (tokenValue && tokenValue.light && tokenValue.dark) {
       // Resolve light value
@@ -134,26 +140,18 @@ function generateUtilityClassesCSS(prefix, tokensObj, utilConfig = {}) {
     throw new Error(`Utility config for prefix "${utilConfig.prefix}" requires a "property" field.`);
   }
   const pseudo = utilConfig.pseudo || '';
-  // Default variablePrefix is utilConfig.prefix.
-  let variablePrefix = utilConfig.prefix;
-  // Try to detect if tokensObj is defined as one of the semantic categories.
-  // We iterate over all groups in config.semanticTokens.
-  for (const groupKey in config.semanticTokens) {
-    const semanticGroup = config.semanticTokens[groupKey];
-    for (const semanticCategory in semanticGroup) {
-      if (semanticGroup[semanticCategory] === tokensObj) {
-        variablePrefix = semanticCategory;
-        break;
-      }
-    }
-    if (variablePrefix !== utilConfig.prefix) break;
-  }
+
+  // Use the "prefix" property from tokensObj if available, otherwise use utilConfig.prefix.
+  const variablePrefix = (tokensObj && tokensObj.prefix) ? tokensObj.prefix : utilConfig.prefix;
+
   let css = '';
   for (const tokenKey in tokensObj) {
+    // Skip the reserved "prefix" property so a class is not generated for it.
+    if (tokenKey === "prefix") continue;
     const tokenKebab = toKebabCase(tokenKey);
-    // Use the original utilConfig.prefix to form the CSS class name.
+    // Build the class name using the utilConfig.prefix and converting token name to PascalCase.
     const className = utilConfig.prefix + toPascalCase(tokenKebab);
-    // However, for the CSS variable, use the detected semantic category variablePrefix.
+    // Build the CSS variable reference using variablePrefix.
     const cssVarName = `--${toKebabCase(variablePrefix)}-${tokenKebab}`;
     if (property === 'border') {
       css += `.${className}${pseudo} { border: 1px solid var(${cssVarName}); }\n\n`;
@@ -163,6 +161,7 @@ function generateUtilityClassesCSS(prefix, tokensObj, utilConfig = {}) {
   }
   return css;
 }
+
 
 // ---------- Folder Setup ----------
 const distDir = path.join(__dirname, 'theme');
@@ -261,7 +260,7 @@ for (const group in config.semanticTokens) {
     if (tokenCategory === 'appendToHtml') continue;
     
     const tokens = groupData[tokenCategory];
-    // Pass group as the new parameter 'groupKey'
+    // Generate CSS for semantic tokens; note that generateTokenCSS uses the tokens.prefix logic.
     const cssContent = generateTokenCSS(tokenCategory, tokens, groupAppend, groupName, group);
     const categoryFolder = toKebabCase(tokenCategory);
     const cssDir = path.join(distDir, 'css', categoryFolderMap.semanticTokens, toKebabCase(group));
@@ -269,9 +268,12 @@ for (const group in config.semanticTokens) {
     fs.writeFileSync(path.join(cssDir, `${categoryFolder}.css`), cssContent);
     console.log(`Generated CSS for semantic tokens group: ${group}, category: ${tokenCategory}`);
 
+    // Use the same prefixing logic for names generation.
+    const semanticPrefix = tokens.prefix ? tokens.prefix : tokenCategory;
     let tokenNames = [];
     for (const token in tokens) {
-      tokenNames.push(`${toKebabCase(tokenCategory)}-${toKebabCase(token)}`);
+      if (token === 'prefix') continue;
+      tokenNames.push(`${toKebabCase(semanticPrefix)}-${toKebabCase(token)}`);
     }
     tokenNames.sort();
     aggregatedTokens = aggregatedTokens.concat(tokenNames);
@@ -332,6 +334,8 @@ for (const group in config.utilityClasses) {
 
     let classNames = [];
     for (const tokenKey in utilConfig.tokens) {
+      if (tokenKey === 'prefix') continue;
+      // Use the same logic as generateUtilityClassesCSS: class name is utilConfig.prefix concatenated with PascalCase(tokenKey)
       const className = utilConfig.prefix + toPascalCase(toKebabCase(tokenKey));
       classNames.push(className);
     }
