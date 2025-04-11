@@ -1,0 +1,19 @@
+.tempNbtBackgroundPink {
+    background-color: var(--tempNbtPink);
+  }
+  
+  .tempNbtBackgroundYellow {
+    background-color: var(--tempNbtYellow);
+  }
+  
+  .tempNbtBackgroundBlue {
+    background-color: var(--tempNbtBlue);
+  }
+  
+  .tempNbtBackgroundGray {
+    background-color: var(--tempNbtGray);
+  }
+  
+  .tempNbtBackgroundRed {
+    background-color: var(--tempNbtRed);
+  }
