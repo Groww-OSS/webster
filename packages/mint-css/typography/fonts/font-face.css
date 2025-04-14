@@ -32,3 +32,11 @@
   unicode-range: U+0900-097F; /* Unicode range for Devanagari script (Hindi) */
   font-display: swap;
 }
+
+@font-face {
+  font-family: 'Soehne';
+  font-style: normal;
+  font-weight: 300 700;
+  src: url(./Soehne.woff2) format('woff2-variations');
+  font-display: swap;
+}
