@@ -4,7 +4,7 @@ module.exports = {
       description: "Disallow usage of specific hardcoded CSS variables",
     },
     messages: {
-      disallowedCssVar: "Usage of CSS variable '{{ variable }}' is disallowed testing.",
+      disallowedCssVar: "Usage of CSS variable '{{ variable }}' is disallowed.",
     },
     schema: [
       {
