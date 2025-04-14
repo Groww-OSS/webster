@@ -1,53 +1,56 @@
-const {allUtilClasses} = require('../../mint-values/index.js');
-
 module.exports = {
-    meta: {
-      docs: {
-        description: "Disallow declaration of specific CSS classes",
-      },
-      messages: {
-        disallowedCssClassDeclaration: "Declaration of the CSS class '{{ className }}' is disallowed.",
-      },
+  meta: {
+    docs: {
+      description: "Disallow declaration of specific CSS utility classes",
     },
-  
-    create(context) {
-      // List of disallowed CSS class names
-      const disallowedClasses = [...allUtilClasses];
-  
-      const cssClassDeclarationPattern = (className) => new RegExp(`\\.${className}\\s*{`, "i");
-  
-      function checkCSSClassDeclarations(node) {
-        if (typeof node.value === "string") {
-          disallowedClasses.forEach((className) => {
-            if (cssClassDeclarationPattern(className).test(node.value)) {
-              context.report({
-                node,
-                messageId: "disallowedCssClassDeclaration",
-                data: { className },
-              });
-            }
+    type: "problem",
+    schema: [
+      {
+        type: "object",
+        properties: {
+          tokens: {
+            type: "array",
+            items: { type: "string" },
+          },
+        },
+        additionalProperties: false,
+      },
+    ],
+    messages: {
+      disallowedCssClassDeclaration: "Declaration of the CSS class '{{ className }}' is disallowed.",
+    },
+  },
+
+  create(context) {
+    const options = context.options[0] || {};
+    const disallowedClasses = options.tokens || [];
+
+    const cssClassDeclarationPattern = (className) =>
+      new RegExp(`\\.${className}\\s*{`, "i");
+
+    function checkCSSClassDeclarations(value, node) {
+      disallowedClasses.forEach((className) => {
+        if (cssClassDeclarationPattern(className).test(value)) {
+          context.report({
+            node,
+            messageId: "disallowedCssClassDeclaration",
+            data: { className },
           });
         }
-      }
-  
-      return {
-        Literal(node) {
-          checkCSSClassDeclarations(node);
-        },
-        TemplateLiteral(node) {
-          node.quasis.forEach((quasi) => {
-            disallowedClasses.forEach((className) => {
-              if (cssClassDeclarationPattern(className).test(quasi.value.raw)) {
-                context.report({
-                  node: quasi,
-                  messageId: "disallowedCssClassDeclaration",
-                  data: { className },
-                });
-              }
-            });
-          });
-        },
-      };
-    },
-  };
-  
+      });
+    }
+
+    return {
+      Literal(node) {
+        if (typeof node.value === "string") {
+          checkCSSClassDeclarations(node.value, node);
+        }
+      },
+      TemplateLiteral(node) {
+        node.quasis.forEach((quasi) => {
+          checkCSSClassDeclarations(quasi.value.raw, quasi);
+        });
+      },
+    };
+  },
+};
