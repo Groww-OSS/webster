@@ -2,22 +2,26 @@
   font-size: var(--font-size-24);
   font-weight: var(--font-weight-medium);
   line-height: 2.0625rem;
+  font-family: Soehne;
 }
 
 .displayBase {
   font-size: var(--font-size-28);
   font-weight: var(--font-weight-medium);
   line-height: 2.4375rem;
+  font-family: Soehne;
 }
 
 .displayLarge {
   font-size: var(--font-size-32);
   font-weight: var(--font-weight-medium);
   line-height: 2.75rem;
+  font-family: Soehne;
 }
 
 .displayXLarge {
   font-size: var(--font-size-40);
   font-weight: var(--font-weight-medium);
   line-height: 3.5rem;
+  font-family: Soehne;
 }
