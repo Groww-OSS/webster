@@ -299,7 +299,7 @@ export function getReportDateInput(lastSupportedYear: number, offsetFromCurrentF
     const dateInput = [];
     const currentYear = new Date().getFullYear();
     const currentMonth = new Date().getMonth();
-    const currentFinancialYear = currentMonth < 4
+    const currentFinancialYear = currentMonth < 3
       ? currentYear - 1 - offsetFromCurrentFinancialYear
       : currentYear - offsetFromCurrentFinancialYear;
 
