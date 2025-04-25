@@ -111,7 +111,6 @@ const semanticTokens = {
       },
       secondary: primitives["groww-primary"].colors.gray50,
       tertiary: primitives["groww-primary"].colors.gray100,
-      disabled: primitives["groww-primary"].colors.neutral_2,
       transparent: primitives["groww-primary"].colors.overlay00,
       surfacePrimary: {
         light: primitives["groww-primary"].colors.white,
@@ -140,6 +139,7 @@ const semanticTokens = {
       accentSecondary: primitives["groww-primary"].colors.purple500,
       accentSecondarySubtle: primitives["groww-primary"].colors.purple100,
       onWarningSubtle: primitives["groww-primary"].colors.yellow11,
+      disabled: primitives["groww-primary"].colors.neutral_2,
     },
     border: {
       primary: primitives["groww-primary"].colors.gray150,
