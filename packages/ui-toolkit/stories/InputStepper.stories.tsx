@@ -36,6 +36,13 @@ Default.args = {
   value: 0,
   width: '128px'
 };
+export const FocusOnMount = Template.bind({});
+FocusOnMount.args = {
+  placeholder: '0',
+  value: 0,
+  width: '128px',
+  shouldFocusOnMount: true
+};
 
 export const WithError = Template.bind({});
 WithError.args = {
