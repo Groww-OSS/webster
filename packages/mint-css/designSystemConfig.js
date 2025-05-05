@@ -182,7 +182,7 @@ const semanticTokens = {
       positive: primitives["groww-primary"].colors.green500,
       accentSecondary: primitives["groww-primary"].colors.purple500,
       accentSecondarySubtle: primitives["groww-primary"].colors.purple300,
-      onWarningSubtle: primitives["groww-primary"].colors.yellow11,
+      onWarningSubtle: primitives["groww-primary"].colors.yellow_11,
     },
     interactionStateHover: {
       prefix: "bg",
