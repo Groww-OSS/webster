@@ -28,7 +28,7 @@ const primitives = {
       overlay00: { light: "rgba(18, 18, 18, 0)", dark: "rgba(18, 18, 18, 0)" },
       overlay30: { light: "rgba(18, 18, 18, 0.3)", dark: "rgba(18, 18, 18, 0.3)" },
       overlay70: { light: "rgba(18, 18, 18, 0.7)", dark: "rgba(18, 18, 18, 0.7)" },
-      yellow11: { light: "#A16B00", dark: "#F5BC56" },
+      yellow_11: { light: "#A16B00", dark: "#F5BC56" },
       // Hover States
       transparentHover: { light: "#44475B0F", dark: "#44475B0F" },
       accentHover: { light: "#04AD83", dark: "#04AD83" },
@@ -138,7 +138,7 @@ const semanticTokens = {
       warningSubtle: primitives["groww-primary"].colors.yellow100,
       accentSecondary: primitives["groww-primary"].colors.purple500,
       accentSecondarySubtle: primitives["groww-primary"].colors.purple100,
-      onWarningSubtle: primitives["groww-primary"].colors.yellow11,
+      onWarningSubtle: primitives["groww-primary"].colors.yellow_11,
       disabled: primitives["groww-primary"].colors.neutral_2,
     },
     border: {
@@ -182,6 +182,7 @@ const semanticTokens = {
       positive: primitives["groww-primary"].colors.green500,
       accentSecondary: primitives["groww-primary"].colors.purple500,
       accentSecondarySubtle: primitives["groww-primary"].colors.purple300,
+      onWarningSubtle: primitives["groww-primary"].colors.yellow11,
     },
     interactionStateHover: {
       prefix: "bg",
