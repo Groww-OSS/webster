@@ -2,22 +2,26 @@
   font-size: var(--font-size-14);
   font-weight: var(--font-weight-medium);
   line-height: 1.25rem;
+  font-family: Soehne;
 }
 
 .headingSmall {
   font-size: var(--font-size-16);
   font-weight: var(--font-weight-medium);
   line-height: 1.375rem;
+  font-family: Soehne;
 }
 
 .headingBase {
   font-size: var(--font-size-18);
   font-weight: var(--font-weight-medium);
   line-height: 1.5625rem;
+  font-family: Soehne;
 }
 
 .headingLarge {
   font-size: var(--font-size-20);
   font-weight: var(--font-weight-medium);
   line-height: 2rem;
+  font-family: Soehne;
 }
