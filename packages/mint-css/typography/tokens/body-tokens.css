@@ -2,46 +2,54 @@
   font-size: var(--font-size-12);
   font-weight: var(--font-weight-regular);
   line-height: 1.125rem;
+  font-family: GrowwSans;
 }
 
 .bodySmallHeavy {
   font-size: var(--font-size-12);
   font-weight: var(--font-weight-medium);
   line-height: 1.125rem;
+  font-family: GrowwSans;
 }
 
 .bodyBase {
   font-size: var(--font-size-14);
   font-weight: var(--font-weight-regular);
   line-height: 1.25rem;
+  font-family: GrowwSans;
 }
 
 .bodyBaseHeavy {
   font-size: var(--font-size-14);
   font-weight: var(--font-weight-medium);
   line-height: 1.25rem;
+  font-family: GrowwSans;
 }
 
 .bodyLarge {
   font-size: var(--font-size-16);
   font-weight: var(--font-weight-regular);
   line-height: 1.375rem;
+  font-family: GrowwSans;
 }
 
 .bodyLargeHeavy {
   font-size: var(--font-size-16);
   font-weight: var(--font-weight-medium);
   line-height: 1.375rem;
+  font-family: GrowwSans;
 }
 
 .bodyXLarge {
   font-size: var(--font-size-18);
   font-weight: var(--font-weight-regular);
   line-height: 1.5625rem;
+  font-family: GrowwSans;
 }
 
 .bodyXLargeHeavy {
   font-size: var(--font-size-18);
   font-weight: var(--font-weight-medium);
   line-height: 1.5625rem;
+  font-family: GrowwSans;
 }
