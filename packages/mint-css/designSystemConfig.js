@@ -335,6 +335,15 @@ const semanticTokens = {
       accentSecondary: primitives["groww-primary"].colors.purple500,
       accentSecondarySubtle: primitives["groww-primary"].colors.purple300,
       onWarningSubtle: primitives["groww-primary"].colors.yellow11,
+      onAccentSubtle: primitives["groww-primary"].colors.green11,
+      onAccentSecondarySubtle: primitives["groww-primary"].colors.blue11,
+      onPositiveSubtle: primitives["groww-primary"].colors.green11,
+      onNegativeSubtle: primitives["groww-primary"].colors.red11,
+      onWarningSubtle: primitives["groww-primary"].colors.yellow11,
+      onColourInverse: {
+        light: primitives["groww-primary"].colors.neutral12,
+        dark: primitives["groww-primary"].colors.neutral1,
+      }
     },
     interactionStateHover: {
       prefix: "bg",
