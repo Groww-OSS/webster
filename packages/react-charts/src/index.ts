@@ -9,3 +9,5 @@ export type { Candle, CandleToolTipData } from './CandleChart';
 
 export { default as PieChart } from './PieChart';
 export type { PieData } from './PieChart';
+
+export { default as GradientLineGraph } from './GradientLineGraph';
