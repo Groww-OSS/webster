@@ -42,8 +42,8 @@ const Button = (props: Props) => {
     type,
     rel,
     target,
-    onClick,
-    gradientClass
+    gradientClass,
+    onClick
   } = props;
 
   const primaryButtonClasses = cn('mint-btn-primary',
