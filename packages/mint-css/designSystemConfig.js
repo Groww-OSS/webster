@@ -461,6 +461,32 @@ const semanticTokens = {
       accentSubtle: primitives.wealth.colors.gold2,
     },
   },
+  commodities: {
+    background: {
+      commoditiesGh1: primitives[ "groww-primary" ].colors.green3,
+      commoditiesGh2: primitives[ "groww-primary" ].colors.green4,
+      commoditiesGh3: primitives[ "groww-primary" ].colors.green5,
+      commoditiesGh4: primitives[ "groww-primary" ].colors.green6,
+      commoditiesGh5: primitives[ "groww-primary" ].colors.green7,
+      commoditiesGh6: primitives[ "groww-primary" ].colors.green8
+    },
+    border: {
+      commoditiesGh1: primitives[ "groww-primary" ].colors.green3,
+      commoditiesGh2: primitives[ "groww-primary" ].colors.green4,
+      commoditiesGh3: primitives[ "groww-primary" ].colors.green5,
+      commoditiesGh4: primitives[ "groww-primary" ].colors.green6,
+      commoditiesGh5: primitives[ "groww-primary" ].colors.green7,
+      commoditiesGh6: primitives[ "groww-primary" ].colors.green8
+    },
+    content: {
+      commoditiesGh1: primitives[ "groww-primary" ].colors.green3,
+      commoditiesGh2: primitives[ "groww-primary" ].colors.green4,
+      commoditiesGh3: primitives[ "groww-primary" ].colors.green5,
+      commoditiesGh4: primitives[ "groww-primary" ].colors.green6,
+      commoditiesGh5: primitives[ "groww-primary" ].colors.green7,
+      commoditiesGh6: primitives[ "groww-primary" ].colors.green8
+    },
+  }
 };
 
 // Build utility classes using direct references to semanticTokens
@@ -519,6 +545,23 @@ const utilityClasses = {
       tokens: semanticTokens.wealth.background,
     },
   },
+  commodities: {
+    background: {
+      prefix: "background",
+      property: "background-color",
+      tokens: semanticTokens.commodities.background,
+    },
+    border: {
+      prefix: "border",
+      property: "border",
+      tokens: semanticTokens.commodities.border,
+    },
+    content: {
+      prefix: "content",
+      property: "color",
+      tokens: semanticTokens.commodities.content,
+    },
+  }
 };
 
 module.exports = {
