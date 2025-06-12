@@ -16,7 +16,7 @@ import { isEmpty } from '../../../utils/helper';
 import './styles/index.css';
 
 
-const isValidHyperLink = (href: string | undefined) : boolean => {
+const isValidHyperLink = (href: string | undefined): boolean => {
   return (
     !isEmpty(href) && (!(href === '#' || href === 'javascript:void(0)'))
   );
@@ -42,7 +42,8 @@ const Button = (props: Props) => {
     type,
     rel,
     target,
-    onClick
+    onClick,
+    gradientClass
   } = props;
 
   const primaryButtonClasses = cn('mint-btn-primary',
@@ -114,6 +115,14 @@ const Button = (props: Props) => {
     borderDisabled: variant === VARIANTS.TERTIARY && isDisabled && !isLoading && !isAccent
   });
 
+  const gradientButtonClasses = cn(
+    {
+      contentOnColour: !isLoading && !isDisabled,
+      [gradientClass]: !isDisabled || (isLoading && isDisabled),
+      borderPrimary: isDisabled && !isLoading && !isAccent
+    }
+  );
+
 
   const getButtonClassesBasedOnVariant = () => {
     switch (variant) {
@@ -131,6 +140,9 @@ const Button = (props: Props) => {
 
       case VARIANTS.NEGATIVE:
         return cn(baseClasses, negativeButtonClasses);
+
+      case VARIANTS.GRADIENT:
+        return cn(baseClasses, gradientButtonClasses);
 
       default:
         return cn(baseClasses, primaryButtonClasses);
@@ -263,6 +275,7 @@ type DefaultProps = {
   leadingIcon: ((props: any) => JSX.Element) | null;
   trailingIcon: ((props: any) => JSX.Element) | null;
   dataTestId: string;
+  gradientClass: string;
 };
 
 
@@ -283,7 +296,8 @@ Button.defaultProps = {
   isDisabled: false,
   leadingIcon: null,
   trailingIcon: null,
-  dataTestId: ''
+  dataTestId: '',
+  gradientClass: ''
 } as DefaultProps;
 
 export type Props = DefaultProps & RequiredProps & OptionalProps & ButtonProps & AnchorButtonProps;
