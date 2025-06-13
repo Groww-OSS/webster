@@ -3,7 +3,8 @@ export const VARIANTS = {
   SECONDARY: 'Secondary',
   TERTIARY: 'Tertiary',
   POSITIVE: 'Positive',
-  NEGATIVE: 'Negative'
+  NEGATIVE: 'Negative',
+  GRADIENT: 'Gradient'
 };
 
 
