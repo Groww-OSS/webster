@@ -225,6 +225,12 @@ const CustomLineGraph = (props: LineGraphProps) => {
     const minX = Math.min(...xValues);
     const maxX = Math.max(...xValues);
 
+    // Calculate minY and maxY for the current path
+    const yValues = lp.series.map((d: Point) => lp.isSeriesToScale ? getYScaleValue(d[1]) : d[1]);
+    const minY = Math.min(...yValues);
+    const maxY = Math.max(...yValues);
+
+
     const patternId = `dotPattern-${lp.key}`;
     const gradientId = `dotGradient-${lp.key}`;
     const maskId = `dotMask-${lp.key}`;
@@ -261,15 +267,12 @@ const CustomLineGraph = (props: LineGraphProps) => {
 
         <radialGradient
           id={gradientId}
-          cx={
-            lp.isSeriesToScale
-              ? (maxX - minX === 0 ? 0.5 : (origin.x - minX) / (maxX - minX))
-              : (maxX - minX === 0 ? 0.5 : (origin.x - minX) / (maxX - minX))
-          }
-          cy={origin.y / (4 * height)}
-          r="0.25"
+          cx={maxX - minX === 0 ? 0.5 : (origin.x - minX) / (1.5 * (maxX - minX))}
+          cy={((origin.y - minY) / (maxY - minY)) / 4}
+          // r is 1/3.5 of the distance from origin.y to bottom (maxY)
+          r={((maxY - origin.y) / (maxY - minY)) / 3.5}
           gradientUnits="objectBoundingBox"
-          gradientTransform={'scale(1,4)'}
+          gradientTransform={'scale(1.5,4)'}
         >
           <stop offset="0%"
             stopColor={lp.color}
