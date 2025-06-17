@@ -109,7 +109,7 @@ const primitives = {
       // Hover States
       transparentHover: { light: "#44475B0F", dark: "#44475B0F" },
       accentHover: { light: "#04AD83", dark: "#04AD83" },
-      accentSubtleHover: { light: "#DDF5EE", dark: "#DDF5EE" },
+      accentSubtleHover: { light: "#E0F8EE", dark: "#0C2E22" },
       transparentAccentHover: { light: "#00B3860F", dark: "#00B3860F" },
       positiveHover: { light: "#04AD83", dark: "#04AD83" },
       positiveSubtleHover: { light: "#DDF5EE", dark: "#DDF5EE" },
