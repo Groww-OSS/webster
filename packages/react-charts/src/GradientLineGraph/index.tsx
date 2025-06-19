@@ -412,6 +412,7 @@ const CustomLineGraph = (props: LineGraphProps) => {
 
 
   const showBlinkingPointUI = (lp: LinePathData) => {
+    const hoverPointStrokeMultiplier = lp.hoverPointStrokeMultiplier ?? DefaultStrokeMultiplier;
     const lastPoint = lp.series[lp.series.length - 1];
     const lastPointY = getYScaleValue(getYaxisValue(lastPoint));
     const lastPointX = getXScaleValue(getXaxisValue(lastPoint));
@@ -425,10 +426,10 @@ const CustomLineGraph = (props: LineGraphProps) => {
         <circle
           cx={lastPointX}
           cy={lastPointY}
-          r={lp.strokeWidth * 1.5}
+          r={lp.strokeWidth * hoverPointStrokeMultiplier}
           fill={lp.color}
           stroke='var(--dangerouslySetPrimaryBg)'
-          strokeWidth={lp.strokeWidth / 2}
+          strokeWidth={lp.strokeWidth * hoverPointStrokeMultiplier / 2}
           pointerEvents="none"
           style={lp.style}
         >
@@ -595,7 +596,7 @@ const CustomLineGraph = (props: LineGraphProps) => {
 
     const areaPath = area({
       x: x as any,
-      y0: height - paddingVert, // Bottom of chart
+      y0: height, // Bottom of chart
       y1: y as any // Line path
     });
 
@@ -702,8 +703,7 @@ const CustomLineGraph = (props: LineGraphProps) => {
                   <path
                     d={linePath(lp.series) || ''}
                     opacity={areaProps?.opacity}
-                    stroke="url(#lineGradient)"
-                    // stroke={lp.color}
+                    stroke={lpIndex === 0 ? 'url(#lineGradient)' : lp.color}
                     style={{ ...lp.style }}
                     strokeOpacity={lp.strokeOpacity}
                     shapeRendering="geometricPrecision"
