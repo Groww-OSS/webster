@@ -267,12 +267,11 @@ const CustomLineGraph = (props: LineGraphProps) => {
 
         <radialGradient
           id={gradientId}
-          cx={maxX - minX === 0 ? 0.5 : (origin.x - minX) / (1.5 * (maxX - minX))}
-          cy={((origin.y - minY) / (maxY - minY)) / 4}
-          // r is 1/3.5 of the distance from origin.y to bottom (maxY)
-          r={((maxY - origin.y) / (maxY - minY)) / 3.5}
+          cx={maxX - minX === 0 ? 0.5 : Math.max(0, Math.min(1, (origin.x - minX) / (1.75 * (maxX - minX))))}
+          cy={maxY - minY === 0 ? 0.5 : Math.max(0, Math.min(1, ((origin.y - minY) / (maxY - minY)) / 4))}
+          r={maxY - minY === 0 ? 0.3 : Math.max(0.1, Math.min(0.8, ((maxY - origin.y) / (maxY - minY)) / 3.5))}
           gradientUnits="objectBoundingBox"
-          gradientTransform={'scale(1.5,4)'}
+          gradientTransform={'scale(1.75,4)'}
         >
           <stop offset="0%"
             stopColor={lp.color}
