@@ -182,7 +182,7 @@ const Button = (props: Props) => {
     return (
       <Component
         className={getButtonClassesBasedOnVariant()}
-        data-test-id={dataTestId.length ? dataTestId : null}
+        data-test-id={dataTestId?.length ? dataTestId : null}
         onClick={onButtonClick}
         tabIndex={DEFAULT_TABINDEX}
         {...props}
@@ -274,7 +274,7 @@ type DefaultProps = {
   isDisabled: boolean;
   leadingIcon: ((props: any) => JSX.Element) | null;
   trailingIcon: ((props: any) => JSX.Element) | null;
-  dataTestId: string;
+  dataTestId?: string;
   gradientClass: string;
 };
 
