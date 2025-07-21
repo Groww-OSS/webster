@@ -132,7 +132,7 @@ class DropdownV2 extends React.PureComponent<Props, State> {
     // create component classes
     const active = this.isActive();
     const dropdownClasses = cx({
-      dropdown: true,
+      'dropdown-v2': true,
       'dropdown-v2--active': active,
       'dropdown-v2--disabled': disabled,
       'dropdown-v2--position-top': this.state.position === 'top',

@@ -9,13 +9,13 @@ const DropdownContentV2 = (props: Props) => {
   const { children, className, animate, position = 'bottom', horizontalPosition = 'right', ...dropdownContentProps } = props;
 
   const contentClasses = cx(
-    '.dropdown-v2--content', className,
+    'dropdown-v2--content', className,
     {
-      '.dropdown-v2--fadein': animate,
-      '.dropdown-v2--content--top': position === 'top',
-      '.dropdown-v2--content--bottom': position === 'bottom',
-      '.dropdown-v2--content--left': horizontalPosition === 'left',
-      '.dropdown-v2--content--right': horizontalPosition === 'right'
+      'dropdown-v2--fadein': animate,
+      'dropdown-v2--position--top': position === 'top',
+      'dropdown-v2--position--bottom': position === 'bottom',
+      'dropdown-v2--position--left': horizontalPosition === 'left',
+      'dropdown-v2--position--right': horizontalPosition === 'right'
     }
   );
 

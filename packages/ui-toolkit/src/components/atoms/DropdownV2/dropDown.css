@@ -2,7 +2,7 @@
   display: inline-block;
 }
 
-.dropdown-v2__content {
+.dropdown-v2--content {
   display: none;
   position: absolute;
   z-index: var(--zindex10001);
@@ -15,34 +15,34 @@
   right: auto;
 }
 
-.dropdown-v2--active .dropdown-v2__content {
+.dropdown-v2--active .dropdown-v2--content {
   display: block;
 }
 
 /* Vertical positioning - content appears above trigger */
 
-.dropdown-v2.dropdown-v2--position-top .dropdown-v2__content {
+.dropdown-v2.dropdown-v2--position-top .dropdown-v2--content {
   top: auto;
   bottom: 100%;
 }
 
 /* Vertical positioning - content appears below trigger */
 
-.dropdown-v2.dropdown-v2--position-bottom .dropdown-v2__content {
+.dropdown-v2.dropdown-v2--position-bottom .dropdown-v2--content {
   top: 100%;
   bottom: auto;
 }
 
 /* Horizontal positioning - content appears to the right of trigger */
 
-.dropdown-v2.dropdown-v2--position-right .dropdown-v2__content {
+.dropdown-v2.dropdown-v2--position-right .dropdown-v2--content {
   left: 0;
   right: auto;
 }
 
 /* Horizontal positioning - content appears to the left of trigger */
 
-.dropdown-v2.dropdown-v2--position-left .dropdown-v2__content {
+.dropdown-v2.dropdown-v2--position-left .dropdown-v2--content {
   left: auto;
   right: 0;
 }

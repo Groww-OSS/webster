@@ -5,7 +5,7 @@ const DropdownTriggerV2 = (props: Props) => {
   const { children, className, ...dropdownTriggerProps } = props;
 
   return (
-    <div className={`.dropdown-v2--trigger ${className}`}
+    <div className={`dropdown-v2--trigger ${className}`}
       {...dropdownTriggerProps}
     >
       {children}
