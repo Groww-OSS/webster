@@ -1,0 +1,141 @@
+.dropdown-v2 {
+  display: inline-block;
+}
+
+.dropdown-v2--content {
+  display: none;
+  position: absolute;
+  z-index: var(--zindex10001);
+  transition: all 0.15s ease-out;
+
+  /* Default bottom-right positioning */
+  top: 100%;
+  bottom: auto;
+  left: 0;
+  right: auto;
+}
+
+.dropdown-v2--active .dropdown-v2--content {
+  display: block;
+}
+
+/* Vertical positioning - content appears above trigger */
+
+.dropdown-v2.dropdown-v2--position-top .dropdown-v2--content {
+  top: auto;
+  bottom: 100%;
+}
+
+/* Vertical positioning - content appears below trigger */
+
+.dropdown-v2.dropdown-v2--position-bottom .dropdown-v2--content {
+  top: 100%;
+  bottom: auto;
+}
+
+/* Horizontal positioning - content appears to the right of trigger */
+
+.dropdown-v2.dropdown-v2--position-right .dropdown-v2--content {
+  left: 0;
+  right: auto;
+}
+
+/* Horizontal positioning - content appears to the left of trigger */
+
+.dropdown-v2.dropdown-v2--position-left .dropdown-v2--content {
+  left: auto;
+  right: 0;
+}
+
+@media only screen and (min-width: 601px) {
+
+  .dropdown-v2--active .dropdown-v2__fadein {
+    animation: ddFadeIn 0.2s normal;
+  }
+
+  /* Update animation for top positioned dropdowns */
+
+  .dropdown-v2--position-top .dropdown-v2__fadein {
+    animation: ddFadeInFromTop 0.2s normal;
+  }
+
+  /* Animation for left positioned dropdowns */
+
+  .dropdown-v2--position-left .dropdown-v2__fadein {
+    animation: ddFadeInFromLeft 0.2s normal;
+  }
+
+  /* Animation for right positioned dropdowns */
+
+  .dropdown-v2--position-right .dropdown-v2__fadein {
+    animation: ddFadeInFromRight 0.2s normal;
+  }
+
+  @keyframes ddFadeIn {
+
+    0% {
+      transform: translateY(16px);
+      opacity: 0;
+    }
+
+    80% {
+      opacity: 1;
+    }
+
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes ddFadeInFromTop {
+
+    0% {
+      transform: translateY(-16px);
+      opacity: 0;
+    }
+
+    80% {
+      opacity: 1;
+    }
+
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes ddFadeInFromLeft {
+
+    0% {
+      transform: translateX(-16px);
+      opacity: 0;
+    }
+
+    80% {
+      opacity: 1;
+    }
+
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes ddFadeInFromRight {
+
+    0% {
+      transform: translateX(16px);
+      opacity: 0;
+    }
+
+    80% {
+      opacity: 1;
+    }
+
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+}
