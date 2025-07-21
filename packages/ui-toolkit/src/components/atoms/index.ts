@@ -35,3 +35,4 @@ export * from './Toaster';
 export * from './DataRowInput';
 export * from './FreeFormInput';
 export * from './InputStepper';
+export * from './DropdownV2';
