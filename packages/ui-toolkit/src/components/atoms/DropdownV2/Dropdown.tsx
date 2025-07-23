@@ -3,9 +3,10 @@ import { findDOMNode } from 'react-dom';
 
 import cx from 'classnames';
 
-import './dropDown.css';
 import DropdownContentV2 from './DropdownContent';
 import DropdownTriggerV2 from './DropdownTrigger';
+
+import './dropDown.css';
 
 class DropdownV2 extends React.PureComponent<Props, State> {
   static defaultProps: DefaultProps;
@@ -61,8 +62,11 @@ class DropdownV2 extends React.PureComponent<Props, State> {
     }
 
     const triggerRect = triggerElement.getBoundingClientRect();
-    const viewportHeight = window.innerHeight;
-    const viewportWidth = window.innerWidth;
+
+    const containerRect = this.props.positionContainerRef?.current?.getBoundingClientRect();
+
+    const viewportHeight = containerRect ? containerRect.height : window.innerHeight;
+    const viewportWidth = containerRect ? containerRect.width : window.innerWidth;
 
     // Estimate dropdown content dimensions
     const contentElement = dropdownElement.querySelector('.dropdown-v2--content');
@@ -294,6 +298,7 @@ export type Props = RequiredProps & DefaultProps & {
   onShow?: () => void;
   removeElement?: boolean;
   style?: React.CSSProperties;
+  positionContainerRef?: React.RefObject<HTMLElement>;
 };
 
 export { DropdownTriggerV2, DropdownContentV2 };
