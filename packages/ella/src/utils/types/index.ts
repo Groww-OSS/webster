@@ -47,7 +47,7 @@ export type ProductSchema = {
   schemeName: string;
   routeName: string;
   fundHouse: string;
-  rating: number;
+  rating?: number;
   logoUrl?: string;
 }
 
