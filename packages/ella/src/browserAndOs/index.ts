@@ -211,10 +211,10 @@ export function getBrowserVersion() {
     };
 
   } catch (err) {
-    console.error(`Error with getBrowserName ${err}`);
+    console.error(`Error with getBrowserVersion ${err}`);
 
     dispatchCustomEvent(CUSTOM_EVENTS.TRACK_LOG, {
-      function: 'getBrowserName',
+      function: 'getBrowserVersion',
       error: err
     });
     return {
@@ -316,34 +316,4 @@ export function getNetworkType(): string {
 
   // Fallback to online/offline status
   return navigator.onLine ? 'wifi' : 'offline';
-}
-
-
-/**
- * Collects and returns basic device context data such as manufacturer, model, OS, and network type.
- *
- * @remarks
- * This function aggregates device and environment information using helper functions. Some fields (like carrier and sdkVersion) are not available in the browser context and are returned as empty strings.
- *
- * @returns {object} An object containing device and environment context data.
- *
- * @example
- * ```
- * const context = getBasicDeviceContextData();
- * console.log(context);
- * ```
- */
-export function getBasicDeviceContextData() {
-  const deviceModelInfo = getDeviceModelInfo();
-
-  return {
-    appVersionCode: 0,
-    carrier: '', // Not available in browser context
-    manufacturer: deviceModelInfo.manufacturer,
-    model: deviceModelInfo.model,
-    networkType: getNetworkType(),
-    osName: getOSName() ?? '',
-    osVersion: getOSVersion(),
-    sdkVersion: ''
-  };
 }
