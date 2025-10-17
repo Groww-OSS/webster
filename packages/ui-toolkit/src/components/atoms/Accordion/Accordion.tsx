@@ -7,7 +7,6 @@ import React, {
 } from 'react';
 
 import { KeyboardArrowDown } from '@groww-tech/icon-store/mi';
-
 import AnimateHeight from './AnimateHeight';
 
 import './accordion.css';
@@ -42,10 +41,37 @@ const MutableAccordion = (props: Props) => {
   const [ isOpen, toggleAccordion ] = useState(onMountOpen);
   const [ isRevealComplete, setIsRevealComplete ] = useState(false);
   const [ childStyle, setChildStyle ] = useState<{ height?: string | number }>({
-    height: onMountOpen ? 'auto' : 0
+    height: 'auto'
   });
   const childRef = useRef<HTMLDivElement>(null);
   const isFirstRender = useRef(true);
+
+  // before the first paint, we start with height auto (if open on mount)
+  // or we measure the height of the content and then set it to 0
+  // so that the transition can animate from the measured height to 0
+  // and thus the content initially appears in doc without overlap
+  useEffect(() => {
+    if (useAnimateHeight) return;
+
+    if (!onMountOpen) {
+      const el = childRef.current;
+
+      if (!el) return;
+
+      // measured height of content
+      const measured = el.scrollHeight;
+
+      setChildStyle({ height: measured });
+
+      // two rAFs: ensure the measured height is applied before we change it
+      // to 0 so the transition animates correctly
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setChildStyle({ height: 0 });
+        });
+      });
+    }
+  }, []);
 
   const newIconClass = 'ac11Icon absolute-center ' + iconClass + ` ${isOpen ? 'ac11collapsibleOpen' : 'ac11collapsibleClose'}`;
 
@@ -70,7 +96,7 @@ const MutableAccordion = (props: Props) => {
     if (!isOpen && isRevealComplete) {
       setIsRevealComplete(false);
     }
-  }, [ isOpen ]);
+  }, [ isOpen, isRevealComplete, onToggleCallback ]);
 
 
   const toggleState = useCallback(() => {
