@@ -2,6 +2,7 @@
 import React, {
   useCallback,
   useEffect,
+  useLayoutEffect,
   useRef,
   useState
 } from 'react';
@@ -46,32 +47,13 @@ const MutableAccordion = (props: Props) => {
   const childRef = useRef<HTMLDivElement>(null);
   const isFirstRender = useRef(true);
 
-  // before the first paint, we start with height auto (if open on mount)
-  // or we measure the height of the content and then set it to 0
-  // so that the transition can animate from the measured height to 0
-  // and thus the content initially appears in doc without overlap
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (useAnimateHeight) return;
 
     if (!onMountOpen) {
-      const el = childRef.current;
-
-      if (!el) return;
-
-      // measured height of content
-      const measured = el.scrollHeight;
-
-      setChildStyle({ height: measured });
-
-      // two rAFs: ensure the measured height is applied before we change it
-      // to 0 so the transition animates correctly
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          setChildStyle({ height: 0 });
-        });
-      });
+      setChildStyle({ height: 0 });
     }
-  }, []);
+  }, [ useAnimateHeight, onMountOpen ]);
 
   const newIconClass = 'ac11Icon absolute-center ' + iconClass + ` ${isOpen ? 'ac11collapsibleOpen' : 'ac11collapsibleClose'}`;
 
@@ -96,7 +78,7 @@ const MutableAccordion = (props: Props) => {
     if (!isOpen && isRevealComplete) {
       setIsRevealComplete(false);
     }
-  }, [ isOpen, isRevealComplete, onToggleCallback ]);
+  }, [ isOpen ]);
 
 
   const toggleState = useCallback(() => {
