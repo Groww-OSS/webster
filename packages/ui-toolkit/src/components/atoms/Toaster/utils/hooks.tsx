@@ -9,7 +9,7 @@ export const useIsDocumentHidden = () => {
     };
 
     document.addEventListener('visibilitychange', callback);
-    return () => window.removeEventListener('visibilitychange', callback);
+    return () => document.removeEventListener('visibilitychange', callback);
   }, []);
 
   return isDocumentHidden;
