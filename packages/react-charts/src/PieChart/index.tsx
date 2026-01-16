@@ -11,7 +11,10 @@ const getValue = (d: PieData) => {
 const PieChart = (props: PieChartProps) => {
 
   const [ hoveredVal, setHoveredVal ] = useState<string>('');
-  const { data, height, width, donutThickness, hoveredPieThicknes, children, textClass, showArcsValue } = props;
+  const {
+    data, height, width, donutThickness, hoveredPieThicknes, children, textClass, showArcsValue,
+    innerPadAngle = 0.005, padAngle = 0, startAngle, endAngle
+  } = props;
 
   const radius = Math.min(height, width) / 2 - (hoveredPieThicknes);
   const center = radius + hoveredPieThicknes;
@@ -44,8 +47,10 @@ const PieChart = (props: PieChartProps) => {
         pieValue={getValue}
         outerRadius={radius}
         innerRadius={radius - donutThickness}
-        padAngle={0}
+        padAngle={padAngle}
         pieSortValues={null}
+        startAngle={startAngle}
+        endAngle={endAngle}
       >
         {
           (pie) => {
@@ -93,8 +98,10 @@ const PieChart = (props: PieChartProps) => {
           pieValue={getValue}
           outerRadius={radius + hoveredPieThicknes}
           innerRadius={radius + 1}
-          padAngle={0.005}
+          padAngle={innerPadAngle}
           pieSortValues={null}
+          startAngle={startAngle}
+          endAngle={endAngle}
         >
           {
             (pie1) => {
@@ -139,6 +146,10 @@ type PieChartProps = {
   onMouseLeave: () => void;
   textClass: string;
   showArcsValue?: boolean;
+  innerPadAngle?: number;
+  padAngle?: number;
+  startAngle?: number;
+  endAngle?: number;
 }
 
 
