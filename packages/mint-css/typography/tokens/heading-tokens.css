@@ -25,3 +25,12 @@
   line-height: 2rem;
   font-family: Soehne;
 }
+
+.headingLarge {
+  font-size: var(--font-size-10);
+  font-weight: var(--font-weight-medium);
+  line-height: 0.75rem;
+  font-family: Soehne;
+  letter-spacing: 2px;
+  text-transform: uppercase
+}
