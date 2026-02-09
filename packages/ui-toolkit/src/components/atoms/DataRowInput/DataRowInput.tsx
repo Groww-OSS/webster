@@ -1,10 +1,19 @@
-import React, { useState } from 'react';
+import React, {
+  useState,
+  forwardRef,
+  useCallback,
+  memo
+} from 'react';
 import cn from 'classnames';
 import type { ReactIconComponentType } from '@groww-tech/icon-store';
 import { ContentMintTokens } from '../../../types/mint-token-types/content-mint-tokens';
 import { BackgroundMintTokens } from '../../../types/mint-token-types/background-mint-tokens';
 import { BorderMintTokens } from '../../../types/mint-token-types/border-mint-tokens';
 import './styles/index.css';
+
+// Allow navigation/control keys (backspace, delete, arrows, etc.)
+const allowedKeys = [ 'Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Tab', 'Enter', 'Home', 'End' ];
+
 
 export type DataRowInputProps = {
   placeholder?: string;
@@ -14,7 +23,6 @@ export type DataRowInputProps = {
   width?: string;
   PrefixIcon?: ReactIconComponentType;
   prefixLabel?: string;
-  ref?: React.RefObject<HTMLInputElement>;
   disabled?: boolean;
   error?: boolean;
   warning?: boolean;
@@ -32,10 +40,54 @@ export type DataRowInputProps = {
   backgroundColor?: BackgroundMintTokens;
   disableCopyPaste?: boolean;
   onEnterPress?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
 }
 
+// Memoized prefix component to prevent unnecessary re-renders
+const PrefixComponent = memo(({
+  PrefixIcon,
+  prefixLabel,
+  prefixIconColor,
+  perfixTextColor,
+  dataTestId
+}: {
+  PrefixIcon?: ReactIconComponentType;
+  prefixLabel?: string;
+  prefixIconColor: ContentMintTokens;
+  perfixTextColor: ContentMintTokens;
+  dataTestId?: string;
+}) => (
+  <div
+    className="datarow-prefixContainer"
+    data-test-id={`${dataTestId}-prefix-container`}
+  >
+    {
+      PrefixIcon && (
+        <div
+          className={`datarow-inputPrefixIcon ${prefixIconColor}`}
+          data-test-id={`${dataTestId}-prefix-icon`}
+        >
+          <PrefixIcon size={20}/>
+        </div>
+      )
+    }
+    {
+      prefixLabel && (
+        <div
+          className={`datarow-inputPrefixLabel ${perfixTextColor}`}
+          data-test-id={`${dataTestId}-prefix-label`}
+        >
+          {prefixLabel}
+        </div>
+      )
+    }
+  </div>
+));
 
-const DataRowInput: React.FC<DataRowInputProps> = ({
+PrefixComponent.displayName = 'PrefixComponent';
+
+const DataRowInput = forwardRef<HTMLInputElement, DataRowInputProps>(({
   placeholder,
   value,
   onChange,
@@ -43,7 +95,6 @@ const DataRowInput: React.FC<DataRowInputProps> = ({
   width = '128px',
   PrefixIcon,
   prefixLabel,
-  ref,
   disabled = false,
   error = false,
   warning = false,
@@ -60,98 +111,101 @@ const DataRowInput: React.FC<DataRowInputProps> = ({
   backgroundColor = 'backgroundPrimary',
   borderColor = 'borderPrimary',
   disableCopyPaste = false,
-  onEnterPress
-}) => {
+  onEnterPress,
+  onFocus,
+  onBlur
+}, ref) => {
   const [ isFocused, setIsFocused ] = useState(false);
 
-  const inputClasses = cn('datarow-input', textAlign);
-  const inputWrapperClasses = cn('datarow-inputWrapper');
+  const hasPrefix = Boolean(PrefixIcon || prefixLabel);
 
-
-  const handleWheel = (e: React.WheelEvent<HTMLInputElement>) => {
+  // Memoize event handlers to prevent unnecessary re-renders
+  const handleWheel = useCallback((e: React.WheelEvent<HTMLInputElement>) => {
     e.currentTarget.blur();
-  };
+  }, []);
 
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
+    // Only block the period when disableDecimal is true
     if (disableDecimal && e.key === '.') {
       e.preventDefault();
+      return;
+    }
+
+
+    // If it's not a digit, not a period, and not in the allowed keys list, block it
+    if (!/^[0-9]$/.test(e.key) && e.key !== '.' && !allowedKeys.includes(e.key)) {
+      e.preventDefault();
+      return;
     }
 
     if (e.key === 'Enter' && onEnterPress) {
       onEnterPress(e);
     }
 
-    onKeyDown && onKeyDown(e);
-  };
+    onKeyDown?.(e);
+  }, [ disableDecimal, onEnterPress, onKeyDown ]);
 
-
-  const handleCopyPaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+  const handleCopyPaste = useCallback((e: React.ClipboardEvent<HTMLInputElement>) => {
     if (disableCopyPaste) {
       e.preventDefault();
     }
-  };
+  }, [ disableCopyPaste ]);
 
+  const handleFocus = useCallback((e: React.FocusEvent<HTMLInputElement>) => {
+    setIsFocused(true);
+    onFocus?.(e);
+  }, [ onFocus ]);
+
+  const handleBlur = useCallback((e: React.FocusEvent<HTMLInputElement>) => {
+    setIsFocused(false);
+    onBlur?.(e);
+  }, [ onBlur ]);
+
+  // Memoize class names to avoid recalculation on each render
   const inputContentClasses = cn(
     `datarow-inputContent ${textColor} ${borderColor}`,
     {
       [backgroundColor]: !disabled,
       'datarow-inputBorderNegative': error,
       'datarow-inputBorderWarning': warning,
-      'datarow-inputPrefix': PrefixIcon || prefixLabel,
+      'datarow-inputPrefix': hasPrefix,
       'datarow-inputFocused': isFocused && !disabled && !error,
       'backgroundSecondary contentSecondary': disabled
     }
   );
 
+  const inputClasses = `datarow-input ${textAlign} ${textStyle} ${textColor} datarow-contentPrimary`;
+
+
   return (
     <div
-      className={inputWrapperClasses}
-      style={{ width: width }}
+      className="datarow-inputWrapper"
+      style={{ width }}
       data-test-id={`${dataTestId}-container`}
     >
       <div
-        className={`${inputContentClasses}`}
+        className={inputContentClasses}
         data-test-id={`${dataTestId}-content`}
       >
         {
-          (PrefixIcon || prefixLabel) && (
-            <div
-              className='datarow-prefixContainer'
-              data-test-id={`${dataTestId}-prefix-container`}
-            >
-              {
-                PrefixIcon && (
-                  <div
-                    className={`datarow-inputPrefixIcon ${prefixIconColor}`}
-                    data-test-id={`${dataTestId}-prefix-icon`}
-                  >
-                    {/* Hardcoding size to 20 to maintain consistency across different icons and elements */}
-                    <PrefixIcon size={20}/>
-                  </div>
-                )
-              }
-              {
-                prefixLabel && (
-                  <div
-                    className={`datarow-inputPrefixLabel ${perfixTextColor}`}
-                    data-test-id={`${dataTestId}-prefix-label`}
-                  >
-                    {prefixLabel}
-                  </div>
-                )
-              }
-            </div>
+          hasPrefix && (
+            <PrefixComponent
+              PrefixIcon={PrefixIcon}
+              prefixLabel={prefixLabel}
+              prefixIconColor={prefixIconColor}
+              perfixTextColor={perfixTextColor}
+              dataTestId={dataTestId}
+            />
           )
         }
         <input
-          className={`${inputClasses} ${textStyle} ${textColor} datarow-contentPrimary`}
+          className={inputClasses}
           type="number"
           placeholder={placeholder}
           value={value}
           onChange={onChange}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
           disabled={disabled}
           data-test-id={dataTestId}
           ref={ref}
@@ -168,6 +222,6 @@ const DataRowInput: React.FC<DataRowInputProps> = ({
       </div>
     </div>
   );
-};
+});
 
-export default DataRowInput;
+export default memo(DataRowInput);

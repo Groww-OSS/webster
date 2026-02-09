@@ -1,4 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, {
+  useState,
+  useEffect,
+  forwardRef,
+  useCallback,
+  memo
+} from 'react';
 import cn from 'classnames';
 import {
   MdsIcCancelCircle,
@@ -10,6 +16,158 @@ import TempIconButtonV2 from '../TempIconButtonV2/TempIconButtonV2';
 import type { ReactIconComponentType } from '@groww-tech/icon-store';
 import { ContentMintTokens } from '../../../types/mint-token-types/content-mint-tokens';
 import './styles/index.css';
+
+const allowedKeys = [ 'Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab', 'Enter', 'Home', 'End', '.' ];
+
+
+type PrefixSectionProps = {
+  PrefixIcon?: ReactIconComponentType;
+  prefixLabel?: string;
+  prefixIconColor: ContentMintTokens;
+  prefixTextColor: ContentMintTokens;
+  prefixTextStyle: 'bodyBase' | 'bodyBaseHeavy';
+  dataTestId?: string;
+};
+
+const PrefixSection = memo<PrefixSectionProps>(({
+  PrefixIcon,
+  prefixLabel,
+  prefixIconColor,
+  prefixTextColor,
+  prefixTextStyle,
+  dataTestId
+}) => {
+  if (!PrefixIcon && !prefixLabel) return null;
+
+  return (
+    <div className="freeform-prefixContainer"
+      data-test-id={`${dataTestId}-prefix-container`}
+    >
+      {
+        PrefixIcon && (
+          <div className={`freeform-inputPrefixIcon ${prefixIconColor}`}
+            data-test-id={`${dataTestId}-prefix-icon`}
+          >
+            <PrefixIcon size={20}/>
+          </div>
+        )
+      }
+      {
+        prefixLabel && (
+          <div
+            className={`freeform-inputPrefixLabel ${prefixTextColor} ${prefixTextStyle}`}
+            data-test-id={`${dataTestId}-prefix-label`}
+          >
+            {prefixLabel}
+          </div>
+        )
+      }
+    </div>
+  );
+});
+
+
+type SuffixSectionProps = {
+  clearable: boolean;
+  showClearIcon: boolean;
+  variant: 'text' | 'password' | 'number';
+  showPassword: boolean;
+  setShowPassword: React.Dispatch<React.SetStateAction<boolean>>;
+  SuffixIcon?: ReactIconComponentType;
+  suffixIconButton?: SuffixIconButtonProps;
+  handleClear: () => void;
+  clearIconColor: ContentMintTokens;
+  passwordToggleIconColor: ContentMintTokens;
+  suffixIconColor: ContentMintTokens;
+  suffixIconButtonColor: ContentMintTokens;
+  disabled?: boolean;
+  dataTestId?: string;
+};
+
+const SuffixSection = memo<SuffixSectionProps>(({
+  clearable,
+  showClearIcon,
+  variant,
+  showPassword,
+  setShowPassword,
+  SuffixIcon,
+  suffixIconButton,
+  handleClear,
+  clearIconColor,
+  passwordToggleIconColor,
+  suffixIconColor,
+  suffixIconButtonColor,
+  disabled,
+  dataTestId
+}) => {
+  const showSuffixContainer = (clearable && showClearIcon) || variant === 'password' || !!SuffixIcon || !!suffixIconButton;
+
+  if (!showSuffixContainer) return null;
+
+  return (
+    <div className="freeform-suffixContainer"
+      data-test-id={`${dataTestId}-suffix-container`}
+    >
+      {
+        clearable && showClearIcon && (
+          <div className="freeform-inputClearIcon"
+            data-test-id={`${dataTestId}-clear-icon`}
+          >
+            <TempIconButtonV2
+              onClick={handleClear}
+              Icon={MdsIcCancelCircle}
+              size="medium"
+              data-test-id={`${dataTestId}-clear-button`}
+              iconColor={clearIconColor}
+            />
+          </div>
+        )
+      }
+
+      {
+        variant === 'password' && (
+          <div className="freeform-inputSuffixIcon"
+            data-test-id={`${dataTestId}-password-toggle`}
+          >
+            <TempIconButtonV2
+              onClick={() => setShowPassword(!showPassword)}
+              Icon={showPassword ? MdsIcHideEye : MdsIcShowEye}
+              size="medium"
+              data-test-id={`${dataTestId}-password-toggle-button`}
+              iconColor={passwordToggleIconColor}
+            />
+          </div>
+        )
+      }
+
+      {
+        SuffixIcon && (
+          <div className={`freeform-inputSuffixIcon ${suffixIconColor}`}
+            data-test-id={`${dataTestId}-suffix-icon`}
+          >
+            <SuffixIcon size={20}/>
+          </div>
+        )
+      }
+
+      {
+        suffixIconButton && (
+          <div className="freeform-inputSuffixIcon"
+            data-test-id={`${dataTestId}-suffix-button`}
+          >
+            <TempIconButtonV2
+              onClick={suffixIconButton.onClick}
+              Icon={suffixIconButton.icon}
+              disabled={disabled}
+              size="medium"
+              iconColor={suffixIconButtonColor}
+            />
+          </div>
+        )
+      }
+    </div>
+  );
+});
 
 
 type SuffixIconButtonProps = {
@@ -34,14 +192,13 @@ export type FreeFormInputProps = {
   error?: boolean;
   errorMessage?: string;
   clearable?: boolean;
-  ref?: React.RefObject<HTMLInputElement>;
   helperText?: string;
   helperTextColor?: ContentMintTokens;
   variant?: 'text' | 'password' | 'number';
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   autoComplete?: string;
   onKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
-  perfixTextColor?: ContentMintTokens;
+  prefixTextColor?: ContentMintTokens;
   prefixTextStyle?: 'bodyBase' | 'bodyBaseHeavy';
   onEnterPress?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   disableCopyPaste?: boolean;
@@ -51,11 +208,11 @@ export type FreeFormInputProps = {
   suffixIconButtonColor?: ContentMintTokens;
   clearIconColor?: ContentMintTokens;
   passwordToggleIconColor?: ContentMintTokens;
-
+  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
 };
 
-
-const FreeFormInput: React.FC<FreeFormInputProps> = ({
+const FreeFormInput = forwardRef<HTMLInputElement, FreeFormInputProps>(({
   placeholder,
   value,
   label,
@@ -72,14 +229,13 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
   error = false,
   errorMessage = '',
   clearable = false,
-  ref,
   helperText,
   helperTextColor = 'contentSecondary',
   variant = 'text',
   onKeyDown,
   autoComplete,
   onKeyUp,
-  perfixTextColor = 'contentSecondary',
+  prefixTextColor = 'contentSecondary',
   prefixTextStyle = 'bodyBase',
   onEnterPress,
   disableCopyPaste = false,
@@ -88,19 +244,21 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
   suffixIconColor = 'contentSecondary',
   suffixIconButtonColor = 'contentSecondary',
   clearIconColor = 'contentSecondary',
-  passwordToggleIconColor = 'contentSecondary'
-}) => {
+  passwordToggleIconColor = 'contentSecondary',
+  onFocus,
+  onBlur
+}, ref) => {
   const [ showClearIcon, setShowClearIcon ] = useState(false);
   const [ isFocused, setIsFocused ] = useState(false);
   const [ showPassword, setShowPassword ] = useState(false);
 
+  // Update clear icon visibility when value changes
   useEffect(() => {
-    setShowClearIcon(!!clearable && value.length > 0);
+    setShowClearIcon(clearable && value.length > 0);
   }, [ clearable, value ]);
 
-  const inputClasses = cn('freeform-input');
-  const inputWrapperClasses = cn('freeform-inputWrapper flex width100');
-  const inputContentClasses = cn('freeform-inputContent contentPrimary borderPrimary', {
+  // Memoize class computation to prevent recalculation on every render
+  const inputContentClasses = React.useMemo(() => cn('freeform-inputContent contentPrimary borderPrimary', {
     'backgroundPrimary': !disabled,
     'freeform-inputBorderNegative': error,
     'freeform-inputClearable': clearable,
@@ -108,17 +266,9 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
     'freeform-inputSuffix': SuffixIcon || (clearable && showClearIcon) || variant === 'password',
     'freeform-inputFocused': isFocused && !disabled && !error,
     'backgroundSecondary contentSecondary': disabled
-  });
+  }), [ disabled, error, clearable, PrefixIcon, prefixLabel, SuffixIcon, showClearIcon, variant, isFocused ]);
 
-
-  const handleWheel = (e: React.WheelEvent<HTMLInputElement>) => {
-    if (variant === 'number') {
-      e.currentTarget.blur();
-    }
-  };
-
-
-  const handleClear = () => {
+  const handleClear = useCallback(() => {
     if (onChange) {
       const event = {
         target: { value: '' },
@@ -129,91 +279,93 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
 
       onChange(event);
     }
-  };
+  }, [ onChange ]);
 
+  const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
+    onKeyDown?.(e);
 
-  const handleCopyPaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
-    if (disableCopyPaste) {
-      e.preventDefault();
-    }
-  };
-
-
-  const togglePasswordVisibility = () => {
-
-    setShowPassword(!showPassword);
-  };
-
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (onKeyDown) onKeyDown(e);
     if (e.key === 'Enter' && onEnterPress) {
       onEnterPress(e);
     }
 
-    if (disableDecimal && (e.key === '.')) {
+    // Only block decimal point when disableDecimal is true
+    if (disableDecimal && e.key === '.') {
+      e.preventDefault();
+      return;
+    }
+
+    if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
       e.preventDefault();
     }
-  };
+
+    // For number variant, only prevent non-numeric input with exceptions for navigation keys
+    if (variant === 'number') {
+
+      if (!/^[0-9]$/.test(e.key) && !allowedKeys.includes(e.key)) {
+        e.preventDefault();
+      }
+    }
+  }, [ onKeyDown, onEnterPress, disableDecimal, variant ]);
+
+  const handleFocus = useCallback((e: React.FocusEvent<HTMLInputElement>) => {
+    setIsFocused(true);
+    onFocus?.(e);
+  }, [ onFocus ]);
+
+  const handleBlur = useCallback((e: React.FocusEvent<HTMLInputElement>) => {
+    setIsFocused(false);
+    onBlur?.(e);
+  }, [ onBlur ]);
+
+  const handleCopyPaste = useCallback((e: React.ClipboardEvent<HTMLInputElement>) => {
+    if (disableCopyPaste) {
+      e.preventDefault();
+    }
+  }, [ disableCopyPaste ]);
+
+  const handleWheel = useCallback((e: React.WheelEvent<HTMLInputElement>) => {
+    if (variant === 'number') {
+      e.currentTarget.blur();
+    }
+  }, [ variant ]);
 
   return (
     <div
-      className={inputWrapperClasses}
-      style={{ width: width }}
+      className="flex width100 freeform-inputWrapper"
+      style={{ width }}
       data-test-id={`${dataTestId}-container`}
     >
       {
         label && (
           <div
-            className={`bodySmallHeavy ${labelColor}`}
+            className={`bodySmallHeavy freeform-label ${labelColor}`}
             data-test-id={`${dataTestId}-label`}
           >
             {label}
           </div>
         )
       }
-      <div
-        className={`${inputContentClasses}`}
+
+      <div className={inputContentClasses}
         data-test-id={`${dataTestId}-input-content`}
       >
-        {
-          (PrefixIcon || prefixLabel) && (
-            <div
-              className='freeform-prefixContainer'
-              data-test-id={`${dataTestId}-prefix-container`}
-            >
-              {
-                PrefixIcon && (
-                  <div
-                    className={`freeform-inputPrefixIcon ${prefixIconColor}`}
-                    data-test-id={`${dataTestId}-prefix-icon`}
-                  >
-                    {/* Hardcoding size to 20 to maintain consistency across different icons and elements */}
-                    <PrefixIcon size={20}/>
-                  </div>
-                )
-              }
-              {
-                prefixLabel && (
-                  <div
-                    className={`freeform-inputPrefixLabel ${perfixTextColor} ${prefixTextStyle}`}
-                    data-test-id={`${dataTestId}-prefix-label`}
-                  >
-                    {prefixLabel}
-                  </div>
-                )
-              }
-            </div>
-          )
-        }
+        <PrefixSection
+          PrefixIcon={PrefixIcon}
+          prefixLabel={prefixLabel}
+          prefixIconColor={prefixIconColor}
+          prefixTextColor={prefixTextColor}
+          prefixTextStyle={prefixTextStyle}
+          dataTestId={dataTestId}
+        />
+
         <input
-          className={`${inputClasses} bodyBase contentPrimary`}
+          className="freeform-input bodyBase contentPrimary"
           type={variant === 'password' ? (showPassword ? 'text' : 'password') : variant}
           placeholder={placeholder}
           value={value}
           onChange={onChange}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
           disabled={disabled}
           data-test-id={dataTestId}
           maxLength={maxLength}
@@ -226,75 +378,25 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
           onCut={handleCopyPaste}
           onPaste={handleCopyPaste}
         />
-        {
-          (clearable && showClearIcon) || variant === 'password' || SuffixIcon || suffixIconButton ? (
-            <div
-              className='freeform-suffixContainer'
-              data-test-id={`${dataTestId}-suffix-container`}
-            >
-              {
-                clearable && showClearIcon && (
-                  <div
-                    className='freeform-inputClearIcon'
-                    data-test-id={`${dataTestId}-clear-icon`}
-                  >
-                    <TempIconButtonV2
-                      onClick={handleClear}
-                      Icon={MdsIcCancelCircle}
-                      size='medium'
-                      data-test-id={`${dataTestId}-clear-button`}
-                      iconColor={clearIconColor}
-                    />
-                  </div>
-                )
-              }
-              {
-                variant === 'password' && (
-                  <div
-                    className='freeform-inputSuffixIcon'
-                    data-test-id={`${dataTestId}-password-toggle`}
-                  >
-                    <TempIconButtonV2
-                      onClick={togglePasswordVisibility}
-                      Icon={showPassword ? MdsIcHideEye : MdsIcShowEye}
-                      size='medium'
-                      data-test-id={`${dataTestId}-password-toggle-button`}
-                      iconColor={passwordToggleIconColor}
-                    />
-                  </div>
-                )
-              }
-              {
-                SuffixIcon && (
-                  <div
-                    className={`freeform-inputSuffixIcon ${suffixIconColor}`}
-                    data-test-id={`${dataTestId}-suffix-icon`}
-                  >
-                    {/* Hardcoding size to 20 to maintain consistency across different icons and elements */}
-                    <SuffixIcon size={20}/>
-                  </div>
-                )
-              }
-              {
-                suffixIconButton && (
-                  <div
-                    className='freeform-inputSuffixIcon'
-                    data-test-id={`${dataTestId}-suffix-button`}
-                  >
-                    <TempIconButtonV2
-                      onClick={suffixIconButton.onClick}
-                      Icon={suffixIconButton.icon}
-                      disabled={disabled}
-                      size='medium'
-                      iconColor={suffixIconButtonColor}
-                    />
-                  </div>
-                )
-              }
-            </div>
-          ) : null
-        }
+
+        <SuffixSection
+          clearable={clearable}
+          showClearIcon={showClearIcon}
+          variant={variant}
+          showPassword={showPassword}
+          setShowPassword={setShowPassword}
+          SuffixIcon={SuffixIcon}
+          suffixIconButton={suffixIconButton}
+          handleClear={handleClear}
+          clearIconColor={clearIconColor}
+          passwordToggleIconColor={passwordToggleIconColor}
+          suffixIconColor={suffixIconColor}
+          suffixIconButtonColor={suffixIconButtonColor}
+          disabled={disabled}
+          dataTestId={dataTestId}
+        />
       </div>
+
       {
         helperText && (
           <div
@@ -305,10 +407,11 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
           </div>
         )
       }
+
       {
         error && errorMessage && (
           <div
-            className='contentNegative freeform-inputErrorText bodySmall'
+            className="contentNegative freeform-inputErrorText bodySmall"
             data-test-id={`${dataTestId}-error-message`}
           >
             <MdsIcError size={16}/>
@@ -318,6 +421,6 @@ const FreeFormInput: React.FC<FreeFormInputProps> = ({
       }
     </div>
   );
-};
+});
 
-export default FreeFormInput;
+export default memo(FreeFormInput);
