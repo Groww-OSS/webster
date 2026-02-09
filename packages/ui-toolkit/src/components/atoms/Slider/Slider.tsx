@@ -61,7 +61,7 @@ type DefaultProps = {
 }
 
 
-type Props = SliderProps & DefaultProps;
+export type Props = SliderProps & DefaultProps;
 
 Slider.defaultProps = {
   sliderWrapperClass: '',
