@@ -2,7 +2,7 @@
   font-family: 'GrowwSans';
   font-style: normal;
   font-weight: 300 700;
-  src: url(./GrowwSans-Variable.woff2) format('woff2-variations');
+  src: url(https://resources.groww.in/web-assets/font/GrowwSans-Variable.woff2) format('woff2-variations');
   font-display: swap;
 }
 
@@ -37,6 +37,6 @@
   font-family: 'Soehne';
   font-style: normal;
   font-weight: 300 700;
-  src: url(./Soehne.woff2) format('woff2-variations');
+  src: url(https://resources.groww.in/web-assets/font/Soehne.woff2) format('woff2-variations');
   font-display: swap;
 }
