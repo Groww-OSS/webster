@@ -87,7 +87,11 @@ export interface Settings {
   waitForAnimate?: boolean;
 }
 
-declare class Slider extends React.Component<Settings, never> {
+export interface CarouselProps extends Settings {
+  children?: React.ReactNode;
+}
+
+declare class Slider extends React.Component<CarouselProps, never> {
   slickNext(): void;
 
 
